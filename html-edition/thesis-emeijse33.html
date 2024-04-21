@@ -1,0 +1,2396 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Discussion</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch6.html#thesis-emeijse33.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse34.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse32.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse32.html#tailthesis-emeijse32.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse33.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">6.5    </span> <a 
+ id="x45-1060005"></a>Discussion</h3>
+<!--l. 6--><p class="noindent" >In this section, we further analyze the results presented in the previous section and
+answer the remaining research questions. We first look at the inter-annotator
+agreement between the assessors. We then turn to the performance of the different
+textual representations of the Wikipedia content that we use. Further, we consider the
+robustness of the performance of our methods with respect to various parameter
+settings, provide an analysis of the influence of the feature types on the end results, and
+also report on the informativeness of the individual features. We conclude with an error
+analysis to see which queries are intrinsically difficult to map to the DBpedia portion of
+the LOD cloud.
+<!--l. 17--><p class="indent" >   Unless indicated otherwise, all results on which we report in this section use the
+best performing approach from the previous section, i.e., the SVM classifier
+with a linear kernel using the full queries (with ten-fold cross-validation when
+applicable).
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 24--><p class="indent" >   <a 
+ id="x45-10600111"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="center" 
+>
+<!--l. 26--><p class="noindent" >
+
+ <table id="TBL-93" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-93-1g"><col 
+id="TBL-93-1"><col 
+id="TBL-93-2"><col 
+id="TBL-93-3"><col 
+id="TBL-93-4"><col 
+id="TBL-93-5"><col 
+id="TBL-93-6"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-93-1-"><td  style="text-align:left;" id="TBL-93-1-1"  
+class="td11"> <!--l. 121--><p class="noindent" >                         </td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-1-2"  
+class="td11">   <span 
+class="bchr8t-x-x-80">P1      </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-1-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">R-prec   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-1-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">Recall    </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-1-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">MRR     </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-1-6"  
+class="td11">   <span 
+class="bchr8t-x-x-80">SR      </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-93-2-"><td  style="text-align:left;" id="TBL-93-2-1"  
+class="td11"> <!--l. 121--><p class="noindent" ><span 
+class="bchr8t-x-x-80">full text</span>                                    </td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-2-2"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5636   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-2-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5216   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-2-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6768   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-2-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6400   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-2-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.7535   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-93-3-"><td  style="text-align:left;" id="TBL-93-3-1"  
+class="td11"> <!--l. 121--><p class="noindent" ><span 
+class="bchr8t-x-x-80">content</span>                                     </td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-3-2"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5510   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-3-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5134   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-3-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6632   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-3-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6252   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-3-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.7363   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-93-4-"><td  style="text-align:left;" id="TBL-93-4-1"  
+class="td11"> <!--l. 121--><p class="noindent" ><span 
+class="bchr8t-x-x-80">title</span>                                          </td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-4-2"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5651   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-4-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5286   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-4-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6523   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-4-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6368   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-4-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.7363   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-93-5-"><td  style="text-align:left;" id="TBL-93-5-1"  
+class="td11"> <!--l. 121--><p class="noindent" ><span 
+class="bchr8t-x-x-80">anchor</span>                                      </td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-5-2"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.6122   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-5-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5676   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-5-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.7219   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-5-5"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.6922   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-5-6"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8038   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-93-6-"><td  style="text-align:left;" id="TBL-93-6-1"  
+class="td11"> <!--l. 121--><p class="noindent" ><span 
+class="bchr8t-x-x-80">first sentence</span>                            </td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-6-2"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5495   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-6-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5106   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-6-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6523   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-6-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6203   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-6-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.7268   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-93-7-"><td  style="text-align:left;" id="TBL-93-7-1"  
+class="td11"> <!--l. 121--><p class="noindent" ><span 
+class="bchr8t-x-x-80">first paragraph</span>                         </td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-7-2"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5447   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-7-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5048   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-7-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6454   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-7-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6159   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-7-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.7190   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-93-8-"><td  style="text-align:left;" id="TBL-93-8-1"  
+class="td11"> <!--l. 121--><p class="noindent" ><span 
+class="bchr8t-x-x-80">title + content</span>                          </td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-8-2"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5604   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-8-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5200   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-8-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6750   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-8-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6357   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-8-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.7535   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-93-9-"><td  style="text-align:left;" id="TBL-93-9-1"  
+class="td11"> <!--l. 121--><p class="noindent" ><span 
+class="bchr8t-x-x-80">title + anchor</span>                           </td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-9-2"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5934   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-9-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5621   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-9-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.7164   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-9-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6792   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-9-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.7991   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-93-10-"><td  style="text-align:left;" id="TBL-93-10-1"  
+class="td11"> <!--l. 121--><p class="noindent" ><span 
+class="bchr8t-x-x-80">title + content + anchor</span>          </td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-10-2"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5714   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-10-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5302   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-10-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6925   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-10-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6514   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-10-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.7724   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-93-11-"><td  style="text-align:left;" id="TBL-93-11-1"  
+class="td11"> <!--l. 121--><p class="noindent" ><span 
+class="bchr8t-x-x-80">title    +    1st    sentence    +</span>
+   <span 
+class="bchr8t-x-x-80">anchor</span>                                      </td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-11-2"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5856   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-11-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5456   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-11-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6965   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-11-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6623   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-11-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.7755   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-93-12-"><td  style="text-align:left;" id="TBL-93-12-1"  
+class="td11"> <!--l. 121--><p class="noindent" ><span 
+class="bchr8t-x-x-80">title   +   1st   paragraph   +</span>
+   <span 
+class="bchr8t-x-x-80">anchor</span>                                      </td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-12-2"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5777   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-12-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5370   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-12-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6985   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-12-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6566   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-93-12-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.7771   </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-93-13-"><td  style="text-align:left;" id="TBL-93-13-1"  
+class="td11"> <!--l. 121--><p class="noindent" >                         </td></tr></table>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;6.11: </span><span  
+class="content">Results of ranking concepts based on the full query using different
+textual  representations  of  the  Wikipedia  article  associated  with  each  DBpedia
+concept. </span></div><!--tex4ht:label?: x45-10600111 -->
+</div>
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<a 
+ id="x45-106002r164"></a>
+<h4 class="subsectionHead"><span class="titlemark">6.5.1    </span> <a 
+ id="x45-1070001"></a>Inter-annotator Agreement</h4>
+<!--l. 133--><p class="noindent" >To assess the agreement between annotators, we randomly selected 50 sessions from
+the query log for judging by all annotators. We consider each query-concept pair to be
+an item of analysis for which each annotator expresses a judgment (&#x201C;a good
+mapping&#x201D; or &#x201C;not a good mapping&#x201D;) and on which the annotators may or may not
+agree. However, our annotation tool does not produce any explicit labels of
+query-concept pairs as being &#x201C;incorrect,&#x201D; since only positive (&#x201C;correct&#x201D;) judgments are
+generated by the mappings. Determining the inter-annotator agreement on
+these positive judgments alone might bias the results and we adopt a modified
+approach to account for the missing non-relevance information, as we will now
+explain.
+<!--l. 154--><p class="indent" >   We follow the same setup as used for the results presented earlier by considering 5
+concepts per query. In this case, the 5 concepts were sampled such that at least 3 were
+mapped (judged correct) by at least one of the annotators; the remaining
+concepts were randomly selected from the incorrect concepts. We deem a concept
+&#x201C;incorrect&#x201D; for a query if the query was not mapped to the concept by any
+annotator. For the queries where fewer than 3 correct concepts were identified,
+we increased the number of incorrect concepts to keep the total at 5. The
+rationale behind this approach is that each annotator looks at at least 5 concepts
+and selects the relevant ones. The measure of inter-annotator agreement that
+we are interested in is determined, then, on these 5 concepts per query. Also
+similar to the results reported earlier, we remove the queries in the &#x201C;anomalous&#x201D;
+categories.
+<!--l. 169--><p class="indent" >   The value for Cohen&#x2019;s <!--l. 169--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03BA;</mi></math>
+is 0.5111, which indicates fair overall agreement
+(<!--l. 170--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03BA;</mi></math> ranges
+from &#x2013;1 for complete disagreement to +1 for complete agreement)&#x00A0;[<a 
+href="thesis-emeijli2.html#XCL:2008:artstein">13</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XEPM:1960:cohen">77</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#Xbiometrics:1977:landis">179</a>].
+Krippendorf&#x2019;s <!--l. 173--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03B1;</mi></math>
+is another statistic for measuring inter-annotator agreement that takes into account the
+probability that observed variability is due to chance. Moreover, it does not
+require that each annotator annotates each document&#x00A0;[<a 
+href="thesis-emeijli2.html#XCL:2008:artstein">13</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XCMM:2007:hayes">123</a>]. The value of
+<!--l. 177--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03B1;</mi></math> is 0.5213.
+As with the <!--l. 177--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03BA;</mi></math>
+value, this indicates a fair agreement between annotators. It is less,
+however, than the level recommended by Krippendorff for reliable data
+(<!--l. 179--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03B1;</mi></math> = 0.8) or for tentative
+reliability (<!--l. 180--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03B1;</mi></math> = 0.667).
+                                                                   
+                                                                   
+The values we obtain for <!--l. 180--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03B1;</mi></math>
+and <!--l. 180--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03BA;</mi></math>
+are therefore an indication as to the nature of relevance with respect to our task. What
+one person deems a viable mapping given his or her background, another might find
+not relevant. Voorhees&#x00A0;[<a 
+href="thesis-emeijli2.html#XIPM:2000:Voorhees">328</a>] has shown, however, that moderate inter-annotator
+agreement can still yield reliable comparisons between approaches (in her case TREC
+information retrieval runs, in our case different approaches to the mapping
+task) that are stable when one set of assessments is substituted for another.
+This means that, although the absolute inter-annotator scores indicate a fair
+agreement, the system results and comparisons thereof that we obtain are
+valid.
+<a 
+ id="x45-107001r168"></a>
+<h4 class="subsectionHead"><span class="titlemark">6.5.2    </span> <a 
+ id="x45-1080002"></a>Textual Concept Representations</h4>
+<!--l. 197--><p class="noindent" >One of our baselines ranks concepts based on the full textual representation of each
+DBpedia concept, as described in Section&#x00A0;<a 
+href="thesis-emeijse32.html#x44-1020001">6.4.1<!--tex4ht:ref: ssec:baselineresults --></a>. Instead of using the full text, we
+evaluate what the results are when we rank concepts based on each individual textual
+representation and based on combinations of fields. Table&#x00A0;<a 
+href="#x45-10600111">6.11<!--tex4ht:ref: tbl:baseline:fields --></a> lists the results. As per
+the Wikipedia authoring guidelines&#x00A0;[<a 
+href="thesis-emeijli2.html#Xurl:wikipedia:firstparagraph">342</a>], the first sentence and paragraph should
+serve as an introduction to, and summary of, the important aspects of the
+contents of the article. In Table&#x00A0;<a 
+href="#x45-10600111">6.11<!--tex4ht:ref: tbl:baseline:fields --></a>, we have also included these fields. From the
+table we observe that the anchor texts emerge as the best descriptor of each
+concept and using this field on its own obtains the highest absolute retrieval
+performance. However, the highest scores obtained using this approach are still
+significantly lower than the best performing machine learning method reported on
+earlier.
+<a 
+ id="x45-108001r169"></a>
+<h4 class="subsectionHead"><span class="titlemark">6.5.3    </span> <a 
+ id="x45-1090003"></a>Robustness</h4>
+<!--l. 216--><p class="noindent" >Next, we discuss the robustness of our approach. Specifically, we investigate the effects
+of varying the number of retrieved concepts in the first stage, of varying the size of the
+folds, of balancing the relative amount of positive and negative examples in the
+training data, and the effect of varying parameters in the machine learning
+models.
+<h5 class="subsubsectionHead"><a 
+ id="x45-1100003"></a>Number of Concepts</h5>
+<!--l. 225--><p class="noindent" >The results in Section&#x00A0;<a 
+href="thesis-emeijse32.html#x44-1010004">6.4<!--tex4ht:ref: sec:results --></a> were obtained by selecting the top 5 concepts from the first
+stage for each query, under the assumption that 5 concepts would give a good balance
+between recall and precision (motivated by the fact there are 1.34 concepts annotated
+per query on average). Our intuition was that, even if the initial stage did not place a
+relevant concept at rank 1, the concept selection stage could still consider this
+concept as a candidate (given that it appeared somewhere in the top 5). We
+now test this assumption by varying the number of concepts returned for each
+                                                                   
+                                                                   
+query.
+<!--l. 235--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                   
+                                                                   
+<a 
+ id="x45-1100014"></a>
+                                                                   
+                                                                   
+<!--l. 237--><p class="noindent" ><img 
+src="thesis-emeij78x.png" alt="PIC" class="graphics" width="264.6105pt" height="185.2277pt" ><!--tex4ht:graphics  
+name="thesis-emeij78x.png" src="chapter05/topN.eps"  
+-->
+<br />  <div class="caption" 
+><span class="id">Figure&#x00A0;6.4:   </span><span  
+class="content">Plot   of   results   when   varying   the   number   of   concepts,
+<!--l. 238--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>K</mi></math>,
+used as input for the concept selection stage on performance. Note the log scale
+on the x-axis. </span></div><!--tex4ht:label?: x45-1100014 -->
+                                                                   
+                                                                   
+<!--l. 240--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 242--><p class="noindent" >Figure&#x00A0;<a 
+href="#x45-1100014">6.4<!--tex4ht:ref: fig:topN --></a> shows the effect of varying the number of retrieved concepts
+(<!--l. 244--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>K</mi></math>) in
+the first stage on various retrieval measures. On nearly all metrics the best
+performance is achieved when using the top 3 concepts from the initial stage for
+concept selection, although the absolute difference between using 3 and 5
+terms is minimal for most measures. As we have observed above, most relevant
+concepts are already ranked very high by the initial stage. Further, from the figure
+we conclude that using only the top 1 is not enough and results in the worst
+performance. In general, one might expect recall to improve when the number of
+concepts grows. However, since each query only has 1.34 concepts annotated on
+average, recall can not improve much when considering larger numbers of
+candidate concepts. Finally, increasing the number of concepts mainly increases
+the number of non-relevant concepts in the training data, which may result
+in a bias towards classifying concepts as not relevant by a machine learning
+algorithm.
+<h5 class="subsubsectionHead"><a 
+ id="x45-1110003"></a>Balancing the Training Set</h5>
+<!--l. 275--><p class="noindent" >Machine learning algorithms are sensitive to the distribution of positive and negative
+instances in the training set. The results reported so far do not perform any kind of
+resampling of the training data and take the distribution of the class labels (whether the
+current concept is selected by the assessors) as is.
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 1--><p class="indent" >   <a 
+ id="x45-11100112"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+
+ <table id="TBL-96" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-96-1g"><col 
+id="TBL-96-1"><col 
+id="TBL-96-2"><col 
+id="TBL-96-3"><col 
+id="TBL-96-4"><col 
+id="TBL-96-5"><col 
+id="TBL-96-6"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-96-1-"><td  style="text-align:left;" id="TBL-96-1-1"  
+class="td11"> <!--l. 29--><p class="noindent" >                         </td><td  style="text-align:center; white-space:nowrap;" id="TBL-96-1-2"  
+class="td11">   <span 
+class="bchr8t-x-x-80">P1      </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-96-1-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">R-prec   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-96-1-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">Recall    </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-96-1-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">MRR     </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-96-1-6"  
+class="td11">   <span 
+class="bchr8t-x-x-80">SR      </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-96-2-"><td  style="text-align:left;" id="TBL-96-2-1"  
+class="td11"> <!--l. 29--><p class="noindent" ><span 
+class="bchr8t-x-x-80">balanced</span>                                   </td><td  style="text-align:center; white-space:nowrap;" id="TBL-96-2-2"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5777   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-96-2-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.4383   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-96-2-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5436   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-96-2-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5960   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-96-2-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6150   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-96-3-"><td  style="text-align:left;" id="TBL-96-3-1"  
+class="td11"> <!--l. 29--><p class="noindent" ><span 
+class="bchr8t-x-x-80">random sampling</span>                     </td><td  style="text-align:center; white-space:nowrap;" id="TBL-96-3-2"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8833   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-96-3-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8666   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-96-3-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8975   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-96-3-5"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8406   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-96-3-6"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.9053   </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-96-4-"><td  style="text-align:left;" id="TBL-96-4-1"  
+class="td11"> <!--l. 29--><p class="noindent" >                         </td></tr></table>
+ <div class="caption" 
+><span class="id">Table&#x00A0;6.12: </span><span  
+class="content">Comparison of sampling methods. </span></div><!--tex4ht:label?: x45-11100112 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 284--><p class="noindent" >In order to determine whether reducing the number of non-relevant concepts in
+the training data has a positive effect on the performance, we experiment
+using a balanced and a randomly distributed training set. The balanced set
+reduces the number of negative examples such that the training set contains as
+many positive examples as negative examples. On the other hand, the random
+sampled set follows the empirical distribution in the data. Table&#x00A0;<a 
+href="#x45-11100112">6.12<!--tex4ht:ref: tbl:balance --></a> shows that
+balancing the training set causes performance to drop. We thus conclude that
+including a larger number of negative examples has a positive effect on retrieval
+performance and that there is no need to perform any kind of balancing for our
+task.
+<h5 class="subsubsectionHead"><a 
+ id="x45-1120003"></a>Splitting the Data</h5>
+<!--l. 303--><p class="noindent" >Ideally, the training set used to train the machine learning algorithms is large enough to
+learn a model of the data that is sufficiently discriminative; also, a test set should be
+large enough to test whether the model generalizes well to unseen instances.
+<div class="table">
+                                                                   
+                                                                   
+<!--l. 1--><p class="indent" >   <a 
+ id="x45-11200113"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+
+ <table id="TBL-99" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-99-1g"><col 
+id="TBL-99-1"><col 
+id="TBL-99-2"><col 
+id="TBL-99-3"><col 
+id="TBL-99-4"><col 
+id="TBL-99-5"><col 
+id="TBL-99-6"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-99-1-"><td  style="text-align:left;" id="TBL-99-1-1"  
+class="td11"> <!--l. 32--><p class="noindent" >                         </td><td  style="text-align:center; white-space:nowrap;" id="TBL-99-1-2"  
+class="td11">   <span 
+class="bchr8t-x-x-80">P1      </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-99-1-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">R-prec   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-99-1-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">Recall    </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-99-1-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">MRR     </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-99-1-6"  
+class="td11">   <span 
+class="bchr8t-x-x-80">SR      </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-99-2-"><td  style="text-align:left;" id="TBL-99-2-1"  
+class="td11"> <!--l. 32--><p class="noindent" ><span 
+class="bchr8t-x-x-80">50-50</span>                                       </td><td  style="text-align:center; white-space:nowrap;" id="TBL-99-2-2"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.8809   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-99-2-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.8601   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-99-2-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.8927   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-99-2-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.8338   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-99-2-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.9016   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-99-3-"><td  style="text-align:left;" id="TBL-99-3-1"  
+class="td11"> <!--l. 32--><p class="noindent" ><span 
+class="bchr8t-x-x-80">75-25</span>                                       </td><td  style="text-align:center; white-space:nowrap;" id="TBL-99-3-2"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.8812   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-99-3-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.8599   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-99-3-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.8927   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-99-3-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.8344   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-99-3-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.9015   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-99-4-"><td  style="text-align:left;" id="TBL-99-4-1"  
+class="td11"> <!--l. 32--><p class="noindent" ><span 
+class="bchr8t-x-x-80">90-10</span>                                       </td><td  style="text-align:center; white-space:nowrap;" id="TBL-99-4-2"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8833   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-99-4-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8666   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-99-4-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8975   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-99-4-5"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8406   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-99-4-6"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.9053   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-99-5-"><td  style="text-align:left;" id="TBL-99-5-1"  
+class="td11"> <!--l. 32--><p class="noindent" >                         </td></tr></table>
+ <div class="caption" 
+><span class="id">Table&#x00A0;6.13: </span><span  
+class="content">Comparison of using different sizes for the training and test sets used
+for cross-validation. A 50-50 split uses the smallest training set (training and test
+set are equally sized), a 75-25 split uses 75% for training and 25% for testing, a
+90-10 split uses 90% for training and 10% for testing. </span></div><!--tex4ht:label?: x45-11200113 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 311--><p class="noindent" >Table&#x00A0;<a 
+href="#x45-11200113">6.13<!--tex4ht:ref: tbl:splits --></a> shows the results when we vary the size of the folds used for
+cross-validation using the SVM classifier on the full query based concept selection.
+Here, we compare the 90-10 split reported on above so far with a 50-50 and a
+75-25 split. From this table we observe that there is no significant difference
+between the results on various splits. In practical terms this means that the
+amount of training data can be greatly reduced, without a significant loss in
+performance. This in turn means that the labor-intensive, human effort of creating
+annotations can be limited to a few hundred annotations in order to achieve good
+performance.
+<h5 class="subsubsectionHead"><a 
+ id="x45-1130003"></a>Machine Learning Model Parameters</h5>
+<!--l. 330--><p class="noindent" >Next, we look at important parameters of the three machine learning algorithms we
+evaluate.
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 1--><p class="indent" >   <a 
+ id="x45-11300114"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="center" 
+>
+<!--l. 3--><p class="noindent" >
+
+ <table id="TBL-102" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-102-1g"><col 
+id="TBL-102-1"><col 
+id="TBL-102-2"><col 
+id="TBL-102-3"><col 
+id="TBL-102-4"><col 
+id="TBL-102-5"><col 
+id="TBL-102-6"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-102-1-"><td  style="text-align:left;" id="TBL-102-1-1"  
+class="td11"> <!--l. 56--><p class="noindent" >                         </td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-1-2"  
+class="td11">   <span 
+class="bchr8t-x-x-80">P1      </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-1-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">R-prec   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-1-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">Recall    </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-1-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">MRR     </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-1-6"  
+class="td11">   <span 
+class="bchr8t-x-x-80">SR      </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-102-2-"><td colspan="6" style="text-align:left; white-space:nowrap;" id="TBL-102-2-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Full query based concept selection</span></div>
+
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-102-3-"><td  style="text-align:left;" id="TBL-102-3-1"  
+class="td11"> <!--l. 56--><p class="noindent" ><span 
+class="bchr8t-x-x-80">linear</span>                                        </td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-3-2"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8833   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-3-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8666   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-3-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8975   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-3-5"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8406   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-3-6"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.9053   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-102-4-"><td  style="text-align:left;" id="TBL-102-4-1"  
+class="td11"> <!--l. 56--><p class="noindent" ><span 
+class="bchr8t-x-x-80">gaussian</span>                                   </td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-4-2"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8833   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-4-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8666   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-4-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8975   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-4-5"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8406   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-4-6"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.9053   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-102-5-"><td  style="text-align:left;" id="TBL-102-5-1"  
+class="td11"> <!--l. 56--><p class="noindent" ><span 
+class="bchr8t-x-x-80">polynomial</span>                               </td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-5-2"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.8738   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-5-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.7859   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-5-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.8415   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-5-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.8364   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-5-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.8876   </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-102-6-"><td colspan="6" style="text-align:left; white-space:nowrap;" id="TBL-102-6-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">N-gram based concept selection</span></div>
+
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-102-7-"><td  style="text-align:left;" id="TBL-102-7-1"  
+class="td11"> <!--l. 56--><p class="noindent" ><span 
+class="bchr8t-x-x-80">linear</span>                                        </td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-7-2"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.7998   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-7-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.6718   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-7-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.7556   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-7-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.8131   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-7-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.8240   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-102-8-"><td  style="text-align:left;" id="TBL-102-8-1"  
+class="td11"> <!--l. 56--><p class="noindent" ><span 
+class="bchr8t-x-x-80">gaussian</span>                                   </td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-8-2"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8241   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-8-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6655   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-8-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.7849   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-8-5"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8316   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-8-6"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8641   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-102-9-"><td  style="text-align:left;" id="TBL-102-9-1"  
+class="td11"> <!--l. 56--><p class="noindent" ><span 
+class="bchr8t-x-x-80">polynomial</span>                               </td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-9-2"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.7967   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-9-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6251   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-9-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.7660   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-9-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.8205   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-102-9-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.8589   </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-102-10-"><td  style="text-align:left;" id="TBL-102-10-1"  
+class="td11"> <!--l. 56--><p class="noindent" >                         </td></tr></table>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;6.14: </span><span  
+class="content">Comparison of using different kernels for the SVM machine learning
+algorithm.</span></div><!--tex4ht:label?: x45-11300114 -->
+</div>
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 333--><p class="noindent" >Table&#x00A0;<a 
+href="#x45-11300114">6.14<!--tex4ht:ref: tbl:SMOcomp --></a> shows the results of using different kernels for the SVM classifier,
+specifically a linear, a gaussian, and a polynomial kernel. On the full query data there is
+no difference between the linear and gaussian kernel and on the n-gram data
+there is only a small difference. The polynomial kernel performs the worst in
+both cases, but again the difference is insignificant as compared to the results
+attained using the other kernels. The values listed in Table&#x00A0;<a 
+href="#x45-11300114">6.14<!--tex4ht:ref: tbl:SMOcomp --></a> are obtained
+using the optimal parameter settings for the kernels. Figure&#x00A0;<a 
+href="#x45-1130055">6.5<!--tex4ht:ref: fig:params --></a>&#x00A0;(b) shows a
+sweep of the complexity parameter for the gaussian kernel. A higher degree of
+complexity penalizes non-separable points and leads to overfitting, while if
+the value is too low SVM is unable to learn a discriminative model. For the
+polynomial kernel we limited our experiments to a second order kernel, as the
+increase in training times on higher order kernels made further experimentation
+prohibitive. The fact that there is little difference between the results of using
+various kernels shows that, for the purpose of reranking queries, a simple linear
+model is enough to achieve optimal or close to optimal performance. A more
+complex model leads to limited or no improvement and increased training
+times.
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 2--><p class="indent" >   <a 
+ id="x45-11300215"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="center" 
+>
+<!--l. 4--><p class="noindent" >
+
+ <table id="TBL-105" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-105-1g"><col 
+id="TBL-105-1"><col 
+id="TBL-105-2"><col 
+id="TBL-105-3"><col 
+id="TBL-105-4"><col 
+id="TBL-105-5"><col 
+id="TBL-105-6"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-105-1-"><td  style="text-align:left;" id="TBL-105-1-1"  
+class="td11"> <!--l. 46--><p class="noindent" >                       </td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-1-2"  
+class="td11">   <span 
+class="bchr8t-x-x-80">P1      </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-1-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">R-prec    </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-1-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">Recall    </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-1-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">MRR     </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-1-6"  
+class="td11">    <span 
+class="bchr8t-x-x-80">SR       </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-105-2-"><td colspan="6" style="text-align:left; white-space:nowrap;" id="TBL-105-2-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Full query based concept selection</span></div>
+
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-105-3-"><td  style="text-align:left;" id="TBL-105-3-1"  
+class="td11"> <!--l. 46--><p class="noindent" ><span 
+class="bchr8t-x-x-80">binning</span>                                </td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-3-2"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.6925   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-3-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5897   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-3-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6865   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-3-5"  
+class="td11">  <span 
+class="bchb8t-x-x-80">0.6989   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-3-6"  
+class="td11">  <span 
+class="bchb8t-x-x-80">0.7626   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-105-4-"><td  style="text-align:left;" id="TBL-105-4-1"  
+class="td11"> <!--l. 46--><p class="noindent" ><span 
+class="bchr8t-x-x-80">kernel</span>                                   </td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-4-2"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6897   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-4-3"  
+class="td11">  <span 
+class="bchb8t-x-x-80">0.5973   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-4-4"  
+class="td11">  <span 
+class="bchb8t-x-x-80">0.6882   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-4-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6836   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-4-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.7455   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-105-5-"><td colspan="6" style="text-align:left; white-space:nowrap;" id="TBL-105-5-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">N-gram based concept selection</span></div>
+
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-105-6-"><td  style="text-align:left;" id="TBL-105-6-1"  
+class="td11"> <!--l. 46--><p class="noindent" ><span 
+class="bchr8t-x-x-80">binning</span>                                </td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-6-2"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.4494   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-6-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.4088    </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-6-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.6948    </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-6-5"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.7278    </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-6-6"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.7710    </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-105-7-"><td  style="text-align:left;" id="TBL-105-7-1"  
+class="td11"> <!--l. 46--><p class="noindent" ><span 
+class="bchr8t-x-x-80">kernel</span>                                   </td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-7-2"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5944   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-7-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.3236   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-7-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.4884   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-7-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5946   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-105-7-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6445   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-105-8-"><td  style="text-align:left;" id="TBL-105-8-1"  
+class="td11"> <!--l. 46--><p class="noindent" >                       </td></tr></table>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;6.15:   </span><span  
+class="content">Comparison   of   using   different   probability   density   estimation
+methods for the NB classifier.</span></div><!--tex4ht:label?: x45-11300215 -->
+</div>
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 360--><p class="indent" >   Table&#x00A0;<a 
+href="#x45-11300215">6.15<!--tex4ht:ref: tbl:NBcomp --></a> shows the results of binning versus kernel density estimation (using a
+gaussian kernel). As was the case with SVM, there is only a small difference between
+the results on the full query data. The results on the n-gram data do show a difference;
+binning performs better in terms of recall while kernel density estimation achieves
+higher precision, which is probably caused by the kernel method overfitting the
+data.
+<!--l. 368--><p class="indent" >   Figure&#x00A0;<a 
+href="#x45-1130055">6.5<!--tex4ht:ref: fig:params --></a>&#x00A0;(a) shows the effect of varying the level of pruning for the J48 algorithm
+on the full query data, where a low number relates to more aggressive pruning. We
+observe that more agressive pruning leads to slightly better performance over the
+standard level (0.25), but not significantly so.
+<!--l. 374--><p class="indent" >   An exploration of the machine learning model parameters shows that SVM is the
+best classifier for our task: even with optimized parameters the Naive Bayes and J48
+classifiers do not achieve better results.
+<!--l. 378--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                   
+                                                                   
+<a 
+ id="x45-1130055"></a>
+                                                                   
+                                                                   
+<a 
+ id="x45-113003r1"></a>
+<div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij79x.png" alt="PIC" class="graphics" width="169.34921pt" height="118.5448pt" ><!--tex4ht:graphics  
+name="thesis-emeij79x.png" src="chapter05/SMOgauss.eps"  
+-->
+                 <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(a) </span></div>                 </td></tr></table></div>
+<a 
+ id="x45-113004r2"></a><div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij80x.png" alt="PIC" class="graphics" width="169.34921pt" height="118.5448pt" ><!--tex4ht:graphics  
+name="thesis-emeij80x.png" src="chapter05/J48.eps"  
+-->
+                 <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(b) </span></div>                 </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;6.5: </span><span  
+class="content">(a) The effect of adjusting the complexity parameter for SVM with a
+gaussian kernel. Note that the x-axis is on a log scale. (b) The effect of adjusting
+the pruning parameter for the J48 learning algorithm. A lower number means
+more aggressive pruning. </span></div><!--tex4ht:label?: x45-1130055 -->
+                                                                   
+                                                                   
+<!--l. 390--><p class="indent" >   </div><hr class="endfigure">
+<a 
+ id="x45-113006r170"></a>
+<h4 class="subsectionHead"><span class="titlemark">6.5.4    </span> <a 
+ id="x45-1140004"></a>Feature Types</h4>
+<!--l. 395--><p class="noindent" >In Section&#x00A0;<a 
+href="thesis-emeijse30.html#x42-910003">6.2.3<!--tex4ht:ref: ssec:features --></a> we identified four groups of features, relating to the n-gram (&#x201C;N&#x201D;),
+concept (&#x201C;C&#x201D;), their combination (&#x201C;N+C&#x201D;), or the session history (&#x201C;H&#x201D;). We will
+now zoom in on the performance of these groups. To this end we perform an
+ablation experiment, where each of these groups is removed from the training
+data.
+<h5 class="subsubsectionHead"><a 
+ id="x45-1150004"></a>N-gram based Concept Selection</h5>
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 1--><p class="indent" >   <a 
+ id="x45-11500116"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+
+ <table id="TBL-107" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-107-1g"><col 
+id="TBL-107-1"><col 
+id="TBL-107-2"><col 
+id="TBL-107-3"><col 
+id="TBL-107-4"><col 
+id="TBL-107-5"><col 
+id="TBL-107-6"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-107-1-"><td  style="text-align:left;" id="TBL-107-1-1"  
+class="td11"> <!--l. 54--><p class="noindent" ><span 
+class="bchr8t-x-x-80">Excluded</span> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-1-2"  
+class="td11">                                                                                                                                                                                                                                                               </td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-1-3"  
+class="td11">                                                                                                                                                                                                                                                                  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-1-4"  
+class="td11">                                                                                                                                                                                                                                                                  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-1-5"  
+class="td11">                                                                                                                                                                                                                                                                  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-1-6"  
+class="td11">                                                                                                                                                                                                                                                                  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-107-2-"><td  style="text-align:left;" id="TBL-107-2-1"  
+class="td11"> <!--l. 54--><p class="noindent" ><span 
+class="bchr8t-x-x-80">feature</span>
+   <span 
+class="bchr8t-x-x-80">types</span> </td><td  style="text-align:center; white-space:nowrap;" id="TBL-107-2-2"  
+class="td11">                                                                                                                                <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">P1</span></div>                                                                                                       </td><td  style="text-align:center; white-space:nowrap;" id="TBL-107-2-3"  
+class="td11">                                                                                                                              <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">R-prec</span></div>                                                                                                      </td><td  style="text-align:center; white-space:nowrap;" id="TBL-107-2-4"  
+class="td11">                                                                                                                              <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Recall</span></div>                                                                                                      </td><td  style="text-align:center; white-space:nowrap;" id="TBL-107-2-5"  
+class="td11">                                                                                                                               <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">MRR</span></div>                                                                                                       </td><td  style="text-align:center; white-space:nowrap;" id="TBL-107-2-6"  
+class="td11">                                                                                                                                <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">SR</span></div>
+
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-107-3-"><td  style="text-align:left;" id="TBL-107-3-1"  
+class="td11"> <!--l. 54--><p class="noindent" ><span 
+class="bchr8t-x-x-80">&#x2013;</span>     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-3-2"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.7998                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-3-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.6718                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-3-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.7556                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-3-5"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8131                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-3-6"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8240                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-107-4-"><td  style="text-align:left;" id="TBL-107-4-1"  
+class="td11"> <!--l. 54--><p class="noindent" ><span 
+class="bchr8t-x-x-80">H</span>     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-4-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.6848</span><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                                                                                                    </td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-4-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5600</span><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                                                                                                    </td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-4-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.6285</span><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                                                                                                    </td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-4-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.6902</span><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                                                                                                    </td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-4-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.6957</span><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                                                                                                    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-107-5-"><td  style="text-align:left;" id="TBL-107-5-1"  
+class="td11"> <!--l. 54--><p class="noindent" ><span 
+class="bchr8t-x-x-80">C</span>     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-5-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4844</span><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-5-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3895</span><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-5-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4383</span><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-5-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4875</span><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-5-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4906</span><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-107-6-"><td  style="text-align:left;" id="TBL-107-6-1"  
+class="td11"> <!--l. 54--><p class="noindent" ><span 
+class="bchr8t-x-x-80">H;</span>
+   <span 
+class="bchr8t-x-x-80">C</span>     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-6-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2233</span><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-6-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1233</span><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-6-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1733</span><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-6-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2233</span><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-107-6-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2233</span><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math> </td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-107-7-"><td  style="text-align:left;" id="TBL-107-7-1"  
+class="td11"> <!--l. 54--><p class="noindent" >    </td></tr></table>
+  <div class="caption" 
+><span class="id">Table&#x00A0;6.16:    </span><span  
+class="content">Results    of    removing    specific    feature    types    from    the
+training  data  for  the  SVM  classifier  and  n-gram  based  concept  selection.
+<!--l. 61--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math>&#x00A0;and
+<!--l. 61--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>&#x00A0;indicate
+that a score is significantly worse or statistically indistinguishable respectively.
+The leftmost symbol represents the difference with the all features run, the next
+with  the  without  history  features  run,  and  the  rightmost  symbol  the  without
+concept features run. </span></div><!--tex4ht:label?: x45-11500116 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 407--><p class="indent" >   Table&#x00A0;<a 
+href="#x45-11500116">6.16<!--tex4ht:ref: tbl:featuretypes --></a> shows the results using n-gram based concept selection. It turns out that
+both the n-gram specific and n-gram + concept specific features are required for
+successful classification: when these groups are removed, none of the relevant concepts
+are identified. From this table we further observe that removing the history
+features results in a drop in performance, albeit a small one. When the concept
+features are removed, the resulting performance drops even further and their
+combined removal yields very low scores. So, although some feature types
+contribute more to the final performance, each is needed to arrive at the highest
+scores.
+<h5 class="subsubsectionHead"><a 
+ id="x45-1160004"></a>Full-query Based Concept Selection</h5>
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 1--><p class="indent" >   <a 
+ id="x45-11600117"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+
+ <table id="TBL-109" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-109-1g"><col 
+id="TBL-109-1"><col 
+id="TBL-109-2"><col 
+id="TBL-109-3"><col 
+id="TBL-109-4"><col 
+id="TBL-109-5"><col 
+id="TBL-109-6"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-109-1-"><td  style="text-align:left;" id="TBL-109-1-1"  
+class="td11"> <!--l. 51--><p class="noindent" ><span 
+class="bchr8t-x-x-80">Excluded</span> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-1-2"  
+class="td11">                                                                                                                                                                                                                                                               </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-1-3"  
+class="td11">                                                                                                                                                                                                                                                                  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-1-4"  
+class="td11">                                                                                                                                                                                                                                                                  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-1-5"  
+class="td11">                                                                                                                                                                                                                                                                  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-1-6"  
+class="td11">                                                                                                                                                                                                                                                                  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-109-2-"><td  style="text-align:left;" id="TBL-109-2-1"  
+class="td11"> <!--l. 51--><p class="noindent" ><span 
+class="bchr8t-x-x-80">feature</span>
+   <span 
+class="bchr8t-x-x-80">types</span> </td><td  style="text-align:center; white-space:nowrap;" id="TBL-109-2-2"  
+class="td11">                                                                                                                                <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">P1</span></div>                                                                                                       </td><td  style="text-align:center; white-space:nowrap;" id="TBL-109-2-3"  
+class="td11">                                                                                                                              <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">R-prec</span></div>                                                                                                      </td><td  style="text-align:center; white-space:nowrap;" id="TBL-109-2-4"  
+class="td11">                                                                                                                              <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Recall</span></div>                                                                                                      </td><td  style="text-align:center; white-space:nowrap;" id="TBL-109-2-5"  
+class="td11">                                                                                                                               <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">MRR</span></div>                                                                                                       </td><td  style="text-align:center; white-space:nowrap;" id="TBL-109-2-6"  
+class="td11">                                                                                                                                <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">SR</span></div>
+
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-109-3-"><td  style="text-align:left;" id="TBL-109-3-1"  
+class="td11"> <!--l. 51--><p class="noindent" ><span 
+class="bchr8t-x-x-80">&#x2013;</span>     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-3-2"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8833                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-3-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8666                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-3-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8975                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-3-5"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8406                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-3-6"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.9053                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-109-4-"><td  style="text-align:left;" id="TBL-109-4-1"  
+class="td11"> <!--l. 51--><p class="noindent" ><span 
+class="bchr8t-x-x-80">H;</span>
+   <span 
+class="bchr8t-x-x-80">C</span>     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-4-2"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8833</span><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                                                                                                    </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-4-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8666</span><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                                                                                                    </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-4-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8975</span><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                                                                                                    </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-4-5"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8406</span><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                                                                                                    </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-4-6"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.9053</span><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                                                                                                    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-109-5-"><td  style="text-align:left;" id="TBL-109-5-1"  
+class="td11"> <!--l. 51--><p class="noindent" ><span 
+class="bchr8t-x-x-80">N;</span>
+   <span 
+class="bchr8t-x-x-80">N+C</span> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-5-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1000</span><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math>                                                                                                                                         </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-5-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0000</span><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math>                                                                                                                                         </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-5-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0500</span><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math>                                                                                                                                         </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-5-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1000</span><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math>                                                                                                                                         </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-5-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1000</span><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math>                                                                                                                                         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-109-6-"><td  style="text-align:left;" id="TBL-109-6-1"  
+class="td11"> <!--l. 51--><p class="noindent" ><span 
+class="bchr8t-x-x-80">N+C</span> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-6-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0556</span><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-6-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0222</span><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-6-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0370</span><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-6-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0556</span><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-6-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0556</span><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-109-7-"><td  style="text-align:left;" id="TBL-109-7-1"  
+class="td11"> <!--l. 51--><p class="noindent" ><span 
+class="bchr8t-x-x-80">H;</span>
+   <span 
+class="bchr8t-x-x-80">N+C</span> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-7-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0333</span><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-7-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0000</span><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-7-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0167</span><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-7-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0333</span><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-109-7-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0333</span><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math><!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math> </td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-109-8-"><td  style="text-align:left;" id="TBL-109-8-1"  
+class="td11"> <!--l. 51--><p class="noindent" >    </td></tr></table>
+ <div class="caption" 
+><span class="id">Table&#x00A0;6.17: </span><span  
+class="content">Results of removing specific feature types for the SVM classifier and
+full query based concept selection. Not all possible combinations are included in
+the results; all unlisted combinations have either scores of zero or the same score
+as when using all feature types. The leftmost symbol represents the difference
+with the all features run, the next with the without n-gram+concept and n-gram
+features run, and the rightmost symbol the without n-gram+concept features run.
+</span></div><!--tex4ht:label?: x45-11600117 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 426--><p class="indent" >   Table&#x00A0;<a 
+href="#x45-11600117">6.17<!--tex4ht:ref: tbl:fqfeaturetypes --></a> shows the results using full-query based concept selection. In this
+case, the effect of removing both history and concept based features does not
+influence the results at all. This can in part be explained by the fact that most
+history features are based on the counts of the query in various parts of the
+session. Since we now have a single n-gram (the full query), these counts turn
+into binary features and may therefore be less discriminative. This is in stark
+contrast with the n-gram based features that do have a significant effect on
+performance on all metrics. Similar to the n-gram based data, these features are
+essential for full query based concept selection. Finally, we observe that there are
+some dependencies among the types of features. When we remove both the
+n-gram+concept features and the history features, the performance is worse than
+when we remove only the n-gram+concept features (although not significantly
+so).
+<h5 class="subsubsectionHead"><a 
+ id="x45-1170004"></a>Upshot</h5>
+<!--l. 444--><p class="noindent" >In sum, all feature types contribute to the performance in the case of n-gram based
+concept selection. The highest scores are obtained, however, using full query based
+concept selection. In this case, the history and concept based features do not contribute
+to the results.
+<a 
+ id="x45-117001r181"></a>
+<h4 class="subsectionHead"><span class="titlemark">6.5.5    </span> <a 
+ id="x45-1180005"></a>Feature Selection</h4>
+<!--l. 449--><p class="noindent" >Several methods exist for automatically determining the most informative features
+given training instances and their class labels. In this section we report on using an
+information gain based algorithm for feature selection&#x00A0;[<a 
+href="thesis-emeijli2.html#XICML:2007:yang">350</a>].
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 4--><p class="indent" >   <a 
+ id="x45-11800118"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="tabular">
+ <table id="TBL-110" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-110-1g"><col 
+id="TBL-110-1"><col 
+id="TBL-110-2"><col 
+id="TBL-110-3"><col 
+id="TBL-110-4"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-110-1-"><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-110-1-1"  
+class="td11">                                  <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">N-gram based concept selection</span></div>                            </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-110-1-3"  
+class="td11">                                  <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Full query based concept selection</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-110-2-"><td  style="text-align:left; white-space:nowrap;" id="TBL-110-2-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.119   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-110-2-2"  
+class="td11"> <!--l. 12--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>R</mi><mi 
+>A</mi><mi 
+>N</mi><mi 
+>K</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math>  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-110-2-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.190   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-110-2-4"  
+class="td11"> <!--l. 12--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>R</mi><mi 
+>A</mi><mi 
+>N</mi><mi 
+>K</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math>  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-110-3-"><td  style="text-align:left; white-space:nowrap;" id="TBL-110-3-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.107   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-110-3-2"  
+class="td11"> <!--l. 13--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>I</mi><mi 
+>D</mi></mstyle></math>  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-110-3-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.108   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-110-3-4"  
+class="td11"> <!--l. 13--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>T</mi><mi 
+>E</mi><mi 
+>Q</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math>  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-110-4-"><td  style="text-align:left; white-space:nowrap;" id="TBL-110-4-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.052   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-110-4-2"  
+class="td11"> <!--l. 14--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>I</mi><mi 
+>N</mi><mi 
+>L</mi><mi 
+>I</mi><mi 
+>N</mi><mi 
+>K</mi><mi 
+>S</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math>  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-110-4-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.080   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-110-4-4"  
+class="td11"> <!--l. 14--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>I</mi><mi 
+>N</mi><mi 
+>L</mi><mi 
+>I</mi><mi 
+>N</mi><mi 
+>K</mi><mi 
+>S</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math>  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-110-5-"><td  style="text-align:left; white-space:nowrap;" id="TBL-110-5-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.040   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-110-5-2"  
+class="td11"> <!--l. 15--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mstyle mathvariant="italic"><mi 
+>T</mi><mi 
+>F</mi></mstyle></mrow><mrow 
+><mi 
+>a</mi><mi 
+>n</mi><mi 
+>c</mi><mi 
+>h</mi><mi 
+>o</mi><mi 
+>r</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></msub 
+></math>  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-110-5-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.056   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-110-5-4"  
+class="td11"> <!--l. 15--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>I</mi><mi 
+>D</mi></mstyle></math>  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-110-6-"><td  style="text-align:left; white-space:nowrap;" id="TBL-110-6-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.038   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-110-6-2"  
+class="td11"> <!--l. 16--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>O</mi><mi 
+>U</mi><mi 
+>T</mi><mi 
+>L</mi><mi 
+>I</mi><mi 
+>N</mi><mi 
+>K</mi><mi 
+>S</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math>  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-110-6-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.041   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-110-6-4"  
+class="td11"> <!--l. 16--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>O</mi><mi 
+>U</mi><mi 
+>T</mi><mi 
+>L</mi><mi 
+>I</mi><mi 
+>N</mi><mi 
+>K</mi><mi 
+>S</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math>  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-110-7-"><td  style="text-align:left; white-space:nowrap;" id="TBL-110-7-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.037   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-110-7-2"  
+class="td11"> <!--l. 17--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>T</mi><msub><mrow 
+><mi 
+>F</mi></mrow><mrow 
+><mi 
+>t</mi><mi 
+>i</mi><mi 
+>t</mi><mi 
+>l</mi><mi 
+>e</mi></mrow></msub 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math>  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-110-7-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.033   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-110-7-4"  
+class="td11"> <!--l. 17--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>S</mi><mi 
+>C</mi><mi 
+>O</mi><mi 
+>R</mi><mi 
+>E</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math>  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-110-8-"><td  style="text-align:left; white-space:nowrap;" id="TBL-110-8-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.031   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-110-8-2"  
+class="td11"> <!--l. 18--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>T</mi><mi 
+>E</mi><mi 
+>Q</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math>  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-110-8-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.025   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-110-8-4"  
+class="td11"> <!--l. 18--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>R</mi><mi 
+>E</mi><mi 
+>D</mi><mi 
+>I</mi><mi 
+>R</mi><mi 
+>E</mi><mi 
+>C</mi><mi 
+>T</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math>  </td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-110-9-"><td  style="text-align:left; white-space:nowrap;" id="TBL-110-9-1"  
+class="td11">        </td></tr></table>
+</div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;6.18: </span><span  
+class="content">Results of calculating the information gain with respect to the class
+label for all features (truncated after 7 features). The higher this score, the more
+informative a feature is. </span></div><!--tex4ht:label?: x45-11800118 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 456--><p class="noindent" >Table&#x00A0;<a 
+href="#x45-11800118">6.18<!--tex4ht:ref: tbl:attributesel:ngrams --></a> shows the features with the highest information gain values for
+both n-gram and full query based reranking. The rank at which the retrieval
+framework puts a concept with respect to an n-gram is most informative.
+Also, the number of in- and outlinks, and whether the n-gram matches the
+concept&#x2019;s label are good indicators of the relevance status of a concept.
+<!--l. 463--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>I</mi><mi 
+>D</mi></mstyle></math> is the
+internal identifier of each concept and not a feature that we explicitly implemented.
+However, it turns out that some DBpedia concepts have a higher a priori probability of
+getting selected. Indeed, in our manually created assessments 854 concepts are
+identified, 505 of which are unique; some of the repetitions are caused because of a
+persisting information need in the user sessions: when a user rewrites her query by
+adding or changing part of the query, the remaining concepts remain the same and
+were annotated as such.
+<!--l. 474--><p class="indent" >   For n-gram based concept selection, the number of in- and outlinks, rank,
+<!--l. 474--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>I</mi><mi 
+>D</mi></mstyle></math>, and
+whether the concept label equals the query are also strong indicators of relevance for
+given phrase and concept. Added to these, however, are the frequency of the n-gram in
+the title or in the anchor texts in this case.
+<a 
+ id="x45-118002r187"></a>
+<h4 class="subsectionHead"><span class="titlemark">6.5.6    </span> <a 
+ id="x45-1190006"></a>Error Analysis</h4>
+<!--l. 482--><p class="noindent" >Finally, we provide an analysis of the errors that were made by the machine
+learning algorithms. To this end, we first examine the relationship between
+mapping performance and the frequency of the query in the entire query log. We
+separate all queries in two groups, one for those queries where our approach
+successfully mapped concepts and one where it failed. In the first group, the
+average query frequency is 23 (median 2, std. dev. 85.6). In the second group,
+the average frequency is 6 (median 1, std. dev. 19.5). So, although it seems
+our approach works best for frequently occurring queries, the high standard
+deviation indicates that the frequencies are spread out over a large range of
+values.
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 486--><p class="indent" >   <a 
+ id="x45-11900119"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+
+ <table id="TBL-113" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-113-1g"><col 
+id="TBL-113-1"><col 
+id="TBL-113-2"><col 
+id="TBL-113-3"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-113-1-"><td  style="text-align:left; white-space:nowrap;" id="TBL-113-1-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">Freq. (</span><!--l. 523--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" > <mo 
+class="MathClass-bin">&#x00D7;</mo><mn>1</mn><mn>0</mn><mo 
+class="MathClass-bin">&#x2212;</mo><mn>4</mn></math><span 
+class="bchr8t-x-x-80">)   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-1-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">Query                                      </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-1-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">Mapped concepts                                            </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-113-2-"><td colspan="3" style="text-align:left; white-space:nowrap;" id="TBL-113-2-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchri8t-x-x-80">Well performing queries</span></div>
+
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-113-3-"><td  style="text-align:left; white-space:nowrap;" id="TBL-113-3-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">64.0 %                                                                                                                                                                   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-3-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">wouter bos                              </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-3-3"  
+class="td11"> <span 
+class="bchbc8t-x-x-80">W<span 
+class="small-caps">O</span><span 
+class="small-caps">U</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span> B<span 
+class="small-caps">O</span><span 
+class="small-caps">S</span>                                               </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-113-4-"><td  style="text-align:left; white-space:nowrap;" id="TBL-113-4-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">18.9 %                                                                                                                                                                   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-4-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">moon landing                          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-4-3"  
+class="td11"> <span 
+class="bchbc8t-x-x-80">M<span 
+class="small-caps">O</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span> L<span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">D</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span><span 
+class="small-caps">G</span>                                           </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-113-5-"><td  style="text-align:left; white-space:nowrap;" id="TBL-113-5-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">2.22 %                                                                                                                                                                   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-5-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">vietnam war                            </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-5-3"  
+class="td11"> <span 
+class="bchbc8t-x-x-80">V<span 
+class="small-caps">I</span><span 
+class="small-caps">E</span><span 
+class="small-caps">T</span><span 
+class="small-caps">N</span><span 
+class="small-caps">A</span><span 
+class="small-caps">M</span> W<span 
+class="small-caps">A</span><span 
+class="small-caps">R</span>                                              </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-113-6-"><td  style="text-align:left; white-space:nowrap;" id="TBL-113-6-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">1.67 %                                                                                                                                                                   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-6-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">simple minds                           </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-6-3"  
+class="td11"> <span 
+class="bchbc8t-x-x-80">S<span 
+class="small-caps">I</span><span 
+class="small-caps">M</span><span 
+class="small-caps">P</span><span 
+class="small-caps">L</span><span 
+class="small-caps">E</span> M<span 
+class="small-caps">I</span><span 
+class="small-caps">N</span><span 
+class="small-caps">D</span><span 
+class="small-caps">S</span>                                             </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-113-7-"><td  style="text-align:left; white-space:nowrap;" id="TBL-113-7-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">1.11 %                                                                                                                                                                   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-7-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">spoetnik                                  </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-7-3"  
+class="td11"> <span 
+class="bchbc8t-x-x-80">S<span 
+class="small-caps">P</span><span 
+class="small-caps">O</span><span 
+class="small-caps">E</span><span 
+class="small-caps">T</span><span 
+class="small-caps">N</span><span 
+class="small-caps">I</span><span 
+class="small-caps">K</span>                                                     </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-113-8-"><td  style="text-align:left; white-space:nowrap;" id="TBL-113-8-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">1.11 %                                                                                                                                                                   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-8-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">sarkozy agriculture                 </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-8-3"  
+class="td11"> <span 
+class="bchbc8t-x-x-80">N<span 
+class="small-caps">I</span><span 
+class="small-caps">C</span><span 
+class="small-caps">O</span><span 
+class="small-caps">L</span><span 
+class="small-caps">A</span><span 
+class="small-caps">S</span> S<span 
+class="small-caps">A</span><span 
+class="small-caps">R</span><span 
+class="small-caps">K</span><span 
+class="small-caps">O</span><span 
+class="small-caps">Z</span><span 
+class="small-caps">Y</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchbc8t-x-x-80">A<span 
+class="small-caps">G</span><span 
+class="small-caps">R</span><span 
+class="small-caps">I</span><span 
+class="small-caps">C</span><span 
+class="small-caps">U</span><span 
+class="small-caps">L</span><span 
+class="small-caps">T</span><span 
+class="small-caps">U</span><span 
+class="small-caps">R</span><span 
+class="small-caps">E</span>                 </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-113-9-"><td  style="text-align:left; white-space:nowrap;" id="TBL-113-9-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.557 %                                                                                                                                                                 </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-9-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">universal soldier                      </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-9-3"  
+class="td11"> <span 
+class="bchbc8t-x-x-80">U<span 
+class="small-caps">N</span><span 
+class="small-caps">I</span><span 
+class="small-caps">V</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span><span 
+class="small-caps">S</span><span 
+class="small-caps">A</span><span 
+class="small-caps">L</span> S<span 
+class="small-caps">O</span><span 
+class="small-caps">L</span><span 
+class="small-caps">D</span><span 
+class="small-caps">I</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span>                                     </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-113-10-"><td colspan="3" style="text-align:left; white-space:nowrap;" id="TBL-113-10-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchri8t-x-x-80">Poorly performing queries</span></div>
+
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-113-11-"><td  style="text-align:left; white-space:nowrap;" id="TBL-113-11-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">57.9 %                                                                                                                                                                   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-11-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">gaza                                        </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-11-3"  
+class="td11"> <span 
+class="bchrc8t-x-x-80">D<span 
+class="small-caps">O</span><span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">T</span><span 
+class="small-caps">H</span><span 
+class="small-caps">E</span><span 
+class="small-caps">U</span><span 
+class="small-caps">S</span> <span 
+class="small-caps">O</span><span 
+class="small-caps">F</span> G<span 
+class="small-caps">A</span><span 
+class="small-caps">Z</span><span 
+class="small-caps">A</span>                                     </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-113-12-"><td  style="text-align:left; white-space:nowrap;" id="TBL-113-12-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">2.78 %                                                                                                                                                                   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-12-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">wedding beatrix                      </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-12-3"  
+class="td11"> <span 
+class="bchrc8t-x-x-80">K<span 
+class="small-caps">I</span><span 
+class="small-caps">L</span><span 
+class="small-caps">L</span> B<span 
+class="small-caps">I</span><span 
+class="small-caps">L</span><span 
+class="small-caps">L</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">W<span 
+class="small-caps">I</span><span 
+class="small-caps">L</span><span 
+class="small-caps">L</span><span 
+class="small-caps">E</span><span 
+class="small-caps">M</span> <span 
+class="small-caps">O</span><span 
+class="small-caps">F</span> L<span 
+class="small-caps">U</span><span 
+class="small-caps">X</span><span 
+class="small-caps">E</span><span 
+class="small-caps">M</span><span 
+class="small-caps">B</span><span 
+class="small-caps">U</span><span 
+class="small-caps">R</span><span 
+class="small-caps">G</span></span><span 
+class="bchr8t-x-x-80">;                </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-113-13-"><td  style="text-align:left; white-space:nowrap;" id="TBL-113-13-1"  
+class="td11">                                                                                             </td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-13-2"  
+class="td11">                          </td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-13-3"  
+class="td11"> <span 
+class="bchrc8t-x-x-80">M<span 
+class="small-caps">A</span><span 
+class="small-caps">S</span><span 
+class="small-caps">A</span><span 
+class="small-caps">K</span><span 
+class="small-caps">O</span> O<span 
+class="small-caps">W</span><span 
+class="small-caps">A</span><span 
+class="small-caps">D</span><span 
+class="small-caps">A</span>                                             </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-113-14-"><td  style="text-align:left; white-space:nowrap;" id="TBL-113-14-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">1.11 %                                                                                                                                                                   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-14-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">poverty netherlands 1940s      </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-14-3"  
+class="td11"> <span 
+class="bchbc8t-x-x-80">1940-1949</span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">I<span 
+class="small-caps">M</span><span 
+class="small-caps">M</span><span 
+class="small-caps">I</span><span 
+class="small-caps">G</span><span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">T</span><span 
+class="small-caps">I</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span> P<span 
+class="small-caps">O</span><span 
+class="small-caps">L</span><span 
+class="small-caps">I</span><span 
+class="small-caps">C</span><span 
+class="small-caps">Y</span></span><span 
+class="bchr8t-x-x-80">;               </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-113-15-"><td  style="text-align:left; white-space:nowrap;" id="TBL-113-15-1"  
+class="td11">                                                                                             </td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-15-2"  
+class="td11">                          </td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-15-3"  
+class="td11"> <span 
+class="bchrc8t-x-x-80">M<span 
+class="small-caps">E</span><span 
+class="small-caps">X</span><span 
+class="small-caps">I</span><span 
+class="small-caps">C</span><span 
+class="small-caps">A</span><span 
+class="small-caps">N</span> M<span 
+class="small-caps">I</span><span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">C</span><span 
+class="small-caps">L</span><span 
+class="small-caps">E</span>                                          </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-113-16-"><td  style="text-align:left; white-space:nowrap;" id="TBL-113-16-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.557 %                                                                                                                                                                 </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-16-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">poverty thirties                        </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-16-3"  
+class="td11"> <span 
+class="bchbc8t-x-x-80">1930-1939</span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">H<span 
+class="small-caps">U</span><span 
+class="small-caps">M</span><span 
+class="small-caps">A</span><span 
+class="small-caps">N</span> D<span 
+class="small-caps">E</span><span 
+class="small-caps">V</span><span 
+class="small-caps">E</span><span 
+class="small-caps">L</span><span 
+class="small-caps">O</span><span 
+class="small-caps">P</span><span 
+class="small-caps">M</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">T</span> I<span 
+class="small-caps">N</span><span 
+class="small-caps">D</span><span 
+class="small-caps">E</span><span 
+class="small-caps">X</span>   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-113-17-"><td  style="text-align:left; white-space:nowrap;" id="TBL-113-17-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.557 %                                                                                                                                                                 </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-17-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">rabin funeral                           </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-17-3"  
+class="td11"> <span 
+class="bchrc8t-x-x-80">B<span 
+class="small-caps">I</span><span 
+class="small-caps">L</span><span 
+class="small-caps">L</span> C<span 
+class="small-caps">L</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span><span 
+class="small-caps">T</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">H<span 
+class="small-caps">U</span><span 
+class="small-caps">S</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span> <span 
+class="small-caps">O</span><span 
+class="small-caps">F</span> J<span 
+class="small-caps">O</span><span 
+class="small-caps">R</span><span 
+class="small-caps">D</span><span 
+class="small-caps">A</span><span 
+class="small-caps">N</span>               </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-113-18-"><td  style="text-align:left; white-space:nowrap;" id="TBL-113-18-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.557 %                                                                                                                                                                 </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-18-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">eurovision songfestival 1975   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-18-3"  
+class="td11"> <span 
+class="bchrc8t-x-x-80">E<span 
+class="small-caps">U</span><span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">V</span><span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span> S<span 
+class="small-caps">O</span><span 
+class="small-caps">N</span><span 
+class="small-caps">G</span><span 
+class="small-caps">F</span><span 
+class="small-caps">E</span><span 
+class="small-caps">S</span><span 
+class="small-caps">T</span><span 
+class="small-caps">I</span><span 
+class="small-caps">V</span><span 
+class="small-caps">A</span><span 
+class="small-caps">L</span></span><span 
+class="bchr8t-x-x-80">;                           </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-113-19-"><td  style="text-align:left; white-space:nowrap;" id="TBL-113-19-1"  
+class="td11">                                                                                             </td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-19-2"  
+class="td11">                          </td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-19-3"  
+class="td11"> <span 
+class="bchrc8t-x-x-80">M<span 
+class="small-caps">E</span><span 
+class="small-caps">L</span><span 
+class="small-caps">O</span><span 
+class="small-caps">D</span><span 
+class="small-caps">I</span><span 
+class="small-caps">F</span><span 
+class="small-caps">E</span><span 
+class="small-caps">S</span><span 
+class="small-caps">T</span><span 
+class="small-caps">I</span><span 
+class="small-caps">V</span><span 
+class="small-caps">A</span><span 
+class="small-caps">L</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span> 1975                               </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-113-20-"><td  style="text-align:left; white-space:nowrap;" id="TBL-113-20-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.557 %                                                                                                                                                                 </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-20-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">cold war netherlands              </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-113-20-3"  
+class="td11"> <span 
+class="bchbc8t-x-x-80">C<span 
+class="small-caps">O</span><span 
+class="small-caps">L</span><span 
+class="small-caps">D</span> W<span 
+class="small-caps">A</span><span 
+class="small-caps">R</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">W<span 
+class="small-caps">A</span><span 
+class="small-caps">T</span><span 
+class="small-caps">C</span><span 
+class="small-caps">H</span><span 
+class="small-caps">T</span><span 
+class="small-caps">O</span><span 
+class="small-caps">W</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">W<span 
+class="small-caps">E</span><span 
+class="small-caps">S</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span><span 
+class="small-caps">N</span> B<span 
+class="small-caps">L</span><span 
+class="small-caps">O</span><span 
+class="small-caps">C</span>   </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-113-21-"><td  style="text-align:left; white-space:nowrap;" id="TBL-113-21-1"  
+class="td11">                                                                                             </td></tr></table>
+ <div class="caption" 
+><span class="id">Table&#x00A0;6.19: </span><span  
+class="content">Examples of correctly and incorrectly mapped queries (translated
+to English), with their relative frequency of occurrence in the entire query log.
+Concepts annotated by the human annotators in boldface. Wouter Bos is a Dutch
+politician and Beatrix is the Dutch queen.  </span></div><!--tex4ht:label?: x45-11900119 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 530--><p class="indent" >   Table&#x00A0;<a 
+href="#x45-11900119">6.19<!--tex4ht:ref: tbl:disc:freq --></a> shows examples of correctly and incorrectly mapped queries,
+together with their relative frequency of occurrence in the entire query log.
+This table provides further indication that the frequency of a query is not a
+determining factor in the successful outcome of our method. Rather, it is the retrieval
+framework that puts concepts that contain query terms with a relatively high
+frequency in the top of the ranking. For example, besides being the queen of the
+Netherlands, Beatrix is also the name of one of the characters in the movie Kill
+Bill.
+<!--l. 536--><p class="indent" >   To further investigate the errors being made, we have manually inspected the
+output of the algorithms and classified the errors into several classes. Since we
+formulate the mapping search engine queries to LOD task as a ranking problem, we are
+primarily interested in the false positives&#x2014;these are the concepts the classifier
+identified as correct for a query but which the annotators did not select. The classes in
+which the classifiers make the most mistakes are:
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="bchb8t-">ambiguous  (5%)  </span>A  query  may  map  to  more  than  one  concept  and  the
+     annotators did not explicitly mark the query as being ambiguous.
+     </li>
+     <li class="itemize"><span 
+class="bchb8t-">match with term in content (15%) </span>Part of the query occurs frequently
+     in the textual representation of the concept, while the concept itself is not
+     relevant. For example, the query &#x201C;red lobster&#x201D; matches with the concept <span 
+class="bchrc8t-">R<span 
+class="small-caps">E</span><span 
+class="small-caps">D</span></span>
+     <span 
+class="bchrc8t-"><span 
+class="small-caps">C</span><span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">S</span><span 
+class="small-caps">S</span></span>.
+     </li>
+     <li class="itemize"><span 
+class="bchb8t-">substring (4%) </span>In this case a substring of the query is matched to a concept,
+     for  example  the  concept  <span 
+class="bchrc8t-">B<span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">O</span><span 
+class="small-caps">K</span><span 
+class="small-caps">L</span><span 
+class="small-caps">Y</span><span 
+class="small-caps">N</span>  </span>is  selected  for  the  query  &#x201C;brooklyn
+     bridge.&#x201D;  While  this  might  be  considered  an  interesting  suggestion,  it  is
+     incorrect since the annotators did not label it so.
+     </li>
+     <li class="itemize"><span 
+class="bchb8t-">too specific&#x2014;child selected (10%) </span>A narrower concept is selected where
+     the  broader  is  correct.  For  example,  when  the  concept  <span 
+class="bchrc8t-">E<span 
+class="small-caps">U</span><span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">V</span><span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span></span>
+     <span 
+class="bchrc8t-">S<span 
+class="small-caps">O</span><span 
+class="small-caps">N</span><span 
+class="small-caps">G</span><span 
+class="small-caps">F</span><span 
+class="small-caps">E</span><span 
+class="small-caps">S</span><span 
+class="small-caps">T</span><span 
+class="small-caps">I</span><span 
+class="small-caps">V</span><span 
+class="small-caps">A</span><span 
+class="small-caps">L</span> 1975 </span>is selected for the query &#x201C;songfestival.&#x201D;
+     </li>
+     <li class="itemize"><span 
+class="bchb8t-">too broad&#x2014;parent selected (6%) </span>The inverse of the previous case. For
+     example,  the  concept  <span 
+class="bchrc8t-">E<span 
+class="small-caps">U</span><span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">V</span><span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span>  </span>is  selected  for  the  query  &#x201C;eurovision
+     songfestival 2008.&#x201D;
+     </li>
+                                                                   
+                                                                   
+     <li class="itemize"><span 
+class="bchb8t-">related (10%) </span>A related concept is selected. For example when the concept
+     <span 
+class="bchrc8t-">C<span 
+class="small-caps">U</span><span 
+class="small-caps">B</span><span 
+class="small-caps">A</span> <span 
+class="small-caps">C</span><span 
+class="small-caps">R</span><span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">S</span> </span>is selected for the query &#x201C;cuba kennedy.&#x201D; Another example is
+     the concept <span 
+class="bchrc8t-">I<span 
+class="small-caps">N</span><span 
+class="small-caps">D</span><span 
+class="small-caps">U</span><span 
+class="small-caps">S</span><span 
+class="small-caps">T</span><span 
+class="small-caps">R</span><span 
+class="small-caps">I</span><span 
+class="small-caps">A</span><span 
+class="small-caps">L</span> <span 
+class="small-caps">D</span><span 
+class="small-caps">E</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">G</span><span 
+class="small-caps">N</span> </span>for the query &#x201C;walking frame.&#x201D;
+     </li>
+     <li class="itemize"><span 
+class="bchb8t-">sibling (4%) </span>A sibling is selected, e.g., <span 
+class="bchrc8t-">E<span 
+class="small-caps">U</span><span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">V</span><span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span> S<span 
+class="small-caps">O</span><span 
+class="small-caps">N</span><span 
+class="small-caps">G</span><span 
+class="small-caps">F</span><span 
+class="small-caps">E</span><span 
+class="small-caps">S</span><span 
+class="small-caps">T</span><span 
+class="small-caps">I</span><span 
+class="small-caps">V</span><span 
+class="small-caps">A</span><span 
+class="small-caps">L</span> 1975</span>
+     instead of <span 
+class="bchrc8t-">E<span 
+class="small-caps">U</span><span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">V</span><span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span> S<span 
+class="small-caps">O</span><span 
+class="small-caps">N</span><span 
+class="small-caps">G</span><span 
+class="small-caps">F</span><span 
+class="small-caps">E</span><span 
+class="small-caps">S</span><span 
+class="small-caps">T</span><span 
+class="small-caps">I</span><span 
+class="small-caps">V</span><span 
+class="small-caps">A</span><span 
+class="small-caps">L</span> 2008</span>.
+     </li>
+     <li class="itemize"><span 
+class="bchb8t-">same  concept,  different  label  (6%)  </span>When  there  is  more  than  one
+     applicable concept for the query and the annotators used only one, e.g., in
+     the case of <span 
+class="bchrc8t-">N<span 
+class="small-caps">E</span><span 
+class="small-caps">W</span> Y<span 
+class="small-caps">O</span><span 
+class="small-caps">R</span><span 
+class="small-caps">K</span> </span>and <span 
+class="bchrc8t-">N<span 
+class="small-caps">E</span><span 
+class="small-caps">W</span> Y<span 
+class="small-caps">O</span><span 
+class="small-caps">R</span><span 
+class="small-caps">K</span> C<span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">Y</span></span>.
+     </li>
+     <li class="itemize"><span 
+class="bchb8t-">erroneous (25%) </span>The final category is where the classifiers selected the
+     right concept, but it was missed by the annotators.
+     </li></ul>
+<!--l. 597--><p class="noindent" >From these classes we conclude that the largest part of the errors are not attributable to the
+machine learning algorithms but rather to incomplete or imperfect human annotations.
+Another class of interesting errors is related to the IR framework we use. This
+sometimes produces &#x201C;fuzzy&#x201D; matches when the textual representation of the
+concept contains the query terms with a high frequency (e.g., selecting <span 
+class="bchrc8t-">C<span 
+class="small-caps">U</span><span 
+class="small-caps">B</span><span 
+class="small-caps">A</span></span>
+<span 
+class="bchrc8t-"><span 
+class="small-caps">C</span><span 
+class="small-caps">R</span><span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">S</span> </span>for the query &#x201C;cuba kennedy&#x201D;). Some of these errors are not wrong
+per se, but interesting since they do provide mappings to related concepts.
+Marking them as wrong is partly an artifact of our evaluation methodology, which
+determines a priori which concepts are relevant to which queries, so as to ensure the
+reusability our evaluation resources. We have chosen this approach also for practical
+reasons, since the same annotations are used to generate the training data for the
+machine learners. In future work, we intend to perform a large-scale post-hoc
+evaluation in which we directly evaluate the generated mappings to the <a 
+href="thesis-emeijli3.html#LOD">LOD</a>
+cloud.
+                                                                   
+                                                                   
+<!--l. 3--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch6.html#thesis-emeijse33.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse34.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse32.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse32.html#tailthesis-emeijse32.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijse33.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse33.html"></a> 
+</body></html> 

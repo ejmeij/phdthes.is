@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>2 Background</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeij.html#thesis-emeijch2.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijch3.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijch1.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijch1.html#tailthesis-emeijch1.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijch2.html">Tail</a></td></tr></table><h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;2</span><br /><a 
+ id="x11-100002"></a>Background</h2>
+<!--l. 29--><p class="noindent" >This thesis presents novel models and methods to improve information access using
+various information sources, including relevance assessments, pseudo relevant
+documents, (structured) knowledge sources, and Wikipedia. The guiding intuition is
+that knowledge captured in the concepts of a concept language can be successfully
+employed to improve information access. This chapter serves as an introduction
+to related work and provides the foundation upon which the thesis is built.
+Related work specific to the various chapters will be introduced in the respective
+chapters.
+<!--l. 31--><p class="indent" >   We begin this chapter by recalling basic facts about <a 
+href="thesis-emeijli3.html#IR">IR</a>: first, a brief history of the
+field will be given. Then, we take a closer look at Generative Language Modeling for <a 
+href="thesis-emeijli3.html#IR">IR</a>
+in Section&#x00A0;<a 
+href="thesis-emeijse9.html#x13-120002">2.2<!--tex4ht:ref: sec:relwork:lm --></a>. In Section&#x00A0;<a 
+href="thesis-emeijse10.html#x14-160003">2.3<!--tex4ht:ref: sec:relwork:qm --></a> we zoom in on a form of query transformation that is
+frequently used in the thesis, a process known as <span 
+class="bchri8t-">query modeling</span>. We then discuss
+typical approaches used to link text to concept languages.
+<!--l. 39--><p class="indent" >   We postpone until Chapter&#x00A0;<a 
+href="thesis-emeijch3.html#x19-330003">3<!--tex4ht:ref: chap:methodology --></a> a discussion of the evaluation methodology
+employed in <a 
+href="thesis-emeijli3.html#IR">IR</a> in general and in various places in this thesis in particular;
+that chapter will also introduce the test collections that will be used in later
+experiments.
+<a 
+ id="x11-10001r11"></a>
+   <div class="sectionTOCS">
+   &#x00A0;<span class="sectionToc" >2.1 <a 
+href="thesis-emeijse8.html#x12-110001">Information Retrieval</a></span>
+<br />   &#x00A0;<span class="sectionToc" >2.2 <a 
+href="thesis-emeijse9.html#x13-120002">Generative Language Modeling for IR</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >2.2.1 <a 
+href="thesis-emeijse9.html#x13-130001">Query Likelihood</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >2.2.2 <a 
+href="thesis-emeijse9.html#x13-140002">KL divergence</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >2.2.3 <a 
+href="thesis-emeijse9.html#x13-150003">Relation to Probabilistic Approaches</a></span>
+<br />   &#x00A0;<span class="sectionToc" >2.3 <a 
+href="thesis-emeijse10.html#x14-160003">Query Modeling</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >2.3.1 <a 
+href="thesis-emeijse10.html#x14-170001">Translation Model</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >2.3.2 <a 
+href="thesis-emeijse10.html#x14-180002">Relevance Feedback</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >2.3.3 <a 
+href="thesis-emeijse10.html#x14-230003">Term Dependence Models</a></span>
+<br />   &#x00A0;<span class="sectionToc" >2.4 <a 
+href="thesis-emeijse11.html#x15-240004">Language Modeling Variations</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >2.4.1 <a 
+href="thesis-emeijse11.html#x15-250001">Topic Models</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >2.4.2 <a 
+href="thesis-emeijse11.html#x15-260002">Concept Models</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >2.4.3 <a 
+href="thesis-emeijse11.html#x15-270003">Cluster-based Language Models</a></span>
+<br />   &#x00A0;<span class="sectionToc" >2.5 <a 
+href="thesis-emeijse12.html#x16-280005">Linking Free Text to Concepts</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >2.5.1 <a 
+href="thesis-emeijse12.html#x16-290001">Natural Language Interfaces to Databases</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >2.5.2 <a 
+href="thesis-emeijse12.html#x16-300002">Ontology Matching</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >2.5.3 <a 
+href="thesis-emeijse12.html#x16-310003">Ontology Learning, Ontology Population, and Semantic Annotation</a></span>
+<br />   &#x00A0;<span class="sectionToc" >2.6 <a 
+href="thesis-emeijse13.html#x18-320006">Summary</a></span>
+</div>
+
+<a 
+ id="x11-11001r13"></a>
+
+<a 
+ id="x11-15003r14"></a>
+
+<a 
+ id="x11-23003r18"></a>
+
+<a 
+ id="x11-27001r28"></a>
+
+<a 
+ id="x11-31002r32"></a>
+
+                                                                   
+                                                                   
+<table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeij.html#thesis-emeijch2.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijch3.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijch1.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijch1.html#tailthesis-emeijch1.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijch2.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijch2.html"></a>                        
+</body></html> 

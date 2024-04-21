@@ -1,0 +1,569 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Evaluation</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch3.html#thesis-emeijse15.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse16.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse14.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse14.html#tailthesis-emeijse14.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse15.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">3.2    </span> <a 
+ id="x21-350002"></a>Evaluation</h3>
+<!--l. 1325--><p class="noindent" >The evaluation of <a 
+href="thesis-emeijli3.html#IR">IR</a> systems has a long tradition, dating back from before the
+Cranfield experiments&#x00A0;[<a 
+href="thesis-emeijli2.html#Xcranfield:1966:cleverdon">75</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XAD:1955:kent">164</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XJIS:2008:Robertson">260</a>]. It is an important part of the experimental
+methodology to determine how well <a 
+href="thesis-emeijli3.html#IR">IR</a> systems satisfy users&#x2019; information needs and
+whether some system does this better than another&#x00A0;[<a 
+href="thesis-emeijli2.html#XJASIST:1996:tague">309</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XBook:1979:Rijsbergen">325</a>]. There are
+several publications addressing various aspects of evaluation. Voorhees and
+Harman&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:2005:voorhees">332</a>] detail the history of <a 
+href="thesis-emeijli3.html#TREC">TREC</a> and the evaluation methods used
+there. Harman&#x00A0;[<a 
+href="thesis-emeijli2.html#XIPM:1992:harman">120</a>] gives an overview of the state of <a 
+href="thesis-emeijli3.html#IR">IR</a> evaluation in 1992.
+More recently, Robertson&#x00A0;[<a 
+href="thesis-emeijli2.html#XJIS:2008:Robertson">260</a>] provided his personal view on the history of
+evaluation for <a 
+href="thesis-emeijli3.html#IR">IR</a>. Sanderson&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:2010:sanderson">277</a>] gives an overview of current methods and
+practices. Tague-Sutcliffe&#x00A0;[<a 
+href="thesis-emeijli2.html#XJASIST:1996:tague">309</a>] defines six elements that comprise the <a 
+href="thesis-emeijli3.html#IR">IR</a>
+process:
+     <dl class="enumerate"><dt class="enumerate">
+  1. </dt><dd 
+class="enumerate">a document set to be searched (the &#x201C;collection&#x201D;),
+     </dd><dt class="enumerate">
+  2. </dt><dd 
+class="enumerate">a user need,
+     </dd><dt class="enumerate">
+  3. </dt><dd 
+class="enumerate">a query (usually called &#x201C;topic&#x201D;),
+     </dd><dt class="enumerate">
+  4. </dt><dd 
+class="enumerate">a search strategy,
+     </dd><dt class="enumerate">
+  5. </dt><dd 
+class="enumerate">a retrieved list of documents, and
+     </dd><dt class="enumerate">
+  6. </dt><dd 
+class="enumerate">relevance judgments (typically referred to as &#x201C;qrels&#x201D;).</dd></dl>
+<!--l. 1342--><p class="noindent" >Typically when doing <a 
+href="thesis-emeijli3.html#IR">IR</a> evaluation, the retrieval system is given a verbalization of the
+information need (as a query, ranging from a few keywords to a full narrative) which it
+uses as input to its retrieval algorithm (the &#x201C;search strategy&#x201D;, cf. Section&#x00A0;<a 
+href="thesis-emeijse8.html#x12-110001">2.1<!--tex4ht:ref: sec:relwork:ir --></a>).
+The output of this algorithm is a ranked list of documents that may then be
+inspected by the user with the information need. It is common to refer to the
+combination of the document collection, topics, and accompanying judgments as &#x201C;test
+collection.&#x201D;
+<!--l. 1344--><p class="indent" >   Ideally, we would like to verify the effectiveness of every system on real life users.
+However, as already indicated in the previous section, relevance is not a deterministic
+                                                                   
+                                                                   
+notion and varies per user, task, setting, etc. This, as well as the prohibitive costs of
+such evaluations, have resulted in an established tradition of sampling and pooling
+methods&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:1993:harman">121</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:1998:zobel">362</a>]. Evaluation campaigns such as FIRE, <a 
+href="thesis-emeijli3.html#TREC">TREC</a>, <a 
+href="thesis-emeijli3.html#CLEF">CLEF</a>, <a 
+href="thesis-emeijli3.html#NTCIR">NTCIR</a>, and
+<a 
+href="thesis-emeijli3.html#INEX">INEX</a> provide systematic evaluations on sets of topics and documents, which are
+subsequently used to rank <a 
+href="thesis-emeijli3.html#IR">IR</a> systems according to their performance. In order to make
+the evaluation tractable, <span 
+class="bchri8t-">pooling </span>of the results of the participating systems is applied.
+Here, the top-ranked documents up to a certain rank are taken from each
+participating system and judged for relevance. Although not all documents in
+the collection are judged for relevance using this approach, it was found that
+systems could still be reliably evaluated using this approach&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:2005:voorhees">332</a>]. Moreover,
+even systems not contributing to the pools could still be fairly assessed&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:1998:zobel">362</a>].
+Whether these findings still hold for every retrieval metric on very large document
+collections is a topic of ongoing research&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2000:buckley">49</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIR:2007:Buckley">52</a>]. In the mean time, various
+alternatives to pooling are investigated&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2006:carterette">61</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:2008:carterette">62</a>], as detailed below. A distinct
+benefit of such <span 
+class="bchri8t-">system-based </span>evaluations is the reusability of test collections,
+since future systems can be reliably evaluated and compared using the same
+assessments&#x00A0;[<a 
+href="thesis-emeijli2.html#XJIS:2008:Robertson">260</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#Xbook:2010:sanderson">277</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#Xbook:2005:voorhees">332</a>].
+<!--l. 1351--><p class="indent" >   It is common to not evaluate the ranked list itself, but merely the documents that
+appear in it. Recent work, however, recognizes that the first thing that a user
+sees and interacts with is the list of retrieved documents&#x00A0;[<a 
+href="thesis-emeijli2.html#XIIIX:2010:bailey">22</a>]. <a 
+href="thesis-emeijli2.html#XIIIX:2010:bailey">Bailey <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span></a>
+define a novel evaluation method focusing on this initial interaction and find
+that it provides a natural complement to traditional, system-based evaluation
+methods.
+<!--l. 1353--><p class="indent" >   With the recent advent of relatively cheap crowdsourcing possibilities such as
+Amazon&#x2019;s mechanical turk service, a renewed interest in obtaining relatively cheap,
+manual relevance assessments for various systems has emerged&#x00A0;[<a 
+href="thesis-emeijli2.html#XFIR:2009:alonso">5</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#Xforum:2008:alonso">7</a>]. Whether such
+evaluations live up to their premise of cheap, consistent relevance assessments on a
+substantial scale is as of yet unclear and in the remainder of this thesis we use more
+traditional, established <a 
+href="thesis-emeijli3.html#TREC">TREC</a>-style evaluations.
+<!--l. 1355--><p class="indent" >   In the following sections, we look at typical <a 
+href="thesis-emeijli3.html#IR">IR</a> effectiveness metrics used in this
+thesis, as well as statistical testing on these measures.
+<a 
+ id="x21-35007r35"></a>
+<h4 class="subsectionHead"><span class="titlemark">3.2.1    </span> <a 
+ id="x21-360001"></a>Evaluation Measures</h4>
+<!--l. 1361--><p class="noindent" >Different search tasks exist, each with a different user model. In all of the cases
+presented in this thesis, a user wants to find information on a topic (topic-finding or <span 
+class="bchri8t-">ad</span>
+<span 
+class="bchri8t-">hoc </span>retrieval). Other cases include users having a specific web page or document in
+mind (named-page finding), users looking for an answer to a specific question
+(question answering), users looking for relevant experts or entities (expert/entity
+finding), or users having a standing information need, where new documents entering
+in the collection are to be routed to the users with an interest in the topic of the
+document (adaptive filtering). Each of these search tasks calls for evaluation
+                                                                   
+                                                                   
+measures that fit the task. For example, in the case of named-page finding,
+there is typically only one relevant document (the one that the user has in
+mind). A proper evaluation measure for this task should reward systems that
+place that document at the top of the ranking and penalize systems that do
+not.
+<!--l. 1363--><p class="indent" >   Researchers have been considering how to evaluate results originating from a
+retrieval system for a number of decades now and the choice of measures and their
+analysis remains an active theme of research. Kent <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XAD:1955:kent">164</a>] were the first to
+introduce the notion of <span 
+class="bchri8t-">recall </span>and <span 
+class="bchri8t-">precision</span>. These intuitive measures consider the
+documents retrieved in response to a user&#x2019;s query as a set and indicate the fraction of
+retrieved documents that are relevant (precision) or the fraction of relevant documents
+retrieved (recall)&#x00A0;[<a 
+href="thesis-emeijli2.html#Xmann:intr08">202</a>]. These measures are best explained through the use of a
+<span 
+class="bchri8t-">contingency </span>(or confusion) table, cf. Table&#x00A0;<a 
+href="#x21-360011">3.1<!--tex4ht:ref: chapter02:contingency --></a>. In this table, the documents are split
+by whether they are retrieved by a system and whether they are relevant.
+<div class="table">
+                                                                   
+                                                                   
+<!--l. 1365--><p class="indent" >   <a 
+ id="x21-360011"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="center" 
+>
+<!--l. 1366--><p class="noindent" >
+ <table id="TBL-3" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-3-1g"><col 
+id="TBL-3-1"></colgroup><colgroup id="TBL-3-2g"><col 
+id="TBL-3-2"><col 
+id="TBL-3-3"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-3-1-"><td  style="text-align:left; white-space:nowrap;" id="TBL-3-1-1"  
+class="td11">             </td><td  style="text-align:left;" id="TBL-3-1-2"  
+class="td11"> <!--l. 1383--><p class="noindent" >Relevant                              </td><td  style="text-align:left;" id="TBL-3-1-3"  
+class="td11"> <!--l. 1383--><p class="noindent" >Non-relevant                       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-2-"><td  style="text-align:left; white-space:nowrap;" id="TBL-3-2-1"  
+class="td11"> Retrieved        </td><td  style="text-align:left;" id="TBL-3-2-2"  
+class="td11"> <!--l. 1383--><p class="noindent" >True positives (tp)              </td><td  style="text-align:left;" id="TBL-3-2-3"  
+class="td11"> <!--l. 1383--><p class="noindent" >False positives (fp)              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-3-"><td  style="text-align:left; white-space:nowrap;" id="TBL-3-3-1"  
+class="td11"> Not retrieved  </td><td  style="text-align:left;" id="TBL-3-3-2"  
+class="td11"> <!--l. 1383--><p class="noindent" >False negatives (fn)            </td><td  style="text-align:left;" id="TBL-3-3-3"  
+class="td11"> <!--l. 1383--><p class="noindent" >True negatives (tn)             </td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-4-"><td  style="text-align:left; white-space:nowrap;" id="TBL-3-4-1"  
+class="td11">             </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;3.1: </span><span  
+class="content">Contingency table. </span></div><!--tex4ht:label?: x21-360011 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 1389--><p class="noindent" >Precision, then, is defined as:
+<!--tex4ht:inline--><!--l. 1392--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mstyle 
+class="mbox"><mtext  >Precision</mtext></mstyle> <mo 
+class="MathClass-rel">=</mo>    <mfrac><mrow 
+><mstyle 
+class="mbox"><mtext  >tp</mtext></mstyle></mrow> 
+<mrow 
+><mstyle 
+class="mbox"><mtext  >tp</mtext></mstyle><mo 
+class="MathClass-bin">+</mo><mstyle 
+class="mbox"><mtext  >fp</mtext></mstyle></mrow></mfrac><mo 
+class="MathClass-punc">,</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(3.1)</mtext><mtext 
+   id="x21-36002r3.1"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                                             </mtr></mtable>
+</math>
+<!--l. 1394--><p class="nopar" >
+<!--l. 1396--><p class="indent" >   whereas recall is defined as:
+<!--tex4ht:inline--><!--l. 1398--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mstyle 
+class="mbox"><mtext  >Recall</mtext></mstyle> <mo 
+class="MathClass-rel">=</mo>    <mfrac><mrow 
+><mstyle 
+class="mbox"><mtext  >tp</mtext></mstyle></mrow> 
+<mrow 
+><mstyle 
+class="mbox"><mtext  >tp</mtext></mstyle><mo 
+class="MathClass-bin">+</mo><mstyle 
+class="mbox"><mtext  >fn</mtext></mstyle></mrow></mfrac><mo 
+class="MathClass-punc">.</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(3.2)</mtext><mtext 
+   id="x21-36003r3.2"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                                                </mtr></mtable>
+</math>
+                                                                   
+                                                                   
+<!--l. 1401--><p class="nopar" >
+<!--l. 1403--><p class="indent" >   Although precision and recall are set-based measures, they are commonly applied to
+ranked lists by truncating the lists at a certain rank. A common visualization of these
+measures is to plot precision values at different levels of recall. The resulting graph is
+called a precision-recall graph; an example may be found in Figure&#x00A0;<a 
+href="thesis-emeijse26.html#x36-810063">5.3<!--tex4ht:ref: chapter04:fig:PR --></a> (see
+page&#x00A0;<a 
+href="thesis-emeijse26.html#x36-810063">259<!--tex4ht:ref: chapter04:fig:PR --></a>).
+<!--l. 1405--><p class="indent" >   Given that precision is the ratio of retrieved relevant documents to all documents
+retrieved at a given rank, the <a 
+ id="section*.24"></a>average precision (<a 
+href="thesis-emeijli3.html#AP">AP</a>) is defined as the average of precisions
+at the ranks of relevant documents. More formally, for a set of relevant documents,
+<!--l. 1405--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>R</mi></math>:
+<!--tex4ht:inline--><!--l. 1407--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mstyle 
+class="mbox"><mtext  >AP</mtext></mstyle> <mo 
+class="MathClass-rel">=</mo>  <mfrac><mrow 
+><mn>1</mn></mrow> 
+<mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>R</mi><mo 
+class="MathClass-rel">|</mo></mrow></mfrac><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>d</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+>R</mi></mrow></munder 
+><mi 
+>p</mi><mi 
+>r</mi><mi 
+>e</mi><mi 
+>c</mi><mi 
+>@</mi><mi 
+>r</mi><mi 
+>a</mi><mi 
+>n</mi><mi 
+>k</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>d</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">,</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(3.3)</mtext><mtext 
+   id="x21-36004r3.3"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                                   </mtr></mtable>
+</math>
+<!--l. 1409--><p class="nopar" >
+<!--l. 1411--><p class="indent" >   where <!--l. 1411--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">|</mo><mi 
+>R</mi><mo 
+class="MathClass-rel">|</mo></math>
+equals the size of the set of known relevant documents for this query. Buckley and
+Voorhees&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2000:buckley">49</a>] show that <a 
+href="thesis-emeijli3.html#AP">AP</a> is stable; that is, it is able to reliably identify a
+difference between two systems when one exists. In later chapters, our main
+evaluation measure is <a 
+href="thesis-emeijli3.html#AP">AP</a> averaged over a number of queries, called <a 
+ id="section*.25"></a>mean
+average precision (<a 
+href="thesis-emeijli3.html#MAP">MAP</a>). These and other measures are obtained using the
+trec_eval<span class="footnote-mark"><a 
+href="thesis-emeij22.html#fn1x7"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x21-36005f1"></a> 
+program.
+                                                                   
+                                                                   
+<!--l. 1415--><p class="indent" >   In later chapters we use the following abbreviations for the evaluation
+measures:
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">PX</span> </dt><dd 
+class="description">&#x2013; Precision at rank X. In the case of P1 this indicates the proportion of queries
+     for which a relevant occurred at rank 1.
+     </dd><dt class="description">
+<span 
+class="bchb8t-">R-prec</span> </dt><dd 
+class="description">&#x2013; Precision at rank <!--l. 1419--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">|</mo><mi 
+>R</mi><mo 
+class="MathClass-rel">|</mo></math>.
+     If this value equals 1, all relevant documents are placed at the top of the
+     ranking.
+     </dd><dt class="description">
+<span 
+class="bchb8t-">MAP</span> </dt><dd 
+class="description">&#x2013; Mean average precision.
+     </dd><dt class="description">
+<span 
+class="bchb8t-">SRX</span> </dt><dd 
+class="description">&#x2013; Success rate at rank X; a binary measure that indicates whether at least
+     one correct document has been returned in the top-X (when there is no rank
+     indicated  we  assume  X=5).  When  averaged  over  a  number  of  queries  it
+     indicates the proportion of queries for which a relevant document occurred
+     in the top-X.
+     </dd><dt class="description">
+<span 
+class="bchb8t-">MRR</span> </dt><dd 
+class="description">&#x2013; The mean of the reciprocal of the rank of the first relevant document.
+     </dd><dt class="description">
+<span 
+class="bchb8t-">RelRet</span> </dt><dd 
+class="description">&#x2013; The number of relevant documents retrieved (measured at rank 1000,
+     unless indicated otherwise). When this value is expressed as a fraction of
+     the total number of relevant documents, it is called &#x201C;recall&#x201D;, cf. Eq.&#x00A0;<a 
+href="#x21-36003r3.2">3.2<!--tex4ht:ref: eq:relwork:recall --></a>.</dd></dl>
+<!--l. 1427--><p class="noindent" >Of these, <a 
+href="thesis-emeijli3.html#MRR">MRR</a>, PX, and SRX correspond directly to common user experience since they
+measure the presence and/or amount of relevant documents at the top of the
+document ranking&#x00A0;[<a 
+href="thesis-emeijli2.html#XIR:2007:Robertson">262</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XHCIR:2010:smucker">286</a>]. Other users, however, may be more interested
+in retrieving as many relevant documents as possible and, for them, RelRet
+might be more appropriate. As indicated above, <a 
+href="thesis-emeijli3.html#MAP">MAP</a> has both a precision and
+a recall aspect. We will therefore use this measure as our main evaluation
+metric.
+<!--l. 1429--><p class="indent" >   As indicated above, for relatively small document collections it is feasible to collect
+relevance assessments on all the documents given a query. For larger collections, it is
+assumed that the top-ranked documents collected from a variety of systems form a
+reliable basis for evaluation. This in turn enables the comparisons of systems on the
+basis of recall, which requires the count of all relevant documents for a query. As
+document collections grow, however, these assumptions may no longer hold&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2000:buckley">49</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIR:2007:Buckley">52</a>].
+Therefore, several new measures (typically based on a form of sampling or
+bootstrapping) are being developed for such collections&#x00A0;[<a 
+href="thesis-emeijli2.html#XWSDM:2009:agrawal">1</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:2006:aslam">14</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:2008:carterette">62</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:2008:clarke">71</a>]. For the
+                                                                   
+                                                                   
+largest document collection that we employ later in the thesis (ClueWeb09; introduced
+in Section&#x00A0;<a 
+href="thesis-emeijse16.html#x23-420004">3.3.4<!--tex4ht:ref: ssec:chapter02:clueweb --></a>), we report these measures instead of the traditional ones. Specifically,
+for ClueWeb09, Category B we report statMAP and statP10&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2006:aslam">14</a>], whereas
+for ClueWeb09, Category A we also report <a 
+ id="section*.26"></a>expected MAP (<a 
+href="thesis-emeijli3.html#eMAP">eMAP</a>), <a 
+ id="section*.27"></a>expected
+R-precision (<a 
+href="thesis-emeijli3.html#eR-prec">eR-prec</a>), and <a 
+ id="section*.28"></a>expected precision at rank 10 (<a 
+href="thesis-emeijli3.html#eP10">eP10</a>)&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2006:carterette">61</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:2008:carterette">62</a>].
+Systems participating in TREC tracks that use ClueWeb09 were pooled up
+until a relatively shallow depth and these measures are intended to yield the
+same ranking as traditional measures would have if the runs had been fully
+judged.
+<!--l. 1441--><p class="indent" >   TREC Web 2009 (a test collection that makes use of the ClueWeb09 document
+collection&#x2014;see below) featured a novel sub-track, aiming to improve <span 
+class="bchri8t-">diversity </span>in
+the result list. The diversity task is similar to the ad hoc retrieval task, but
+differs in its judging process and evaluation measures. The goal of this task is to
+return documents that together provide complete coverage for a query, while
+avoiding excessive redundancy in the result list; the probability of relevance of a
+document is conditioned on the documents that appear before it in the result list.
+Each topic is therefore structured as a representative set of subtopics (and
+unknown to the system). Each subtopic, in turn, is related to a different user
+need and documents are judged with respect to the subtopics. The evaluation
+measures associated with diversity that we report upon in the thesis are:
+<!--l. 1443--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03B1;</mi></math>-nDCG&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2008:clarke">71</a>]
+and intent aware precision@10 (IA-P@10)&#x00A0;[<a 
+href="thesis-emeijli2.html#XWSDM:2009:agrawal">1</a>]. The former is based on normalized discounted
+cumulative gain&#x00A0;[<a 
+href="thesis-emeijli2.html#XTOIS:2002:NDCG">146</a>] and rewards novelty and diversity in the retrieved documents. The
+parameter <!--l. 1443--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03B1;</mi></math>
+indicates the probability that a user is still interested in a document, given that subtopic of the
+current document has already been covered by the preceding documents. We use the default
+setting of <!--l. 1443--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03B1;</mi> <mo 
+class="MathClass-rel">=</mo> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>5</mn></math>.
+The second measure is similar to precision@10, but incorporates information from a
+taxonomy (the <a 
+href="thesis-emeijli3.html#ODP">ODP</a> taxonomy in particular) to determine diversity.
+<a 
+ id="x21-36006r40"></a>
+<h4 class="subsectionHead"><span class="titlemark">3.2.2    </span> <a 
+ id="x21-370002"></a>Statistical Significance Testing</h4>
+<!--l. 1448--><p class="noindent" >As indicated earlier in this chapter, relevance assessments are not deterministic and
+there is inherent noise in an evaluation. Early work on a small document collection
+indicated that a large variance in relevance assessments does not have a significant
+influence on average recall and precision&#x00A0;[<a 
+href="thesis-emeijli2.html#XISR:1969:lesk">186</a>]. As test collections grew, however,
+questions were asked with respect to the validity of this conclusion on larger and more
+variable test collections&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:1993:hull">141</a>].
+<!--l. 1452--><p class="indent" >   So, given two systems that produce a ranking of documents for a topic, how can we
+determine which one is better than the other? Our method should be robust and
+promote the system that is truly better, rather than promoting the one that
+                                                                   
+                                                                   
+performed better by chance. Statistical significance testing plays an important role
+in making this assertion. A significance tests consists of the following three
+ingredients&#x00A0;[<a 
+href="thesis-emeijli2.html#XCIKM:2007:smucker">287</a>]:
+     <dl class="enumerate"><dt class="enumerate">
+  1. </dt><dd 
+class="enumerate">A test statistic or criterion by which to judge the two systems. Typically, the
+     mean of a retrieval metric introduced in Section&#x00A0;<a 
+href="#x21-360001">3.2.1<!--tex4ht:ref: ssec:measures --></a> is used.
+     </dd><dt class="enumerate">
+  2. </dt><dd 
+class="enumerate">A distribution of the test statistic given the <span 
+class="bchri8t-">null hypothesis</span>. The typical null
+     hypothesis (and the one we use in this thesis) is that there is no difference
+     between the systems.
+     </dd><dt class="enumerate">
+  3. </dt><dd 
+class="enumerate">A  significance  level  that  is  computed  by  taking  the  value  of  the  test
+     statistic  for  the  systems  and  determining  how  likely  a  large  or  larger
+     value  could  have  occurred  under  the  null  hypothesis.  This  probability  of
+     the experimental criterion score given the distribution created by the null
+     hypothesis is also known as the <span 
+class="bchri8t-">p-value</span>.</dd></dl>
+<!--l. 1464--><p class="noindent" >Statistical testing methods that are commonly used for <a 
+href="thesis-emeijli3.html#IR">IR</a> include the sign test, paired
+Wilcoxon signed rank test, Friedman test, and Student&#x2019;s t-test&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:1993:hull">141</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:2005:sanderson">278</a>]. In later
+chapters (except Chapter&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860006">6<!--tex4ht:ref: chap:linkingconcepts --></a>), we use the paired Wilcoxon signed rank test&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:1945:wilcoxon">343</a>],
+although recent work has indicated some potential issues with this particular
+test&#x00A0;[<a 
+href="thesis-emeijli2.html#XCIKM:2007:smucker">287</a>]. The null hypothesis of this test is that the results produced by both systems
+are sampled from the same distribution; in particular that the median difference
+between pairs of observations is zero. It proceeds as follows. First, it transforms each
+instance (a pair of observations, i.e., the scores on a retrieval metric for two systems on
+a particular topic) into absolute values. Then, zero differences are removed and the
+remaining differences are ranked from lowest to highest. After the signs (that were
+removed in the first step) are reattributed to the ranks (hence the name <span 
+class="bchri8t-">signed</span>
+<span 
+class="bchri8t-">rank </span>test), the test statistic is calculated. For sample sizes greater than 25, a
+normal approximation to this statistic exists. Related to this number is the
+minimum number of topics one needs to assess to account for the variance in
+evaluation measures over different topics; 50 topics has been found to be a suitable
+minimum by&#x00A0;Buckley and Voorhees&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2000:buckley">49</a>], whereas Sanderson and Zobel&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2005:sanderson">278</a>]
+indicate significant improvements on 25 or less topics does not guarantee that
+this result will be repeatable on other sets of topics. All of the topic sets we
+use later in the thesis consist of at least 25 topics, as we describe in the next
+section.
+<!--l. 1476--><p class="indent" >   In the thesis, we look for improvements at the
+<!--l. 1476--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="bold"><mi 
+>p</mi></mstyle> <mo 
+class="MathClass-rel">&#x003C;</mo> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>0</mn><mn>5</mn></math> level,
+indicated with a &#x2018;*&#x2019;. All reported p-values are for two-sided tests. In Chapter&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860006">6<!--tex4ht:ref: chap:linkingconcepts --></a>&#x00A0;we
+compare multiple methods. There, we use a one-way analysis of variance (ANOVA) test
+                                                                   
+                                                                   
+which is a common test when there are more than two systems or methods to be
+compared. It simultaneously tests for differences in the average score of each method,
+correcting for the effects of the individual queries. We subsequently use the
+Tukey-Kramer test to determine which of the individual pairs are significantly different.
+We use a bold-faced font in the result tables to indicate the best performing model in
+our result tables.
+                                                                   
+                                                                   
+<!--l. 1484--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch3.html#thesis-emeijse15.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse16.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse14.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse14.html#tailthesis-emeijse14.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijse15.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse15.html"></a> 
+</body></html> 

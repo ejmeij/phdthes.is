@@ -1,0 +1,88 @@
+/* ::::: http://ext-calendar.com/css/reset.css?v=20100729 ::::: */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0pt; padding: 0pt; border: 0pt none; outline: 0pt none; font-size: 100%; vertical-align: baseline; background: none repeat scroll 0% 0% transparent; }
+body { line-height: 1; }
+ol, ul { list-style: none outside none; }
+:focus { outline: 0pt none; }
+/* ::::: http://ext-calendar.com/css/text.css?v=20100729 ::::: */
+
+body { font: 13px/1.5 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif; }
+a:focus { outline: 1px dotted; }
+h1 { font-size: 25px; }
+h2 { font-size: 23px; }
+ul { list-style: disc outside none; }
+li { margin-left: 30px; }
+p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table, address, fieldset { margin-bottom: 20px; }
+/* ::::: http://ext-calendar.com/css/960.css?v=20100729 ::::: */
+
+.container_12, .container_16 { margin-left: auto; margin-right: auto; width: 960px; }
+.grid_1, .grid_2, .grid_3, .grid_4, .grid_5, .grid_6, .grid_7, .grid_8, .grid_9, .grid_10, .grid_11, .grid_12, .grid_13, .grid_14, .grid_15, .grid_16 { display: inline; float: left; margin-left: 10px; margin-right: 10px; }
+.container_12 .grid_12, .container_16 .grid_16 { width: 940px; }
+.container_16 .grid_1 { width: 40px; }
+.container_16 .grid_7 { width: 400px; }
+.clear { clear: both; display: block; overflow: hidden; visibility: hidden; width: 0pt; height: 0pt; }
+* html .clearfix, :first-child + html .clearfix {  }
+/* ::::: http://ext-calendar.com/css/ecp.css?v=20100729 ::::: */
+
+body, h1, h2, h3 { font-family: 'Gill Sans','Liberation Sans',FreeSans,Calibri,Tahoma,sans-serif; font-weight: 100; font-size: 15px; overflow-x: hidden; }
+body { background: url('ecp-home-banner-bg.jpg') repeat-x scroll 0% 0% transparent; }
+h1, h2, h3 { color: rgb(186, 25, 25); }
+h1 { font-size: 250%; }
+h2 { font-size: 200%; }
+p { margin-bottom: 15px; }
+a, a:visited { color: rgb(38, 103, 167); text-decoration: none; border-bottom: 1px dotted rgb(167, 195, 223); }
+a:hover { border-bottom: 1px solid rgb(167, 195, 223); }
+.ir { position: relative; overflow: hidden; padding: 0pt; }
+.ir a, .ir em { position: absolute; width: 100%; height: 0pt; background-position: left top; background-repeat: no-repeat; font-weight: normal; }
+#logo { margin-top: 30px; width: 376px; height: 43px; }
+#logo a { padding-top: 43px; background-image: url('ecp-logo.png'); }
+#banner-title { margin: 15px 0pt 10px; width: 413px; /**height: 37px;**/ }
+#banner-title em { padding-top: 37px; background-image: url('pro-cal-comp.png'); }
+#features { width: 110px; height: 26px; }
+#features em { padding-top: 26px; background-image: url('hd-features.png'); }
+#details { width: 181px; height: 26px; }
+#details em { padding-top: 26px; background-image: url('hd-other-details.png'); }
+#banner { 
+  position: absolute; top: 132px; left: 50%; margin-left: -639px; background: url('ecp-home-banner.jpg') no-repeat scroll 0% 0% transparent; width: 100%; height: 319px; z-index: -999; 
+}
+#banner-text { float: left; width: 410px; margin-top: 40px; color: rgb(164, 187, 210); font-size: 17px; overflow: visible; }
+#banner-text ul { list-style-type: disc; }
+#banner-text li { line-height: 28px; white-space: nowrap; }
+#notify { font-size: 18px; color: rgb(245, 177, 15); margin: 0pt 0pt 12px 10px; }
+#notify-buttons { padding-left: 10px; }
+#notify-buttons li { display: block; list-style: none outside none; float: left; width: 66px; height: 66px; margin-left: 20px; }
+#notify-buttons a { padding-top: 66px; border: medium none; opacity: 0.7; }
+#notify-buttons a:hover { opacity: 1; }
+#notify-buttons a:active { background-position: 0pt 1px; }
+#btn-email a { background-image: url('btn-email.png'); }
+#btn-rss a { background-image: url('btn-rss.png'); }
+#btn-fb a { background-image: url('btn-fb.png'); }
+#btn-tw a { background-image: url('btn-tw.png'); }
+#footer { border-top: 1px solid rgb(223, 238, 255); text-align: center; margin-top: 20px; padding: 20px; }
+#features { height: 26px; line-height: 26px; }
+#screenshot { float: right; margin: -10px -15px 0pt 0pt; }
+#coming { position: absolute; top: 0pt; right: 0pt; }
+.faq-a { background: none repeat scroll 0% 0% rgb(223, 238, 255); padding: 10px 15px; margin: 5px 0pt 10px; -moz-border-radius: 8px 8px 8px 8px; }
+.home-page .faq-a { display: none; }
+.faq-a .last { margin-bottom: 5px; }
+.news-signup { padding: 8px 15px; background: none repeat scroll 0% 0% rgb(223, 238, 255); -moz-border-radius: 8px 8px 8px 8px; }
+.smiley { background: url('ghsmiley.png') no-repeat scroll 0pt 1px transparent; padding-left: 22px; margin-left: 10px; }
+@media screen {
+}
+
+.flash {
+  width:1200px;
+  height:860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.banner-flash { 
+  position: absolute; 
+  top: 132px; 
+  background: url('ecp-home-banner.jpg')  scroll 0% 0% transparent; 
+  background-repeat: repeat-x;
+  width: 100%; 
+  height: 319px; 
+  z-index: -999; 
+}

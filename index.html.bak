@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html lang="en" class=" ext-strict">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Edgar Meij's PhD Thesis | Combining Concepts and Language Models for Information Access</title>
+<link rel="alternate" 
+      type="application/rss+xml" 
+      title="RSS" 
+      href="/rss.php" />
+<link href="mailto:info@meij.pro" rev="made" />        
+<META name="Author" content="Edgar Meij">
+
+<meta name="description" content="Edgar Meij's PhD thesis investigates how one can improve information access by employing the actual use of concepts as measured by the language that people use when they discuss them. " />
+
+<meta name="keywords" content="Extensive comparison of relevance feedback methods, Concept-based query modeling, Novel method for linking queries to concept languages, Understanding of relevant features for concept identification, Wikipedia-based query modeling, State of the art retrieval effectiveness" /> 
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-441496-12']);
+      _gaq.push(['_setDomainName', '.phdthes.is']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+<link rel="stylesheet" type="text/css" href="index.css" media="all">
+</head>
+<body class="home-page">
+<div class="container_16">
+    <!-- Header -->
+    <div id="main" class="grid_16">
+        <h1 id="logo" class="ir">
+          <a href="http://phdthes.is">Edgar Meij's Ph.D. Thesis</a>
+        </h1>
+    </div>
+    <div class="clear"></div>
+    
+    <!-- Banner -->
+	<div id="main" class="grid_16">
+        <div id="banner-text">
+            <h2 id="banner-title" class="ir"></h2>
+            <p style="font-size:140%;color:white;text-align:center;">Combining Concepts and Language Models for Information Access</p>
+            <br/>
+            <br/>
+            <br/>
+            <!--<ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>-->
+            <p id="notify">Want to follow the latest thesis news? Or get in touch?</p>
+            <ul id="notify-buttons">
+        	<li class="ir" id="btn-email"><a href="http://staff.science.uva.nl/~emeij/" title="Contact">Contact</a></li>
+                <li class="ir" id="btn-rss"><a href="http://phdthes.is/rss.php" title="Subscribe to the RSS feed">RSS</a></li>
+                <li class="ir" id="btn-fb"><a href="http://www.facebook.com/edgar.meij" title="Be friends on Facebook">Facebook</a></li>
+                <li class="ir" id="btn-tw"><a href="http://twitter.com/edgarmeij/" title="Follow tweets">Twitter</a></li>
+            </ul>
+        </div>
+        <img id="screenshot" src="compu.png" alt="Title image">
+	</div>
+	<div class="clear"></div>
+    
+
+	<div class="grid_7">
+		<br/><h2 id="features" class="ir"><em>Features</em></h2>
+        <p>The main contributions:
+        <ul>
+            <li>Novel <a href="http://phdthes.is/html-edition/thesis-emeijch4.html">relevance feedback methods</a></li>
+            <li>Extensive comparison of <a href="http://phdthes.is/html-edition/thesis-emeijse21.html">pseudo</a> and <a href="http://phdthes.is/html-edition/thesis-emeijse22.html">explicit</a> relevance feedback methods</li>
+            <li><a href="http://phdthes.is/html-edition/thesis-emeijch5.html">Concept-based query modeling</a></li>
+            <li>Novel method for <a href="http://phdthes.is/html-edition/thesis-emeijch6.html">linking queries to concept languages</a></li>
+            <li>Understanding of <a href="http://phdthes.is/html-edition/thesis-emeijse33.html">relevant features for concept identification</a></li>
+            <li><a href="http://phdthes.is/html-edition/thesis-emeijch7.html">Wikipedia-based query modeling</a></li>
+            <li>State of the art retrieval effectiveness on <a href="http://phdthes.is/html-edition/thesis-emeijse16.html">an extensive set of test collections</a></li>
+            <li><em>And a <a href="http://phdthes.is/html-edition/">LOT</a> more...</em></li>
+        </ul>
+        </p>
+	</div>
+    <div class="grid_1">&nbsp;</div>
+	<div class="grid_7">
+		<br/><h2 id="details" class="ir"><em>Other Details</em></h2>
+		<p class="news-signup">
+		  The public defense is on 
+      <strong>Friday 10 December 2010, 10:00</strong> <br/>in the 
+      <a href="http://j.mp/agnuva"><i>Agnietenkapel</i></a>; the party will begin at
+      <strong>20:00</strong> <br/>in 
+      <a href="http://www.canvas7.nl/"><i>Canvas op de 7e</i></a>.<br/>
+		</p>
+		
+		<!--p class="smiley"><strong>Code is now <a href="http://github.com/bmoeskau/Extensible">available</a> at Github!</strong></p-->
+		
+        <p>The current target for the release of the thesis is December 2010. 
+          The flash version of the thesis is available <a href="flash-edition/">here</a>, the HTML version can be found <a href="html-edition/">here</a>. The full PDF document can be found <a href="pdf-edition.pdf">here</a>.
+        </p>  
+        <p>
+          Some common questions:
+          
+        <ul id="home-faq">
+          <li><a href="http://phdthes.is/faq.html#1">Where can I read it?</a>
+              <div id="1" class="faq-a">
+                  <p class="last">The thesis can be viewed, downloaded, etc. using the links above.</p>
+              </div>
+          </li>
+          <li><a href="http://phdthes.is/faq.html#2">Where can I get it?</a>
+              <div id="2" class="faq-a">
+                  <p class="last">You can get a physical copy using the ISBN number that will be posted here soon. Alternatively, you can send an e-mail and ask nicely.</p>
+              </div>
+          </li>
+          <li><a href="http://phdthes.is/faq.html#3">What kind of editions are or will be available?</a>
+              <div id="3" class="faq-a">
+                  <p class="last">Besides the hard copy, there will be a HTML, PDF, and Flash edition made available. You can find the former <a href="html-edition/">here</a>, 
+                    the latter can be found <a href="flashversion.html">here</a>. The full PDF document can be found <a href="pdf-edition.pdf">here</a>.
+                  </p>
+              </div>
+          </li>
+
+        </ul>
+        </p>
+	</div>
+
+    <div class="grid_1">&nbsp;</div>
+	<div class="clear"></div>
+
+    <!-- Footer -->
+	<div id="main" class="grid_16">
+        <div id="footer">
+			Copyright © 2010 <a href="http://staff.science.uva.nl/~emeij/">Edgar Meij</a>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<div id="coming">
+    <img src="coming-soon.png" alt="Coming soon">
+</div>
+
+<div id="banner"></div>
+
+<script src="ext-core.js"></script>
+<script src="ecp.js"></script>
+</body>
+</html>

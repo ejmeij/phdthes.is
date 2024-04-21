@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Main Findings</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch8.html#thesis-emeijse39.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse40.html" >Next</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse39.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">8.1    </span> <a 
+ id="x54-1270001"></a>Main Findings</h3>
+<!--l. 42--><p class="noindent" >The general question governing this thesis has been: &#x201C;How can we leverage conceptual
+knowledge in the language modeling framework to improve information access?&#x201D; We
+have approached this question as a query modeling problem. That is, we have looked at
+methods and algorithms to improve textual queries or their representations using
+                                                                   
+                                                                   
+concept languages in the context of generative language models. This main question
+has lead us to formulate five main research questions listed in Section&#x00A0;<a 
+href="thesis-emeijse4.html#x7-60004">1.4<!--tex4ht:ref: chap:introduction:researchquestions --></a> which
+have been answered in the previous chapters. In this section we recall the
+answers.
+<!--l. 44--><p class="indent" >   We have started the thesis with an overview of current approaches to information
+retrieval, concept languages, and their combination (Chapters&#x00A0;<a 
+href="thesis-emeijch2.html#x11-100002">2<!--tex4ht:ref: chap:background --></a> and&#x00A0;<a 
+href="thesis-emeijch3.html#x19-330003">3<!--tex4ht:ref: chap:methodology --></a>). We have
+zoomed in on a technique called query modeling, with which the information
+need of a user can be captured more thoroughly than solely using the initial
+query.
+<!--l. 46--><p class="indent" >   In Chapter&#x00A0;<a 
+href="thesis-emeijch4.html#x26-470004">4<!--tex4ht:ref: chap:relfb --></a>, we have employed pseudo and explicit user feedback in the form of
+relevance ratings at the document level to improve the estimation of the query model.
+The first research question thus dealt with relevance feedback methods for query
+modeling. We asked:
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">RQ 1.</span> </dt><dd 
+class="description">What are effective ways of using relevance feedback information for query
+     modeling to improve retrieval performance?</dd></dl>
+<!--l. 55--><p class="noindent" >We have presented two query modeling methods for relevance feedback that are based on
+leveraging the similarity between feedback documents and the set thereof. By providing
+a comprehensive analysis, evaluation, comparison, and discussion (in both theoretical
+and practical terms) of our novel and various other core models for query modeling
+using relevance feedback, we have shown that all the models we have evaluated are
+able to improve upon a baseline without relevance feedback in the case of
+explicit relevance feedback. One of our proposed models (NLLR) is particularly
+suited when explicit relevance assessments are available. In the case of pseudo
+relevance feedback, we have observed that RM-1 is the most robust model.
+Parsimonious relevance models, on the other hand, perform very well on large, noisy
+collections. We have further found that, in the case of pseudo relevance feedback,
+there exists a large variance in the resulting retrieval performance for different
+amounts of pseudo relevant documents, most notably on large, noisy collections.
+We have also concluded that the test collection itself is of influence on the
+relative performance of the models; there is no single model that outperforms
+the others on all test collections. As to the observations made when using
+explicit relevance feedback, here we found that the variance with respect to the
+number of feedback documents is much less pronounced. Furthermore, one
+of the two novel methods we introduce consequently outperforms the other
+models.
+<!--l. 69--><p class="indent" >   Inspired by relevance feedback methods, we then developed a two-step method in
+Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a> that uses concepts to estimate a conceptual query model. Here, we moved
+beyond the lexical level by introducing an automatic method for generating a
+conceptual representation of a query and subsequently using this representation to
+improve end-to-end retrieval. We asked
+                                                                   
+                                                                   
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">RQ 2.</span> </dt><dd 
+class="description">What  are  effective  ways  of  using  conceptual  information  for  query
+     modeling to improve retrieval performance?</dd></dl>
+<!--l. 79--><p class="noindent" >We have introduced a novel way of using document-level annotations in the form of
+concepts to improve end-to-end retrieval performance. We have found that our
+proposed method obtained the highest performance of all evaluated models. We have
+concluded that, although each step in our method of applying conceptual language
+models is not significantly different from the other, the full model is able to significantly
+outperform both a standard language modeling and a pseudo relevance feedback
+approach.
+<!--l. 85--><p class="indent" >   After that, in Chapter&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860006">6<!--tex4ht:ref: chap:linkingconcepts --></a>, we have considered DBpedia as a concept language, in
+which case each Wikipedia article constitutes a concept. Here, we have turned to a
+different way of obtaining concepts pertinent to a user&#x2019;s query based on supervised
+machine learning. The research question was:
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">RQ 3.</span> </dt><dd 
+class="description">Can we successfully address the task of mapping search engine queries to
+     concepts using a combination of information retrieval and machine learning
+     techniques?</dd></dl>
+<!--l. 94--><p class="noindent" >We have developed a novel way of associating concepts with queries that can effectively
+handle arbitrary features and answered this question in the affirmative. We have
+concluded that our proposed approach significantly outperforms other methods,
+including commonly used methods based on a lexical matching between query terms
+and concept labels.
+<!--l. 96--><p class="indent" >   In the next chapter (Chapter&#x00A0;<a 
+href="thesis-emeijch7.html#x47-1210007">7<!--tex4ht:ref: chap:cikm2010 --></a>), we have moved to the open domain and brought
+together the ideas presented in all preceding chapters. We have taken the conceptual
+mapping approach from Chapter&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860006">6<!--tex4ht:ref: chap:linkingconcepts --></a>&#x00A0;to obtain DBpedia concepts. Next, we have used
+the natural language text associated with each concept (in the form of the
+accompanying Wikipedia article) to estimate a query model, similar to the conceptual
+language models presented in Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a>. The associated research question
+was:
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">RQ 4.</span> </dt><dd 
+class="description">What are the effects on retrieval performance of applying pseudo relevance
+     feedback methods to texts associated with concepts that are automatically
+     mapped from ad hoc queries?</dd></dl>
+<!--l. 103--><p class="noindent" >We have found that the conceptual mapping method presented in Chapter&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860006">6<!--tex4ht:ref: chap:linkingconcepts --></a>&#x00A0;transfers well
+to the open domain; the linked concepts seem reasonable and the estimated query
+models are to the point. When evaluated, we have concluded that our novel method
+is able to improve recall, precision, and diversity metrics on two large web
+collections.
+                                                                   
+                                                                   
+<!--l. 121--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch8.html#thesis-emeijse39.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse40.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse39.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse39.html"></a> 
+</body></html> 

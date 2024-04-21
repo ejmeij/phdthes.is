@@ -1,0 +1,5 @@
+http://phdthes.is/
+Edgar Meij's Ph.D. Thesis
+This is the RSS feed of the website accompanying Edgar Meij's Ph.D. thesis, entitled "Combining Concepts and Language Models for Information Access."
+weekly
+1

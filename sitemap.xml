@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<url>
+  <loc>http://phdthes.is/</loc>
+  <lastmod>2011-01-11T13:41:13+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>1.00</priority>
+</url>
+<!--url>
+  <loc>http://phdthes.is/rss.php</loc>
+  <changefreq>yearly</changefreq>
+  <priority>0.80</priority>
+</url-->
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijch4.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse21.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse22.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijch5.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijch6.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse33.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijch7.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse16.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/</loc>
+  <lastmod>2011-01-11T13:41:06+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/flash-edition/</loc>
+  <lastmod>2011-01-11T13:41:06+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/pdf-edition.pdf</loc>
+  <lastmod>2011-01-11T13:41:15+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeij.html</loc>
+  <lastmod>2011-01-11T13:41:06+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijch3.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijli3.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijch2.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse10.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijli2.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse9.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse20.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse19.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse17.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse23.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse15.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeij33.html</loc>
+  <lastmod>2011-01-11T13:41:07+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse1.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse24.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse25.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse26.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse27.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse28.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeij40.html</loc>
+  <lastmod>2011-01-11T13:41:07+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse29.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse30.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse31.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse32.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse34.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijch8.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse35.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse36.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse37.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse38.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeij22.html</loc>
+  <lastmod>2011-01-11T13:41:07+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijli1.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse14.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse18.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijap1.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijli4.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijch1.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse8.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse11.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse12.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse13.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse2.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse39.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse40.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeij51.html</loc>
+  <lastmod>2011-01-11T13:41:08+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse3.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse4.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse5.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse6.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijse7.html</loc>
+  <lastmod>2011-01-11T13:41:12+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijli6.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijli5.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeij17.html</loc>
+  <lastmod>2011-01-11T13:41:06+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>http://phdthes.is/html-edition/thesis-emeijli7.html</loc>
+  <lastmod>2011-01-11T13:41:11+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.41</priority>
+</url>
+</urlset>

@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Research Questions</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch1.html#thesis-emeijse4.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse5.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse3.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse3.html#tailthesis-emeijse3.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse4.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">1.4    </span> <a 
+ id="x7-60004"></a>Research Questions</h3>
+<!--l. 122--><p class="noindent" >The central question governing this thesis is: &#x201C;How can we leverage concept languages
+to improve information access?&#x201D; In particular, we will be looking at methods and
+algorithms to improve the query or its representation using concept languages in the
+context of generative language models. Instead of creating, defining, or using such
+languages directly, however, we will leverage the natural language use associated with
+the concepts to improve information access. Our central research question leads to a set
+of more specific research questions that will be answered in the following
+chapters.
+<!--l. 126--><p class="indent" >   After we have provided a theoretical and methodological foundation of <a 
+href="thesis-emeijli3.html#IR">IR</a>, we
+look at the case of using relevance information to improve a user&#x2019;s query. A
+typical method for improving queries is updating the estimate of the language
+model of the query, a process known as <span 
+class="bchri8t-">query modeling</span>. Relevance feedback is a
+commonly used mechanism to improve queries and, hence, end-to-end retrieval
+performance. It uses relevance assessments (either explicit, implicit, or assumed) on
+documents retrieved in response to a query to update the query. Core relevance
+feedback models for language modeling include the relevance modeling and the
+model-based feedback approach. They both operate under different assumptions
+with respect to how to treat the set of feedback documents as well as each
+individual feedback document. Therefore, we propose two models that take the
+middle ground between these two approaches. Furthermore, an extensive
+comparison between these models is lacking, both in experimental terms,
+i.e., under the same experimental conditions, and in theoretical terms. We
+ask:
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">RQ 1.</span> </dt><dd 
+class="description">What are effective ways of using relevance feedback information for query
+     modeling to improve retrieval performance?
+         <dl class="enumerate"><dt class="enumerate">
+      <span 
+class="bchb8t-">a.</span>  </dt><dd 
+class="enumerate">Can we develop a relevance feedback model that uses evidence from
+         both  the  individual  feedback  documents  and  the  set  of  feedback
+         documents  as  a  whole?  How  does  this  model  relate  to  other  query
+         modeling approaches using relevance feedback? Is there any difference
+         when  using  explicit  relevance  feedback  instead  of  pseudo  relevance
+         feedback?
+         </dd><dt class="enumerate">
+      <span 
+class="bchb8t-">b.</span>  </dt><dd 
+class="enumerate">How do the models perform on different test collections? How robust
+                                                                   
+                                                                   
+         are our two novel models on the various parameters query modeling
+         offers and what behavior can we observe for the related models?</dd></dl>
+     </dd></dl>
+<!--l. 152--><p class="noindent" >Inspired by relevance feedback methods, we then develop a two-step method that uses
+concepts (in the form of document-level annotations) to estimate a conceptual
+language model. In the first step, the query is translated into a conceptual
+representation. In a process we call <span 
+class="bchri8t-">conceptual query modeling</span>, feedback documents
+from an initial retrieval run are used to obtain a conceptual query model. This model
+represents the user&#x2019;s information need at the level of concepts rather than that of the
+terms entered by the user. In the second step, we translate the conceptual query
+model back into a contribution to the textual query model. We investigate the
+effectiveness of our conceptual language models by placing them in the broader
+context of common retrieval models, including those using relevance feedback
+information. We organize the following research question around a number of
+subquestions.
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">RQ 2.</span> </dt><dd 
+class="description">What are effective ways of using conceptual information for query modeling to
+     improve retrieval performance?
+         <dl class="enumerate"><dt class="enumerate">
+      <span 
+class="bchb8t-">a.</span>  </dt><dd 
+class="enumerate">What is the relative retrieval effectiveness of our method with respect
+         to the standard language modeling and conventional pseudo relevance
+         feedback approach?
+         </dd><dt class="enumerate">
+      <span 
+class="bchb8t-">b.</span>  </dt><dd 
+class="enumerate">How  portable  is  our  conceptual  language  model?  That  is,  what  are
+         the results of the model across multiple concept languages and test
+         collections?
+         </dd><dt class="enumerate">
+      <span 
+class="bchb8t-">c.</span>  </dt><dd 
+class="enumerate">Can we say anything about which evaluation measures are helped most
+         using our model? Is it mainly a recall or precision-enhancing device?</dd></dl>
+     </dd></dl>
+<!--l. 205--><p class="noindent" >We then move beyond annotated documents and take a closer look at directly
+identifying concepts with respect to a user&#x2019;s query. The research questions we address
+are the following.
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">RQ 3.</span> </dt><dd 
+class="description">Can we successfully address the task of mapping search engine queries to
+     concepts using a combination of information retrieval and machine learning
+     techniques?
+         <dl class="enumerate"><dt class="enumerate">
+      <span 
+class="bchb8t-">a.</span>  </dt><dd 
+class="enumerate">What  is  the  best  way  of  handling  a  query?  That  is,  what  is  the
+                                                                   
+                                                                   
+         performance when we map individual n-grams in a query instead of
+         the query as a whole?
+         </dd><dt class="enumerate">
+      <span 
+class="bchb8t-">b.</span>  </dt><dd 
+class="enumerate">As input to the machine learning algorithms we extract and compute
+         a  wide  variety  of  features,  pertaining  to  the  query  terms,  concepts,
+         and search history. Which type of feature helps most? Which individual
+         feature is most informative?
+         </dd><dt class="enumerate">
+      <span 
+class="bchb8t-">c.</span>  </dt><dd 
+class="enumerate">Machine  learning  generally  comes  with  a  number  of  parameter
+         settings. We ask: what are the effects of varying these parameters?</dd></dl>
+     </dd></dl>
+<!--l. 230--><p class="noindent" >After we have looked at mapping queries to concepts, we apply relevance feedback
+techniques to the natural language texts associated with each concept and obtain query
+models based on this information The guiding intuition is that, similar to our
+conceptual query models, concepts are best described by the language use associated
+with them. In other words, once our algorithm has determined which concepts are
+meant by a query, we employ the language use associated with those concepts to
+update the query model. We ask:
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">RQ 4.</span> </dt><dd 
+class="description">What are the effects on retrieval performance of applying pseudo relevance
+     feedback methods to texts associated with concepts that are automatically
+     mapped from ad hoc queries?
+         <dl class="enumerate"><dt class="enumerate">
+      <span 
+class="bchb8t-">a.</span>  </dt><dd 
+class="enumerate">What are the differences with respect to pseudo relevance estimations
+         on  the  collection?  And  when  the  query  models  are  estimated  using
+         pseudo relevance estimations on the concepts&#x2019; texts?
+         </dd><dt class="enumerate">
+      <span 
+class="bchb8t-">b.</span>  </dt><dd 
+class="enumerate">Is the approach mainly a recall- or precision-enhancing device? Or does
+         it help other aspects, such as promoting diversity?</dd></dl>
+     </dd></dl>
+                                                                   
+                                                                   
+<!--l. 248--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch1.html#thesis-emeijse4.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse5.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse3.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse3.html#tailthesis-emeijse3.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijse4.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse4.html"></a> 
+</body></html> 

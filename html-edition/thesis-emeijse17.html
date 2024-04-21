@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Parameter Settings</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch3.html#thesis-emeijse17.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse18.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse16.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse16.html#tailthesis-emeijse16.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse17.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">3.4    </span> <a 
+ id="x24-450004"></a>Parameter Settings</h3>
+<!--l. 2207--><p class="noindent" >Bennett <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XADC:2008:bennett">30</a>] find that the level of smoothing has a significant influence on the
+resulting retrieval performance and that optimal smoothing parameters are
+dependent on the query set as well as the collection. They also observe that longer
+queries require more aggressive smoothing, a finding corroborated by Zhai and
+Lafferty&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2002:zhai">355</a>]. In later chapters we need to set values for the smoothing parameter
+associated with our retrieval model presented in Chapter&#x00A0;<a 
+href="thesis-emeijch2.html#x11-100002">2<!--tex4ht:ref: chap:background --></a>. In particular, we set
+<!--l. 2207--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03BC;</mi></math> (cf.
+Eq.&#x00A0;<a 
+href="thesis-emeijse9.html#x13-13009r2.7">2.7<!--tex4ht:ref: eq:relwork:smoothed:documentmodel --></a> on page&#x00A0;<a 
+href="thesis-emeijse9.html#x13-13009r2.7">32<!--tex4ht:ref: eq:relwork:smoothed:documentmodel --></a>) to the average length of documents in the collection.
+<!--l. 2209--><p class="indent" >   Some of the (pseudo) relevance feedback models in use and under investigation in
+later chapters require additional parameter settings. The models that we evaluate have
+the following parameters in common:
+     <ul class="itemize1">
+     <li class="itemize"><!--l. 2213--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+mathvariant="bold-script">V</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo></math>
+     (the  number  of  terms  with  the  highest  probability  to  be  included  in  the
+     query model),
+     </li>
+     <li class="itemize"><!--l. 2215--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">|</mo><mi 
+>R</mi><mo 
+class="MathClass-rel">|</mo></math>
+     (the number of feedback documents used), and
+     </li>
+     <li class="itemize"><!--l. 2217--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></math>
+     (the value of the query interpolation factor, cf. Eq.&#x00A0;<a 
+href="thesis-emeijse9.html#x13-14003r2.10">2.10<!--tex4ht:ref: chapter04:eq:querymodel --></a>).</li></ul>
+<!--l. 2223--><p class="noindent" >There are various approaches that may be used to estimate these parameters. One
+can optimize the set of parameters on one test collection and evaluate on the
+other, use some kind of cross-validation, or designate a set of topics as training
+topics which are subsequently excluded from the final evaluation. Ideally, we
+would like to use a form of gradient ascent on the retrieval metric we aim to
+optimize. None of these measures are continuous, differentiable functions of the
+set of parameters, however, and many local optima exist&#x00A0;[<a 
+href="thesis-emeijli2.html#XIR:2007:Robertson">262</a>]. A possible
+solution is to define another function that does have these properties&#x00A0;[<a 
+href="thesis-emeijli2.html#XNIPS:2006:burges">54</a>], but
+typically, a grid or line search is employed to find the optimal values for the
+parameters, see e.g.&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:1988:harman">119</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:2001:lafferty">173</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:2004:Liu">189</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XCIKM:1997:lundquist">196</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#Xtechrep:2005:Metzler">223</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:2005:metzler">224</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:1998:mitra">235</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIR:2007:Robertson">262</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XTOIS:2004:Zhai">356</a>]. This is also
+the approach we employ in later chapters. While computationally expensive
+(exponential in the number of parameters), it does provide us with an upper
+bound on the retrieval performance that one might achieve using the described
+                                                                   
+                                                                   
+models.
+                                                                   
+                                                                   
+<!--l. 2232--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch3.html#thesis-emeijse17.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse18.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse16.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse16.html#tailthesis-emeijse16.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijse17.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse17.html"></a> 
+</body></html> 

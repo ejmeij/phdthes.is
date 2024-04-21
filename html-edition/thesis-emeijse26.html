@@ -1,0 +1,2121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Results and Discussion</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch5.html#thesis-emeijse26.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse27.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse25.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse25.html#tailthesis-emeijse25.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse26.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">5.3    </span> <a 
+ id="x36-760003"></a>Results and Discussion</h3>
+<!--l. 4--><p class="noindent" >Now that we have detailed our conceptual language modeling approach (Section&#x00A0;<a 
+href="thesis-emeijse24.html#x34-690001">5.1<!--tex4ht:ref: chapter04:sec:model --></a>)
+and laid out the experimental environment (Section&#x00A0;<a 
+href="thesis-emeijse25.html#x35-720002">5.2<!--tex4ht:ref: chapter04:sec:experimentalsetup --></a>), we present the results of the
+experiments aimed at answering this chapter&#x2019;s main research questions. First, we look
+at the performance of the query likelihood model that we use as our baseline. We
+emphasize that the other models that we evaluate use the initial ranking from the query
+likelihood model as a set of pseudo relevant documents. We then look at the results of
+applying RM. Next, we evaluate the results of using the conceptual language models as
+described in Section&#x00A0;<a 
+href="thesis-emeijse24.html#x34-690001">5.1<!--tex4ht:ref: chapter04:sec:model --></a>, using the conceptual query models and the generative
+concept models in conjunction.
+<!--l. 21--><p class="indent" >   Further, we perform an ablation study by zooming in on the results after removing
+each component in the conceptual language models. First, we consider the generative
+concept models that we use to translate the conceptual query model to free-text terms.
+We look at the results of using <a 
+href="thesis-emeijli3.html#MLE">MLE</a>, i.e., without applying the <a 
+href="thesis-emeijli3.html#EM">EM</a> algorithm described
+in Section&#x00A0;<a 
+href="thesis-emeijse24.html#x34-710002">5.1.2<!--tex4ht:ref: chapter04:ssec:conceptmodels --></a>. Second, since each document in our collections has associated
+concepts, we use the conceptual query model in conjunction with the initial query for
+retrieval, as detailed in Section&#x00A0;<a 
+href="#x36-830002">5.3.2<!--tex4ht:ref: chapter04:ssec:comodel --></a>. Finally, we look at the sensitivity of our
+model with respect to the individual parameter settings and zoom out in order
+to see whether we can relate collection-specific properties with the reported
+results.
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 1--><p class="indent" >   <a 
+ id="x36-760017"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="center" 
+>
+<!--l. 2--><p class="noindent" >
+
+ <table id="TBL-53" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-53-1g"><col 
+id="TBL-53-1"><col 
+id="TBL-53-2"><col 
+id="TBL-53-3"><col 
+id="TBL-53-4"><col 
+id="TBL-53-5"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-53-1-"><td  style="text-align:left;" id="TBL-53-1-1"  
+class="td11"> <!--l. 32--><p class="noindent" >                    </td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-1-2"  
+class="td11">                </td><td  style="text-align:center; white-space:nowrap;" id="TBL-53-1-3"  
+class="td11">     <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">QL</span></div>    </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-53-1-4"  
+class="td11">           <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">RM</span></div>
+
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-53-2-"><td  style="text-align:left;" id="TBL-53-2-1"  
+class="td11"> <!--l. 32--><p class="noindent" ><span 
+class="bchr8t-x-x-80">CLEF-DS-07</span>                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-2-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-2-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">2289/4530   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-2-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">2430</span><span 
+class="bchr8t-x-x-80">/4530   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-53-2-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+6.2%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-53-3-"><td  style="text-align:left;" id="TBL-53-3-1"  
+class="td11"> <!--l. 32--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-3-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-3-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5120         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-3-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5440         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-53-3-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+6.2%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-53-4-"><td  style="text-align:left;" id="TBL-53-4-1"  
+class="td11"> <!--l. 32--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-4-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-4-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5080         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-4-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5040          </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-53-4-5"  
+class="td11">    <span 
+class="bchr8t-x-x-80">-0.8%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-53-5-"><td  style="text-align:left;" id="TBL-53-5-1"  
+class="td11"> <!--l. 32--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-5-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-5-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1952         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-5-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.2061         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-53-5-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+5.6%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-53-6-"><td  style="text-align:left;" id="TBL-53-6-1"  
+class="td11"> <!--l. 32--><p class="noindent" ><span 
+class="bchr8t-x-x-80">CLEF-DS-08</span>                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-6-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-6-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">1468/2133   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-6-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">1473</span><span 
+class="bchr8t-x-x-80">/2133   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-53-6-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+0.3%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-53-7-"><td  style="text-align:left;" id="TBL-53-7-1"  
+class="td11"> <!--l. 32--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-7-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-7-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5280         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-7-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5680         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-53-7-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+7.6%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-53-8-"><td  style="text-align:left;" id="TBL-53-8-1"  
+class="td11"> <!--l. 32--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-8-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-8-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4680         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-8-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.4800         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-53-8-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+2.6%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-53-9-"><td  style="text-align:left;" id="TBL-53-9-1"  
+class="td11"> <!--l. 32--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-9-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-9-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2819         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-9-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.2856         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-53-9-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+1.3%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-53-10-"><td  style="text-align:left;" id="TBL-53-10-1"  
+class="td11"> <!--l. 32--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-GEN-04</span>                  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-10-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-10-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">3847/8268   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-10-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">4205</span><span 
+class="bchr8t-x-x-80">/8268   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-53-10-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+9.3%*   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-53-11-"><td  style="text-align:left;" id="TBL-53-11-1"  
+class="td11"> <!--l. 32--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-11-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-11-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5160         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-11-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5680         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-53-11-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+10.1%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-53-12-"><td  style="text-align:left;" id="TBL-53-12-1"  
+class="td11"> <!--l. 32--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-12-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-12-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4800         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-12-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5340         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-53-12-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+11.2%*   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-53-13-"><td  style="text-align:left;" id="TBL-53-13-1"  
+class="td11"> <!--l. 32--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-13-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-13-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2856         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-13-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.3306         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-53-13-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+15.8%*   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-53-14-"><td  style="text-align:left;" id="TBL-53-14-1"  
+class="td11"> <!--l. 32--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-GEN-05</span>                  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-14-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-14-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">2825/4584   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-14-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">3031</span><span 
+class="bchr8t-x-x-80">/4584   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-53-14-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+7.3%*   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-53-15-"><td  style="text-align:left;" id="TBL-53-15-1"  
+class="td11"> <!--l. 32--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-15-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-15-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4122         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-15-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.4163         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-53-15-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+1.0%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-53-16-"><td  style="text-align:left;" id="TBL-53-16-1"  
+class="td11"> <!--l. 32--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-16-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-16-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3776         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-16-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.3857         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-53-16-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+2.1%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-53-17-"><td  style="text-align:left;" id="TBL-53-17-1"  
+class="td11"> <!--l. 32--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-17-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-17-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2153         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-17-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.2368         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-53-17-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+10.0%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-53-18-"><td  style="text-align:left;" id="TBL-53-18-1"  
+class="td11"> <!--l. 32--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-GEN-06</span>                  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-18-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-18-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">1078/1449   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-18-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">1160</span><span 
+class="bchr8t-x-x-80">/1449   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-53-18-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+7.6%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-53-19-"><td  style="text-align:left;" id="TBL-53-19-1"  
+class="td11"> <!--l. 32--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-19-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-19-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4154         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-19-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.4308         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-53-19-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+3.7%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-53-20-"><td  style="text-align:left;" id="TBL-53-20-1"  
+class="td11"> <!--l. 32--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-20-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-20-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4154         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-20-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.4346         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-53-20-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+4.6%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-53-21-"><td  style="text-align:left;" id="TBL-53-21-1"  
+class="td11"> <!--l. 32--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-21-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-21-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2731         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-53-21-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.2993         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-53-21-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+9.6%*   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-53-22-"><td  style="text-align:left;" id="TBL-53-22-1"  
+class="td11"> <!--l. 32--><p class="noindent" >                     </td></tr></table>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;5.7:  </span><span  
+class="content">Results  of  the  baselines:  <a 
+href="thesis-emeijli3.html#QL">QL</a>  and  the  best  performing  run  using
+<a 
+ id="section*.46"></a>relevance  model  (<a 
+href="thesis-emeijli3.html#RM">RM</a>),  model  2.  The  right-most  column  indicates  the  relative
+difference between the query likelihood and relevance model scores. </span></div><!--tex4ht:label?: x36-760017 -->
+</div>
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 1--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                   
+                                                                   
+<a 
+ id="x36-760172"></a>
+                                                                   
+                                                                   
+<a 
+ id="x36-76002r1"></a>
+<div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij53x.png" alt="PIC" class="graphics" width="112.90306pt" height="79.026pt" ><!--tex4ht:graphics  
+name="thesis-emeij53x.png" src="chapter04/MAP-clef07-QL-res-eval-clef07-CM-res-eval_bw.eps"  
+-->
+     <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(a) CLEF-DS-07 &#x2013; MAP</span></div>     </td></tr></table></div> <a 
+ id="x36-76003r2"></a><div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij54x.png" alt="PIC" class="graphics" width="112.90306pt" height="79.026pt" ><!--tex4ht:graphics  
+name="thesis-emeij54x.png" src="chapter04/P5-clef07-QL-res-eval-clef07-CM-res-eval_bw.eps"  
+-->
+             <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(b) CLEF-DS-07 &#x2013; P5</span></div>             </td></tr></table></div>
+<a 
+ id="x36-76004r3"></a><div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij55x.png" alt="PIC" class="graphics" width="112.90306pt" height="79.026pt" ><!--tex4ht:graphics  
+name="thesis-emeij55x.png" src="chapter04/P10-clef07-QL-res-eval-clef07-CM-res-eval_bw.eps"  
+-->
+     <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(c) CLEF-DS-07 &#x2013; P10</span></div>     </td></tr></table></div><br />
+<a 
+ id="x36-76005r4"></a>
+<div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij56x.png" alt="PIC" class="graphics" width="112.90306pt" height="79.026pt" ><!--tex4ht:graphics  
+name="thesis-emeij56x.png" src="chapter04/MAP-clef08-QL-res-eval-clef08-CM-res-eval_bw.eps"  
+-->
+     <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(d) CLEF-DS-08 &#x2013; MAP</span></div>     </td></tr></table></div> <a 
+ id="x36-76006r5"></a><div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij57x.png" alt="PIC" class="graphics" width="112.90306pt" height="79.026pt" ><!--tex4ht:graphics  
+name="thesis-emeij57x.png" src="chapter04/P5-clef08-QL-res-eval-clef08-CM-res-eval_bw.eps"  
+-->
+             <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(e) CLEF-DS-08 &#x2013; P5</span></div>             </td></tr></table></div>
+<a 
+ id="x36-76007r6"></a><div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij58x.png" alt="PIC" class="graphics" width="112.90306pt" height="79.026pt" ><!--tex4ht:graphics  
+name="thesis-emeij58x.png" src="chapter04/P10-clef08-QL-res-eval-clef08-CM-res-eval_bw.eps"  
+-->
+     <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(f) CLEF-DS-08 &#x2013; P10</span></div>     </td></tr></table></div><br />
+<a 
+ id="x36-76008r7"></a>
+<div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij59x.png" alt="PIC" class="graphics" width="112.90306pt" height="79.026pt" ><!--tex4ht:graphics  
+name="thesis-emeij59x.png" src="chapter04/MAP-trec04-QL-res-eval-trec04-CM-res-eval_bw.eps"  
+-->
+    <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(g) TREC-GEN-04 &#x2013; MAP</span></div>    </td></tr></table></div> <a 
+ id="x36-76009r8"></a><div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij60x.png" alt="PIC" class="graphics" width="112.90306pt" height="79.026pt" ><!--tex4ht:graphics  
+name="thesis-emeij60x.png" src="chapter04/P5-trec04-QL-res-eval-trec04-CM-res-eval_bw.eps"  
+-->
+           <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(h) TREC-GEN-04 &#x2013; P5</span></div>           </td></tr></table></div>
+                                                                   
+                                                                   
+<a 
+ id="x36-76010r9"></a><div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij61x.png" alt="PIC" class="graphics" width="112.90306pt" height="79.026pt" ><!--tex4ht:graphics  
+name="thesis-emeij61x.png" src="chapter04/P10-trec04-QL-res-eval-trec04-CM-res-eval_bw.eps"  
+-->
+    <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(i) TREC-GEN-04 &#x2013; P10</span></div>    </td></tr></table></div><br />
+<a 
+ id="x36-76011r10"></a>
+<div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij62x.png" alt="PIC" class="graphics" width="112.90306pt" height="79.026pt" ><!--tex4ht:graphics  
+name="thesis-emeij62x.png" src="chapter04/MAP-trec05-QL-res-eval-trec05-CM-res-eval_bw.eps"  
+-->
+    <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(j) TREC-GEN-05 &#x2013; MAP</span></div>    </td></tr></table></div> <a 
+ id="x36-76012r11"></a><div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij63x.png" alt="PIC" class="graphics" width="112.90306pt" height="79.026pt" ><!--tex4ht:graphics  
+name="thesis-emeij63x.png" src="chapter04/P5-trec05-QL-res-eval-trec05-CM-res-eval_bw.eps"  
+-->
+           <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(k) TREC-GEN-05 &#x2013; P5</span></div>           </td></tr></table></div>
+<a 
+ id="x36-76013r12"></a><div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij64x.png" alt="PIC" class="graphics" width="112.90306pt" height="79.026pt" ><!--tex4ht:graphics  
+name="thesis-emeij64x.png" src="chapter04/P10-trec05-QL-res-eval-trec05-CM-res-eval_bw.eps"  
+-->
+    <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(l) TREC-GEN-05 &#x2013; P10</span></div>    </td></tr></table></div><br />
+<a 
+ id="x36-76014r13"></a>
+<div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij65x.png" alt="PIC" class="graphics" width="112.90306pt" height="79.026pt" ><!--tex4ht:graphics  
+name="thesis-emeij65x.png" src="chapter04/MAP-trec06-QL-res-eval-trec06-CM-res-eval_bw.eps"  
+-->
+    <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(m) TREC-GEN-06 &#x2013; MAP</span></div>    </td></tr></table></div> <a 
+ id="x36-76015r14"></a><div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij66x.png" alt="PIC" class="graphics" width="112.90306pt" height="79.026pt" ><!--tex4ht:graphics  
+name="thesis-emeij66x.png" src="chapter04/P5-trec06-QL-res-eval-trec06-CM-res-eval_bw.eps"  
+-->
+           <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(n) TREC-GEN-06 &#x2013; P5</span></div>           </td></tr></table></div>
+<a 
+ id="x36-76016r15"></a><div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij67x.png" alt="PIC" class="graphics" width="112.90306pt" height="79.026pt" ><!--tex4ht:graphics  
+name="thesis-emeij67x.png" src="chapter04/P10-trec06-QL-res-eval-trec06-CM-res-eval_bw.eps"  
+-->
+    <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(o) TREC-GEN-06 &#x2013; P10</span></div>    </td></tr></table></div>
+ <div class="caption" 
+><span class="id">Figure&#x00A0;5.2:  </span><span  
+class="content">Per-topic  breakdown  of  the  improvement  of  conceptual  language
+models  over  the  <a 
+href="thesis-emeijli3.html#QL">QL</a>  baseline  for  all  test  collections,  on  various  evaluation
+measures   and   sorted   in   decreasing   order.   A   positive   value   indicates   an
+                                                                   
+                                                                   
+improvement over the baseline. The vertical labels indicate the topic identifiers. </span></div><!--tex4ht:label?: x36-760172 -->
+                                                                   
+                                                                   
+<!--l. 40--><p class="indent" >   </div><hr class="endfigure">
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 2--><p class="indent" >   <a 
+ id="x36-760188"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="center" 
+>
+<!--l. 3--><p class="noindent" >
+
+ <table id="TBL-56" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-56-1g"><col 
+id="TBL-56-1"><col 
+id="TBL-56-2"><col 
+id="TBL-56-3"><col 
+id="TBL-56-4"><col 
+id="TBL-56-5"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-56-1-"><td  style="text-align:left;" id="TBL-56-1-1"  
+class="td11"> <!--l. 35--><p class="noindent" >                    </td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-1-2"  
+class="td11">                </td><td  style="text-align:center; white-space:nowrap;" id="TBL-56-1-3"  
+class="td11">     <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">QL</span></div>    </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-56-1-4"  
+class="td11">           <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">GC</span></div>
+
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-56-2-"><td  style="text-align:left;" id="TBL-56-2-1"  
+class="td11"> <!--l. 35--><p class="noindent" ><span 
+class="bchr8t-x-x-80">CLEF-DS-07</span>                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-2-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-2-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">2289/4530   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-2-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">2596</span><span 
+class="bchr8t-x-x-80">/4530   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-56-2-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+13.4%*   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-56-3-"><td  style="text-align:left;" id="TBL-56-3-1"  
+class="td11"> <!--l. 35--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-3-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-3-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5120         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-3-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5520         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-56-3-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+7.8%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-56-4-"><td  style="text-align:left;" id="TBL-56-4-1"  
+class="td11"> <!--l. 35--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-4-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-4-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5080         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-4-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4920          </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-56-4-5"  
+class="td11">    <span 
+class="bchr8t-x-x-80">-3.1%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-56-5-"><td  style="text-align:left;" id="TBL-56-5-1"  
+class="td11"> <!--l. 35--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-5-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-5-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1952         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-5-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.2315         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-56-5-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+18.6%*   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-56-6-"><td  style="text-align:left;" id="TBL-56-6-1"  
+class="td11"> <!--l. 35--><p class="noindent" ><span 
+class="bchr8t-x-x-80">CLEF-DS-08</span>                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-6-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-6-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">1468/2133   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-6-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">1602</span><span 
+class="bchr8t-x-x-80">/2133   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-56-6-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+9.1%*   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-56-7-"><td  style="text-align:left;" id="TBL-56-7-1"  
+class="td11"> <!--l. 35--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-7-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-7-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5280         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-7-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4880          </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-56-7-5"  
+class="td11">    <span 
+class="bchr8t-x-x-80">-7.6%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-56-8-"><td  style="text-align:left;" id="TBL-56-8-1"  
+class="td11"> <!--l. 35--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-8-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-8-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4680         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-8-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.4840         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-56-8-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+3.4%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-56-9-"><td  style="text-align:left;" id="TBL-56-9-1"  
+class="td11"> <!--l. 35--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-9-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-9-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2819         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-9-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.2991         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-56-9-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+6.1%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-56-10-"><td  style="text-align:left;" id="TBL-56-10-1"  
+class="td11"> <!--l. 35--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-GEN-04</span>                  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-10-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-10-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">3847/8268   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-10-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">4022</span><span 
+class="bchr8t-x-x-80">/8268   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-56-10-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+4.5%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-56-11-"><td  style="text-align:left;" id="TBL-56-11-1"  
+class="td11"> <!--l. 35--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-11-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-11-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5160         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-11-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5560         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-56-11-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+7.8%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-56-12-"><td  style="text-align:left;" id="TBL-56-12-1"  
+class="td11"> <!--l. 35--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-12-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-12-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4800         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-12-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5000         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-56-12-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+4.2%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-56-13-"><td  style="text-align:left;" id="TBL-56-13-1"  
+class="td11"> <!--l. 35--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-13-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-13-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2856         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-13-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.3045         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-56-13-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+6.6%*   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-56-14-"><td  style="text-align:left;" id="TBL-56-14-1"  
+class="td11"> <!--l. 35--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-GEN-05</span>                  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-14-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-14-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">2825/4584   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-14-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">3330</span><span 
+class="bchr8t-x-x-80">/4584   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-56-14-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+17.9%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-56-15-"><td  style="text-align:left;" id="TBL-56-15-1"  
+class="td11"> <!--l. 35--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-15-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-15-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4122         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-15-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.4245         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-56-15-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+3.0%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-56-16-"><td  style="text-align:left;" id="TBL-56-16-1"  
+class="td11"> <!--l. 35--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-16-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-16-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.3776         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-16-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.3776         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-56-16-5"  
+class="td11">     <span 
+class="bchr8t-x-x-80">0.0%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-56-17-"><td  style="text-align:left;" id="TBL-56-17-1"  
+class="td11"> <!--l. 35--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-17-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-17-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2153         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-17-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.2338         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-56-17-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+8.6%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-56-18-"><td  style="text-align:left;" id="TBL-56-18-1"  
+class="td11"> <!--l. 35--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-GEN-06</span>                  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-18-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-18-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">1078/1449   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-18-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">1244</span><span 
+class="bchr8t-x-x-80">/1449   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-56-18-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+15.4%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-56-19-"><td  style="text-align:left;" id="TBL-56-19-1"  
+class="td11"> <!--l. 35--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-19-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-19-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4154         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-19-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.4538         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-56-19-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+9.2%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-56-20-"><td  style="text-align:left;" id="TBL-56-20-1"  
+class="td11"> <!--l. 35--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-20-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-20-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.4154         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-20-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4077          </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-56-20-5"  
+class="td11">    <span 
+class="bchr8t-x-x-80">-1.9%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-56-21-"><td  style="text-align:left;" id="TBL-56-21-1"  
+class="td11"> <!--l. 35--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-21-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-21-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2731         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-56-21-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.3182         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-56-21-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+16.5%*   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-56-22-"><td  style="text-align:left;" id="TBL-56-22-1"  
+class="td11"> <!--l. 35--><p class="noindent" >                     </td></tr></table>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;5.8: </span><span  
+class="content">Results of the baseline (QL) and the conceptual language model (GC).</span></div><!--tex4ht:label?: x36-760188 -->
+</div>
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<a 
+ id="x36-76019r112"></a>
+<h4 class="subsectionHead"><span class="titlemark">5.3.1    </span> <a 
+ id="x36-770001"></a>Baselines</h4>
+<!--l. 43--><p class="noindent" >Table&#x00A0;<a 
+href="#x36-760017">5.7<!--tex4ht:ref: chapter04:tab:baselines --></a> shows the results of the query likelihood model as well as the relevance
+model&#x2014;both of which were introduced in Section&#x00A0;<a 
+href="thesis-emeijse10.html#x14-160003">2.3<!--tex4ht:ref: sec:relwork:qm --></a>&#x2014;on the five test collections that
+we consider in this chapter.
+<h5 class="subsubsectionHead"><a 
+ id="x36-780001"></a>Query likelihood</h5>
+<!--l. 48--><p class="noindent" >This model (abbreviated by QL) uses <a 
+href="thesis-emeijli3.html#MLE">MLE</a> on the initial query to build a query
+model, by distributing the probability mass evenly among the terms in the topic,
+cf.&#x00A0;Eq.&#x00A0;<a 
+href="thesis-emeijse9.html#x13-14002r2.9">2.9<!--tex4ht:ref: eq:relwork:qm --></a>. First, we note that the results obtained for the query likelihood
+model are comparable to or better than the mean results of all the participating
+groups in the respective <a 
+href="thesis-emeijli3.html#TREC">TREC</a> Genomics&#x00A0;[<a 
+href="thesis-emeijli2.html#XTREC:2004:Gen:overview">129</a>&#x2013;<a 
+href="thesis-emeijli2.html#XTREC:2006:Gen:overview">131</a>] and <a 
+href="thesis-emeijli3.html#CLEF">CLEF</a> Domain-specific
+tracks&#x00A0;[<a 
+href="thesis-emeijli2.html#XCLEF:2008:DS:overview">244</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XCLEF:2007:DS:overview">245</a>]. As to the <a 
+href="thesis-emeijli3.html#TREC">TREC</a> Genomics test collections, we do not perform any of
+the elaborate and knowledge-intensive preprocessing of the queries and/or
+documents that is common in this domain&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2007:trieschnigg">316</a>]. Even without applying such
+explicit domain-specific knowledge, our baseline outperforms many systems that
+do.
+<h5 class="subsubsectionHead"><a 
+ id="x36-790001"></a>Relevance Models</h5>
+<!--l. 79--><p class="noindent" >The runs based on relevance models (abbreviated by RM) use the retrieved documents
+from the query likelihood run to construct an improved query model which is
+subsequently used for retrieval. The optimal parameter settings for the relevance
+model, with which we obtain these results are determined in the same fashion as for
+our conceptual language models, i.e., we sweep over all possible values for
+<!--l. 86--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></math>
+(cf.&#x00A0;Eq.&#x00A0;<a 
+href="thesis-emeijse9.html#x13-14003r2.10">2.10<!--tex4ht:ref: chapter04:eq:querymodel --></a>) and try varying numbers of documents and terms to find the optimal
+performance in terms of <a 
+href="thesis-emeijli3.html#MAP">MAP</a>.
+<!--l. 90--><p class="indent" >   Table&#x00A0;<a 
+href="#x36-760017">5.7<!--tex4ht:ref: chapter04:tab:baselines --></a> shows the results of the baseline <a 
+href="thesis-emeijli3.html#QL">QL</a> model and the <a 
+href="thesis-emeijli3.html#RM">RM</a> model. We
+observe that, on the <a 
+href="thesis-emeijli3.html#CLEF">CLEF</a> collections, the <a 
+href="thesis-emeijli3.html#RM">RM</a> runs show improvements over the
+baseline in terms of mean average precision (+6% and +1% for the 2007 and 2008
+collection, respectively), average recall (+6% and +0.3%) and early precision
+(<a 
+ id="section*.47"></a>precision@5 (<a 
+href="thesis-emeijli3.html#P5">P5</a>): +6%, +8%). None of these differences is significant, however.
+Results on the individual CLEF-DS-07 topics show that 3 of the topics substantially
+increase average precision (a difference of more than 0.05), whereas only 1 topic
+decreases. The number of CLEF-DS-08 topics which improve in terms of average
+precision is about the same as the number which are hurt, causing the modest
+improvement.
+<!--l. 102--><p class="indent" >   The <a 
+href="thesis-emeijli3.html#RM">RM</a> runs on the <a 
+href="thesis-emeijli3.html#TREC">TREC</a> Genomics collections do show significant differences
+compared to the <a 
+href="thesis-emeijli3.html#QL">QL</a> baseline. For the 2004 query set, average precision (+17%), recall
+                                                                   
+                                                                   
+(+9%) and early precision (<a 
+href="thesis-emeijli3.html#P10">P10</a>: +12%) increase significantly. TREC-GEN-06 shows a
+larger significant improvement on mean average precision (10%). Recall and precision
+show improvements although they are not significant. Similar to the <a 
+href="thesis-emeijli3.html#CLEF">CLEF</a> collections,
+TREC-GEN-05 shows a positive difference on average but, besides recall, none of the
+changes are significant. The increase in mean average precision on the <a 
+href="thesis-emeijli3.html#TREC">TREC</a> 2005
+topics can be mainly attributed to a single topic which strongly benefits from using
+relevance models.
+<!--l. 115--><p class="indent" >   These findings regarding pseudo relevance feedback using relevance models, i.e.,
+where some topics are helped and some topics are hurt, are often found when applying
+pseudo relevance feedback.
+<a 
+ id="x36-79001r117"></a>
+<h4 class="subsectionHead"><span class="titlemark">5.3.2    </span> <a 
+ id="x36-800002"></a>Conceptual Language Models</h4>
+<!--l. 147--><p class="noindent" >We now turn to the results of the conceptual language model presented in Section&#x00A0;<a 
+href="thesis-emeijse24.html#x34-690001">5.1<!--tex4ht:ref: chapter04:sec:model --></a>.
+Recall that this model consists of three steps. First, each query is mapped onto a
+conceptual query model, i.e., a distribution over concepts relevant to the query using
+Eq.&#x00A0;<a 
+href="thesis-emeijse24.html#x34-70001r5.2">5.2<!--tex4ht:ref: chapter04:eq:PcQ --></a>. The concepts found are then translated back to terms using Eq.&#x00A0;<a 
+href="thesis-emeijse24.html#x34-71002r5.4">5.4<!--tex4ht:ref: chapter04:eq:PtcFirst --></a> in
+conjunction with the <a 
+href="thesis-emeijli3.html#EM">EM</a> algorithm from Eq.&#x00A0;<a 
+href="thesis-emeijse24.html#x34-71006r5.7">5.7<!--tex4ht:ref: chapter04:eq:EM --></a>.
+<!--l. 155--><p class="indent" >   In the first subsection we discuss the results of applying all the steps in
+our conceptual language model (GC; Section&#x00A0;<a 
+href="thesis-emeijse24.html#x34-690001">5.1<!--tex4ht:ref: chapter04:sec:model --></a>). Then, in the following
+subsections, we will perform an ablation study and discuss the results of not
+applying the <a 
+href="thesis-emeijli3.html#EM">EM</a> algorithm (MLGC; Section&#x00A0;<a 
+href="#x36-820002">5.3.2<!--tex4ht:ref: chapter04:ssec:MLQM --></a>) and not translating the found
+concepts using generative concept models (EC; Section&#x00A0;<a 
+href="#x36-830002">5.3.2<!--tex4ht:ref: chapter04:ssec:ECQM --></a>). Example query
+models for GC and EC can be found in Table&#x00A0;<a 
+href="thesis-emeijse25.html#x35-740016">5.6<!--tex4ht:ref: chapter04:tab:qms --></a> for the <a 
+href="thesis-emeijli3.html#CLEF">CLEF</a> topic &#x201C;Shrinking
+cities.&#x201D;
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 2--><p class="indent" >   <a 
+ id="x36-800019"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="center" 
+>
+<!--l. 3--><p class="noindent" >
+
+ <table id="TBL-59" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-59-1g"><col 
+id="TBL-59-1"><col 
+id="TBL-59-2"><col 
+id="TBL-59-3"><col 
+id="TBL-59-4"><col 
+id="TBL-59-5"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-59-1-"><td  style="text-align:left;" id="TBL-59-1-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-1-2"  
+class="td11">                </td><td  style="text-align:center; white-space:nowrap;" id="TBL-59-1-3"  
+class="td11">     <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">RM</span></div>    </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-59-1-4"  
+class="td11">           <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">GC</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-59-2-"><td  style="text-align:left;" id="TBL-59-2-1"  
+class="td11"> <!--l. 36--><p class="noindent" ><span 
+class="bchr8t-x-x-80">CLEF-DS-07</span>                       </td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-2-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-2-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">2430/4530   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-2-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">2596</span><span 
+class="bchr8t-x-x-80">/4530   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-59-2-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+6.8%*   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-59-3-"><td  style="text-align:left;" id="TBL-59-3-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-3-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-3-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5440          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-3-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5520         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-59-3-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+1.5%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-59-4-"><td  style="text-align:left;" id="TBL-59-4-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-4-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-4-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5040         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-4-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4920          </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-59-4-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">-2.4%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-59-5-"><td  style="text-align:left;" id="TBL-59-5-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-5-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-5-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2061          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-5-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.2315         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-59-5-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+12.3%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-59-6-"><td  style="text-align:left;" id="TBL-59-6-1"  
+class="td11"> <!--l. 36--><p class="noindent" ><span 
+class="bchr8t-x-x-80">CLEF-DS-08</span>                       </td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-6-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-6-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">1473/2133   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-6-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">1602</span><span 
+class="bchr8t-x-x-80">/2133   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-59-6-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+8.8%*   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-59-7-"><td  style="text-align:left;" id="TBL-59-7-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-7-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-7-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5680         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-7-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4880          </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-59-7-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">-14.1%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-59-8-"><td  style="text-align:left;" id="TBL-59-8-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-8-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-8-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4800          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-8-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.4840         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-59-8-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+0.8%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-59-9-"><td  style="text-align:left;" id="TBL-59-9-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-9-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-9-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2856          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-9-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.2991         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-59-9-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+4.7%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-59-10-"><td  style="text-align:left;" id="TBL-59-10-1"  
+class="td11"> <!--l. 36--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-GEN-04</span>                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-10-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-10-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">4205</span><span 
+class="bchr8t-x-x-80">/8268   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-10-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">4022/8268   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-59-10-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">-4.4%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-59-11-"><td  style="text-align:left;" id="TBL-59-11-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-11-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-11-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5680         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-11-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5560          </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-59-11-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">-2.1%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-59-12-"><td  style="text-align:left;" id="TBL-59-12-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-12-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-12-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5340         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-12-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5000          </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-59-12-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">-6.4%*   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-59-13-"><td  style="text-align:left;" id="TBL-59-13-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-13-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-13-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.3306         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-13-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3045          </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-59-13-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">-7.9%*   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-59-14-"><td  style="text-align:left;" id="TBL-59-14-1"  
+class="td11"> <!--l. 36--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-GEN-05</span>                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-14-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-14-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">3031/4584   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-14-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">3330</span><span 
+class="bchr8t-x-x-80">/4584   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-59-14-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+9.9%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-59-15-"><td  style="text-align:left;" id="TBL-59-15-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-15-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-15-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4163          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-15-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.4245         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-59-15-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+2.0%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-59-16-"><td  style="text-align:left;" id="TBL-59-16-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-16-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-16-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.3857         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-16-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3776          </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-59-16-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">-2.1%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-59-17-"><td  style="text-align:left;" id="TBL-59-17-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-17-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-17-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.2368         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-17-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2338          </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-59-17-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">-1.3%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-59-18-"><td  style="text-align:left;" id="TBL-59-18-1"  
+class="td11"> <!--l. 36--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-GEN-06</span>                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-18-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-18-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">1160/1449   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-18-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">1244</span><span 
+class="bchr8t-x-x-80">/1449   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-59-18-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+7.2%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-59-19-"><td  style="text-align:left;" id="TBL-59-19-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-19-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-19-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4308          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-19-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.4538         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-59-19-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+5.3%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-59-20-"><td  style="text-align:left;" id="TBL-59-20-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-20-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-20-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.4346         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-20-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4077          </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-59-20-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">-6.2%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-59-21-"><td  style="text-align:left;" id="TBL-59-21-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-21-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-21-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2993          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-59-21-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.3182         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-59-21-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+6.3%*   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-59-22-"><td  style="text-align:left;" id="TBL-59-22-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td></tr></table>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;5.9:  </span><span  
+class="content">Results  of  the  relevance  model  (RM)  versus  conceptual  language
+models (GC).</span></div><!--tex4ht:label?: x36-800019 -->
+</div>
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<h5 class="subsubsectionHead"><a 
+ id="x36-810002"></a>Results</h5>
+<!--l. 167--><p class="noindent" >In this section we present the results of using every step of the conceptual language
+model (abbreviated GC) we detailed in Section&#x00A0;<a 
+href="thesis-emeijse24.html#x34-690001">5.1<!--tex4ht:ref: chapter04:sec:model --></a>. Table&#x00A0;<a 
+href="#x36-760188">5.8<!--tex4ht:ref: chapter04:tab:cm --></a> lists the results of the
+concept language models. The results for the two <a 
+href="thesis-emeijli3.html#CLEF">CLEF</a> collections show that the GC
+model can result in a significant improvement in recall over the query likelihood
+approach: 13% and 9% more relevant documents are returned for CLEF-DS-07 and
+CLEF-DS-08, respectively. Figure&#x00A0;<a 
+href="#x36-810063">5.3<!--tex4ht:ref: chapter04:fig:PR --></a> shows the precision-recall graphs for our
+conceptual language model, versus the query likelihood baseline and relevance models.
+The precision-recall curve of the CLEF-DS-07 query set shows improved precision over
+almost the whole recall range. The CLEF-DS-08 runs shows improved precision between
+recall levels 0.7 and 0.8, making up for the loss of initial precision. Overall, both
+<a 
+href="thesis-emeijli3.html#CLEF">CLEF</a> test collections show improvements in mean average precision (19%
+and 6% respectively), but only the results on CLEF-DS-07 are significantly
+different. We note that the <a 
+href="thesis-emeijli3.html#RM">RM</a> approach was unable to achieve a significant
+difference against the query likelihood baseline on these test collections and
+measures.
+<!--l. 5--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                   
+                                                                   
+<a 
+ id="x36-810063"></a>
+                                                                   
+                                                                   
+<a 
+ id="x36-81001r1"></a>
+<div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij68x.png" alt="PIC" class="graphics" width="172.8808pt" height="121.01689pt" ><!--tex4ht:graphics  
+name="thesis-emeij68x.png" src="chapter04/clef07-PR.eps"  
+-->
+             <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(a) CLEF-DS-07</span></div>             </td></tr></table></div>
+<a 
+ id="x36-81002r2"></a><div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij69x.png" alt="PIC" class="graphics" width="172.8808pt" height="121.01689pt" ><!--tex4ht:graphics  
+name="thesis-emeij69x.png" src="chapter04/clef08-PR.eps"  
+-->
+             <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(b) CLEF-DS-08</span></div>             </td></tr></table></div><br />
+<a 
+ id="x36-81003r3"></a>
+<div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij70x.png" alt="PIC" class="graphics" width="172.8808pt" height="121.01689pt" ><!--tex4ht:graphics  
+name="thesis-emeij70x.png" src="chapter04/trec04-PR.eps"  
+-->
+            <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(c) TREC-GEN-04</span></div>            </td></tr></table></div>
+                                                                   
+                                                                   
+<a 
+ id="x36-81004r4"></a><div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij71x.png" alt="PIC" class="graphics" width="172.8808pt" height="121.01689pt" ><!--tex4ht:graphics  
+name="thesis-emeij71x.png" src="chapter04/trec05-PR.eps"  
+-->
+            <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(d) TREC-GEN-05</span></div>            </td></tr></table></div><br />
+<a 
+ id="x36-81005r5"></a>
+<div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij72x.png" alt="PIC" class="graphics" width="172.8808pt" height="121.01689pt" ><!--tex4ht:graphics  
+name="thesis-emeij72x.png" src="chapter04/trec06-PR.eps"  
+-->
+            <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(e) TREC-GEN-06</span></div>            </td></tr></table></div>
+ <div class="caption" 
+><span class="id">Figure&#x00A0;5.3: </span><span  
+class="content">Precision-recall plots for all evaluated test collections. </span></div><!--tex4ht:label?: x36-810063 -->
+                                                                   
+                                                                   
+<!--l. 21--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 195--><p class="indent" >   The three <a 
+href="thesis-emeijli3.html#TREC">TREC</a> Genomics test collections show a less consistent behavior. In terms
+of mean average precision, the TREC-GEN-04 and TREC-GEN-06 collections show
+significant improvements in favor of the GC model (+6.6% and +15.4% respectively).
+The TREC-GEN-05 topics also show substantial improvements between the query
+likelihood and GC model, although these changes are not significant. Figure&#x00A0;<a 
+href="#x36-760172">5.2<!--tex4ht:ref: chapter04:fig:pertopic --></a>
+shows a per-topic analysis of the difference of the GC model with respect to
+the <a 
+href="thesis-emeijli3.html#QL">QL</a> baseline; a positive value in these graphs indicates that the GC model
+outperformed the <a 
+href="thesis-emeijli3.html#QL">QL</a> baseline. For TREC-GEN-05, it shows that half of the topics
+benefit from applying the GC model and the other half is actually hurt. This
+is what causes the difference to be non-significant. The overall increase in
+average precision measured over all the topics, however, is larger than its
+loss.
+<!--l. 215--><p class="indent" >   From a further look on the per-topic plots, we can observe that, in terms of MAP,
+more topics are helped than hurt for all the other test collections. The early precision
+plots show a less clear picture. The ratio between the number of topics that improve <a 
+href="thesis-emeijli3.html#P5">P5</a>
+versus topics that worsen is about 1.5, averaged over all test collections. The average
+number of topics which <a 
+href="thesis-emeijli3.html#P10">P10</a> scores increase is about the same as the number of topics
+for which they decrease.
+<!--l. 224--><p class="indent" >   A more in-depth analysis of the terms that are introduced provides more insight into
+when and where the GC model improves or hurts retrieval. We observe that when the
+initial textual query is not specific, the resulting set of feedback documents
+is unfocused. Hence, fairly general and uninformative words are added to
+the query model and it fails to achieve higher retrieval performance. Another
+reason for poor performance is that particular aspects in the original query are
+overemphasized in the updated query model, resulting in query drift. For example, the
+CLEF-DS-08 topic #210 entitled &#x201C;Establishment of new businesses after the
+reunification&#x201D; results in expansion terms related to the aspect &#x201C;Establishment of
+new businesses,&#x201D; such as &#x201C;entrepreneur&#x201D; and &#x201C;entrepreneurship,&#x201D; but fails to
+include words related to the &#x201C;reunification&#x201D; aspect. When the updated query
+model is a balanced expansion of the original query, i.e., when it does include
+expansion terms for all aspects of the query, the GC model show improved
+results.
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 2--><p class="indent" >   <a 
+ id="x36-8100710"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="center" 
+>
+<!--l. 3--><p class="noindent" >
+
+ <table id="TBL-62" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-62-1g"><col 
+id="TBL-62-1"><col 
+id="TBL-62-2"><col 
+id="TBL-62-3"><col 
+id="TBL-62-4"><col 
+id="TBL-62-5"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-62-1-"><td  style="text-align:left;" id="TBL-62-1-1"  
+class="td11"> <!--l. 33--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-1-2"  
+class="td11">                </td><td  style="text-align:center; white-space:nowrap;" id="TBL-62-1-3"  
+class="td11">    <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">MLGC</span></div>   </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-62-1-4"  
+class="td11">           <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">GC</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-62-2-"><td  style="text-align:left;" id="TBL-62-2-1"  
+class="td11"> <!--l. 33--><p class="noindent" ><span 
+class="bchr8t-x-x-80">CLEF-DS-07</span>                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-2-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-2-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">2596</span><span 
+class="bchr8t-x-x-80">/4530   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-2-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">2596</span><span 
+class="bchr8t-x-x-80">/4530   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-62-2-5"  
+class="td11">    <span 
+class="bchr8t-x-x-80">0.0%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-62-3-"><td  style="text-align:left;" id="TBL-62-3-1"  
+class="td11"> <!--l. 33--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-3-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-3-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5520         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-3-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5520         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-62-3-5"  
+class="td11">    <span 
+class="bchr8t-x-x-80">0.0%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-62-4-"><td  style="text-align:left;" id="TBL-62-4-1"  
+class="td11"> <!--l. 33--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-4-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-4-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4760          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-4-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.4920         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-62-4-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+3.4%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-62-5-"><td  style="text-align:left;" id="TBL-62-5-1"  
+class="td11"> <!--l. 33--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-5-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-5-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2311          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-5-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.2315         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-62-5-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+0.2%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-62-6-"><td  style="text-align:left;" id="TBL-62-6-1"  
+class="td11"> <!--l. 33--><p class="noindent" ><span 
+class="bchr8t-x-x-80">CLEF-DS-08</span>                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-6-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-6-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">1566/2133   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-6-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">1602</span><span 
+class="bchr8t-x-x-80">/2133   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-62-6-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+2.3% *   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-62-7-"><td  style="text-align:left;" id="TBL-62-7-1"  
+class="td11"> <!--l. 33--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-7-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-7-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5120         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-7-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4880          </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-62-7-5"  
+class="td11">    <span 
+class="bchr8t-x-x-80">-4.7%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-62-8-"><td  style="text-align:left;" id="TBL-62-8-1"  
+class="td11"> <!--l. 33--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-8-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-8-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.4960         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-8-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4840          </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-62-8-5"  
+class="td11">    <span 
+class="bchr8t-x-x-80">-2.4%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-62-9-"><td  style="text-align:left;" id="TBL-62-9-1"  
+class="td11"> <!--l. 33--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-9-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-9-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2853          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-9-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.2991         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-62-9-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+4.8%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-62-10-"><td  style="text-align:left;" id="TBL-62-10-1"  
+class="td11"> <!--l. 33--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-GEN-04</span>                  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-10-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-10-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">3973/8268   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-10-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">4022</span><span 
+class="bchr8t-x-x-80">/8268   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-62-10-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+1.2%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-62-11-"><td  style="text-align:left;" id="TBL-62-11-1"  
+class="td11"> <!--l. 33--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-11-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-11-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5360          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-11-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5560         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-62-11-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+3.7%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-62-12-"><td  style="text-align:left;" id="TBL-62-12-1"  
+class="td11"> <!--l. 33--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-12-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-12-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4960          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-12-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5000         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-62-12-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+0.8%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-62-13-"><td  style="text-align:left;" id="TBL-62-13-1"  
+class="td11"> <!--l. 33--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-13-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-13-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2989          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-13-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.3045         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-62-13-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+1.9%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-62-14-"><td  style="text-align:left;" id="TBL-62-14-1"  
+class="td11"> <!--l. 33--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-GEN-05</span>                  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-14-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-14-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">2887/4584   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-14-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">3330</span><span 
+class="bchr8t-x-x-80">/4584   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-62-14-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+15.3%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-62-15-"><td  style="text-align:left;" id="TBL-62-15-1"  
+class="td11"> <!--l. 33--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-15-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-15-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4163          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-15-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.4245         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-62-15-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+2.0%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-62-16-"><td  style="text-align:left;" id="TBL-62-16-1"  
+class="td11"> <!--l. 33--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-16-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-16-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3571          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-16-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.3776         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-62-16-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+5.7%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-62-17-"><td  style="text-align:left;" id="TBL-62-17-1"  
+class="td11"> <!--l. 33--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-17-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-17-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2174          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-17-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.2338         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-62-17-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+7.5%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-62-18-"><td  style="text-align:left;" id="TBL-62-18-1"  
+class="td11"> <!--l. 33--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-GEN-06</span>                  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-18-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-18-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">1118/1449   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-18-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">1244</span><span 
+class="bchr8t-x-x-80">/1449   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-62-18-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+11.3%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-62-19-"><td  style="text-align:left;" id="TBL-62-19-1"  
+class="td11"> <!--l. 33--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-19-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-19-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4231          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-19-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.4538         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-62-19-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">+7.3%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-62-20-"><td  style="text-align:left;" id="TBL-62-20-1"  
+class="td11"> <!--l. 33--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-20-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-20-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.4192         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-20-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4077          </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-62-20-5"  
+class="td11">    <span 
+class="bchr8t-x-x-80">-2.7%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-62-21-"><td  style="text-align:left;" id="TBL-62-21-1"  
+class="td11"> <!--l. 33--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-21-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-21-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2863          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-62-21-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.3182         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-62-21-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+11.1%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-62-22-"><td  style="text-align:left;" id="TBL-62-22-1"  
+class="td11"> <!--l. 33--><p class="noindent" >                     </td></tr></table>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;5.10: </span><span  
+class="content">Results of the conceptual language models in conjunction with the
+EM algorithm (GC) described in Section&#x00A0;<a 
+href="thesis-emeijse24.html#x34-690001">5.1<!--tex4ht:ref: chapter04:sec:model --></a> versus without (MLGC). </span></div><!--tex4ht:label?: x36-8100710 -->
+</div>
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 243--><p class="indent" >   Overall, we see that our conceptual language model mainly has a recall enhancing
+effect, indicated by the significant increases in <a 
+href="thesis-emeijli3.html#MAP">MAP</a> for the CLEF-DS-07 and
+TREC-GEN-06 test collections and the significant increases in recall on both <a 
+href="thesis-emeijli3.html#CLEF">CLEF</a> topic
+sets.
+<!--l. 248--><p class="indent" >   Table&#x00A0;<a 
+href="#x36-800019">5.9<!--tex4ht:ref: chapter04:tab:rm-cm --></a> shows a comparison between the GC and the RM model. When comparing
+these results, we find significant improvements in terms of recall on the CLEF test
+collections. On the TREC-GEN-04 and TREC-GEN-06 topic set we find a significant
+improvement in terms of MAP. The results on the <a 
+href="thesis-emeijli3.html#TREC">TREC</a> Genomics 2004 and 2005 topic
+sets indicate that the GC model performs comparably (TREC-GEN-05) or slightly worse
+(TREC-GEN-04). We believe the latter result is caused by the fixed setting of
+<!--l. 255--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03B4;</mi></mrow><mrow 
+><mi 
+>t</mi></mrow></msub 
+></math> in
+Eq.&#x00A0;<a 
+href="thesis-emeijse24.html#x34-71007r5.9">5.9<!--tex4ht:ref: chapter04:eq:Ptd --></a> in conjunction with the rather small average document length and the large
+number of documents in this particular document collection.
+<!--l. 260--><p class="indent" >   Unlike the relevance model, the GC model provides a weighted set of concepts in
+the form of a conceptual query model. Besides the possibility of suggesting these to the
+user, we hypothesize that the results of applying the remaining steps in our conceptual
+language models after a user has selected the concepts most relevant to his query
+would improve retrieval effectiveness. Since we do not have relevant concepts for our
+current topics, we consider the verification of this hypothesis a topic for future
+work.
+<!--l. 292--><p class="indent" >   In the following subsections, we look at the results of not using the EM algorithm in
+the generative concept models and directly using the conceptual query models for
+retrieval.
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 2--><p class="indent" >   <a 
+ id="x36-8100811"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="center" 
+>
+<!--l. 3--><p class="noindent" >
+
+ <table id="TBL-65" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-65-1g"><col 
+id="TBL-65-1"><col 
+id="TBL-65-2"><col 
+id="TBL-65-3"><col 
+id="TBL-65-4"><col 
+id="TBL-65-5"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-65-1-"><td  style="text-align:left;" id="TBL-65-1-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-1-2"  
+class="td11">                </td><td  style="text-align:center; white-space:nowrap;" id="TBL-65-1-3"  
+class="td11">     <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">EC</span></div>    </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-65-1-4"  
+class="td11">           <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">GC</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-65-2-"><td  style="text-align:left;" id="TBL-65-2-1"  
+class="td11"> <!--l. 36--><p class="noindent" ><span 
+class="bchr8t-x-x-80">CLEF-DS-07</span>                       </td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-2-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-2-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">2448/4530   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-2-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">2596</span><span 
+class="bchr8t-x-x-80">/4530   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-65-2-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+6.0%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-65-3-"><td  style="text-align:left;" id="TBL-65-3-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-3-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-3-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5040          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-3-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5520         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-65-3-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+9.5%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-65-4-"><td  style="text-align:left;" id="TBL-65-4-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-4-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-4-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5080         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-4-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4920          </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-65-4-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">-3.1%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-65-5-"><td  style="text-align:left;" id="TBL-65-5-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-5-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-5-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2104          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-5-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.2315         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-65-5-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+10.0%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-65-6-"><td  style="text-align:left;" id="TBL-65-6-1"  
+class="td11"> <!--l. 36--><p class="noindent" ><span 
+class="bchr8t-x-x-80">CLEF-DS-08</span>                       </td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-6-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-6-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">1485/2133   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-6-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">1602</span><span 
+class="bchr8t-x-x-80">/2133   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-65-6-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+7.9%*   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-65-7-"><td  style="text-align:left;" id="TBL-65-7-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-7-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-7-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5120         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-7-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4880          </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-65-7-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">-4.7%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-65-8-"><td  style="text-align:left;" id="TBL-65-8-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-8-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-8-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.4880         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-8-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4840          </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-65-8-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">-0.8%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-65-9-"><td  style="text-align:left;" id="TBL-65-9-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-9-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-9-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2894          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-9-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.2991         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-65-9-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+3.4%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-65-10-"><td  style="text-align:left;" id="TBL-65-10-1"  
+class="td11"> <!--l. 36--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-GEN-04</span>                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-10-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-10-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">4221</span><span 
+class="bchr8t-x-x-80">/8268   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-10-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">4022/8268   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-65-10-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">-4.7%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-65-11-"><td  style="text-align:left;" id="TBL-65-11-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-11-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-11-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5480          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-11-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5560         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-65-11-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+1.5%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-65-12-"><td  style="text-align:left;" id="TBL-65-12-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-12-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-12-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5240         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-12-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5000          </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-65-12-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">-4.6%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-65-13-"><td  style="text-align:left;" id="TBL-65-13-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-13-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-13-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.3146         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-13-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3045          </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-65-13-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">-3.2%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-65-14-"><td  style="text-align:left;" id="TBL-65-14-1"  
+class="td11"> <!--l. 36--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-GEN-05</span>                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-14-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-14-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">2916/4584   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-14-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">3330</span><span 
+class="bchr8t-x-x-80">/4584   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-65-14-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+14.2%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-65-15-"><td  style="text-align:left;" id="TBL-65-15-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-15-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-15-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4082          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-15-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.4245         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-65-15-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+4.0%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-65-16-"><td  style="text-align:left;" id="TBL-65-16-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-16-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-16-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.3776         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-16-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.3776         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-65-16-5"  
+class="td11">    <span 
+class="bchr8t-x-x-80">0.0%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-65-17-"><td  style="text-align:left;" id="TBL-65-17-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-17-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-17-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2295          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-17-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.2338         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-65-17-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+1.9%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-65-18-"><td  style="text-align:left;" id="TBL-65-18-1"  
+class="td11"> <!--l. 36--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-GEN-06</span>                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-18-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RelRet/TotalRel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-18-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">1171/1449   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-18-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">1244</span><span 
+class="bchr8t-x-x-80">/1449   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-65-18-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+6.2%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-65-19-"><td  style="text-align:left;" id="TBL-65-19-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-19-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P5                       </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-19-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4231          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-19-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.4538         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-65-19-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+7.3%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-65-20-"><td  style="text-align:left;" id="TBL-65-20-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-20-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">P10                     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-20-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4000          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-20-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.4077         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-65-20-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+1.9%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-65-21-"><td  style="text-align:left;" id="TBL-65-21-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-21-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MAP                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-21-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2927          </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-65-21-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.3182         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-65-21-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+8.7%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-65-22-"><td  style="text-align:left;" id="TBL-65-22-1"  
+class="td11"> <!--l. 36--><p class="noindent" >                      </td></tr></table>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;5.11: </span><span  
+class="content">Results of the conceptual language models (GC) versus using the
+found concepts directly (EC). </span></div><!--tex4ht:label?: x36-8100811 -->
+</div>
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<h5 class="subsubsectionHead"><a 
+ id="x36-820002"></a>Maximum Likelihood-based Generative Concept Models</h5>
+<!--l. 301--><p class="noindent" >In this subsection, we investigate the added value of using the EM algorithm described
+in Section&#x00A0;<a 
+href="thesis-emeijse24.html#x34-710002">5.1.2<!--tex4ht:ref: chapter04:ssec:conceptmodels --></a>, by comparing a maximum likelihood based GC model (named
+<span 
+class="bchri8t-">MLGC</span>) to the GC model shown in the previous section. Table&#x00A0;<a 
+href="#x36-8100710">5.10<!--tex4ht:ref: chapter04:tab:nonpars --></a> shows the
+results of this method. We observe that applying the <a 
+href="thesis-emeijli3.html#EM">EM</a> algorithm improves
+overall retrieval effectiveness compared to the MLGC model, although not
+significantly, and only in terms of recall and <a 
+href="thesis-emeijli3.html#MAP">MAP</a>. Only the number of relevant
+retrieved documents for the CLEF-DS-08 improves significantly when using the <a 
+href="thesis-emeijli3.html#EM">EM</a>
+algorithm.
+<!--l. 311--><p class="indent" >   The topics that are helped most by the application of the <a 
+href="thesis-emeijli3.html#EM">EM</a> algorithm&#x2014;in
+terms of an absolute gain in <a 
+href="thesis-emeijli3.html#MAP">MAP</a>&#x2014;include TREC-GEN-05 topic #146: &#x201C;Provide
+information about Mutations of presenilin-1 gene and its/their biological impact in
+Alzheimer&#x2019;s disease&#x201D; (increased MAP by 0.51) and TREC-GEN-06 topic #160
+&#x201C;What is the role of PrnP in mad cow disease?&#x201D; (increased <a 
+href="thesis-emeijli3.html#MAP">MAP</a> by 0.52). A
+closer look at the intermediate results for these topics reveals two things. In the
+first topic, the GC model introduces the term &#x201C;PRP&#x201D;, which is a synonym for
+&#x201C;PrnP.&#x201D; The second topic shows that the GC model introduces three new terms
+which do not seem directly relevant to the query, but are able to boost <a 
+href="thesis-emeijli3.html#MAP">MAP</a>
+substantially.
+<h5 class="subsubsectionHead"><a 
+ id="x36-830002"></a>Explicit Conceptual Query Models</h5>
+<!--l. 327--><p class="noindent" >In Section&#x00A0;<a 
+href="thesis-emeijse24.html#x34-700001">5.1.1<!--tex4ht:ref: chapter04:ssec:concquerymodels --></a> we introduced a method for acquiring a weighted set of concepts for a
+query, by translating a textual query to a conceptual representation. In this section, we
+evaluate the results of using the conceptual query model (abbreviated <span 
+class="bchri8t-">EC</span>) directly, i.e.,
+using it in combination with the original textual representation to estimate the
+relevance of a document. Since all the documents in the test collections used in this
+chapter have two representations (terms and concepts), we can use both disjunctively
+for retrieval&#x00A0;[<a 
+href="thesis-emeijli2.html#XJASIS:1995:rajashekar">254</a>]. So, instead of interpolating the query model and using the
+result for retrieval, we interpolate the scores of each individual component as
+follows.
+                                                                   
+                                                                   
+<!--tex4ht:inline--><!--l. 338--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mstyle 
+class="mbox"><mtext  >Score</mtext></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo> <mrow ><mo 
+class="MathClass-open">(</mo><mrow><mn>1</mn><mo 
+class="MathClass-bin">&#x2212;</mo><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-bin">&#x22C5;</mo><mo 
+class="MathClass-bin">&#x2212;</mo><mstyle 
+class="mbox"><mtext  >KL</mtext></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0303;</mo></mover></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-bin">+</mo><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+><mo 
+class="MathClass-bin">&#x22C5;</mo><mo 
+class="MathClass-bin">&#x2212;</mo><mstyle 
+class="mbox"><mtext  >KL</mtext></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>C</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">.</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(5.11)</mtext><mtext 
+   id="x36-83001r5.11"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>            </mtr></mtable>
+</math>
+<!--l. 343--><p class="nopar" >
+<!--l. 345--><p class="indent" >   Here, the first term is the regular query-likelihood score. The second term is the
+score obtained from matching the conceptual query model with the conceptual
+representation of each document:
+<!--tex4ht:inline--><!--l. 347--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mo 
+class="MathClass-bin">&#x2212;</mo><mstyle 
+class="mbox"><mtext  >KL</mtext></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>C</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">  <mo 
+class="MathClass-bin">&#x2212;</mo><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>c</mi></mrow></munder 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>C</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo class="qopname">log</mo><!--nolimits--> <mfrac><mrow 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>C</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow> 
+<mrow 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfrac></mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray"></mtext></mtd>
+</mtr><mtr><mtd 
+class="eqnarray-1">           </mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">&#x221D;</mo></mtd><mtd 
+class="eqnarray-3">  <munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>c</mi></mrow></munder 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>C</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo class="qopname">log</mo><!--nolimits--><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">,</mo>  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(5.12)</mtext><mtext 
+   id="x36-83002r5.12"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                           </mtr></mtable>
+</math>
+<!--l. 355--><p class="nopar" >
+<!--l. 357--><p class="indent" >   where <!--l. 357--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>C</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>
+(Eq.&#x00A0;<a 
+href="thesis-emeijse24.html#x34-70001r5.2">5.2<!--tex4ht:ref: chapter04:eq:PcQ --></a> q.v.). In effect, this drops the dependence between
+<!--l. 362--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>t</mi></math> and
+<!--l. 362--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math> (see
+                                                                   
+                                                                   
+Figure&#x00A0;<a 
+href="thesis-emeijse24.html#x34-690011">5.1<!--tex4ht:ref: chapter04:fig:dependence_concepts --></a>) and considers the concepts as regular indexing terms.
+<!--l. 366--><p class="indent" >   Thus, the EC model uses an explicit conceptual representation in combination with
+the textual representation for searching documents and, similar to the approaches
+described in the previous subsections, the EC approach uses the same feedback
+documents for improving the query. However, instead of sampling terms from these
+documents, we now use their associated concepts.
+<!--l. 373--><p class="indent" >   When we look at the results as compared to the GC model as depicted in
+Table&#x00A0;<a 
+href="#x36-8100811">5.11<!--tex4ht:ref: chapter04:tab:co --></a>, we find marginal differences. Only recall on the CLEF-DS-08 topic set is
+significantly different from the run based on conceptual language models. In
+comparison to the query likelihood baseline (cf. Table&#x00A0;<a 
+href="#x36-760017">5.7<!--tex4ht:ref: chapter04:tab:baselines --></a> and Table&#x00A0;<a 
+href="#x36-8100811">5.11<!--tex4ht:ref: chapter04:tab:co --></a>), the EC
+model shows similar improvements as the relevance models. The runs on the <a 
+href="thesis-emeijli3.html#CLEF">CLEF</a>
+collections show small, statistically insignificant improvements in mean average
+precision, recall and initial precision. The EC model, when applied to the <a 
+href="thesis-emeijli3.html#TREC">TREC</a>
+Genomics collections, shows significant improvements for the 2004 and 2006 collection
+with respect to the <a 
+href="thesis-emeijli3.html#QL">QL</a> baseline.
+<!--l. 418--><p class="indent" >   Before turning to the answers to our research questions based on the results in this
+section, we present a brief analysis of the parameter sensitivity of our conceptual
+language model.
+<!--l. 429--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                   
+                                                                   
+<a 
+ id="x36-830054"></a>
+                                                                   
+                                                                   
+<a 
+ id="x36-83003r1"></a>
+<div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij73x.png" alt="PIC" class="graphics" width="176.407pt" height="123.48514pt" ><!--tex4ht:graphics  
+name="thesis-emeij73x.png" src="chapter04/sweep_MAP_bw.eps"  
+-->
+                <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(a) MAP</span></div>                </td></tr></table></div><br />
+<a 
+ id="x36-83004r2"></a>
+<div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij74x.png" alt="PIC" class="graphics" width="176.407pt" height="123.48514pt" ><!--tex4ht:graphics  
+name="thesis-emeij74x.png" src="chapter04/sweep_P5_bw.eps"  
+-->
+                 <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(b) P5</span></div>                 </td></tr></table></div>
+           <div class="caption" 
+><span class="id">Figure&#x00A0;5.4:                     </span><span  
+class="content">Results                     of                     varying
+<!--l. 441--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></math>
+on retrieval effectiveness on all test collections evaluated in this chapter. </span></div><!--tex4ht:label?: x36-830054 -->
+                                                                   
+                                                                   
+<!--l. 443--><p class="indent" >   </div><hr class="endfigure">
+                                                                   
+                                                                   
+<!--l. 445--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch5.html#thesis-emeijse26.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse27.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse25.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse25.html#tailthesis-emeijse25.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijse26.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse26.html"></a> 
+</body></html> 

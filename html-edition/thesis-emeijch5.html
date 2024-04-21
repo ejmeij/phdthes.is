@@ -1,0 +1,550 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>5 Query Modeling Using Concepts</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeij.html#thesis-emeijch5.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijch6.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijch4.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijch4.html#tailthesis-emeijch4.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijch5.html">Tail</a></td></tr></table><h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;5</span><br /><a 
+ id="x32-680005"></a>Query Modeling Using Concepts</h2>
+<!--l. 6--><p class="noindent" >In the previous chapter we have looked at how to use explicit and pseudo relevance
+information to obtain an improved estimate of the query model and, hence, improved
+retrieval performance. The documents used there were newswire documents and web
+pages. What if the documents are annotated, e.g., using concepts? Can we utilize the
+knowledge captured by those annotations to further improve retrieval effectiveness? In
+this chapter we introduce and evaluate a model that leverages document-level
+annotations for query modeling.
+<!--l. 12--><p class="indent" >   Explicit (and often manually curated) knowledge is routinely added to documents
+for a variety of reasons, e.g., to increase their findability or to aid navigation of the
+collection to which they belong. It is typically expressed in a meta-language and can be
+either formal (e.g., in the form of a thesaurus or ontology&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:1958:joyce">157</a>]) or more informal
+(e.g., in the form of user-generated tags&#x00A0;[<a 
+href="thesis-emeijli2.html#XIPM:2008:morrison">238</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XJASIST:2010:rorissa">269</a>]). Annotations of the formal kind
+may be found in a broad range of domains and a variety of document types. News
+articles, for example, can be annotated with concepts from the NewsCodes taxonomies
+provided by the International Press Telecommunication Council (IPTC)&#x00A0;[<a 
+href="thesis-emeijli2.html#XISWC:2008:troncy">319</a>]. Another
+example is the annotation of bibliographic records with indexing terms from a
+controlled vocabulary. In the biomedical domain, citations in the MEDLINE database
+are manually indexed with concepts from the <a 
+ id="section*.39"></a>Medical Subject Headings (<a 
+href="thesis-emeijli3.html#MeSH">MeSH</a>)
+thesaurus.<span class="footnote-mark"><a 
+href="thesis-emeij33.html#fn1x11"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x32-68001f1"></a> 
+As indicated earlier, we refer to the broad range of formal meta-languages as <span 
+class="bchri8t-">concept</span>
+<span 
+class="bchri8t-">languages </span>and to their vocabulary terms as <span 
+class="bchri8t-">concepts</span>. Figure&#x00A0;<a 
+href="thesis-emeijse1.html#x4-30022">1.2<!--tex4ht:ref: fig:intro:mesh --></a> shows an excerpt
+from <a 
+href="thesis-emeijli3.html#MeSH">MeSH</a>. Tables&#x00A0;<a 
+href="#x32-680031">5.1<!--tex4ht:ref: chapter04:tbl:annotationexample1 --></a> and&#x00A0;<a 
+href="#x32-680042">5.2<!--tex4ht:ref: chapter04:tbl:annotationexample2 --></a> show two examples of document-concept
+annotations from the two test collections that we use and that were introduced in
+Section&#x00A0;<a 
+href="thesis-emeijse16.html#x23-380003">3.3<!--tex4ht:ref: sec:testcollections --></a>.
+<!--l. 36--><p class="indent" >   In order to use concept languages for query modeling, we develop a two-step
+translation-based method. In the first step, an information need (as expressed in a
+textual query) is translated into a conceptual representation. In a process we call
+<span 
+class="bchri8t-">conceptual query modeling</span>, feedback documents from an initial retrieval run are used to
+obtain a conceptual query model; this model represents the user&#x2019;s information need at
+the level of concepts rather than that of the terms entered by the user. The intuition
+behind this step is that this conceptual representation provides a less ambiguous
+representation of the information need. In contrast to traditional textual relevance
+feedback, where query refinement is biased towards terms occurring in the initial query,
+this intermediate conceptual representation is less dependent on the original query
+words. On its own, this explicit conceptual representation can be used to aid retrieval,
+for example by suggesting relevant concepts to the user&#x00A0;[<a 
+href="thesis-emeijli2.html#XIR:2008:Keskustalo">165</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XECDL:2007:meij">209</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIPM:2004:silveira">285</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XJOD:2004:vakkari">323</a>] or by
+                                                                   
+                                                                   
+matching it to a conceptual representation of, or the annotations associated with the
+documents&#x00A0;[<a 
+href="thesis-emeijli2.html#XJASIS:1995:rajashekar">254</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XBIOINF:2009:trieschnigg">318</a>].
+<!--l. 60--><p class="indent" >   In the second step, we translate the conceptual query model back into a
+contribution to the textual query model. We hypothesize that, since the
+textual representation of documents is more detailed than its conceptual
+representation,<span class="footnote-mark"><a 
+href="thesis-emeij33.html#fn1x11"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x32-68002f1"></a><span class="footnote-mark"><a 
+ id="fn1x11">     <sup class="textsuperscript">1</sup></a></span><span 
+class="bchr8t-x-x-80">A document is typically represented by far more terms than concepts.</span> 
+retrieving information with a textual query representation translated from a conceptual
+form, will result in better retrieval performance than strictly matching with concepts
+only. Essential to these two translation steps is the estimation of a query model, both for
+terms and for concepts. The textual query should be captured by a small set of specific
+concepts and the conceptual query model should be translated to specific textual terms.
+To achieve this, we employ an expectation maximization algorithm inspired by
+parsimonious language models&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2004:Hiemstra">136</a>].
+<!--l. 76--><p class="indent" >   In this chapter we introduce and investigate our method for using document
+annotations for query modeling as formulated in our <span 
+class="bchb8t-">RQ 2</span>:
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">RQ 2.</span> </dt><dd 
+class="description">What  are  effective  ways  of  using  conceptual  information  for  query
+     modeling to improve retrieval performance?</dd></dl>
+<!--l. 85--><p class="noindent" >To estimate a conceptual query model we propose a method that looks at the top-ranked
+documents in an initially retrieved set. In order to assess the effectiveness of this step,
+we compare the results of using these concepts with a standard language modeling
+approach. Moreover, since this method relies on pseudo relevant documents from an
+initial retrieval run, we also compare the results of our conceptual query models to
+another, established pseudo relevance feedback algorithm based on relevance models.
+We ask:
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">RQ 2a.</span>  </dt><dd 
+class="description">What is the relative retrieval effectiveness of this method with respect
+     to  the  standard  language  modeling  and  conventional  pseudo  relevance
+     feedback approach?
+     </dd><dt class="description">
+<span 
+class="bchb8t-">RQ 2b.</span>  </dt><dd 
+class="description">How portable is our conceptual language model? That is, what are the
+     results of the model across multiple concept languages and test collections?
+     </dd><dt class="description">
+<span 
+class="bchb8t-">RQ 2c.</span>  </dt><dd 
+class="description">Can we say anything about which evaluation measures are helped most
+     using our model? Is it mainly a recall or a precision-enhancing device?</dd></dl>
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 20--><p class="indent" >   <a 
+ id="x32-680031"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="tabular">
+ <table id="TBL-32" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-32-1g"><col 
+id="TBL-32-1"><col 
+id="TBL-32-2"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-32-1-"><td  style="text-align:center; white-space:nowrap;" id="TBL-32-1-1"  
+class="td11">                          <span 
+class="bchr8t-x-x-80">Document text [CSASA-1-EN-9600048]                                                  </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-32-1-2"  
+class="td11">                                  <span 
+class="bchr8t-x-x-80">Concept annotations                                                                  </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-32-2-"><td  style="text-align:center; white-space:nowrap;" id="TBL-32-2-1"  
+class="td11"> <!--tex4ht:inline--><div class="tabular"> <table id="TBL-33" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-33-1g"><col 
+id="TBL-33-1"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-33-1-"><td  style="text-align:left;" id="TBL-33-1-1"  
+class="td11"><!--l. 26--><p class="noindent" ><span 
+class="bchr8t-x-x-90">Immigration   and   Economic   Dependence   in</span>
+<span 
+class="bchr8t-x-x-90">the  U.S.:  Approaches  to  Presenting  Logistic</span>
+<span 
+class="bchr8t-x-x-90">Regression Results. Logistic regression models</span>
+<span 
+class="bchr8t-x-x-90">are  found  increasingly  in  the  social  science</span>
+<span 
+class="bchr8t-x-x-90">literature, but the coefficients can be difficult</span>
+<span 
+class="bchr8t-x-x-90">to  interpret  for  novice  users.  Strategies  are</span>
+<span 
+class="bchr8t-x-x-90">discussed  that  can  enhance  the  substantive</span>
+<span 
+class="bchr8t-x-x-90">interpretation of logistic regression results. </span><span 
+class="bchr8t-x-x-90">&#x2026;</span>   </td>
+</tr></table>                                                                                                                                             </div>  </td><td  style="text-align:center; white-space:nowrap;" id="TBL-32-2-2"  
+class="td11"> <!--tex4ht:inline--><div class="tabular"> <table id="TBL-34" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-34-1g"><col 
+id="TBL-34-1"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-34-1-"><td  style="text-align:left;" id="TBL-34-1-1"  
+class="td11"><!--l. 35--><p class="noindent" ><span 
+class="bchrc8t-x-x-90">U<span 
+class="small-caps">N</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span><span 
+class="small-caps">D</span> S<span 
+class="small-caps">T</span><span 
+class="small-caps">A</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span><span 
+class="small-caps">S</span> <span 
+class="small-caps">O</span><span 
+class="small-caps">F</span> A<span 
+class="small-caps">M</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span><span 
+class="small-caps">I</span><span 
+class="small-caps">C</span><span 
+class="small-caps">A</span></span>     </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-34-2-"><td  style="text-align:left;" id="TBL-34-2-1"  
+class="td
+11"><!--l. 36--><p class="noindent" ><span 
+class="bchrc8t-x-x-90">I<span 
+class="small-caps">M</span><span 
+class="small-caps">M</span><span 
+class="small-caps">I</span><span 
+class="small-caps">G</span><span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">T</span><span 
+class="small-caps">S</span></span>                              </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-34-3-"><td  style="text-align:left;" id="TBL-34-3-1"  
+class="td
+11"><!--l. 37--><p class="noindent" ><span 
+class="bchrc8t-x-x-90">C<span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">I</span><span 
+class="small-caps">Z</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">S</span></span>                                    </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-34-4-"><td  style="text-align:left;" id="TBL-34-4-1"  
+class="td
+11"><!--l. 38--><p class="noindent" ><span 
+class="bchrc8t-x-x-90">B<span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">E</span><span 
+class="small-caps">fi</span><span 
+class="small-caps">T</span><span 
+class="small-caps">S</span></span>                                    </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-34-5-"><td  style="text-align:left;" id="TBL-34-5-1"  
+class="td
+11"><!--l. 39--><p class="noindent" ><span 
+class="bchrc8t-x-x-90">S<span 
+class="small-caps">O</span><span 
+class="small-caps">C</span><span 
+class="small-caps">I</span><span 
+class="small-caps">A</span><span 
+class="small-caps">L</span> S<span 
+class="small-caps">E</span><span 
+class="small-caps">C</span><span 
+class="small-caps">U</span><span 
+class="small-caps">R</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">Y</span></span>                       </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-34-6-"><td  style="text-align:left;" id="TBL-34-6-1"  
+class="td
+11"><!--l. 40--><p class="noindent" ><span 
+class="bchrc8t-x-x-90">R<span 
+class="small-caps">E</span><span 
+class="small-caps">G</span><span 
+class="small-caps">R</span><span 
+class="small-caps">E</span><span 
+class="small-caps">S</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span> A<span 
+class="small-caps">N</span><span 
+class="small-caps">A</span><span 
+class="small-caps">L</span><span 
+class="small-caps">Y</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">S</span></span>               </td></tr></table>                                                                                       </div>  </td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-32-3-"><td  style="text-align:center; white-space:nowrap;" id="TBL-32-3-1"  
+class="td11">                                                                                      </td></tr></table>
+</div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;5.1:  </span><span  
+class="content">Example  of  a  document  (title  and  part  of  abstract)  from  the
+<a 
+ id="section*.40"></a>Cross-Language  Evaluation  Forum  (<a 
+href="thesis-emeijli3.html#CLEF">CLEF</a>)-DS  test  collection,  annotated  with
+<a 
+ id="section*.41"></a>Sociological Abstracts (<a 
+href="thesis-emeijli3.html#SA">SA</a>) concepts.</span></div><!--tex4ht:label?: x32-680031 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 1--><p class="indent" >   <a 
+ id="x32-680042"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="tabular">
+ <table id="TBL-35" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-35-1g"><col 
+id="TBL-35-1"><col 
+id="TBL-35-2"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-35-1-"><td  style="text-align:center; white-space:nowrap;" id="TBL-35-1-1"  
+class="td11">                             <span 
+class="bchr8t-x-x-80">Document text [</span><a 
+href="http://www.ncbi.nlm.nih.gov/pubmed/10077651" ><span 
+class="bchr8t-x-x-80">PMID: 10077651</span></a><span 
+class="bchr8t-x-x-80">]                                                      </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-35-1-2"  
+class="td11">                                  <span 
+class="bchr8t-x-x-80">Concept annotations                                                                  </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-35-2-"><td  style="text-align:center; white-space:nowrap;" id="TBL-35-2-1"  
+class="td11"> <!--tex4ht:inline--><div class="tabular"> <table id="TBL-36" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-36-1g"><col 
+id="TBL-36-1"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-36-1-"><td  style="text-align:left;" id="TBL-36-1-1"  
+class="td11"><!--l. 7--><p class="noindent" ><span 
+class="bchr8t-x-x-90">Mechanism  of  increased  iron  absorption  in</span>
+<span 
+class="bchr8t-x-x-90">murine model of hereditary hemochromatosis:</span>
+<span 
+class="bchr8t-x-x-90">increased</span>
+<span 
+class="bchr8t-x-x-90">duodenal  expression  of  the  iron  transporter</span>
+<span 
+class="bchr8t-x-x-90">DMT1. Hereditary hemochromatosis (HH) is a</span>
+<span 
+class="bchr8t-x-x-90">common               autosomal               recessive</span>
+<span 
+class="bchr8t-x-x-90">disorder characterized by tissue iron deposition</span>
+<span 
+class="bchr8t-x-x-90">secondary to excessive dietary iron absorption.</span>
+<span 
+class="bchr8t-x-x-90">We  recently  reported  that  HFE,  the  protein</span>
+<span 
+class="bchr8t-x-x-90">defective  in  HH,  was  physically  associated</span>
+<span 
+class="bchr8t-x-x-90">with the transferrin receptor (TfR) in duodenal</span>
+<span 
+class="bchr8t-x-x-90">crypt cells and proposed that mutations in HFE</span>
+<span 
+class="bchr8t-x-x-90">attenuate the uptake of transferrin-bound iron</span>
+<span 
+class="bchr8t-x-x-90">from plasma by duodenal crypt cells, leading to</span>
+<span 
+class="bchr8t-x-x-90">up-regulation of transporters for dietary iron. </span><span 
+class="bchr8t-x-x-90">&#x2026;</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-36-2-"><td  style="text-align:left;" id="TBL-36-2-1"  
+class="td11">                                            </td></tr></table>                                     </div> </td><td  style="text-align:center; white-space:nowrap;" id="TBL-35-2-2"  
+class="td11"> <!--tex4ht:inline--><div class="tabular"> <table id="TBL-37" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-37-1g"><col 
+id="TBL-37-1"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-37-1-"><td  style="text-align:left;" id="TBL-37-1-1"  
+class="td11"><!--l. 12--><p class="noindent" ><span 
+class="bchrc8t-x-x-90">A<span 
+class="small-caps">N</span><span 
+class="small-caps">I</span><span 
+class="small-caps">M</span><span 
+class="small-caps">A</span><span 
+class="small-caps">L</span><span 
+class="small-caps">S</span></span>                                   </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-2-"><td  style="text-align:left;" id="TBL-37-2-1"  
+class="td
+11"><!--l. 13--><p class="noindent" ><span 
+class="bchrc8t-x-x-90">C<span 
+class="small-caps">A</span><span 
+class="small-caps">R</span><span 
+class="small-caps">R</span><span 
+class="small-caps">I</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span> P<span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span><span 
+class="small-caps">S</span></span>                    </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-3-"><td  style="text-align:left;" id="TBL-37-3-1"  
+class="td
+11"><!--l. 14--><p class="noindent" ><span 
+class="bchrc8t-x-x-90">C<span 
+class="small-caps">A</span><span 
+class="small-caps">T</span><span 
+class="small-caps">I</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span> T<span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">S</span><span 
+class="small-caps">P</span><span 
+class="small-caps">O</span><span 
+class="small-caps">R</span><span 
+class="small-caps">T</span> P<span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span><span 
+class="small-caps">S</span></span>   </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-4-"><td  style="text-align:left;" id="TBL-37-4-1"  
+class="td
+11"><!--l. 15--><p class="noindent" ><span 
+class="bchrc8t-x-x-90">D<span 
+class="small-caps">U</span><span 
+class="small-caps">O</span><span 
+class="small-caps">D</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">U</span><span 
+class="small-caps">M</span></span>                                </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-5-"><td  style="text-align:left;" id="TBL-37-5-1"  
+class="td
+11"><!--l. 16--><p class="noindent" ><span 
+class="bchrc8t-x-x-90">H<span 
+class="small-caps">E</span><span 
+class="small-caps">M</span><span 
+class="small-caps">O</span><span 
+class="small-caps">C</span><span 
+class="small-caps">H</span><span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">M</span><span 
+class="small-caps">A</span><span 
+class="small-caps">T</span><span 
+class="small-caps">O</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">S</span></span>                   </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-6-"><td  style="text-align:left;" id="TBL-37-6-1"  
+class="td
+11"><!--l. 17--><p class="noindent" ><span 
+class="bchrc8t-x-x-90">I<span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span></span>                                          </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-7-"><td  style="text-align:left;" id="TBL-37-7-1"  
+class="td
+11"><!--l. 18--><p class="noindent" ><span 
+class="bchrc8t-x-x-90">I<span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span>-B<span 
+class="small-caps">I</span><span 
+class="small-caps">N</span><span 
+class="small-caps">D</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span><span 
+class="small-caps">G</span> P<span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span><span 
+class="small-caps">S</span></span>           </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-8-"><td  style="text-align:left;" id="TBL-37-8-1"  
+class="td
+11"><!--l. 19--><p class="noindent" ><span 
+class="bchrc8t-x-x-90">M<span 
+class="small-caps">I</span><span 
+class="small-caps">C</span><span 
+class="small-caps">E</span></span>                                          </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-9-"><td  style="text-align:left;" id="TBL-37-9-1"  
+class="td
+11"><!--l. 20--><p class="noindent" ><span 
+class="bchrc8t-x-x-90">M<span 
+class="small-caps">U</span><span 
+class="small-caps">T</span><span 
+class="small-caps">A</span><span 
+class="small-caps">T</span><span 
+class="small-caps">I</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span></span>                                  </td></tr></table>                                                                                       </div>  </td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-35-3-"><td  style="text-align:center; white-space:nowrap;" id="TBL-35-3-1"  
+class="td11">                                                                                      </td></tr></table>
+</div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;5.2:  </span><span  
+class="content">Example  of  a  document  (title  and  part  of  abstract)  from  the
+TREC-GEN-04 annotated with <a 
+href="thesis-emeijli3.html#MeSH">MeSH</a> concepts.</span></div><!--tex4ht:label?: x32-680042 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 114--><p class="noindent" >The remainder of this chapter is organized as follows. We introduce conceptual
+language models in Section&#x00A0;<a 
+href="thesis-emeijse24.html#x34-690001">5.1<!--tex4ht:ref: chapter04:sec:model --></a>. We then describe our experimental setup in
+Section&#x00A0;<a 
+href="thesis-emeijse25.html#x35-720002">5.2<!--tex4ht:ref: chapter04:sec:experimentalsetup --></a> and report on the outcomes of our experimental evaluation and discuss our
+findings in Section&#x00A0;<a 
+href="thesis-emeijse26.html#x36-760003">5.3<!--tex4ht:ref: chapter04:sec:results --></a>. We end with a concluding section.
+<a 
+ id="x32-68005r97"></a>
+   <div class="sectionTOCS">
+   &#x00A0;<span class="sectionToc" >5.1 <a 
+href="thesis-emeijse24.html#x34-690001">Conceptual Language Models</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >5.1.1 <a 
+href="thesis-emeijse24.html#x34-700001">Conceptual Query Modeling</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >5.1.2 <a 
+href="thesis-emeijse24.html#x34-710002">Generative Concept Models</a></span>
+<br />   &#x00A0;<span class="sectionToc" >5.2 <a 
+href="thesis-emeijse25.html#x35-720002">Experimental Setup</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >5.2.1 <a 
+href="thesis-emeijse25.html#x35-730001">Parameter Estimation</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >5.2.2 <a 
+href="thesis-emeijse25.html#x35-740002">Complexity and Implementation</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >5.2.3 <a 
+href="thesis-emeijse25.html#x35-750003">Baselines</a></span>
+<br />   &#x00A0;<span class="sectionToc" >5.3 <a 
+href="thesis-emeijse26.html#x36-760003">Results and Discussion</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >5.3.1 <a 
+href="thesis-emeijse26.html#x36-770001">Baselines</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >5.3.2 <a 
+href="thesis-emeijse26.html#x36-800002">Conceptual Language Models</a></span>
+<br />   &#x00A0;<span class="sectionToc" >5.4 <a 
+href="thesis-emeijse27.html#x37-840004">Parameter Sensitivity Analysis</a></span>
+<br />   &#x00A0;<span class="sectionToc" >5.5 <a 
+href="thesis-emeijse28.html#x38-850005">Summary and Conclusions</a></span>
+</div>
+
+<a 
+ id="x32-71009r101"></a>
+
+<a 
+ id="x32-75001r107"></a>
+
+<a 
+ id="x32-83006r113"></a>
+
+<a 
+ id="x32-84003r129"></a>
+
+                                                                   
+                                                                   
+<table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeij.html#thesis-emeijch5.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijch6.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijch4.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijch4.html#tailthesis-emeijch4.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijch5.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijch5.html"></a>                   
+</body></html> 

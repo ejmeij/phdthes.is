@@ -1,0 +1,1335 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Results</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch6.html#thesis-emeijse32.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse33.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse31.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse31.html#tailthesis-emeijse31.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse32.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">6.4    </span> <a 
+ id="x44-1010004"></a>Results</h3>
+<!--l. 7--><p class="noindent" >In the remainder of this section we report on the experimental results and use them to
+answer the research questions for this chapter. Here, we compare the following
+approaches for mapping queries to DBpedia:
+     <dl class="enumerate"><dt class="enumerate">
+  (i) </dt><dd 
+class="enumerate">a baseline that retrieves only those concepts whose label <span 
+class="bchri8t-">lexically matches</span>
+     the query,
+     </dd><dt class="enumerate">
+ (ii) </dt><dd 
+class="enumerate">a  <span 
+class="bchri8t-">retrieval  baseline  </span>that  retrieves  concepts  based  solely  on  their  textual
+     representation in the form of the associated Wikipedia article with varying
+     textual fields,
+     </dd><dt class="enumerate">
+ (iii) </dt><dd 
+class="enumerate"><span 
+class="bchri8t-">n-gram based reranking </span>that extracts all n-grams from the query and uses
+     machine learning to identify the best concepts, and
+     </dd><dt class="enumerate">
+ (iv) </dt><dd 
+class="enumerate"><span 
+class="bchri8t-">full  query  based  reranking  </span>that  does  not  extract  n-grams,  but  calculates
+     feature vectors based on the full query and uses machine learning to identify
+     the best concepts.
+     </dd></dl>
+<!--l. 31--><p class="noindent" >In the next section we further analyze the results along multiple dimensions, including the
+effects of varying the number of retrieved concepts in the first stage, varying
+parameters in the machine learning models, the most informative individual
+features and types, and the kind of errors that are made by the machine learning
+algorithms.
+<a 
+ id="x44-101001r154"></a>
+<h4 class="subsectionHead"><span class="titlemark">6.4.1    </span> <a 
+ id="x44-1020001"></a>Lexical Match</h4>
+<!--l. 44--><p class="noindent" >As our first baseline we consider a simple heuristic which is commonly
+used&#x00A0;[<a 
+href="thesis-emeijli2.html#XRIAO:1994:Aronson">12</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XTOIS:2007:beitzel">28</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XWWW:2003:dill">94</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIPM:2010:gray">114</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XJASIST:2010:Huurnink">142</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XTALN:2007:malaise">200</a>]. For this baseline we select concepts that lexically
+match the query, subject to various constraints. This returns concepts where
+consecutive terms in the <span 
+class="ec-lmtt-10">rdfs:label </span>are contained in the query or vice versa.
+<div class="table">
+                                                                   
+                                                                   
+<!--l. 51--><p class="indent" >   <a 
+ id="x44-1020015"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+
+ <table id="TBL-79" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-79-1g"><col 
+id="TBL-79-1"><col 
+id="TBL-79-2"><col 
+id="TBL-79-3"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-79-1-"><td  style="text-align:left;" id="TBL-79-1-1"  
+class="td11"> <!--l. 76--><p class="noindent" ><span 
+class="bchr8t-x-x-80">QCL</span>                                       </td><td  style="text-align:left;" id="TBL-79-1-2"  
+class="td11"> <!--l. 76--><p class="noindent" ><span 
+class="bchr8t-x-x-80">QCL-LCQ</span>                               </td><td  style="text-align:left;" id="TBL-79-1-3"  
+class="td11"> <!--l. 76--><p class="noindent" ><span 
+class="bchr8t-x-x-80">QCL-LSO</span>                                </td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-79-2-"><td  style="text-align:left;" id="TBL-79-2-1"  
+class="td11"> <!--l. 76--><p class="noindent" ><span 
+class="bchrc8t-x-x-80">J<span 
+class="small-caps">O</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span><span 
+class="small-caps">P</span><span 
+class="small-caps">H</span> H<span 
+class="small-caps">A</span><span 
+class="small-caps">Y</span><span 
+class="small-caps">D</span><span 
+class="small-caps">N</span></span>                       </td><td  style="text-align:left;" id="TBL-79-2-2"  
+class="td11"> <!--l. 76--><p class="noindent" ><span 
+class="bchrc8t-x-x-80">J<span 
+class="small-caps">O</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span><span 
+class="small-caps">P</span><span 
+class="small-caps">H</span> H<span 
+class="small-caps">A</span><span 
+class="small-caps">Y</span><span 
+class="small-caps">D</span><span 
+class="small-caps">N</span></span>                      </td><td  style="text-align:left;" id="TBL-79-2-3"  
+class="td11"> <!--l. 76--><p class="noindent" ><span 
+class="bchrc8t-x-x-80">J<span 
+class="small-caps">O</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span><span 
+class="small-caps">P</span><span 
+class="small-caps">H</span> H<span 
+class="small-caps">A</span><span 
+class="small-caps">Y</span><span 
+class="small-caps">D</span><span 
+class="small-caps">N</span></span>                      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-79-3-"><td  style="text-align:left;" id="TBL-79-3-1"  
+class="td11"> <!--l. 76--><p class="noindent" ><span 
+class="bchrc8t-x-x-80">J<span 
+class="small-caps">O</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span><span 
+class="small-caps">P</span><span 
+class="small-caps">H</span></span>                                   </td><td  style="text-align:left;" id="TBL-79-3-2"  
+class="td11"> <!--l. 76--><p class="noindent" ><span 
+class="bchrc8t-x-x-80">J<span 
+class="small-caps">O</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span><span 
+class="small-caps">P</span><span 
+class="small-caps">H</span> H<span 
+class="small-caps">A</span><span 
+class="small-caps">Y</span><span 
+class="small-caps">D</span><span 
+class="small-caps">N</span> <span 
+class="small-caps">O</span><span 
+class="small-caps">P</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">S</span></span>          </td><td  style="text-align:left;" id="TBL-79-3-3"  
+class="td11"> <!--l. 76--><p class="noindent" >                        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-79-4-"><td  style="text-align:left;" id="TBL-79-4-1"  
+class="td11"> <!--l. 76--><p class="noindent" >                         </td><td  style="text-align:left;" id="TBL-79-4-2"  
+class="td11"> <!--l. 76--><p class="noindent" ><span 
+class="bchrc8t-x-x-80">J<span 
+class="small-caps">O</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span><span 
+class="small-caps">P</span><span 
+class="small-caps">H</span>                     H<span 
+class="small-caps">A</span><span 
+class="small-caps">Y</span><span 
+class="small-caps">D</span><span 
+class="small-caps">N</span></span>
+   <span 
+class="bchrc8t-x-x-80"><span 
+class="small-caps">S</span><span 
+class="small-caps">Y</span><span 
+class="small-caps">M</span><span 
+class="small-caps">P</span><span 
+class="small-caps">H</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span><span 
+class="small-caps">I</span><span 
+class="small-caps">E</span><span 
+class="small-caps">S</span></span>                          </td><td  style="text-align:left;" id="TBL-79-4-3"  
+class="td11"> <!--l. 76--><p class="noindent" >                        </td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-79-5-"><td  style="text-align:left;" id="TBL-79-5-1"  
+class="td11"> <!--l. 76--><p class="noindent" >                         </td></tr></table>
+ <div class="caption" 
+><span class="id">Table&#x00A0;6.5: </span><span  
+class="content">An example of the concepts obtained using various lexical matching
+constraints for the query &#x201C;joseph haydn&#x201D; (translated to English). In this case, the
+annotators only linked the concept <span 
+class="bchrc8t-">J<span 
+class="small-caps">O</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span><span 
+class="small-caps">P</span><span 
+class="small-caps">H</span> H<span 
+class="small-caps">A</span><span 
+class="small-caps">Y</span><span 
+class="small-caps">D</span><span 
+class="small-caps">N</span></span>. </span></div><!--tex4ht:label?: x44-1020015 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 82--><p class="indent" >   An example for the query &#x201C;joseph haydn&#x201D; is given in Table&#x00A0;<a 
+href="#x44-1020015">6.5<!--tex4ht:ref: tbl:example_lexmatch --></a>. We then rank the
+concepts based on the language modeling score of their associated Wikipedia article
+given the query (cf. Eq.&#x00A0;<a 
+href="thesis-emeijse30.html#x42-89002r6.2">6.2<!--tex4ht:ref: eq:retrieval --></a>). <div class="table">
+                                                                   
+                                                                   
+<!--l. 88--><p class="indent" >   <a 
+ id="x44-1020026"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+
+ <table id="TBL-82" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-82-1g"><col 
+id="TBL-82-1"><col 
+id="TBL-82-2"><col 
+id="TBL-82-3"><col 
+id="TBL-82-4"><col 
+id="TBL-82-5"><col 
+id="TBL-82-6"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-82-1-"><td  style="text-align:left;" id="TBL-82-1-1"  
+class="td11"> <!--l. 134--><p class="noindent" >                         </td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-1-2"  
+class="td11">   <span 
+class="bchr8t-x-x-80">P1      </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-1-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">R-prec   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-1-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">Recall    </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-1-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">MRR     </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-1-6"  
+class="td11">   <span 
+class="bchr8t-x-x-80">SR      </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-82-2-"><td  style="text-align:left;" id="TBL-82-2-1"  
+class="td11"> <!--l. 134--><p class="noindent" ><span 
+class="bchr8t-x-x-80">QCL</span>                                          </td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-2-2"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.3956   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-2-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.3140   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-2-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.4282   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-2-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.4117   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-2-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.4882   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-82-3-"><td  style="text-align:left;" id="TBL-82-3-1"  
+class="td11"> <!--l. 134--><p class="noindent" ><span 
+class="bchr8t-x-x-80">QCL-LCQ</span>                                  </td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-3-2"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.4286   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-3-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.3485   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-3-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.4881   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-3-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.4564   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-3-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5479   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-82-4-"><td  style="text-align:left;" id="TBL-82-4-1"  
+class="td11"> <!--l. 134--><p class="noindent" ><span 
+class="bchr8t-x-x-80">QCL-LSO</span>                                  </td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-4-2"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.4160   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-4-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.2747   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-4-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.3435   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-4-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.3775   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-4-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.4160   </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-82-5-"><td  style="text-align:left;" id="TBL-82-5-1"  
+class="td11"> <!--l. 134--><p class="noindent" ><span 
+class="bchr8t-x-x-80">oracle</span>                                       </td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-5-2"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5808   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-5-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.4560   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-5-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5902   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-5-5"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5380   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-82-5-6"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.6672   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-82-6-"><td  style="text-align:left;" id="TBL-82-6-1"  
+class="td11"> <!--l. 134--><p class="noindent" >                         </td></tr></table>
+ <div class="caption" 
+><span class="id">Table&#x00A0;6.6: </span><span  
+class="content">Lexical match baseline results using lexical matching between labels
+and query to select concepts.</span></div><!--tex4ht:label?: x44-1020026 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 139--><p class="noindent" >Table&#x00A0;<a 
+href="#x44-1020026">6.6<!--tex4ht:ref: tbl:lexmatch --></a> shows the scores when using lexical matching for mapping search engine
+queries. The results in the first row are obtained by only considering the concepts
+whose label is contained in the query (QCL). This is a frequently taken but naive
+approach and does not perform well, achieving a P1 score of under 40%. The
+second row relaxes this constraint and also selects concepts where the query is
+contained in the concept label (QCL-LCQ). This improves the performance
+somewhat.
+<!--l. 149--><p class="indent" >   One issue these approaches might have, however, is that they might match parts of
+compound terms. For example, the query &#x201C;brooklyn bridge&#x201D; might not only match the
+concept <span 
+class="bchrc8t-">B<span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">O</span><span 
+class="small-caps">K</span><span 
+class="small-caps">L</span><span 
+class="small-caps">Y</span><span 
+class="small-caps">N</span> <span 
+class="small-caps">B</span><span 
+class="small-caps">R</span><span 
+class="small-caps">I</span><span 
+class="small-caps">D</span><span 
+class="small-caps">G</span><span 
+class="small-caps">E</span> </span>but also the concepts <span 
+class="bchrc8t-">B<span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">O</span><span 
+class="small-caps">K</span><span 
+class="small-caps">L</span><span 
+class="small-caps">Y</span><span 
+class="small-caps">N</span> </span>and <span 
+class="bchrc8t-">B<span 
+class="small-caps">R</span><span 
+class="small-caps">I</span><span 
+class="small-caps">D</span><span 
+class="small-caps">G</span><span 
+class="small-caps">E</span></span>. The approach
+taken for the third row (QCL-LSO) therefore extracts all n-grams from the
+query, sorts them by the number of terms, and checks whether the label is
+contained in each of them. If a match is found, the remaining, smaller n-grams are
+skipped.
+<!--l. 158--><p class="indent" >   The last row (&#x201C;oracle&#x201D;) shows the results when we initially select all concepts whose
+terms in the label matches with any part of the query. Then, we keep only those
+concepts that were annotated by the assessors. As such, the performance of this run
+indicates the upper bound on the performance that lexical matching might obtain. From
+these scores we conclude that, although lexical matching is a common approach for
+matching unstructured text with structured data, it does not perform well for our task
+and we need to consider additional kinds of information pertaining to each
+concept.
+<a 
+ id="x44-102003r156"></a>
+<h4 class="subsectionHead"><span class="titlemark">6.4.2    </span> <a 
+ id="x44-1030002"></a>Retrieval Only</h4>
+<!--l. 171--><p class="noindent" >As our second baseline, we take the entire query as issued by the user and employ
+Eq.&#x00A0;<a 
+href="thesis-emeijse30.html#x42-89002r6.2">6.2<!--tex4ht:ref: eq:retrieval --></a> to rank DBpedia concepts based on their textual representation; this technique
+is similar to using a search engine and performing a search within Wikipedia. We use
+either the textual contents of the Wikipedia article (&#x201C;content-only&#x201D;&#x2014;which includes
+only the article&#x2019;s text) or a combination of the article&#x2019;s text, the title, and the anchor
+texts of incoming links (&#x201C;full text&#x201D;).
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 181--><p class="indent" >   <a 
+ id="x44-1030017"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+
+ <table id="TBL-85" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-85-1g"><col 
+id="TBL-85-1"><col 
+id="TBL-85-2"><col 
+id="TBL-85-3"><col 
+id="TBL-85-4"><col 
+id="TBL-85-5"><col 
+id="TBL-85-6"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-85-1-"><td  style="text-align:left;" id="TBL-85-1-1"  
+class="td11"> <!--l. 206--><p class="noindent" >                         </td><td  style="text-align:center; white-space:nowrap;" id="TBL-85-1-2"  
+class="td11">   <span 
+class="bchr8t-x-x-80">P1      </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-85-1-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">R-prec   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-85-1-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">Recall    </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-85-1-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">MRR     </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-85-1-6"  
+class="td11">   <span 
+class="bchr8t-x-x-80">SR      </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-85-2-"><td  style="text-align:left;" id="TBL-85-2-1"  
+class="td11"> <!--l. 206--><p class="noindent" ><span 
+class="bchr8t-x-x-80">full text</span>                                    </td><td  style="text-align:center; white-space:nowrap;" id="TBL-85-2-2"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5636   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-85-2-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.5216   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-85-2-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.6768   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-85-2-5"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.6400   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-85-2-6"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.7535   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-85-3-"><td  style="text-align:left;" id="TBL-85-3-1"  
+class="td11"> <!--l. 206--><p class="noindent" ><span 
+class="bchr8t-x-x-80">content-only</span>                             </td><td  style="text-align:center; white-space:nowrap;" id="TBL-85-3-2"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5510   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-85-3-3"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.5134   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-85-3-4"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6632   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-85-3-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.6252   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-85-3-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">0.7363   </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-85-4-"><td  style="text-align:left;" id="TBL-85-4-1"  
+class="td11"> <!--l. 206--><p class="noindent" >                         </td></tr></table>
+ <div class="caption" 
+><span class="id">Table&#x00A0;6.7: </span><span  
+class="content">Results for the retrieval only baseline which ranks concepts using the
+entire                                                                                                             query
+<!--l. 210--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle 
+class="text"><mtext class="textbf" mathvariant="bold" >Q</mtext></mstyle></math>
+and either the content of the Wikipedia article or the full text associated with each
+DBpedia concept (including title and anchor texts of incoming hyperlinks). </span></div><!--tex4ht:label?: x44-1030017 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 215--><p class="noindent" >Table&#x00A0;<a 
+href="#x44-1030017">6.7<!--tex4ht:ref: tbl:baselineretr --></a> shows the results of this method. We note that including the title and anchor
+texts of the incoming links results in improved retrieval performance overall. This is a
+strong baseline; on average, over 65% of the relevant concepts are correctly identified
+in the top-5 and, furthermore, over 55% of the relevant concepts are retrieved at
+rank 1. The success rate indicates that for 75% of the queries at least one
+relevant concept is retrieved in the top-5. In Section&#x00A0;<a 
+href="thesis-emeijse33.html#x45-1080002">6.5.2<!--tex4ht:ref: ssec:fields --></a> we further discuss
+the relative performance of each textual representation as well as various
+combinations.
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 229--><p class="indent" >   <a 
+ id="x44-1030028"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="center" 
+>
+<!--l. 232--><p class="noindent" >
+<div class="tabular">
+ <table id="TBL-86" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-86-1g"><col 
+id="TBL-86-1"><col 
+id="TBL-86-2"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-86-1-"><td  style="text-align:left; white-space:nowrap;" id="TBL-86-1-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">N-gram                            </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-86-1-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">Candidate concepts                                                                                       </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-86-2-"><td  style="text-align:left; white-space:nowrap;" id="TBL-86-2-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">challenger                         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-86-2-2"  
+class="td11"> <span 
+class="bchbc8t-x-x-80">S<span 
+class="small-caps">P</span><span 
+class="small-caps">A</span><span 
+class="small-caps">C</span><span 
+class="small-caps">E</span> S<span 
+class="small-caps">H</span><span 
+class="small-caps">U</span><span 
+class="small-caps">T</span><span 
+class="small-caps">T</span><span 
+class="small-caps">L</span><span 
+class="small-caps">E</span> C<span 
+class="small-caps">H</span><span 
+class="small-caps">A</span><span 
+class="small-caps">L</span><span 
+class="small-caps">L</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">G</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">C<span 
+class="small-caps">H</span><span 
+class="small-caps">A</span><span 
+class="small-caps">L</span><span 
+class="small-caps">L</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">G</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">B<span 
+class="small-caps">O</span><span 
+class="small-caps">M</span><span 
+class="small-caps">B</span><span 
+class="small-caps">A</span><span 
+class="small-caps">R</span><span 
+class="small-caps">D</span><span 
+class="small-caps">I</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span> C<span 
+class="small-caps">H</span><span 
+class="small-caps">A</span><span 
+class="small-caps">L</span><span 
+class="small-caps">L</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">G</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span></span><span 
+class="bchr8t-x-x-80">;   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-86-3-"><td  style="text-align:left; white-space:nowrap;" id="TBL-86-3-1"  
+class="td11">                       </td><td  style="text-align:left; white-space:nowrap;" id="TBL-86-3-2"  
+class="td11"> <span 
+class="bchrc8t-x-x-80"><span 
+class="small-caps">S</span><span 
+class="small-caps">T</span><span 
+class="small-caps">S</span>-61-<span 
+class="small-caps">A</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80"><span 
+class="small-caps">S</span><span 
+class="small-caps">T</span><span 
+class="small-caps">S</span>-9                                                                                            </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-86-4-"><td  style="text-align:left; white-space:nowrap;" id="TBL-86-4-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">wubbo                               </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-86-4-2"  
+class="td11"> <span 
+class="bchbc8t-x-x-80">W<span 
+class="small-caps">U</span><span 
+class="small-caps">B</span><span 
+class="small-caps">B</span><span 
+class="small-caps">O</span> O<span 
+class="small-caps">C</span><span 
+class="small-caps">K</span><span 
+class="small-caps">E</span><span 
+class="small-caps">L</span><span 
+class="small-caps">S</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">S<span 
+class="small-caps">P</span><span 
+class="small-caps">A</span><span 
+class="small-caps">C</span><span 
+class="small-caps">E</span><span 
+class="small-caps">L</span><span 
+class="small-caps">A</span><span 
+class="small-caps">B</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">C<span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span> <span 
+class="small-caps">O</span><span 
+class="small-caps">F</span> G<span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span><span 
+class="small-caps">G</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">S<span 
+class="small-caps">U</span><span 
+class="small-caps">P</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span><span 
+class="small-caps">B</span><span 
+class="small-caps">U</span><span 
+class="small-caps">S</span></span><span 
+class="bchr8t-x-x-80">;                 </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-86-5-"><td  style="text-align:left; white-space:nowrap;" id="TBL-86-5-1"  
+class="td11">                       </td><td  style="text-align:left; white-space:nowrap;" id="TBL-86-5-2"  
+class="td11"> <span 
+class="bchrc8t-x-x-80">A<span 
+class="small-caps">N</span><span 
+class="small-caps">D</span><span 
+class="small-caps">R</span></span><span 
+class="bchrc8t-x-x-80">&#x00E9;</span> <span 
+class="bchrc8t-x-x-80">K<span 
+class="small-caps">U</span><span 
+class="small-caps">I</span><span 
+class="small-caps">P</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span><span 
+class="small-caps">S</span>                                                                                          </span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-86-6-"><td  style="text-align:left; white-space:nowrap;" id="TBL-86-6-1"  
+class="td
+11"> <span 
+class="bchr8t-x-x-80">ockels                                </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-86-6-2"  
+class="td11"> <span 
+class="bchbc8t-x-x-80">W<span 
+class="small-caps">U</span><span 
+class="small-caps">B</span><span 
+class="small-caps">B</span><span 
+class="small-caps">O</span> O<span 
+class="small-caps">C</span><span 
+class="small-caps">K</span><span 
+class="small-caps">E</span><span 
+class="small-caps">L</span><span 
+class="small-caps">S</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">S<span 
+class="small-caps">P</span><span 
+class="small-caps">A</span><span 
+class="small-caps">C</span><span 
+class="small-caps">E</span><span 
+class="small-caps">L</span><span 
+class="small-caps">A</span><span 
+class="small-caps">B</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">S<span 
+class="small-caps">U</span><span 
+class="small-caps">P</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span><span 
+class="small-caps">B</span><span 
+class="small-caps">U</span><span 
+class="small-caps">S</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">C<span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span> <span 
+class="small-caps">O</span><span 
+class="small-caps">F</span> G<span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span><span 
+class="small-caps">G</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span></span><span 
+class="bchr8t-x-x-80">;                 </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-86-7-"><td  style="text-align:left; white-space:nowrap;" id="TBL-86-7-1"  
+class="td11">                       </td><td  style="text-align:left; white-space:nowrap;" id="TBL-86-7-2"  
+class="td11"> <span 
+class="bchrc8t-x-x-80">A<span 
+class="small-caps">N</span><span 
+class="small-caps">D</span><span 
+class="small-caps">R</span></span><span 
+class="bchrc8t-x-x-80">&#x00E9;</span> <span 
+class="bchrc8t-x-x-80">K<span 
+class="small-caps">U</span><span 
+class="small-caps">I</span><span 
+class="small-caps">P</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span><span 
+class="small-caps">S</span>                                                                                          </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-86-8-"><td  style="text-align:left; white-space:nowrap;" id="TBL-86-8-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">challenger wubbo             </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-86-8-2"  
+class="td11"> <span 
+class="bchbc8t-x-x-80">W<span 
+class="small-caps">U</span><span 
+class="small-caps">B</span><span 
+class="small-caps">B</span><span 
+class="small-caps">O</span> O<span 
+class="small-caps">C</span><span 
+class="small-caps">K</span><span 
+class="small-caps">E</span><span 
+class="small-caps">L</span><span 
+class="small-caps">S</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80"><span 
+class="small-caps">S</span><span 
+class="small-caps">T</span><span 
+class="small-caps">S</span>-61-<span 
+class="small-caps">A</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchbc8t-x-x-80">S<span 
+class="small-caps">P</span><span 
+class="small-caps">A</span><span 
+class="small-caps">C</span><span 
+class="small-caps">E</span> S<span 
+class="small-caps">H</span><span 
+class="small-caps">U</span><span 
+class="small-caps">T</span><span 
+class="small-caps">T</span><span 
+class="small-caps">L</span><span 
+class="small-caps">E</span> C<span 
+class="small-caps">H</span><span 
+class="small-caps">A</span><span 
+class="small-caps">L</span><span 
+class="small-caps">L</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">G</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">S<span 
+class="small-caps">P</span><span 
+class="small-caps">A</span><span 
+class="small-caps">C</span><span 
+class="small-caps">E</span><span 
+class="small-caps">L</span><span 
+class="small-caps">A</span><span 
+class="small-caps">B</span></span><span 
+class="bchr8t-x-x-80">;       </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-86-9-"><td  style="text-align:left; white-space:nowrap;" id="TBL-86-9-1"  
+class="td11">                       </td><td  style="text-align:left; white-space:nowrap;" id="TBL-86-9-2"  
+class="td11"> <span 
+class="bchrc8t-x-x-80"><span 
+class="small-caps">S</span><span 
+class="small-caps">T</span><span 
+class="small-caps">S</span>-9                                                                                                            </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-86-10-"><td  style="text-align:left; white-space:nowrap;" id="TBL-86-10-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">wubbo ockels                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-86-10-2"  
+class="td11"> <span 
+class="bchbc8t-x-x-80">W<span 
+class="small-caps">U</span><span 
+class="small-caps">B</span><span 
+class="small-caps">B</span><span 
+class="small-caps">O</span> O<span 
+class="small-caps">C</span><span 
+class="small-caps">K</span><span 
+class="small-caps">E</span><span 
+class="small-caps">L</span><span 
+class="small-caps">S</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">S<span 
+class="small-caps">P</span><span 
+class="small-caps">A</span><span 
+class="small-caps">C</span><span 
+class="small-caps">E</span><span 
+class="small-caps">L</span><span 
+class="small-caps">A</span><span 
+class="small-caps">B</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">S<span 
+class="small-caps">U</span><span 
+class="small-caps">P</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span><span 
+class="small-caps">B</span><span 
+class="small-caps">U</span><span 
+class="small-caps">S</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">C<span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span> <span 
+class="small-caps">O</span><span 
+class="small-caps">F</span> G<span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span><span 
+class="small-caps">G</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span></span><span 
+class="bchr8t-x-x-80">;                 </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-86-11-"><td  style="text-align:left; white-space:nowrap;" id="TBL-86-11-1"  
+class="td11">                       </td><td  style="text-align:left; white-space:nowrap;" id="TBL-86-11-2"  
+class="td11"> <span 
+class="bchrc8t-x-x-80">A<span 
+class="small-caps">N</span><span 
+class="small-caps">D</span><span 
+class="small-caps">R</span></span><span 
+class="bchrc8t-x-x-80">&#x00E9;</span> <span 
+class="bchrc8t-x-x-80">K<span 
+class="small-caps">U</span><span 
+class="small-caps">I</span><span 
+class="small-caps">P</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span><span 
+class="small-caps">S</span>                                                                                          </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-86-12-"><td  style="text-align:left; white-space:nowrap;" id="TBL-86-12-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">challenger wubbo ockels   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-86-12-2"  
+class="td11"> <span 
+class="bchbc8t-x-x-80">W<span 
+class="small-caps">U</span><span 
+class="small-caps">B</span><span 
+class="small-caps">B</span><span 
+class="small-caps">O</span> O<span 
+class="small-caps">C</span><span 
+class="small-caps">K</span><span 
+class="small-caps">E</span><span 
+class="small-caps">L</span><span 
+class="small-caps">S</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80"><span 
+class="small-caps">S</span><span 
+class="small-caps">T</span><span 
+class="small-caps">S</span>-61-<span 
+class="small-caps">A</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">S<span 
+class="small-caps">P</span><span 
+class="small-caps">A</span><span 
+class="small-caps">C</span><span 
+class="small-caps">E</span><span 
+class="small-caps">L</span><span 
+class="small-caps">A</span><span 
+class="small-caps">B</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchbc8t-x-x-80">S<span 
+class="small-caps">P</span><span 
+class="small-caps">A</span><span 
+class="small-caps">C</span><span 
+class="small-caps">E</span> S<span 
+class="small-caps">H</span><span 
+class="small-caps">U</span><span 
+class="small-caps">T</span><span 
+class="small-caps">T</span><span 
+class="small-caps">L</span><span 
+class="small-caps">E</span> C<span 
+class="small-caps">H</span><span 
+class="small-caps">A</span><span 
+class="small-caps">L</span><span 
+class="small-caps">L</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">G</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span></span><span 
+class="bchr8t-x-x-80">;       </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-86-13-"><td  style="text-align:left; white-space:nowrap;" id="TBL-86-13-1"  
+class="td11">                       </td><td  style="text-align:left; white-space:nowrap;" id="TBL-86-13-2"  
+class="td11"> <span 
+class="bchrc8t-x-x-80"><span 
+class="small-caps">S</span><span 
+class="small-caps">T</span><span 
+class="small-caps">S</span>-9                                                                                                            </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-86-14-"><td  style="text-align:left; white-space:nowrap;" id="TBL-86-14-1"  
+class="td11">                       </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;6.8: </span><span  
+class="content">An example of the concepts obtained when using retrieval only for the
+n-grams in the query &#x201C;challenger wubbo ockels&#x201D; (translated to English), ranked
+by retrieval score. Concepts annotated by the human annotators for this query in
+boldface.</span></div><!--tex4ht:label?: x44-1030028 -->
+</div>
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<a 
+ id="x44-103003r159"></a>
+<h4 class="subsectionHead"><span class="titlemark">6.4.3    </span> <a 
+ id="x44-1040003"></a>N-gram based Concept Selection</h4>
+<!--l. 291--><p class="noindent" >Table&#x00A0;<a 
+href="#x44-1030028">6.8<!--tex4ht:ref: tbl:example_ngram2 --></a> (last row) shows the concepts obtained for the second baseline and the query
+&#x201C;challenger wubbo ockels.&#x201D; Here, two relevant concepts are retrieved at ranks 1 and 4.
+When we look at the same results for all possible n-grams in the query, however,
+one of the relevant concepts is retrieved at the first position for each n-gram.
+This example and the one given earlier in Table&#x00A0;<a 
+href="thesis-emeijse30.html#x42-880012">6.2<!--tex4ht:ref: tbl:example_ngram --></a> suggest that it will be
+beneficial to consider all possible n-grams in the query. In this section we report
+on the results of extracting n-grams from the query, generating features for
+each, and subsequently applying machine learning algorithms to decide which
+of the suggested concepts to keep. The features used here are described in
+Section&#x00A0;<a 
+href="thesis-emeijse30.html#x42-900002">6.2.2<!--tex4ht:ref: ssec:selecting --></a>.
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 1--><p class="indent" >   <a 
+ id="x44-1040019"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+
+ <table id="TBL-88" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-88-1g"><col 
+id="TBL-88-1"><col 
+id="TBL-88-2"><col 
+id="TBL-88-3"><col 
+id="TBL-88-4"><col 
+id="TBL-88-5"><col 
+id="TBL-88-6"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-88-1-"><td  style="text-align:left;" id="TBL-88-1-1"  
+class="td11"> <!--l. 47--><p class="noindent" >   </td><td  style="text-align:center; white-space:nowrap;" id="TBL-88-1-2"  
+class="td11">                                                                                                                                <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">P1</span></div>                                                                                                        </td><td  style="text-align:center; white-space:nowrap;" id="TBL-88-1-3"  
+class="td11">                                                                                                                               <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">R-prec</span></div>                                                                                                      </td><td  style="text-align:center; white-space:nowrap;" id="TBL-88-1-4"  
+class="td11">                                                                                                                               <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Recall</span></div>                                                                                                       </td><td  style="text-align:center; white-space:nowrap;" id="TBL-88-1-5"  
+class="td11">                                                                                                                               <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">MRR</span></div>                                                                                                       </td><td  style="text-align:center; white-space:nowrap;" id="TBL-88-1-6"  
+class="td11">                                                                                                                                <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">SR</span></div>
+
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-88-2-"><td  style="text-align:left;" id="TBL-88-2-1"  
+class="td11"> <!--l. 47--><p class="noindent" ><span 
+class="bchr8t-x-x-80">baseline</span> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-88-2-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5636                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-88-2-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5216                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-88-2-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.6768                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-88-2-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.6400                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-88-2-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.7535                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-88-3-"><td  style="text-align:left;" id="TBL-88-3-1"  
+class="td11"> <!--l. 47--><p class="noindent" ><span 
+class="bchr8t-x-x-80">J48</span>  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-88-3-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.6586 </span><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                                                                                                    </td><td  style="text-align:left; white-space:nowrap;" id="TBL-88-3-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5648 </span><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                                                                                                    </td><td  style="text-align:left; white-space:nowrap;" id="TBL-88-3-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.7253 </span><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                                                                                                    </td><td  style="text-align:left; white-space:nowrap;" id="TBL-88-3-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.7348 </span><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math>                                                                                                                                         </td><td  style="text-align:left; white-space:nowrap;" id="TBL-88-3-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.7989 </span><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                                                                                                    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-88-4-"><td  style="text-align:left;" id="TBL-88-4-1"  
+class="td11"> <!--l. 47--><p class="noindent" ><span 
+class="bchr8t-x-x-80">NB</span>   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-88-4-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4494 </span><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math>                                                                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-88-4-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4088 </span><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math>                                                                     </td><td  style="text-align:left; white-space:nowrap;" id="TBL-88-4-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.6948 </span><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-88-4-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.7278 </span><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-88-4-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.7710 </span><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-88-5-"><td  style="text-align:left;" id="TBL-88-5-1"  
+class="td11"> <!--l. 47--><p class="noindent" ><span 
+class="bchr8t-x-x-80">SVM</span> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-88-5-2"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.7998 </span><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-88-5-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.6718 </span><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-88-5-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.7556 </span><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-88-5-5"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8131 </span><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-88-5-6"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8240 </span><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math><!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math> </td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-88-6-"><td  style="text-align:left;" id="TBL-88-6-1"  
+class="td11"> <!--l. 47--><p class="noindent" >    </td></tr></table>
+    <div class="caption" 
+><span class="id">Table&#x00A0;6.9:       </span><span  
+class="content">Results       for       n-gram       based       concept       selection.
+<!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math>
+<!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25BE;</mo></math>
+and <!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>&#x00A0;indicate
+that  a  score  is  significantly  better,  worse,  or  statistically  indistinguishable
+respectively. The leftmost symbol represents the difference with the baseline, the
+next with the J48 run, and the rightmost with the NB run. </span></div><!--tex4ht:label?: x44-1040019 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 305--><p class="noindent" >Table&#x00A0;<a 
+href="#x44-1040019">6.9<!--tex4ht:ref: tbl:results:all --></a> shows the results of applying the machine learning algorithms on the
+extracted n-gram features. We note that J48 and SVM are able to improve upon the
+baseline results from the previous section, according to all metrics. The Naive Bayes
+classifier performs worse than the baseline in terms of P1 and R-precision. SVM clearly
+outperforms the other algorithms and is able to obtain scores that are very
+high, significantly better than the baseline on all metrics. Interestingly, we
+see that the use of n-gram based reranking has both a precision enhancing
+effect for J48 and SVM (the P1 and MRR scores go up) and a recall enhancing
+effect.
+<a 
+ id="x44-104002r162"></a>
+<h4 class="subsectionHead"><span class="titlemark">6.4.4    </span> <a 
+ id="x44-1050004"></a>Full Query-based Concept Selection</h4>
+<!--l. 334--><p class="noindent" >Next, we turn to a comparison of n-gram based and full-query based concept selection.
+Using the full-query based concept selection method, we take each query as is (an
+example is given in the last row of Table&#x00A0;<a 
+href="#x44-1030028">6.8<!--tex4ht:ref: tbl:example_ngram2 --></a>) and generate a single ranking to which
+we apply the machine learning models.
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 1--><p class="indent" >   <a 
+ id="x44-10500110"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+
+ <table id="TBL-90" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-90-1g"><col 
+id="TBL-90-1"><col 
+id="TBL-90-2"><col 
+id="TBL-90-3"><col 
+id="TBL-90-4"><col 
+id="TBL-90-5"><col 
+id="TBL-90-6"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-90-1-"><td  style="text-align:left;" id="TBL-90-1-1"  
+class="td11"> <!--l. 46--><p class="noindent" >   </td><td  style="text-align:center; white-space:nowrap;" id="TBL-90-1-2"  
+class="td11">                                                                                                                                <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">P1</span></div>                                                                                                        </td><td  style="text-align:center; white-space:nowrap;" id="TBL-90-1-3"  
+class="td11">                                                                                                                              <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">R-prec</span></div>                                                                                                      </td><td  style="text-align:center; white-space:nowrap;" id="TBL-90-1-4"  
+class="td11">                                                                                                                              <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Recall</span></div>                                                                                                      </td><td  style="text-align:center; white-space:nowrap;" id="TBL-90-1-5"  
+class="td11">                                                                                                                               <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">MRR</span></div>                                                                                                       </td><td  style="text-align:center; white-space:nowrap;" id="TBL-90-1-6"  
+class="td11">                                                                                                                                <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">SR</span></div>
+
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-90-2-"><td  style="text-align:left;" id="TBL-90-2-1"  
+class="td11"> <!--l. 46--><p class="noindent" ><span 
+class="bchr8t-x-x-80">baseline</span> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-90-2-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5636                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-90-2-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5216                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-90-2-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.6768                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-90-2-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.6400                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-90-2-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.7535                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-90-3-"><td  style="text-align:left;" id="TBL-90-3-1"  
+class="td11"> <!--l. 46--><p class="noindent" ><span 
+class="bchr8t-x-x-80">J48</span>  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-90-3-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.7152</span><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math>                                                                                                                                         </td><td  style="text-align:left; white-space:nowrap;" id="TBL-90-3-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5857</span><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                                                                                                    </td><td  style="text-align:left; white-space:nowrap;" id="TBL-90-3-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.6597</span><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                                                                                                    </td><td  style="text-align:left; white-space:nowrap;" id="TBL-90-3-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.6877</span><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                                                                                                    </td><td  style="text-align:left; white-space:nowrap;" id="TBL-90-3-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.7317</span><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                                                                                                    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-90-4-"><td  style="text-align:left;" id="TBL-90-4-1"  
+class="td11"> <!--l. 46--><p class="noindent" ><span 
+class="bchr8t-x-x-80">NB</span>   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-90-4-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.6925</span><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-90-4-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5897</span><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-90-4-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.6865</span><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-90-4-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.6989</span><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-90-4-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.7626</span><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">&#x2218;</mo></math>                                                                                   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-90-5-"><td  style="text-align:left;" id="TBL-90-5-1"  
+class="td11"> <!--l. 46--><p class="noindent" ><span 
+class="bchr8t-x-x-80">SVM</span> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-90-5-2"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8833</span><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-90-5-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8666</span><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-90-5-4"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8975</span><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-90-5-5"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.8406</span><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-90-5-6"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.9053</span><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-ord">&#x25B4;</mo></math> </td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-90-6-"><td  style="text-align:left;" id="TBL-90-6-1"  
+class="td11"> <!--l. 46--><p class="noindent" >    </td></tr></table>
+ <div class="caption" 
+><span class="id">Table&#x00A0;6.10: </span><span  
+class="content">Results for full query-based concept selection. </span></div><!--tex4ht:label?: x44-10500110 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 344--><p class="noindent" >Table&#x00A0;<a 
+href="#x44-10500110">6.10<!--tex4ht:ref: tbl:results:all:full --></a> shows the results when only the full query is used to generate a ranked list
+of concepts. We again observe that SVM significantly outperforms J48, NB, and the
+baseline. For both the J48 and NB classifiers we see a significant increase in precision
+(P1). Naive Bayes, for which precision was significantly worse than all other methods
+on n-gram based concept selection, performs significantly better than the other machine
+learning algorithms using full query reranking. The increase in precision comes at a loss
+in recall for NB. The MRR scores for J48 are no longer significantly higher than
+the baseline. Both J48 and NB produce fewer false positives when classifying
+full query data instead of n-gram based query data. This means that fewer
+incorrect concepts end up in the ranking which in turn results in a higher
+precision.
+<!--l. 364--><p class="indent" >   Interestingly, this increase in precision is not accompanied by a loss in recall.
+In particular, the SVM classifier is able to distinguish between correct and
+incorrect concepts when used on the full query data. These scores are the highest
+obtained so far and this approach is able to return almost 90% of all relevant
+concepts. This result is very encouraging and shows that the approach taken
+handles the mapping of search engine queries to the <a 
+href="thesis-emeijli3.html#LOD">LOD</a> cloud extremely
+well.
+                                                                   
+                                                                   
+<!--l. 3--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch6.html#thesis-emeijse32.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse33.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse31.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse31.html#tailthesis-emeijse31.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijse32.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse32.html"></a> 
+</body></html> 

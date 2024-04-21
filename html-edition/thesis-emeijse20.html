@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Experimental Setup</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch4.html#thesis-emeijse20.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse21.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse19.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse19.html#tailthesis-emeijse19.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse20.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">4.2    </span> <a 
+ id="x28-520002"></a>Experimental Setup</h3>
+<!--l. 5--><p class="noindent" >We aim to compare the effectiveness of the models listed in Table&#x00A0;<a 
+href="thesis-emeijch4.html#x26-470021">4.1<!--tex4ht:ref: tab:abbrevs --></a>, each of
+which was introduced in either the preceding section or in Chapter&#x00A0;<a 
+href="thesis-emeijch2.html#x11-100002">2<!--tex4ht:ref: chap:background --></a>.
+For all models, we use the resulting query model as estimated query part,
+<!--l. 5--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></math>,
+in Eq.&#x00A0;<a 
+href="thesis-emeijse9.html#x13-14003r2.10">2.10<!--tex4ht:ref: chapter04:eq:querymodel --></a>. All of the models have a number of parameters in common.
+In this chapter, we focus on varying these parameters and observing the
+effect on retrieval effectiveness. We consider the following parameters:
+<!--l. 12--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+mathvariant="bold-script">V</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo></math>,
+<!--l. 12--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">|</mo><mi 
+>R</mi><mo 
+class="MathClass-rel">|</mo></math>, and
+<!--l. 12--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></math>. See
+Section&#x00A0;<a 
+href="thesis-emeijse17.html#x24-450004">3.4<!--tex4ht:ref: sec:parameterest --></a> for their descriptions. Some of the feedback models under investigation
+require additional parameter settings. For MBF, and NLLR (cf. Eqs.&#x00A0;<a 
+href="thesis-emeijse10.html#x14-20001r2.16">2.16<!--tex4ht:ref: eq:mbf --></a> and <a 
+href="thesis-emeijse19.html#x27-50002r4.3">4.3<!--tex4ht:ref: eq:rel:smoothed --></a>) we set
+<!--l. 14--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>R</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>1</mn><mn>5</mn></math> and
+<!--l. 14--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>R</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>5</mn></math> respectively. For PRM
+(cf. Eq.&#x00A0;<a 
+href="thesis-emeijse10.html#x14-22003r2.27">2.27<!--tex4ht:ref: eq:PRM:RM --></a>), we set <!--l. 20--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03BC;</mi> <mo 
+class="MathClass-rel">=</mo> <mn>0</mn></math>,
+which effectively results in RM-0 estimated on parsimonious document models:
+<!--tex4ht:inline--><!--l. 22--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-op">&#x2026;</mo><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+mathvariant="bold-script">V</mi><mo 
+class="MathClass-rel">|</mo></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>&#x03B8;</mi><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">&#x221D;</mo></mtd><mtd 
+class="eqnarray-3">  <munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+>&#x220F;</mo>
+  </mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+mathvariant="bold-script">V</mi><mo 
+class="MathClass-rel">|</mo></mrow></munderover 
+> <mfrac><mrow 
+><mn>1</mn></mrow>
+<mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>R</mi><mo 
+class="MathClass-rel">|</mo></mrow></mfrac><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>D</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+>R</mi></mrow></munder 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo>&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">.</mo></mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(4.7)</mtext><mtext 
+   id="x28-52001r4.7"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                    </mtr></mtable>
+</math>
+<!--l. 30--><p class="nopar" >
+                                                                   
+                                                                   
+<!--l. 32--><p class="indent" >   In essence, Eq.&#x00A0;<a 
+href="#x28-52001r4.7">4.7<!--tex4ht:ref: eq:chap04:prm --></a> takes the middle ground between RM and MBF; it combines the
+estimation method of MBF with the document independence assumption of RM. For
+evaluation, we use the following diverse set of test collections
+     <ul class="itemize1">
+     <li class="itemize">TREC Robust 2004 (TREC-ROB-04),
+     </li>
+     <li class="itemize">TREC Relevance Feedback 2008 (TREC-RF-2008 and TREC-PRF-08), and
+     </li>
+     <li class="itemize">TREC Web 2009, using the Category B subset (TREC-WEB-09).</li></ul>
+<!--l. 42--><p class="noindent" >These collections were introduced in Section&#x00A0;<a 
+href="thesis-emeijse16.html#x23-380003">3.3<!--tex4ht:ref: sec:testcollections --></a>. The percentages and significance
+tests in the result tables in this chapter indicate the difference with respect to
+the baseline&#x2014;we use a &#x2018;*&#x2019; to indicate a significant difference, as detailed in
+Section&#x00A0;<a 
+href="thesis-emeijse15.html#x21-370002">3.2.2<!--tex4ht:ref: ssec:significance --></a>. In the next section we consider retrieval effectiveness using
+pseudo relevance feedback and in Section&#x00A0;<a 
+href="thesis-emeijse22.html#x30-610004">4.4<!--tex4ht:ref: sec:rfresults --></a> we turn to explicit relevance
+feedback.
+                                                                   
+                                                                   
+<!--l. 1--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch4.html#thesis-emeijse20.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse21.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse19.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse19.html#tailthesis-emeijse19.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijse20.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse20.html"></a> 
+</body></html> 

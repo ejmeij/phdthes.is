@@ -1,0 +1,1894 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Approach</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch6.html#thesis-emeijse30.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse31.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse29.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse29.html#tailthesis-emeijse29.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse30.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">6.2    </span> <a 
+ id="x42-880002"></a>Approach</h3>
+<!--l. 12--><p class="noindent" >Our approach for mapping search engine queries to concepts consists of two stages. In
+the first stage, we select a set of candidate concepts. In the second stage, we use
+supervised machine learning to classify each candidate concept as being intended by
+the query or not.
+<!--l. 17--><p class="indent" >   In order to find candidate concepts in the first stage, we leverage the textual
+descriptions (<span 
+class="ec-lmtt-10">rdfs:comment </span>and/or <span 
+class="ec-lmtt-10">dbpprop:abstract </span>in the case of DBpedia) of the
+concepts as each description of a concept may contain related words, synonyms, or
+alternative terms that refer to the concept. An example is given in Table&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860031">6.1<!--tex4ht:ref: tbl:example_conceptrep --></a>, while the
+Wikipedia article it is extracted from is shown in Figure&#x00A0;<a 
+href="thesis-emeijse29.html#x41-870012">6.2<!--tex4ht:ref: fig:barack --></a>. From this example it is
+clear that the use of such properties for retrieval improves recall (we find <span 
+class="bchrc8t-">B<span 
+class="small-caps">A</span><span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">C</span><span 
+class="small-caps">K</span></span>
+<span 
+class="bchrc8t-">O<span 
+class="small-caps">B</span><span 
+class="small-caps">A</span><span 
+class="small-caps">M</span><span 
+class="small-caps">A</span> </span>using the terms &#x201C;President of the United States&#x201D;) at the cost of precision (we
+also find <span 
+class="bchrc8t-">B<span 
+class="small-caps">A</span><span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">C</span><span 
+class="small-caps">K</span> O<span 
+class="small-caps">B</span><span 
+class="small-caps">A</span><span 
+class="small-caps">M</span><span 
+class="small-caps">A</span> </span>when searching for &#x201C;John McCain&#x201D;). In order to use the
+concept descriptions, we adopt a language modeling for information retrieval
+framework to create a ranked list of candidate concepts. This framework will be further
+introduced in Section&#x00A0;<a 
+href="#x42-890001">6.2.1<!--tex4ht:ref: ssec:ranking --></a>.
+<!--l. 32--><p class="indent" >   Since we are dealing with an ontology extracted from Wikipedia, we have several
+options with respect to which textual representation(s) we use. Natural possibilities
+include: (i)&#x00A0;the title of the article (similar to a lexical matching approach where only
+the <span 
+class="ec-lmtt-10">rdfs:label </span>is used), (ii)&#x00A0;the first sentence or paragraph of an article (where a
+definition should be provided according to the Wikipedia guidelines&#x00A0;[<a 
+href="thesis-emeijli2.html#Xurl:wikipedia:firstparagraph">342</a>]), (iii)&#x00A0;the
+full text of the article, (iv)&#x00A0;the anchor texts of the incoming hyperlinks from other
+articles, and (v)&#x00A0;a combination of any of these. For our experiments we aim to
+maximize recall and use the combination of all available fields with or without the
+incoming anchor texts. In Section&#x00A0;<a 
+href="thesis-emeijse33.html#x45-1080002">6.5.2<!--tex4ht:ref: ssec:fields --></a> we discuss the relative performance of each
+field and of their combinations.
+<!--l. 48--><p class="indent" >   For the first stage, we also vary the way we handle the query. In the simplest case,
+we take the query as is and retrieve concepts for the query in its entirety. As an
+alternative, we consider extracting all possible n-grams from the query, generating a
+ranked list for each, and merging the results. An example of what happens
+when we vary the query representation is given in Table&#x00A0;<a 
+href="#x42-880012">6.2<!--tex4ht:ref: tbl:example_ngram --></a> for the query
+&#x201C;obama white house.&#x201D; From this example it is clear why we differentiate between
+the two ways of representing the query. If we simply use the full query on its
+own (first row), we miss the relevant concept <span 
+class="bchrc8t-">B<span 
+class="small-caps">A</span><span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">C</span><span 
+class="small-caps">K</span> O<span 
+class="small-caps">B</span><span 
+class="small-caps">A</span><span 
+class="small-caps">M</span><span 
+class="small-caps">A</span></span>. However, as
+can be seen from the last two rows, considering all n-grams also introduces
+noise.
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 26--><p class="indent" >   <a 
+ id="x42-880012"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="tabular">
+ <table id="TBL-71" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-71-1g"><col 
+id="TBL-71-1"><col 
+id="TBL-71-2"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-71-1-"><td  style="text-align:left; white-space:nowrap;" id="TBL-71-1-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">N-gram (</span><!--l. 30--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math><span 
+class="bchr8t-x-x-80">)   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-71-1-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">Candidate concepts                                                                                      </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-71-2-"><td  style="text-align:left; white-space:nowrap;" id="TBL-71-2-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">obama white house                                                                                                                                                    </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-71-2-2"  
+class="td11"> <span 
+class="bchbc8t-x-x-80">W<span 
+class="small-caps">H</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span> H<span 
+class="small-caps">O</span><span 
+class="small-caps">U</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">W<span 
+class="small-caps">H</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span> H<span 
+class="small-caps">O</span><span 
+class="small-caps">U</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span> S<span 
+class="small-caps">T</span><span 
+class="small-caps">A</span><span 
+class="small-caps">T</span><span 
+class="small-caps">I</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">P<span 
+class="small-caps">R</span><span 
+class="small-caps">E</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">D</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">T</span> C<span 
+class="small-caps">O</span><span 
+class="small-caps">O</span><span 
+class="small-caps">L</span><span 
+class="small-caps">I</span><span 
+class="small-caps">D</span><span 
+class="small-caps">G</span><span 
+class="small-caps">E</span></span><span 
+class="bchr8t-x-x-80">;                 </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-71-3-"><td  style="text-align:left; white-space:nowrap;" id="TBL-71-3-1"  
+class="td11">                                                                                               </td><td  style="text-align:left; white-space:nowrap;" id="TBL-71-3-2"  
+class="td11"> <span 
+class="bchrc8t-x-x-80">S<span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">S</span><span 
+class="small-caps">A</span><span 
+class="small-caps">T</span><span 
+class="small-caps">I</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span> W<span 
+class="small-caps">H</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span>                                                                                        </span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-71-4-"><td  style="text-align:left; white-space:nowrap;" id="TBL-71-4-1"  
+class="td
+11"> <span 
+class="bchr8t-x-x-80">obama white                                                                                                                                                              </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-71-4-2"  
+class="td11"> <span 
+class="bchrc8t-x-x-80">M<span 
+class="small-caps">I</span><span 
+class="small-caps">C</span><span 
+class="small-caps">H</span><span 
+class="small-caps">E</span><span 
+class="small-caps">L</span><span 
+class="small-caps">L</span><span 
+class="small-caps">E</span> O<span 
+class="small-caps">B</span><span 
+class="small-caps">A</span><span 
+class="small-caps">M</span><span 
+class="small-caps">A</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchbc8t-x-x-80">B<span 
+class="small-caps">A</span><span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">C</span><span 
+class="small-caps">K</span> O<span 
+class="small-caps">B</span><span 
+class="small-caps">A</span><span 
+class="small-caps">M</span><span 
+class="small-caps">A</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">D<span 
+class="small-caps">E</span><span 
+class="small-caps">M</span><span 
+class="small-caps">O</span><span 
+class="small-caps">C</span><span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">T</span><span 
+class="small-caps">I</span><span 
+class="small-caps">C</span> P<span 
+class="small-caps">R</span><span 
+class="small-caps">E</span>-<span 
+class="small-caps">E</span><span 
+class="small-caps">L</span><span 
+class="small-caps">E</span><span 
+class="small-caps">C</span><span 
+class="small-caps">T</span><span 
+class="small-caps">I</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span><span 
+class="small-caps">S</span> 2008</span><span 
+class="bchr8t-x-x-80">;   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-71-5-"><td  style="text-align:left; white-space:nowrap;" id="TBL-71-5-1"  
+class="td11">                                                                                               </td><td  style="text-align:left; white-space:nowrap;" id="TBL-71-5-2"  
+class="td11"> <span 
+class="bchrc8t-x-x-80">J<span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">U</span><span 
+class="small-caps">A</span><span 
+class="small-caps">R</span><span 
+class="small-caps">Y</span> 17                                                                                                  </span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-71-6-"><td  style="text-align:left; white-space:nowrap;" id="TBL-71-6-1"  
+class="td
+11"> <span 
+class="bchr8t-x-x-80">white house                                                                                                                                                               </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-71-6-2"  
+class="td11"> <span 
+class="bchbc8t-x-x-80">W<span 
+class="small-caps">H</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span> H<span 
+class="small-caps">O</span><span 
+class="small-caps">U</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">W<span 
+class="small-caps">H</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span> H<span 
+class="small-caps">O</span><span 
+class="small-caps">U</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span> S<span 
+class="small-caps">T</span><span 
+class="small-caps">A</span><span 
+class="small-caps">T</span><span 
+class="small-caps">I</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">S<span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">S</span><span 
+class="small-caps">A</span><span 
+class="small-caps">T</span><span 
+class="small-caps">I</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span> W<span 
+class="small-caps">H</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span></span><span 
+class="bchr8t-x-x-80">;                       </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-71-7-"><td  style="text-align:left; white-space:nowrap;" id="TBL-71-7-1"  
+class="td11">                                                                                               </td><td  style="text-align:left; white-space:nowrap;" id="TBL-71-7-2"  
+class="td11"> <span 
+class="bchrc8t-x-x-80">P<span 
+class="small-caps">R</span><span 
+class="small-caps">E</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">D</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">T</span> C<span 
+class="small-caps">O</span><span 
+class="small-caps">O</span><span 
+class="small-caps">L</span><span 
+class="small-caps">I</span><span 
+class="small-caps">D</span><span 
+class="small-caps">G</span><span 
+class="small-caps">E</span>                                                                                   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-71-8-"><td  style="text-align:left; white-space:nowrap;" id="TBL-71-8-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">obama                                                                                                                                                                        </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-71-8-2"  
+class="td11"> <span 
+class="bchbc8t-x-x-80">B<span 
+class="small-caps">A</span><span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">C</span><span 
+class="small-caps">K</span> O<span 
+class="small-caps">B</span><span 
+class="small-caps">A</span><span 
+class="small-caps">M</span><span 
+class="small-caps">A</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">M<span 
+class="small-caps">I</span><span 
+class="small-caps">C</span><span 
+class="small-caps">H</span><span 
+class="small-caps">E</span><span 
+class="small-caps">L</span><span 
+class="small-caps">L</span><span 
+class="small-caps">E</span> O<span 
+class="small-caps">B</span><span 
+class="small-caps">A</span><span 
+class="small-caps">M</span><span 
+class="small-caps">A</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">P<span 
+class="small-caps">R</span><span 
+class="small-caps">E</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">D</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">T</span><span 
+class="small-caps">I</span><span 
+class="small-caps">A</span><span 
+class="small-caps">L</span> E<span 
+class="small-caps">L</span><span 
+class="small-caps">E</span><span 
+class="small-caps">C</span><span 
+class="small-caps">T</span><span 
+class="small-caps">I</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span><span 
+class="small-caps">S</span> 2008</span><span 
+class="bchr8t-x-x-80">;        </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-71-9-"><td  style="text-align:left; white-space:nowrap;" id="TBL-71-9-1"  
+class="td11">                                                                                               </td><td  style="text-align:left; white-space:nowrap;" id="TBL-71-9-2"  
+class="td11"> <span 
+class="bchrc8t-x-x-80">H<span 
+class="small-caps">I</span><span 
+class="small-caps">L</span><span 
+class="small-caps">L</span><span 
+class="small-caps">A</span><span 
+class="small-caps">R</span><span 
+class="small-caps">Y</span> C<span 
+class="small-caps">L</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span><span 
+class="small-caps">T</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span>                                                                                         </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-71-10-"><td  style="text-align:left; white-space:nowrap;" id="TBL-71-10-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">white                                                                                                                                                                         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-71-10-2"  
+class="td11"> <span 
+class="bchrc8t-x-x-80">C<span 
+class="small-caps">O</span><span 
+class="small-caps">L</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span><span 
+class="small-caps">E</span><span 
+class="small-caps">L</span> W<span 
+class="small-caps">H</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">E<span 
+class="small-caps">D</span><span 
+class="small-caps">W</span><span 
+class="small-caps">A</span><span 
+class="small-caps">R</span><span 
+class="small-caps">D</span> W<span 
+class="small-caps">H</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">W<span 
+class="small-caps">H</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span> C<span 
+class="small-caps">O</span><span 
+class="small-caps">U</span><span 
+class="small-caps">N</span><span 
+class="small-caps">T</span><span 
+class="small-caps">Y</span></span><span 
+class="bchr8t-x-x-80">;                                    </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-71-11-"><td  style="text-align:left; white-space:nowrap;" id="TBL-71-11-1"  
+class="td11">                                                                                               </td><td  style="text-align:left; white-space:nowrap;" id="TBL-71-11-2"  
+class="td11"> <span 
+class="bchrc8t-x-x-80">W<span 
+class="small-caps">H</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span> P<span 
+class="small-caps">L</span><span 
+class="small-caps">A</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span><span 
+class="small-caps">S</span> R<span 
+class="small-caps">O</span><span 
+class="small-caps">A</span><span 
+class="small-caps">D</span> L<span 
+class="small-caps">I</span><span 
+class="small-caps">N</span><span 
+class="small-caps">E</span>                                                                            </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-71-12-"><td  style="text-align:left; white-space:nowrap;" id="TBL-71-12-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">house                                                                                                                                                                         </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-71-12-2"  
+class="td11"> <span 
+class="bchrc8t-x-x-80">H<span 
+class="small-caps">O</span><span 
+class="small-caps">U</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">R<span 
+class="small-caps">O</span><span 
+class="small-caps">Y</span><span 
+class="small-caps">A</span><span 
+class="small-caps">L</span> O<span 
+class="small-caps">P</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span><span 
+class="small-caps">A</span> H<span 
+class="small-caps">O</span><span 
+class="small-caps">U</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">S<span 
+class="small-caps">Y</span><span 
+class="small-caps">D</span><span 
+class="small-caps">N</span><span 
+class="small-caps">E</span><span 
+class="small-caps">Y</span> O<span 
+class="small-caps">P</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span><span 
+class="small-caps">A</span> H<span 
+class="small-caps">O</span><span 
+class="small-caps">U</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span></span><span 
+class="bchr8t-x-x-80">; </span><span 
+class="bchrc8t-x-x-80">F<span 
+class="small-caps">U</span><span 
+class="small-caps">L</span><span 
+class="small-caps">L</span> H<span 
+class="small-caps">O</span><span 
+class="small-caps">U</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span>           </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-71-13-"><td  style="text-align:left; white-space:nowrap;" id="TBL-71-13-1"  
+class="td11">                                                                                               </td></tr></table>
+</div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;6.2: </span><span  
+class="content">An example of generating n-grams for the query &#x201C;obama white house&#x201D;
+and retrieved candidate concepts, ranked by retrieval score. Correct concepts in
+boldface.</span></div><!--tex4ht:label?: x42-880012 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 62--><p class="indent" >   In the second stage, a supervised machine learning approach is used to classify each
+candidate concept as either relevant or non-relevant or, in other words, to
+decide which of the candidate concepts from the first stage should be kept as
+viable concepts for the query in question. In order to create training material
+for the machine learning algorithms, we asked human annotators to assess
+search engine queries and manually map them to relevant DBpedia concepts.
+More details about the test collection and manual annotations are provided in
+Section&#x00A0;<a 
+href="thesis-emeijse31.html#x43-960003">6.3<!--tex4ht:ref: section:expsetup --></a>. The machine learning algorithms we consider are Naive Bayes, Decision
+Trees, and Support Vector Machines&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:svm">326</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#Xbook:datamining">344</a>] which are further detailed in
+Section&#x00A0;<a 
+href="#x42-900002">6.2.2<!--tex4ht:ref: ssec:selecting --></a>. As input for the machine learning algorithms we need to extract a
+number of features. We consider features pertaining to the query, concept, their
+combination, and the session in which the query appears; these are specified in
+Section&#x00A0;<a 
+href="#x42-910003">6.2.3<!--tex4ht:ref: ssec:features --></a>.
+<a 
+ id="x42-88002r120"></a>
+<h4 class="subsectionHead"><span class="titlemark">6.2.1    </span> <a 
+ id="x42-890001"></a>Ranking Concepts</h4>
+<!--l. 101--><p class="noindent" >We base our concept ranking framework within the language modeling paradigm as
+introduced in Chapter&#x00A0;<a 
+href="thesis-emeijch2.html#x11-100002">2<!--tex4ht:ref: chap:background --></a>. For the n-gram based scoring method, we extract all n-grams from
+each query <!--l. 104--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="bold"><mi 
+>Q</mi></mstyle></math>
+(where <!--l. 104--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mn>1</mn> <mo 
+class="MathClass-rel">&#x2264;</mo> <mi 
+>n</mi> <mo 
+class="MathClass-rel">&#x2264;</mo><mo 
+class="MathClass-rel">|</mo><mstyle mathvariant="bold"><mi 
+>Q</mi></mstyle><mo 
+class="MathClass-rel">|</mo></math>)
+and create a ranked list of concepts for each individual n-gram,
+<!--l. 105--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math>. For the full
+query based reranking approach, we use the same method but add the additional constraint that
+<!--l. 107--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>n</mi> <mo 
+class="MathClass-rel">=</mo> <mo 
+class="MathClass-rel">|</mo><mstyle mathvariant="bold"><mi 
+>Q</mi></mstyle><mo 
+class="MathClass-rel">|</mo></math>. The problem of ranking
+DBpedia concepts given <!--l. 108--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math>
+can then be formulated as follows. Each concept
+<!--l. 109--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math> should be ranked
+according to the probability <!--l. 110--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>
+that it was generated by the n-gram, which can be rewritten using Bayes&#x2019; rule
+as:
+                                                                   
+                                                                   
+<!--tex4ht:inline--><!--l. 113--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">   <mfrac><mrow 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow>
+    <mrow 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfrac>   <mo 
+class="MathClass-punc">.</mo></mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(6.1)</mtext><mtext 
+   id="x42-89001r6.1"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                                           </mtr></mtable>
+</math>
+<!--l. 115--><p class="nopar" >
+<!--l. 117--><p class="indent" >   Here, for a fixed n-gram <!--l. 117--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math>,
+the term <!--l. 117--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>
+is the same for all concepts and can be ignored for ranking purposes. The term
+<!--l. 118--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>
+indicates the prior probability of selecting a concept, which we assume
+to be uniform. Assuming independence between the individual terms
+<!--l. 120--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>q</mi> <mo 
+class="MathClass-rel">&#x2208;</mo> <mi 
+>Q</mi></math> (cf.
+Eq.&#x00A0;<a 
+href="thesis-emeijse9.html#x13-13002r2.3">2.3<!--tex4ht:ref: chapter04:eq:ql --></a>) we obtain
+<!--tex4ht:inline--><!--l. 122--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">&#x221D;</mo></mtd><mtd 
+class="eqnarray-3">  <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x220F;</mo>
+  </mrow><mrow 
+><mi 
+>q</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+>Q</mi></mrow></munder 
+><mi 
+>P</mi><msup><mrow 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>q</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow><mrow 
+><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>q</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo></mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(6.2)</mtext><mtext 
+   id="x42-89002r6.2"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                                 </mtr></mtable>
+</math>
+<!--l. 125--><p class="nopar" >
+                                                                   
+                                                                   
+<!--l. 127--><p class="indent" >   where the probability <!--l. 127--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>q</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>
+is determined by looking at the textual relations as illustrated in Table&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860031">6.1<!--tex4ht:ref: tbl:example_conceptrep --></a>. It is
+smoothed using Bayes smoothing with a Dirichlet prior (cf. Eq.&#x00A0;<a 
+href="thesis-emeijse9.html#x13-13009r2.7">2.7<!--tex4ht:ref: eq:relwork:smoothed:documentmodel --></a>).
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 1--><p class="indent" >   <a 
+ id="x42-890033"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+<div class="tabular">
+ <table id="TBL-72" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-72-1g"><col 
+id="TBL-72-1"><col 
+id="TBL-72-2"><col 
+id="TBL-72-3"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-72-1-"><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-1-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchri8t-x-x-80">N-gram features</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-2-"><td  style="text-align:left; white-space:nowrap;" id="TBL-72-2-1"  
+class="td11"> <!--l. 11--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>L</mi><mi 
+>E</mi><mi 
+>N</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo> <mo 
+class="MathClass-rel">|</mo><mi 
+>Q</mi><mo 
+class="MathClass-rel">|</mo></math> </td><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-2-2"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Number of terms in the phrase </span><!--l. 12--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-3-"><td  style="text-align:left; white-space:nowrap;" id="TBL-72-3-1"  
+class="td11"> <!--l. 15--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>I</mi><mi 
+>D</mi><mi 
+>F</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>  </td><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-3-2"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Inverse document frequency of </span><!--l. 16--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-4-"><td  style="text-align:left; white-space:nowrap;" id="TBL-72-4-1"  
+class="td11"> <!--l. 19--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>W</mi><mi 
+>I</mi><mi 
+>G</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>  </td><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-4-2"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Weighted information gain using top-5 retrieved concepts</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-5-"><td  style="text-align:left; white-space:nowrap;" id="TBL-72-5-1"  
+class="td11"> <!--l. 23--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>Q</mi><mi 
+>E</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>  </td><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-5-2"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Number of times </span><!--l. 24--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math> <span 
+class="bchr8t-x-x-80">appeared as </span><span 
+class="bchri8t-x-x-80">whole </span><span 
+class="bchr8t-x-x-80">query in the query log</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-6-"><td  style="text-align:left; white-space:nowrap;" id="TBL-72-6-1"  
+class="td11"> <!--l. 27--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>Q</mi><mi 
+>P</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>  </td><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-6-2"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Number of times </span><!--l. 28--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math> <span 
+class="bchr8t-x-x-80">appeared as </span><span 
+class="bchri8t-x-x-80">partial </span><span 
+class="bchr8t-x-x-80">query in the query log</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-7-"><td  style="text-align:left; white-space:nowrap;" id="TBL-72-7-1"  
+class="td11"> <!--l. 31--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>Q</mi><mi 
+>E</mi><mi 
+>Q</mi><mi 
+>P</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>  </td><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-7-2"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Ratio between </span><!--l. 32--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>Q</mi><mi 
+>E</mi></mstyle></math> <span 
+class="bchr8t-x-x-80">and </span><!--l. 32--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>Q</mi><mi 
+>P</mi></mstyle></math></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-8-"><td  style="text-align:left; white-space:nowrap;" id="TBL-72-8-1"  
+class="td11"> <!--l. 35--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>S</mi><mi 
+>N</mi><mi 
+>I</mi><mi 
+>L</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>  </td><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-8-2"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Does a sub-n-gram of </span><!--l. 37--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math> <span 
+class="bchr8t-x-x-80">fully match with any concept label?</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-9-"><td  style="text-align:left; white-space:nowrap;" id="TBL-72-9-1"  
+class="td11"> <!--l. 40--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>S</mi><mi 
+>N</mi><mi 
+>C</mi><mi 
+>L</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>  </td><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-9-2"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Is a sub-n-gram of </span><!--l. 42--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math> <span 
+class="bchr8t-x-x-80">contained in any concept label?</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-10-"><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-10-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchri8t-x-x-80">Concept features</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-11-"><td  style="text-align:left; white-space:nowrap;" id="TBL-72-11-1"  
+class="td11"> <!--l. 49--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>I</mi><mi 
+>N</mi><mi 
+>L</mi><mi 
+>I</mi><mi 
+>N</mi><mi 
+>K</mi><mi 
+>S</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>  </td><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-11-2"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">The number of concepts linking to </span><!--l. 50--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-12-"><td  style="text-align:left; white-space:nowrap;" id="TBL-72-12-1"  
+class="td11"> <!--l. 53--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>O</mi><mi 
+>U</mi><mi 
+>T</mi><mi 
+>L</mi><mi 
+>I</mi><mi 
+>N</mi><mi 
+>K</mi><mi 
+>S</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>  </td><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-12-2"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">The number of concepts linking from </span><!--l. 54--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-13-"><td  style="text-align:left; white-space:nowrap;" id="TBL-72-13-1"  
+class="td11"> <!--l. 57--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>G</mi><mi 
+>E</mi><mi 
+>N</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>  </td><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-13-2"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Function of depth of </span><!--l. 58--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math> <span 
+class="bchr8t-x-x-80">in the SKOS category hierarchy</span><span 
+class="bchr8t-x-x-80">&#x00A0;[</span><a 
+href="thesis-emeijli2.html#Xwikify:cikm08"><span 
+class="bchr8t-x-x-80">230</span></a><span 
+class="bchr8t-x-x-80">]</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-14-"><td  style="text-align:left; white-space:nowrap;" id="TBL-72-14-1"  
+class="td11"> <!--l. 61--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>C</mi><mi 
+>A</mi><mi 
+>T</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>  </td><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-14-2"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Number of associated categories</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-15-"><td  style="text-align:left; white-space:nowrap;" id="TBL-72-15-1"  
+class="td11"> <!--l. 65--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>R</mi><mi 
+>E</mi><mi 
+>D</mi><mi 
+>I</mi><mi 
+>R</mi><mi 
+>E</mi><mi 
+>C</mi><mi 
+>T</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>  </td><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-15-2"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Number of redirect pages linking to </span><!--l. 66--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-16-"><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-16-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchri8t-x-x-80">N-gram + concept features</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-17-"><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-17-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><!--l. 78--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>T</mi><mi 
+>F</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo> <mfrac><mrow 
+><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow> 
+   <mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo></mrow></mfrac>  </math></div> </td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-72-17-3"  
+class="td11"> <!--l. 79--><p class="noindent" ><span 
+class="bchr8t-x-x-80">Relative phrase frequency of </span><!--l. 79--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math>
+  <span 
+class="bchr8t-x-x-80">in </span><!--l. 79--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math><span 
+class="bchr8t-x-x-80">,</span>
+   <span 
+class="bchr8t-x-x-80">normalized by length of </span><!--l. 79--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math>                                                                                                                                           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-18-"><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-18-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><!--l. 82--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mstyle mathvariant="italic"><mi 
+>T</mi><mi 
+>F</mi></mstyle></mrow><mrow 
+><mi 
+>f</mi></mrow></msub 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo> <mfrac><mrow 
+><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>c</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>f</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow> 
+    <mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>f</mi><mo 
+class="MathClass-rel">|</mo></mrow></mfrac>   </math></div> </td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-72-18-3"  
+class="td11"> <!--l. 83--><p class="noindent" ><!--l. 83--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" > <mtable  style="text-align:axis;"  
+equalrows="false" columnlines="" equalcolumns="false" class="array"><mtr><mtd 
+class="array"  columnalign="left"><mstyle 
+class="mbox"><mtext  >Relative&#x00A0;phrase&#x00A0;frequency&#x00A0;of&#x00A0;</mtext><mstyle 
+class="math"><mi 
+>Q</mi></mstyle><mtext  >&#x00A0;in&#x00A0;representation&#x00A0;</mtext><mstyle 
+class="math"><mi 
+>f</mi></mstyle><mtext  >&#x00A0;of&#x00A0;</mtext><mstyle 
+class="math"><mi 
+>c</mi></mstyle><mtext  >,</mtext></mstyle></mtd></mtr><mtr><mtd 
+class="array"  columnalign="left"><mstyle 
+class="mbox"><mtext  >normalized&#x00A0;by&#x00A0;length&#x00A0;of&#x00A0;</mtext><mstyle 
+class="math"><mi 
+>f</mi></mstyle><mtext  ></mtext></mstyle></mtd></mtr><!--@{}l--></mtable>            </math>                                                                                                                                                                    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-19-"><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-19-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><!--l. 88--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>P</mi><mi 
+>O</mi><msub><mrow 
+><mi 
+>S</mi></mrow><mrow 
+><mi 
+>n</mi></mrow></msub 
+></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo> <mi 
+>p</mi><mi 
+>o</mi><msub><mrow 
+><mi 
+>s</mi></mrow><mrow 
+><mi 
+>n</mi></mrow></msub 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-bin">&#x2215;</mo><mo 
+class="MathClass-rel">|</mo><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo></math></div> </td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-72-19-3"  
+class="td11"> <!--l. 89--><p class="noindent" ><span 
+class="bchr8t-x-x-80">Position of </span><!--l. 89--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>n</mi></math><span 
+class="bchr8t-x-x-80">th</span>
+   <span 
+class="bchr8t-x-x-80">occurrence of </span><!--l. 89--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math>
+  <span 
+class="bchr8t-x-x-80">in </span><!--l. 89--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math><span 
+class="bchr8t-x-x-80">,</span>
+   <span 
+class="bchr8t-x-x-80">normalized by length of </span><!--l. 89--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math>                                                                                                                                           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-20-"><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-20-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><!--l. 92--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>S</mi><mi 
+>P</mi><mi 
+>R</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math></div> </td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-72-20-3"  
+class="td11"> <!--l. 93--><p class="noindent" ><span 
+class="bchr8t-x-x-80">Spread   (distance   between   the   last   and   first   occurrences   of</span>
+   <!--l. 93--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math>
+  <span 
+class="bchr8t-x-x-80">in </span><!--l. 94--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math><span 
+class="bchr8t-x-x-80">)</span>                                                                                                                                                                                                                                                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-21-"><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-21-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><!--l. 98--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>T</mi><mi 
+>F</mi></mstyle><mo 
+class="MathClass-bin">&#x22C5;</mo><mstyle mathvariant="italic"><mi 
+>I</mi><mi 
+>D</mi><mi 
+>F</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math></div> </td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-72-21-3"  
+class="td11"> <!--l. 99--><p class="noindent" ><span 
+class="bchr8t-x-x-80">The                                       importance                                       of</span>
+   <!--l. 99--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math>
+  <span 
+class="bchr8t-x-x-80">for</span>
+   <!--l. 99--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math>                                                                                                                                                                    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-22-"><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-22-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><!--l. 102--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>R</mi><mi 
+>I</mi><mi 
+>D</mi><mi 
+>F</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math></div> </td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-72-22-3"  
+class="td11"> <!--l. 103--><p class="noindent" ><span 
+class="bchr8t-x-x-80">Residual IDF (difference between expected and observed IDF)</span>                                                                                                                                                                                                                                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-23-"><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-23-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><!--l. 106--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>&#x03C7;</mi></mrow><mrow 
+><mn>2</mn></mrow></msup 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math></div> </td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-72-23-3"  
+class="td11"> <!--l. 107--><p class="noindent" ><!--l. 107--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>&#x03C7;</mi></mrow><mrow 
+><mn>2</mn></mrow></msup 
+></math>
+  <span 
+class="bchr8t-x-x-80">test                     of                     independence                     between</span>
+   <!--l. 107--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math>
+  <span 
+class="bchr8t-x-x-80">in</span>
+   <!--l. 107--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math>
+  <span 
+class="bchr8t-x-x-80">and                                         in                                         collection</span>
+   <!--l. 107--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>C</mi><mi 
+>o</mi><mi 
+>l</mi><mi 
+>l</mi></math>                                                                                                                                                                    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-24-"><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-24-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><!--l. 110--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>Q</mi><mi 
+>C</mi><mi 
+>T</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math></div> </td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-72-24-3"  
+class="td11"> <!--l. 111--><p class="noindent" ><span 
+class="bchr8t-x-x-80">Does </span><!--l. 111--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>q</mi></math>
+  <span 
+class="bchr8t-x-x-80">contain the label of </span><!--l. 111--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math><span 
+class="bchr8t-x-x-80">?</span>                                                                                                                                                                                                                      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-25-"><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-25-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><!--l. 114--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>T</mi><mi 
+>C</mi><mi 
+>Q</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math></div> </td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-72-25-3"  
+class="td11"> <!--l. 115--><p class="noindent" ><span 
+class="bchr8t-x-x-80">Does the label of </span><!--l. 115--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math>
+  <span 
+class="bchr8t-x-x-80">contain </span><!--l. 115--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>q</mi></math><span 
+class="bchr8t-x-x-80">?</span>                                                                                                                                                                                                                                        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-26-"><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-26-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><!--l. 118--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>T</mi><mi 
+>E</mi><mi 
+>Q</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math></div> </td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-72-26-3"  
+class="td11"> <!--l. 119--><p class="noindent" ><span 
+class="bchr8t-x-x-80">Does the label of </span><!--l. 119--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math>
+  <span 
+class="bchr8t-x-x-80">equal </span><!--l. 119--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>q</mi></math><span 
+class="bchr8t-x-x-80">?</span>                                                                                                                                                                                                                                           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-27-"><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-27-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><!--l. 122--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>S</mi><mi 
+>C</mi><mi 
+>O</mi><mi 
+>R</mi><mi 
+>E</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math></div> </td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-72-27-3"  
+class="td11"> <!--l. 123--><p class="noindent" ><span 
+class="bchr8t-x-x-80">Retrieval                                        score                                        of</span>
+   <!--l. 123--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math>
+  <span 
+class="bchr8t-x-x-80">w.r.t.</span>
+   <!--l. 123--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math>                                                                                                                                                                    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-28-"><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-28-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><!--l. 126--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>R</mi><mi 
+>A</mi><mi 
+>N</mi><mi 
+>K</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math></div> </td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-72-28-3"  
+class="td11"> <!--l. 127--><p class="noindent" ><span 
+class="bchr8t-x-x-80">Retrieval                                         rank                                         of</span>
+   <!--l. 127--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math>
+  <span 
+class="bchr8t-x-x-80">w.r.t.</span>
+   <!--l. 127--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math>                                                                                                                                                                    </td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-29-"><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-29-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchri8t-x-x-80">History features</span></div>
+
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-30-"><td  style="text-align:left; white-space:nowrap;" id="TBL-72-30-1"  
+class="td11"> <!--l. 145--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>C</mi><mi 
+>C</mi><mi 
+>I</mi><mi 
+>H</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math>  </td><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-30-2"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Number of occurrences of label of </span><!--l. 146--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math> <span 
+class="bchr8t-x-x-80">appears as query in history</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-31-"><td  style="text-align:left; white-space:nowrap;" id="TBL-72-31-1"  
+class="td11"> <!--l. 149--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>C</mi><mi 
+>C</mi><mi 
+>C</mi><mi 
+>H</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math>  </td><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-31-2"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Number of occurrences of label of </span><!--l. 150--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math> <span 
+class="bchr8t-x-x-80">appears in any query in history</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-32-"><td  style="text-align:left; white-space:nowrap;" id="TBL-72-32-1"  
+class="td11"> <!--l. 153--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>C</mi><mi 
+>I</mi><mi 
+>H</mi><mi 
+>H</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math>  </td><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-32-2"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Number of times </span><!--l. 154--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math> <span 
+class="bchr8t-x-x-80">is retrieved as result for any query in history</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-33-"><td  style="text-align:left; white-space:nowrap;" id="TBL-72-33-1"  
+class="td11"> <!--l. 157--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>C</mi><mi 
+>C</mi><mi 
+>I</mi><mi 
+>H</mi><mi 
+>H</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math>  </td><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-33-2"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Number of times label of </span><!--l. 158--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math> <span 
+class="bchr8t-x-x-80">equals title of any result for any query in history</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-34-"><td  style="text-align:left; white-space:nowrap;" id="TBL-72-34-1"  
+class="td11"> <!--l. 161--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>C</mi><mi 
+>C</mi><mi 
+>C</mi><mi 
+>H</mi><mi 
+>H</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math>  </td><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-34-2"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Number of times title of any result for any query in history contains label of </span><!--l. 164--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-35-"><td  style="text-align:left; white-space:nowrap;" id="TBL-72-35-1"  
+class="td11"> <!--l. 167--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>Q</mi><mi 
+>C</mi><mi 
+>I</mi><mi 
+>H</mi><mi 
+>H</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math>  </td><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-35-2"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Number of times title of any result for any query in history equals </span><!--l. 169--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-36-"><td  style="text-align:left; white-space:nowrap;" id="TBL-72-36-1"  
+class="td11"> <!--l. 172--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>Q</mi><mi 
+>C</mi><mi 
+>C</mi><mi 
+>H</mi><mi 
+>H</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math>  </td><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-36-2"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Number of times title of any result for any query in history contains </span><!--l. 175--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-37-"><td  style="text-align:left; white-space:nowrap;" id="TBL-72-37-1"  
+class="td11"> <!--l. 178--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>Q</mi><mi 
+>C</mi><mi 
+>I</mi><mi 
+>H</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math>  </td><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-37-2"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Number of times </span><!--l. 179--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math> <span 
+class="bchr8t-x-x-80">appears as query in history</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-38-"><td  style="text-align:left; white-space:nowrap;" id="TBL-72-38-1"  
+class="td11"> <!--l. 182--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>Q</mi><mi 
+>C</mi><mi 
+>C</mi><mi 
+>H</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mstyle></math>  </td><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-38-2"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Number of times </span><!--l. 183--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math> <span 
+class="bchr8t-x-x-80">appears in any query in history</span></div>
+
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-39-"><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-39-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-40-"><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-72-40-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-72-41-"><td  style="text-align:left; white-space:nowrap;" id="TBL-72-41-1"  
+class="td11">                                                                                      </td></tr></table>
+                                                                   
+</div>
+<br />  <div class="caption" 
+><span class="id">Table&#x00A0;6.3:   </span><span  
+class="content">Features   used,   grouped   by   type.   Detailed   descriptions   in
+Section&#x00A0;<a 
+href="#x42-910003">6.2.3<!--tex4ht:ref: ssec:features --></a>.</span></div><!--tex4ht:label?: x42-890033 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<a 
+ id="x42-89004r140"></a>
+<h4 class="subsectionHead"><span class="titlemark">6.2.2    </span> <a 
+ id="x42-900002"></a>Learning to Select Concepts</h4>
+<!--l. 138--><p class="noindent" >Once we have obtained a ranked list of possible concepts for each n-gram, we turn
+to concept selection. In this stage we need to decide which of the candidate
+concepts are most viable. We use a supervised machine learning approach that
+takes as input a set of labeled examples (query to concept mappings) and
+several features of these examples (detailed below). More formally, each query
+<!--l. 143--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="bold"><mi 
+>Q</mi></mstyle></math> is associated with a
+ranked list of concepts <!--l. 144--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="bold"><mi 
+>c</mi></mstyle></math>
+and a set of associated relevance assessments for the concepts. The latter
+is created by considering all concepts that any annotator used to map
+<!--l. 147--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="bold"><mi 
+>Q</mi></mstyle></math> to
+<!--l. 147--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math>. If a
+concept was not selected by any of the annotators, we consider it to be non-relevant for
+<!--l. 149--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="bold"><mi 
+>Q</mi></mstyle></math>. Then,
+for each query in the set of annotated queries, we consider each combination of n-gram
+<!--l. 152--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math> and
+concept <!--l. 152--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math>
+an instance for which we create a feature vector.
+<!--l. 158--><p class="indent" >   The goal of the machine learning algorithm is to learn a function that outputs a
+relevance status for any new n-gram and concept pair given a feature vector of this new
+instance. We choose to compare a <a 
+ id="section*.50"></a>naive bayes (<a 
+href="thesis-emeijli3.html#NB">NB</a>) classifier, with a <a 
+ id="section*.51"></a>support vector
+machine (<a 
+href="thesis-emeijli3.html#SVM">SVM</a>) classifier and a decision tree classifier (J48)&#x2014;a set representative of the
+state-of-the-art in classification. These algorithms will be further introduced in
+Section&#x00A0;<a 
+href="thesis-emeijse31.html#x43-990003">6.3.3<!--tex4ht:ref: chapter05:sec:parameters --></a>.
+<a 
+ id="x42-90001r142"></a>
+<h4 class="subsectionHead"><span class="titlemark">6.2.3    </span> <a 
+ id="x42-910003"></a>Features Used</h4>
+<!--l. 173--><p class="noindent" >We employ several <span 
+class="bchri8t-">types </span>of features, each associated with either an n-gram,
+concept, their combination, or the search history. Unless indicated otherwise,
+when determining the features, we consider any consecutive terms in
+<!--l. 176--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math> as a
+phrase, that is, we do not assume term independence.
+<h5 class="subsubsectionHead"><a 
+ id="x42-920003"></a>N-gram Features</h5>
+<!--l. 179--><p class="noindent" >These features are based on information from an n-gram and are listed in Table&#x00A0;<a 
+href="#x42-890033">6.3<!--tex4ht:ref: tbl:features:ngram --></a> (first
+group). <!--l. 180--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>I</mi><mi 
+>D</mi><mi 
+>F</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>
+indicates the relative number of concepts in which
+<!--l. 181--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math> occurs, which is
+                                                                   
+                                                                   
+defined as <!--l. 182--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>I</mi><mi 
+>D</mi><mi 
+>F</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo><mo class="qopname"> log</mo><!--nolimits--> <mfenced separators="" 
+open="("  close=")" ><mrow><mo 
+class="MathClass-rel">|</mo><mi 
+>C</mi><mi 
+>o</mi><mi 
+>l</mi><mi 
+>l</mi><mo 
+class="MathClass-rel">|</mo><mo 
+class="MathClass-bin">&#x2215;</mo><mstyle mathvariant="italic"><mi 
+>d</mi><mi 
+>f</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfenced></math>, where
+<!--l. 183--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">|</mo><mi 
+>C</mi><mi 
+>o</mi><mi 
+>l</mi><mi 
+>l</mi><mo 
+class="MathClass-rel">|</mo></math> indicates the total number
+of concepts and <!--l. 184--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>d</mi><mi 
+>f</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math> the number
+of concepts in which <!--l. 184--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math>
+occurs&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:baeza">18</a>]. <!--l. 185--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>W</mi><mi 
+>I</mi><mi 
+>G</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>
+indicates the weighted information gain, which was proposed by&#x00A0;Zhou
+and Croft&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2007:zhou">359</a>] as a predictor of the retrieval performance of a query.
+It uses the set of all candidate concepts retrieved for this n-gram,
+<!--l. 190--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>C</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></math>, and determines the
+relative probability of <!--l. 190--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math>
+occurring in these documents as compared to the collection. Formally:
+   <div class="math-display"><!--l. 192--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" ><mrow 
+>
+                        <mstyle mathvariant="italic"><mi 
+>W</mi><mi 
+>I</mi><mi 
+>G</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo> <mfrac><mrow 
+>  <mfrac><mrow 
+><mn>1</mn></mrow> 
+<mrow 
+><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>C</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo></mrow></mfrac><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>c</mi><mo 
+class="MathClass-rel">&#x2208;</mo><msub><mrow 
+><mi 
+>C</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow></munder 
+><mo class="qopname">log</mo><!--nolimits--><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-bin">&#x2212;</mo><mo class="qopname">log</mo><!--nolimits--><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow> 
+                   <mrow 
+><mo class="qopname">log</mo><!--nolimits--><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfrac>                   <mo 
+class="MathClass-punc">.</mo>
+</mrow></math></div>
+<!--l. 195--><p class="nopar" > <!--l. 196--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>Q</mi><mi 
+>E</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math> and
+<!--l. 196--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>Q</mi><mi 
+>P</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math> indicate the number
+of times the n-gram <!--l. 197--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math>
+appears in the entire query logs as a complete or partial query respectively.
+<h5 class="subsubsectionHead"><a 
+ id="x42-930003"></a>Concept Features</h5>
+<!--l. 201--><p class="noindent" >Table&#x00A0;<a 
+href="#x42-890033">6.3<!--tex4ht:ref: tbl:features:concept --></a> (second group) lists the features related to a DBpedia concept. This set of
+features is related to the knowledge we have of the candidate concept, such as the
+number of other concepts linking to or from it, the number of associated categories (the
+count of the DBpedia property <span 
+class="ec-lmtt-10">skos:subject</span>), and the number of redirect pages
+pointing to it (the DBpedia property <span 
+class="ec-lmtt-10">dbpprop:redirect</span>).
+<h5 class="subsubsectionHead"><a 
+ id="x42-940003"></a>N-gram + Concept Features</h5>
+<!--l. 210--><p class="noindent" >This set of features considers the combination of an n-gram and a concept (Table&#x00A0;<a 
+href="#x42-890033">6.3<!--tex4ht:ref: tbl:features:ngramdoc --></a>,
+third group). We consider the relative frequency of occurrence of the n-gram as a
+phrase in the Wikipedia article corresponding to the concept, in the separate document
+representations (title, content, anchor texts, first sentence, and first paragraph of the
+Wikipedia article), the position of the first occurrence of the n-gram, the distance
+between the first and last occurrence, and various IR-based measures&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:baeza">18</a>]. Of these,
+                                                                   
+                                                                   
+<!--l. 218--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="italic"><mi 
+>R</mi><mi 
+>I</mi><mi 
+>D</mi><mi 
+>F</mi></mstyle></math>&#x00A0;[<a 
+href="thesis-emeijli2.html#XVLC:1995:church">68</a>]
+is the difference between expected and observed IDF for a concept, which is defined
+as
+   <div class="math-display"><!--l. 220--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" ><mrow 
+>
+                      <mstyle mathvariant="italic"><mi 
+>R</mi><mi 
+>I</mi><mi 
+>D</mi><mi 
+>F</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo><mo class="qopname"> log</mo><!--nolimits--> <mfenced separators="" 
+open="("  close=")" ><mrow> <mfrac><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>C</mi><mi 
+>o</mi><mi 
+>l</mi><mi 
+>l</mi><mo 
+class="MathClass-rel">|</mo></mrow>
+<mrow 
+><mstyle mathvariant="italic"><mi 
+>d</mi><mi 
+>f</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfrac></mrow></mfenced><mo 
+class="MathClass-bin">+</mo><mo class="qopname">log</mo><!--nolimits--> <mfenced separators="" 
+open="("  close=")" ><mrow><mn>1</mn><mo 
+class="MathClass-bin">&#x2212;</mo><mo class="qopname">exp</mo><!--nolimits--> <mfenced separators="" 
+open="("  close=")" ><mrow><mfrac><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mstyle mathvariant="italic"><mi 
+>n</mi></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>C</mi><mi 
+>o</mi><mi 
+>l</mi><mi 
+>l</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow>
+     <mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>C</mi><mi 
+>o</mi><mi 
+>l</mi><mi 
+>l</mi><mo 
+class="MathClass-rel">|</mo></mrow></mfrac>   </mrow></mfenced></mrow></mfenced><mo 
+class="MathClass-punc">.</mo>
+</mrow></math></div>
+<!--l. 223--><p class="nopar" > We also consider whether the label of the concept (<span 
+class="ec-lmtt-10">rdfs:label</span>) matches
+<!--l. 225--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math> in
+any way and we include the retrieval score and rank as determined by using
+Eq.&#x00A0;<a 
+href="#x42-89002r6.2">6.2<!--tex4ht:ref: eq:retrieval --></a>.
+<h5 class="subsubsectionHead"><a 
+ id="x42-950003"></a>History Features</h5>
+<!--l. 228--><p class="noindent" >Finally, we consider features based on the previous queries that were issued in the same
+session (Table&#x00A0;<a 
+href="#x42-890033">6.3<!--tex4ht:ref: tbl:features:history --></a>, fourth group). These features indicate whether the current
+candidate concept or n-gram occurs (partially) in the previously issued queries or
+retrieved candidate concepts respectively.
+<!--l. 234--><p class="noindent" >In Section&#x00A0;<a 
+href="thesis-emeijse32.html#x44-1010004">6.4<!--tex4ht:ref: sec:results --></a> we compare the effectiveness of the feature types listed above for our
+task, whilst in Section&#x00A0;<a 
+href="thesis-emeijse33.html#x45-1180005">6.5.5<!--tex4ht:ref: ssec:featureselection --></a> we discuss the relative importance of each individual
+feature.
+                                                                   
+                                                                   
+<!--l. 3--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch6.html#thesis-emeijse30.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse31.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse29.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse29.html#tailthesis-emeijse29.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijse30.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse30.html"></a> 
+</body></html> 

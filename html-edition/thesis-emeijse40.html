@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Implications for Future Work</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch8.html#thesis-emeijse40.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse39.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse39.html#tailthesis-emeijse39.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse40.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">8.2    </span> <a 
+ id="x55-1280002"></a>Implications for Future Work</h3>
+<!--l. 124--><p class="noindent" >There exist several unexplored avenues of research that are either opened or have not
+yet been fully addressed by the work presented in this thesis. Here we list these, in no
+particular order.
+<!--l. 127--><p class="indent" >   In Chapters&#x00A0;<a 
+href="thesis-emeijch4.html#x26-470004">4<!--tex4ht:ref: chap:relfb --></a>,&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a>, and&#x00A0;<a 
+href="thesis-emeijch7.html#x47-1210007">7<!--tex4ht:ref: chap:cikm2010 --></a>, we have measured the &#x201C;quality&#x201D; of query models by
+their resulting retrieval performance. While one could argue that improving
+end-to-end retrieval performance should be the ultimate goal of improving query
+model estimations, other ways by which to explicitly measure the quality of the
+query models themselves should be investigated. Examples of such measures
+would include perplexity measures or scores related to query clarity&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2002:cronen">84</a>].
+What existing measures cannot account for, however, is an intrinsic measure
+of <span 
+class="bchri8t-">diversity </span>with which different topical aspects of a query model could be
+quantified.
+<!--l. 152--><p class="indent" >   In Chapter&#x00A0;<a 
+href="thesis-emeijch7.html#x47-1210007">7<!--tex4ht:ref: chap:cikm2010 --></a> we have used a mapping from queries to concepts to automatically
+estimate query models and shown that this resulted in improved retrieval
+performance. Besides having the potential of automatically improving the retrieval
+performance on certain topics we believe that, similar to our observations in
+Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a>, the biggest improvements may be realized when a user selects the most
+relevant concepts. Future work should indicate if this is a valid assumption and
+whether such conceptual representations are appreciated by and useful to an end
+user.
+<!--l. 156--><p class="indent" >   In Chapters&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a> and&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860006">6<!--tex4ht:ref: chap:linkingconcepts --></a> we have obtained an explicit conceptual representation of the
+query. Several ideas may be employed to improve the performance of this step. For
+example, a form of query segmentation could be used to identify significant phrases in
+the queries&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2010:hagen">118</a>]. Such information could then be used to inform the conceptual
+mapping process. Additional features can also be added, for example structural ones
+such as those pertaining to the structure of the ontology. Although we have found that
+the method presented in Chapter&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860006">6<!--tex4ht:ref: chap:linkingconcepts --></a>&#x00A0;obtained convincing results and improvements
+over the two baselines, we believe that further improvements may be obtained by
+considering the graph structure of DBpedia (or the <a 
+href="thesis-emeijli3.html#LOD">LOD</a> cloud in general). One example
+of such an improvement could be to use the candidate concepts and the graph
+structure to &#x201C;zoom in&#x201D; on a relevant subgraph of the knowledge structure.
+This information could subsequently be used for disambiguation purposes,
+by determining the concepts closest to or contained in this graph. Indeed, in
+the work presented in this thesis, we have not made any explicit use of any
+relations (known, discovered, or otherwise) between concepts. In&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2008:trieschnigg">317</a>] we have
+introduced a method which uses language modeling estimations to determine the
+                                                                   
+                                                                   
+relatedness of two concepts, an approach which is taken further by&#x00A0;Trieschnigg
+<span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XBIOINF:2009:trieschnigg">318</a>]. Such estimations effectively &#x201C;anchor&#x201D; the perceived meaning of
+concepts in the language use surrounding each concept and we believe that this
+avenue of research deserves further investigation when mapping queries to
+concepts. Furthermore, related concepts may also be used to perform a kind
+of &#x201C;semantic smoothing,&#x201D; in the context of our proposed conceptual query
+models.
+<!--l. 164--><p class="indent" >   Our task definition in Chapter&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860006">6<!--tex4ht:ref: chap:linkingconcepts --></a>&#x00A0;required fairly strict matches between the
+queries and DBpedia concepts, comparable to finding <span 
+class="ec-lmtt-10">skos:exactMatch </span>or even
+<span 
+class="ec-lmtt-10">owl:equivalentClass </span>relations in an ontology matching task. However, our task can
+also be interpreted in a more liberal sense, where not only exact matches but also
+semantically related concepts are suggested&#x00A0;[<a 
+href="thesis-emeijli2.html#Xsemsearch:2010:balog">26</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#Xsemsearch:2009:meij">218</a>]. For example, when a query
+contains a book title that is not represented by a concept in DBpedia, we could suggest
+its author (assuming the book title is mentioned in the author&#x2019;s Wikipedia page).
+Similarly, instances for which no concept is found can be linked to a more general
+concept. We believe that our approach can be adapted to incorporate such semantically
+related general instances of a specific concept could be defined as a correct concept for
+mapping.
+<!--l. 166--><p class="indent" >   One other aspect that we intend to investigate in the context of Chapter&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860006">6<!--tex4ht:ref: chap:linkingconcepts --></a>&#x00A0;is how to
+incorporate information from other parts of the <a 
+href="thesis-emeijli3.html#LOD">LOD</a> cloud. Our current approach has
+focused on DBpedia, which might be too limited for some queries. We have shown
+in&#x00A0;[<a 
+href="thesis-emeijli2.html#Xsemsearch:2010:balog">26</a>] that, although DBpedia covers the open domain well, it does not exhaustively
+cover entity-related information. Future work should indicate whether traversing links
+to other, connected knowledge repositories would yield additional relevant concepts. It
+would also be interesting to consider more &#x201C;noisy&#x201D; types of concept languages that were
+excluded from the thesis, such as Twitter hashtags or del.icio.us tags&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2010:efron">96</a>]. Another
+interesting angle would be to consider a form of automatic keyphrase extraction in this
+context&#x00A0;[<a 
+href="thesis-emeijli2.html#XWWW:2009:grineva">116</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XCIKM:2009:Meij">220</a>]. Recent research into supervised topic models and labeled
+LDA&#x00A0;[<a 
+href="thesis-emeijli2.html#XNIPS:2007:blei">39</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XEMNLP:2009:rammage">255</a>], as well as work done for word sense disambiguation&#x00A0;[<a 
+href="thesis-emeijli2.html#XEMNLP:2007:boyd">44</a>] and topic
+identification&#x00A0;[<a 
+href="thesis-emeijli2.html#XCONLL:2009:coursey">80</a>] could also provide an interesting link between observed text and
+concept languages.
+<!--l. 174--><p class="indent" >   Furthermore, another abstraction layer may be imposed upon concepts in the form
+of concept <span 
+class="bchri8t-">types</span>. Examples of such types are sets of Wikipedia articles, grouped together
+by a common category or by a shared infobox. In previous work we have shown that
+information pertaining to such concept types can be useful for generating query
+suggestions for rare or unseen queries&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2009:meij">217</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#Xsemsearch:2009:meij">218</a>] and query log analysis&#x00A0;[<a 
+href="thesis-emeijli2.html#XISWC:2009:mika">227</a>]. In this
+thesis we have solely looked at concepts in their own right, discarding any potential
+type-based information. If and how this kind of information can be used to
+improve ad hoc retrieval is an interesting continuation of work presented in the
+thesis.
+<!--l. 176--><p class="indent" >   Recently, several evaluation campaigns have started to investigate methods for
+retrieving entities, a task known as entity finding&#x00A0;[<a 
+href="thesis-emeijli2.html#XTREC:2009:entity">25</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XINEX:2007:devries">87</a>]. Both of these define entities
+                                                                   
+                                                                   
+as Wikipedia articles, much in the same way as we have used Wikipedia articles as
+concepts. So, phrased in this way, the goal is not to use Wikipedia based information for
+ad hoc retrieval but rather the other way around: use documents as evidence towards
+concept retrieval. Some of the models presented in this thesis (for example
+those presented in Chapter&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860006">6<!--tex4ht:ref: chap:linkingconcepts --></a>) can be modified or applied to this new task.
+Another interesting application would be so-called undirected informational
+queries&#x00A0;[<a 
+href="thesis-emeijli2.html#XWWW:2004:rose">270</a>], where the information need is &#x201C;open&#x201D; and the user is solely
+interested in learning more on a certain topic. We are currently only taking the
+first steps in these new directions and future work should indicate in which
+ways the methods and models developed in the thesis can be applied to such
+tasks.
+<!--l. 185--><p class="indent" >   Finally, answering information needs which contain an explicit relationship type
+between concepts is a current research topic, as witnessed by a dedicated task at the
+recently launched TREC Entity Track. As we have shown in&#x00A0;[<a 
+href="thesis-emeijli2.html#Xsemsearch:2010:balog">26</a>], this particular task is
+currently one of the best candidates for developing techniques which will bridge the
+gap between semantic web technologies and information retrieval. In [<a 
+href="thesis-emeijli2.html#Xsemsearch:2010:balog">26</a>] we further
+show that both semantic web and <a 
+href="thesis-emeijli3.html#IR">IR</a> approaches fair well on the task of related entity
+finding, with each yielding unique sets of relevant results. We have argued then and
+maintain the position now that semantic web and <a 
+href="thesis-emeijli3.html#IR">IR</a> are two sides of the same coin.
+Especially with the advent of DBpedia, YAGO, and, more generically, the LOD cloud,
+semantic web requires <a 
+href="thesis-emeijli3.html#IR">IR</a> techniques and methodologies for handling the growing
+volumes of data, whereas <a 
+href="thesis-emeijli3.html#IR">IR</a> needs a form of semantic anchoring of the obtained
+results.
+                                                                   
+                                                                   
+<!--l. 15--><p class="indent" >   <a 
+ id="likesection.55"></a><a 
+ id="Q1-55-208"></a>
+                                                                   
+                                                                   
+<!--l. 1--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch8.html#thesis-emeijse40.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse39.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse39.html#tailthesis-emeijse39.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijse40.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse40.html"></a> 
+</body></html> 

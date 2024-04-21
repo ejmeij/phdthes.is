@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Summary and Conclusions</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch4.html#thesis-emeijse23.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse22.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse22.html#tailthesis-emeijse22.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse23.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">4.5    </span> <a 
+ id="x31-670005"></a>Summary and Conclusions</h3>
+<!--l. 41--><p class="noindent" >Relevance assessments by a user are an important and valuable source of information
+for retrieval. In a language modeling setting, various methods have been proposed to
+estimate query models from them. In this chapter we have considered several core
+relevance feedback approaches for query modeling. Some of these models base their
+estimations on the set of feedback documents, whereas others base them on each
+individual document. We have presented two novel query modeling methods that
+incorporate both sources of evidence in a principled manner. One of them, MLgen,
+employs the probability that the set of relevant documents generated the individual
+documents. The other, NLLR, leverages the distance between each relevant document
+and the set of relevant documents to inform the query model estimates and, as such, it
+is more general than methods proposed before. Our chief aim in this chapter was to
+present, analyze, and evaluate these two novel models. Our second aim was to
+present a thorough evaluation of various core relevance feedback models for
+language modeling under the same experimental conditions on a variety of test
+collections.
+<!--l. 47--><p class="indent" >   From performing a large number of experiments on four test collections using the
+same experimental conditions, we have arrived at a number of conclusions. First, under
+pseudo relevance feedback, there is a large variance in the resulting retrieval
+performance for different amounts of pseudo relevant documents, most notably on
+large, noisy collections, such as .GOV2 and ClueWeb09. The same effect, although less
+pronounced, is observed for the number of terms that are included in the query models.
+It is typical to compare retrieval performance of relevance feedback models
+using a fixed setting of documents and terms. Given the results presented
+in this chapter, however, this strategy is not recommended since the relative
+performance might change considerably for small changes in the values for
+these parameters. We have also concluded that the test collection itself is of
+influence on the relative performance of the models; there is no single model that
+outperforms the others on all test collections. Furthermore, the optimal values for
+<!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></math>,
+<!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">|</mo><mover 
+accent="true"><mrow 
+><mi 
+>R</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover><mo 
+class="MathClass-rel">|</mo></math>, and
+<!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+mathvariant="bold-script">V</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo></math> also
+varies between test collections. Moreover, we have found that the optimal values for
+these parameters vary when one optimizes either for early precision or for MAP. On the
+TREC Robust 2004 test collection, a collection commonly used when evaluating pseudo
+relevance feedback models, we find that the models under investigation behave very
+differently than on the more realistically sized web collections. Furthermore, on TREC
+                                                                   
+                                                                   
+Robust 2004 most models behave very similarly when varying the parameter
+settings we have investigated in this chapter. We found that RM-1 has the most
+robust performance. That is, although this model does not obtain the highest
+performance, it is only moderately sensitive to the various parameter settings and the
+terms it includes in the query models are changed only slightly when these
+values change. This stability is caused by the way RM-1 gathers evidence. First,
+it aggregates relevance feedback information per query term, after which it
+looks at the documents. Hence, the query terms function as a kind of &#x201C;filter,&#x201D;
+primarily causing the query terms to be reweighted. The novel models we
+presented earlier in this chapter, MLgen and NLLR, perform quite differently on
+pseudo relevance feedback. NLLR only slightly outperforms the baseline on
+TREC-PRF-08 and is substantially worse on the other test collections. MLgen, on the
+other hand, obtains close to the best performance on both TREC-PRF-08 and
+TREC-WEB-09.
+<!--l. 61--><p class="indent" >   As to the observations made when using explicit relevance feedback, here we
+found that the variance with respect to the number of feedback documents is
+much less pronounced. We also find that explicit relevance feedback does not
+unanimously help; some topics are hurt, whilst others are helped. This is a common
+finding when using pseudo relevance feedback, but the experimental results
+presented in this chapter have shown that this is also the case for explicit relevance
+feedback. However, when averaged over a number of topics, we find that all
+relevance feedback models improve over a QL baseline when using explicit
+relevance feedback information. The NLLR and PRM models obtain the highest
+performance using explicit relevance feedback, although MLgen and RM-0 also fare
+well.
+<!--l. 63--><p class="indent" >   Let&#x2019;s turn to the research question formulated earlier in this chapter.
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">RQ 1.</span> </dt><dd 
+class="description">What are effective ways of using relevance feedback information for query
+     modeling to improve retrieval performance?</dd></dl>
+<!--l. 72--><p class="noindent" >Using extensive experiments on three test collections (for pseudo relevance feedback) and
+one test collection (for explicit relevance feedback), we found that using relevance
+feedback models yields substantial, and in most cases significant, improvements over
+the baseline. In particular, we found that the PRM model obtains the highest scores on
+most test collections. Furthermore, we found that RM-1 yields the most robust
+performance (i.e., being the least sensitive to various parameter settings) under
+pseudo relevance feedback on two test collections. Finally, our proposed NLLR
+model is particularly suited for use in combination with explicit relevance
+feedback.
+<!--l. 75--><p class="indent" >   This general research question gave rise to the following subquestions.
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">RQ 1a.</span>  </dt><dd 
+class="description">Can  we  develop  a  relevance  feedback  model  that  uses  evidence  from
+                                                                   
+                                                                   
+     both the individual feedback documents and the set of feedback documents
+     as a whole? How does this model relate to other query modeling approaches
+     using  relevance  feedback?  Is  there  any  difference  when  using  explicit
+     relevance feedback instead of pseudo relevance feedback?</dd></dl>
+<!--l. 83--><p class="noindent" >We have presented two novel models that aim to make use of both of these sources of
+information and have compared to a number of other, established relevance feedback
+models for query modeling. In theoretical terms, we have shown that these related
+methods can be considered special cases of NLLR which, under explicit relevance
+feedback, is able to reap the benefits of all the methods it subsumes. Using pseudo
+relevant feedback documents, the performance of our models leaves room for
+improvement. Under explicit relevance feedback, however, we have shown that NLLR is
+particularly suitable for use in conjunction with this type of feedback. The other
+proposed model, MLgen, behaves similar to the related models, both under explicit and
+pseudo relevance feedback.
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">RQ 1b.</span>  </dt><dd 
+class="description">How do the models perform on different test collections? How robust
+     are our two novel models on the various parameters query modeling offers
+     and what behavior can we observe for the related models?</dd></dl>
+<!--l. 103--><p class="noindent" >We have found that there exists a large variance in the performance of all evaluated models
+on different test collections. Furthermore, the number of documents used for
+estimation and the number of terms included in the query models exhibit
+a considerable influence on the retrieval performance. Properly optimizing
+these parameters (either for recall- or precision-oriented measures) yields
+substantial and mostly significant improvements on the measure optimizing
+for.
+<!--l. 105--><p class="indent" >   In the next chapter, we introduce and evaluate a query modeling approach for
+annotated documents, i.e., documents annotated using concepts. This novel method
+builds upon the intuitions behind the relevance modeling approach, as well as MBF and
+PRM. Using our two-step method, we find that using information from the annotations
+helps to significantly improve end-to-end retrieval performance. After we have
+presented a method for linking queries to concepts in Chapter&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860006">6<!--tex4ht:ref: chap:linkingconcepts --></a>, we turn to using these
+concepts for query modeling (again using relevance feedback techniques) in
+Chapter&#x00A0;<a 
+href="thesis-emeijch7.html#x47-1210007">7<!--tex4ht:ref: chap:cikm2010 --></a>.
+                                                                   
+                                                                   
+<!--l. 21--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch4.html#thesis-emeijse23.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse22.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse22.html#tailthesis-emeijse22.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijse23.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse23.html"></a> 
+</body></html> 

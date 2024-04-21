@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Linking Free Text to Concepts</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch2.html#thesis-emeijse12.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse13.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse11.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse11.html#tailthesis-emeijse11.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse12.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">2.5    </span> <a 
+ id="x16-280005"></a>Linking Free Text to Concepts</h3>
+<!--l. 1205--><p class="noindent" >In the previous section we have introduced <a 
+href="thesis-emeijli3.html#IR">IR</a>-related ways of mapping free text in the
+form of queries and/or documents to concepts. In this section we focus on more general
+solutions to this problem. The approaches we discuss here are related to several areas
+of research. These include Semantic Web areas such as ontology learning, population,
+and matching and semantic annotation, but also natural language interfaces to
+databases.
+<a 
+ id="x16-28001r31"></a>
+<h4 class="subsectionHead"><span class="titlemark">2.5.1    </span> <a 
+ id="x16-290001"></a>Natural Language Interfaces to Databases</h4>
+<!--l. 1209--><p class="noindent" >The first body of related work that we discuss is from the field of natural language
+interfaces to databases&#x00A0;[<a 
+href="thesis-emeijli2.html#XIDEB:2010:yu">351</a>]. For example, BANKS&#x00A0;[<a 
+href="thesis-emeijli2.html#XICDE:2002:bhalotia">34</a>], DISCOVER&#x00A0;[<a 
+href="thesis-emeijli2.html#XVLDB:2002:hristidis">140</a>], and
+DBXplorer&#x00A0;[<a 
+href="thesis-emeijli2.html#XICDL:2002:agrawal">2</a>] allow novice users to query large, complex databases using natural
+language queries. Tata and Lohman&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGMOD:2008:Tata">312</a>] propose a similar keyword-based querying
+mechanism but with additional aggregation facilities. All of these systems perform some
+kind of matching between the input query and either the database schema itself, the
+contents of the database, or the graph of tuples created by the joins defined on the
+schema. The actual matching function varies per system and ranges from determining
+lexical matches (optionally using regular expressions or some form of edit distance) to
+using an inverted index and related IR techniques&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:baeza">18</a>]. These approaches
+are very similar to the ones we use to rank candidate concepts in Chapter&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860006">6<!--tex4ht:ref: chap:linkingconcepts --></a>.
+Later, we take these two types of matching as baselines to which we compare
+our own approach. In contrast to our approach, none of them apply machine
+learning.
+<!--l. 1213--><p class="indent" >   NAGA is a similar system that is more tied to the semantic web&#x00A0;[<a 
+href="thesis-emeijli2.html#XCIKM:2009:elbassuoni">99</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XICDE:2008:kasneci">160</a>]. It uses
+language modeling intuitions to determine a ranking of possible answer graphs, based
+on the frequency of occurrence of terms in the knowledge base. This scoring mechanism
+has been shown to perform better than that of BANKS on various test collections&#x00A0;[<a 
+href="thesis-emeijli2.html#XICDE:2008:kasneci">160</a>].
+NAGA does not support approximate matching and keyword-augmented queries. Our
+method presented in Chapter&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860006">6<!--tex4ht:ref: chap:linkingconcepts --></a>, on the other hand, takes as input any unstructured
+search engine query.
+<!--l. 1215--><p class="indent" >   Demidova <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2010:demidova">89</a>] present the evaluation of a system that maps keyword queries
+to structured query templates. The query terms are mapped to specific places in each
+template and the templates are subsequently ranked, explicitly taking diversity into
+account. They find that applying diversification to query template ranking achieves a
+significant reduction of result redundancy. Kaufmann and Bernstein&#x00A0;[<a 
+href="thesis-emeijli2.html#XJWS:2010:kaufmann">161</a>] perform a
+user study in which they evaluate various natural language interfaces to structured
+                                                                   
+                                                                   
+knowledge bases. Each interface has a different level of complexity and the
+task they ask their users to accomplish is to rewrite a set of factoid and list
+queries for each interface, with the goal of answering each question using
+the contents of the knowledge base. They find that for this task, the optimal
+strategy is a combination of structure (in the form of a fixed set of question
+beginnings, such as &#x201C;How many ...&#x201D; and &#x201C;Which ...&#x201D;) and free text. The task
+we present in Chapter&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860006">6<!--tex4ht:ref: chap:linkingconcepts --></a>&#x00A0;is more general than the task evaluated in&#x00A0;[<a 
+href="thesis-emeijli2.html#XJWS:2010:kaufmann">161</a>],
+in that we do not investigate if, how well, or how easily users&#x2019; queries are
+answered, but whether they are mapped to the right concepts. We postulate
+various benefits of these mappings other than to answering questions, such
+as to provide contextual suggestions, to start exploring the knowledge base,
+etc.
+<a 
+ id="x16-29001r33"></a>
+<h4 class="subsectionHead"><span class="titlemark">2.5.2    </span> <a 
+ id="x16-300002"></a>Ontology Matching</h4>
+<!--l. 1222--><p class="noindent" >In <span 
+class="bchri8t-">ontology matching</span>, relations between concepts from different ontologies are
+identified. The Ontology Alignment Evaluation Initiative has addressed this task
+since 2008&#x00A0;[<a 
+href="thesis-emeijli2.html#Xeuze:oaei08">59</a>]. Here, participants link a largely unstructured thesaurus to
+DBpedia. The relations to be obtained are based on a comparison of instances,
+concept labels, semantic structure, or ontological features such as constraints or
+properties, sometimes exploiting auxiliary external resources such as WordNet or an
+upper ontology&#x00A0;[<a 
+href="thesis-emeijli2.html#Xshvaiko:surr05">284</a>]. E.g., Wang <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#Xwang:lear08">334</a>] develop a machine learning
+technique to learn the relationship between the similarity of instances and the
+validity of mappings between concepts. Other approaches are designed for
+lexical comparison of concept labels in the source and target ontology and use
+neither semantic structure nor instances (e.g., [<a 
+href="thesis-emeijli2.html#XStoilos:stri05">304</a>]). Aleksovski <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XAleksovski:matc:06">3</a>] use a
+lexical comparison of labels to map both the source and the target ontology to a
+semantically rich external source of background knowledge. This type of matching is
+referred to as &#x201C;lexical matching&#x201D; and is used in cases where the ontologies do
+not have any instances or structure. Lexical matching is very similar to the
+task presented in Chapter&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860006">6<!--tex4ht:ref: chap:linkingconcepts --></a>, as we do not have explicit semantic structure in
+any of our queries. Indeed, the queries that we use are free text utterances
+instead of standardized concept labels, which makes our task intrinsically
+harder.
+<a 
+ id="x16-30001r34"></a>
+<h4 class="subsectionHead"><span class="titlemark">2.5.3    </span> <a 
+ id="x16-310003"></a>Ontology Learning, Ontology Population, and Semantic Annotation</h4>
+<!--l. 1246--><p class="noindent" >In the field of <span 
+class="bchri8t-">ontology learning and population</span>, concepts and/or their instances are
+learned from unstructured or semi-structured documents, together with links between
+concepts&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbuit:onto05">53</a>]. Well-known examples of ontology learning tools are OntoGen&#x00A0;[<a 
+href="thesis-emeijli2.html#XHI:2007:fortuna">103</a>]
+and TextToOnto&#x00A0;[<a 
+href="thesis-emeijli2.html#XICDM:2001:maedche">199</a>]. More related to our task is the work done on <span 
+class="bchri8t-">semantic</span>
+<span 
+class="bchri8t-">annotation</span>, the process of mapping text from unstructured data resources to concepts
+from ontologies or other sources of structured knowledge. In the simplest case, this is
+                                                                   
+                                                                   
+performed using a lexical match between the labels of each candidate concept and the
+contents of the text&#x00A0;[<a 
+href="thesis-emeijli2.html#XWWW:2003:dill">94</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XJASIST:2010:Huurnink">142</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XTALN:2007:malaise">200</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:2009:meij">217</a>]. A well-known example of a more elaborate
+approach is Ontotext&#x2019;s KIM platform [<a 
+href="thesis-emeijli2.html#XJWS:2004:kiryakov">166</a>]. The KIM platform builds on GATE to detect
+named entities and to link them to concepts in an ontology [<a 
+href="thesis-emeijli2.html#XISWC:2003:popov">249</a>]. Entities
+unknown to the ontology are fed back into the ontology, thus populating it further.
+OpenCalais<span class="footnote-mark"><a 
+href="thesis-emeij17.html#fn1x4"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x16-31001f1"></a> 
+provides semantic annotations of textual documents by automatically identifying
+entities, events, and facts. Each annotation is given a URI that is linked to concepts
+from the <a 
+ id="section*.23"></a>Linked Open Data (<a 
+href="thesis-emeijli3.html#LOD">LOD</a>) cloud when possible.
+<!--l. 1265--><p class="indent" >   Chemudugunta <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XChemudugunta:mode08">64</a>] do not restrict themselves to named entities, but instead
+use topic models to link all words in a document to ontological concepts. Other
+sub-problems of semantic annotation include sense tagging and word sense
+disambiguation&#x00A0;[<a 
+href="thesis-emeijli2.html#Xfell:manu01">101</a>]. Some of the techniques developed there have fed into automatic
+link generation between full-text documents and Wikipedia. For example, Milne and
+Witten&#x00A0;[<a 
+href="thesis-emeijli2.html#Xwikify:cikm08">230</a>], building on the work of Mihalcea and Csomai&#x00A0;[<a 
+href="thesis-emeijli2.html#XCIKM:2007:mihalcea">226</a>], depend heavily
+on contextual information from terms and phrases surrounding the source
+text to determine the best Wikipedia articles to link to. The authors apply
+part-of-speech tagging and develop several ranking procedures for candidate
+Wikipedia articles. A key difference with the approach of linking queries to
+concepts that we present in Chapter&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860006">6<!--tex4ht:ref: chap:linkingconcepts --></a>, is that we utilize much sparser data in
+the form of short keyword queries, as opposed to either verbose queries or
+full-text documents. Hence, as we will see in Chapter&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860006">6<!--tex4ht:ref: chap:linkingconcepts --></a>, we cannot easily use
+techniques such as part-of-speech tagging or lean too heavily on context words for
+disambiguation.
+                                                                   
+                                                                   
+<!--l. 1284--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch2.html#thesis-emeijse12.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse13.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse11.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse11.html#tailthesis-emeijse11.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijse12.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse12.html"></a> 
+</body></html> 

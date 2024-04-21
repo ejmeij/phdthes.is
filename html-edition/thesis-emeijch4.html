@@ -1,0 +1,376 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>4 Query Modeling Using Relevance Feedback</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeij.html#thesis-emeijch4.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijch5.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijch3.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijch3.html#tailthesis-emeijch3.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijch4.html">Tail</a></td></tr></table><h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;4</span><br /><a 
+ id="x26-470004"></a>Query Modeling Using Relevance Feedback</h2>
+<!--l. 2--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+                                                                   
+                                                                   
+<a 
+ id="x26-470011"></a>
+                                                                   
+                                                                   
+<!--l. 5--><p class="noindent" ><img 
+src="thesis-emeij4x.png" alt="PIC" class="graphics" width="317.53044pt" height="164.67657pt" ><!--tex4ht:graphics  
+name="thesis-emeij4x.png" src="chapter03/figures/dependence4.eps"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;4.1: </span><span  
+class="content">Bayesian networks for the models evaluated in this chapter. Top row
+from left to right: <a 
+ id="section*.32"></a>maximum likelihood expansion (<a 
+href="thesis-emeijli3.html#MLE">MLE</a>), <a 
+ id="section*.33"></a>model-based feedback
+(<a 
+href="thesis-emeijli3.html#MBF">MBF</a>), RM-0, and RM-1. Bottom row from left to right: RM-2, PRM, MLgen, and
+<a 
+ id="section*.34"></a>normalized log-likelihood ratio (<a 
+href="thesis-emeijli3.html#NLLR">NLLR</a>). The dashed line indicates an aggregation
+of  documents,  the  arrows  indicate  conditionals,  and  the  normal  lines  indicate
+cross-entropy.  The  interpolation  parameter  nodes  are  omitted  for  reasons  of
+clarity. </span></div><!--tex4ht:label?: x26-470011 -->
+                                                                   
+                                                                   
+<!--l. 9--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 12--><p class="indent" >   In Chapter&#x00A0;<a 
+href="thesis-emeijch2.html#x11-100002">2<!--tex4ht:ref: chap:background --></a>&#x00A0;we have introduced various ways of defining and updating a query
+model, one of which is through the use of relevance feedback. Here, relevance
+assessments by the user are employed to improve the estimate of the query model,
+return more useful documents to the user, and, hence, improve end-to-end retrieval
+performance. As indicated in Chapter&#x00A0;<a 
+href="thesis-emeijch2.html#x11-100002">2<!--tex4ht:ref: chap:background --></a>, relevance assessments can be <span 
+class="bchri8t-">explicit</span>
+(in the case of judgments by a user), <span 
+class="bchri8t-">implicit </span>(obtained from observing user
+behavior, e.g., in the form of click logs), or absent/assumed (where the top-ranked
+documents are used&#x2014;a method known as blind or <span 
+class="bchri8t-">pseudo </span>relevance feedback). In
+this chapter we focus on two of these types: explicit and pseudo relevance
+feedback.
+<!--l. 16--><p class="indent" >   Let&#x2019;s consider an example to see what aspects play a role in transforming
+a query based on a set of feedback documents. Suppose we have such a set
+of documents. They may vary in length and, furthermore, they need not be
+completely on topic because they may discuss more topics than the ones that
+are relevant to the query. While the user&#x2019;s judgments are at the document
+level, not all of the documents&#x2019; sections can be assumed to be equally relevant.
+Some relevance feedback models attempt to capture the topical structure of
+individual feedback documents (&#x201C;For each feedback document, what is important
+about it?&#x201D;). Other feedback models consider the set of all feedback documents
+(&#x201C;Which topics are shared by the entire set of feedback documents?&#x201D;). So, some
+consider each document as an independent piece of evidence, whereas others
+consider the set as a whole. In the cases where each document is considered
+independently, different intuitions exist with respect to how the importance of each
+should be captured, as described in Chapter&#x00A0;<a 
+href="thesis-emeijch2.html#x11-100002">2<!--tex4ht:ref: chap:background --></a>, Section&#x00A0;<a 
+href="thesis-emeijse10.html#x14-180002">2.3.2<!--tex4ht:ref: relwork:ssec:lm-fbmethods --></a>. To recap, models
+that solely look at the set of feedback documents are maximum-likelihood
+expansion and model-based feedback. The relevance modeling approach only
+looks at individual feedback documents and is, as such, an example of the first
+kind.
+<!--l. 42--><p class="indent" >   In this chapter we present two novel relevance feedback models based on language
+modeling that use information both from the set as well as from each individual
+feedback document to estimate the importance of a single feedback document. Thus,
+the models we introduce both use the topical relevance of a document and the general
+topic of the set of relevant documents to transform the original query. The first model
+(MLgen) compares each feedback document to the set of feedback documents and
+estimates its importance as the probability that the set of feedback documents
+generated the current one. The second model (NLLR) uses the log-likelihood ratio
+between each feedback document and the set thereof, normalized using the collection,
+to determine this estimate. Our primary aim in this chapter is to present and evaluate
+these models.
+<!--l. 48--><p class="indent" >   Our secondary aim is to compare various popular and well-known relevance
+feedback models for query modeling under the same experimental conditions. We
+                                                                   
+                                                                   
+include maximum likelihood expansion (<a 
+href="thesis-emeijli3.html#MLE">MLE</a>), model-based feedback (<a 
+href="thesis-emeijli3.html#MBF">MBF</a>),
+relevance models (RM-0, RM-1, RM-2), parsimonious relevance models (PRM),
+and our two novel models. All of these are listed in Table&#x00A0;<a 
+href="#x26-470021">4.1<!--tex4ht:ref: tab:abbrevs --></a> and depicted
+graphically in Figure&#x00A0;<a 
+href="#x26-470011">4.1<!--tex4ht:ref: fig:dependence --></a>. As can be seen from this table, most of these models
+were introduced in Chapter&#x00A0;<a 
+href="thesis-emeijch2.html#x11-100002">2<!--tex4ht:ref: chap:background --></a>; the remaining models, MLgen and NLLR, are
+described below. While many relevance feedback models have been studied
+in isolation, there has been very limited work on a thorough and systematic
+comparison using the same experimental framework. We continue to lack a
+proper understanding of the relative strengths and weaknesses of core relevance
+feedback models proposed in the literature and our goal is to evaluate and
+compare these to each other and to our two novel models. To our knowledge,
+this is the first large-scale study that has examined the performance of core
+relevance feedback models for language modeling using consistent settings across
+different test collections. Most earlier studies use different document collections,
+topic sets, and indexing and retrieval settings which prohibit an exhaustive
+comparative evaluation&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:lavrenko:2003">182</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XCIKM:2001:zhai">354</a>], whilst others include small, unrealistic test
+collections&#x00A0;[<a 
+href="thesis-emeijli2.html#XCIKM:2009:lv">197</a>].
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 64--><p class="indent" >   <a 
+ id="x26-470021"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="center" 
+>
+<!--l. 65--><p class="noindent" >
+
+ <table id="TBL-12" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-12-1g"><col 
+id="TBL-12-1"><col 
+id="TBL-12-2"><col 
+id="TBL-12-3"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-12-1-"><td  style="text-align:left; white-space:nowrap;" id="TBL-12-1-1"  
+class="td10"> <a 
+href="thesis-emeijli3.html#QL"><span 
+class="bchr8t-x-x-80">QL</span></a>     </td>  <td  style="text-align:left;" id="TBL-12-1-2"  
+class="td01"><!--l. 105--><p class="noindent" ><span 
+class="bchr8t-x-x-80">Query Likelihood</span>                                                                 </td>  <td  style="text-align:left; white-space:nowrap;" id="TBL-12-1-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">Eq.</span><span 
+class="bchr8t-x-x-80">&#x00A0;</span><a 
+href="thesis-emeijse9.html#x13-14002r2.9"><span 
+class="bchr8t-x-x-80">2.9</span><!--tex4ht:ref: eq:relwork:qm --></a>                  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-12-2-"><td  style="text-align:left; white-space:nowrap;" id="TBL-12-2-1"  
+class="td10"> <a 
+href="thesis-emeijli3.html#MLE"><span 
+class="bchr8t-x-x-80">MLE</span></a>    </td>  <td  style="text-align:left;" id="TBL-12-2-2"  
+class="td01"><!--l. 105--><p class="noindent" ><span 
+class="bchr8t-x-x-80">Maximum Likelihood Expansion</span>                                         </td>  <td  style="text-align:left; white-space:nowrap;" id="TBL-12-2-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">Eq.</span><span 
+class="bchr8t-x-x-80">&#x00A0;</span><a 
+href="thesis-emeijse10.html#x14-19001r2.12"><span 
+class="bchr8t-x-x-80">2.12</span><!--tex4ht:ref: eq:rel:mle:likelihood --></a>                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-12-3-"><td  style="text-align:left; white-space:nowrap;" id="TBL-12-3-1"  
+class="td10"> <a 
+href="thesis-emeijli3.html#MBF"><span 
+class="bchr8t-x-x-80">MBF</span></a>   </td>  <td  style="text-align:left;" id="TBL-12-3-2"  
+class="td01"><!--l. 105--><p class="noindent" ><span 
+class="bchr8t-x-x-80">Model-based Feedback</span>                                                        </td>  <td  style="text-align:left; white-space:nowrap;" id="TBL-12-3-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">Eq.</span><span 
+class="bchr8t-x-x-80">&#x00A0;</span><a 
+href="thesis-emeijse10.html#x14-20001r2.16"><span 
+class="bchr8t-x-x-80">2.16</span><!--tex4ht:ref: eq:mbf --></a>                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-12-4-"><td  style="text-align:left; white-space:nowrap;" id="TBL-12-4-1"  
+class="td10"> <span 
+class="bchr8t-x-x-80">RM-0  </span></td>  <td  style="text-align:left;" id="TBL-12-4-2"  
+class="td01"><!--l. 105--><p class="noindent" ><span 
+class="bchr8t-x-x-80">Relevance Model 0</span>                                                              </td>  <td  style="text-align:left; white-space:nowrap;" id="TBL-12-4-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">Eq.</span><span 
+class="bchr8t-x-x-80">&#x00A0;</span><a 
+href="thesis-emeijse10.html#x14-21004r2.20"><span 
+class="bchr8t-x-x-80">2.20</span><!--tex4ht:ref: eq:rm-uniform --></a>                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-12-5-"><td  style="text-align:left; white-space:nowrap;" id="TBL-12-5-1"  
+class="td10"> <span 
+class="bchr8t-x-x-80">RM-1  </span></td>  <td  style="text-align:left;" id="TBL-12-5-2"  
+class="td01"><!--l. 105--><p class="noindent" ><span 
+class="bchr8t-x-x-80">Relevance Model 1</span>                                                              </td>  <td  style="text-align:left; white-space:nowrap;" id="TBL-12-5-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">Eq.</span><span 
+class="bchr8t-x-x-80">&#x00A0;</span><a 
+href="thesis-emeijse10.html#x14-21008r2.24"><span 
+class="bchr8t-x-x-80">2.24</span><!--tex4ht:ref: eq:rm1 --></a>                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-12-6-"><td  style="text-align:left; white-space:nowrap;" id="TBL-12-6-1"  
+class="td10"> <span 
+class="bchr8t-x-x-80">RM-2  </span></td>  <td  style="text-align:left;" id="TBL-12-6-2"  
+class="td01"><!--l. 105--><p class="noindent" ><span 
+class="bchr8t-x-x-80">Relevance Model 2</span>                                                              </td>  <td  style="text-align:left; white-space:nowrap;" id="TBL-12-6-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">Eq.</span><span 
+class="bchr8t-x-x-80">&#x00A0;</span><a 
+href="thesis-emeijse10.html#x14-21007r2.23"><span 
+class="bchr8t-x-x-80">2.23</span><!--tex4ht:ref: eq:lavrenko:rm2:2 --></a>                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-12-7-"><td  style="text-align:left; white-space:nowrap;" id="TBL-12-7-1"  
+class="td10"> <span 
+class="bchr8t-x-x-80">PRM   </span></td>  <td  style="text-align:left;" id="TBL-12-7-2"  
+class="td01"><!--l. 105--><p class="noindent" ><span 
+class="bchr8t-x-x-80">Parsimonious Relevance Models</span>                                          </td>  <td  style="text-align:left; white-space:nowrap;" id="TBL-12-7-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">Eq.</span><span 
+class="bchr8t-x-x-80">&#x00A0;</span><a 
+href="thesis-emeijse10.html#x14-22003r2.27"><span 
+class="bchr8t-x-x-80">2.27</span><!--tex4ht:ref: eq:PRM:RM --></a><span 
+class="bchr8t-x-x-80">, Eq.</span><span 
+class="bchr8t-x-x-80">&#x00A0;</span><a 
+href="thesis-emeijse20.html#x28-52001r4.7"><span 
+class="bchr8t-x-x-80">4.7</span><!--tex4ht:ref: eq:chap04:prm --></a>   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-12-8-"><td  style="text-align:left; white-space:nowrap;" id="TBL-12-8-1"  
+class="td10"> <span 
+class="bchr8t-x-x-80">MLgen</span></td>  <td  style="text-align:left;" id="TBL-12-8-2"  
+class="td01"><!--l. 105--><p class="noindent" ><span 
+class="bchr8t-x-x-80">Generative Maximum Likelihood</span>                                        </td>  <td  style="text-align:left; white-space:nowrap;" id="TBL-12-8-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">Eq.</span><span 
+class="bchr8t-x-x-80">&#x00A0;</span><a 
+href="thesis-emeijse19.html#x27-49001r4.1"><span 
+class="bchr8t-x-x-80">4.1</span><!--tex4ht:ref: eq:mlgen --></a>                  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-12-9-"><td  style="text-align:left; white-space:nowrap;" id="TBL-12-9-1"  
+class="td10"> <a 
+href="thesis-emeijli3.html#NLLR"><span 
+class="bchr8t-x-x-80">NLLR</span></a>  </td>  <td  style="text-align:left;" id="TBL-12-9-2"  
+class="td01"><!--l. 105--><p class="noindent" ><span 
+class="bchr8t-x-x-80">Normalized Log-likelihood Ratio</span>                                         </td>  <td  style="text-align:left; white-space:nowrap;" id="TBL-12-9-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">Eq.</span><span 
+class="bchr8t-x-x-80">&#x00A0;</span><a 
+href="thesis-emeijse19.html#x27-50003r4.4"><span 
+class="bchr8t-x-x-80">4.4</span><!--tex4ht:ref: eq:rel:dep:mle --></a>                  </td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-12-10-"><td  style="text-align:left; white-space:nowrap;" id="TBL-12-10-1"  
+class="td10">       </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;4.1:  </span><span  
+class="content">Overview  of  the  relevance  feedback  algorithms  evaluated  in  this
+chapter. </span></div><!--tex4ht:label?: x26-470021 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 111--><p class="indent" >   We report on the effectiveness of the relevance feedback models under both
+pseudo relevance feedback as well as explicit relevance feedback and do so on a
+diverse set of test collections, including newswire documents (TREC Robust
+2004), a crawl of the .gov domain (the .GOV2 document collection used in the
+TREC Terabyte and TREC Relevance Feedback tracks), and a realistically sized
+web collection (ClueWeb09, Category B; used in the TREC Web 2009 track).
+All of these test collections were introduced in Section&#x00A0;<a 
+href="thesis-emeijse16.html#x23-380003">3.3<!--tex4ht:ref: sec:testcollections --></a>. Associated with
+relevance feedback algorithms are parameter settings such as the number of
+documents to use, the number of terms, etc. as introduced in Section&#x00A0;<a 
+href="thesis-emeijse17.html#x24-450004">3.4<!--tex4ht:ref: sec:parameterest --></a>. We
+also perform a detailed analysis of the robustness of the models under these
+parameters.
+<!--l. 117--><p class="indent" >   To summarize, we aim at answering the following main research question in this
+chapter:
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">RQ 1.</span> </dt><dd 
+class="description">What are effective ways of using relevance feedback information for query
+     modeling to improve retrieval performance?</dd></dl>
+<!--l. 126--><p class="noindent" >This general research question gives rise to the following subquestions.
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">RQ 1a.</span>  </dt><dd 
+class="description">Can  we  develop  a  relevance  feedback  model  that  uses  evidence  from
+     both the individual feedback documents and the set of feedback documents
+     as a whole? How does this model relate to other query modeling approaches
+     using  relevance  feedback?  Is  there  any  difference  when  using  explicit
+     relevance feedback instead of pseudo relevance feedback?
+     </dd><dt class="description">
+<span 
+class="bchb8t-">RQ 1b.</span>  </dt><dd 
+class="description">How do the models perform on different test collections? How robust
+     are our two novel models on the various parameters query modeling offers
+     and what behavior can we observe for the related models?</dd></dl>
+<!--l. 141--><p class="noindent" >Our contributions are as follows.
+     <dl class="enumerate"><dt class="enumerate">
+  1. </dt><dd 
+class="enumerate">We  introduce,  evaluate,  and  discuss  two  novel  query  modeling  methods
+     using relevance feedback information.
+     </dd><dt class="enumerate">
+  2. </dt><dd 
+class="enumerate">We   provide   a   comprehensive   analysis,   evaluation,   comparison,   and
+     discussion (in both theoretical and practical terms) of our novel and various
+     other core models for query modeling using relevance feedback.</dd></dl>
+                                                                   
+                                                                   
+<!--l. 151--><p class="noindent" >The remainder of this chapter is organized as follows. We introduce our novel feedback
+models in Section&#x00A0;<a 
+href="thesis-emeijse19.html#x27-480001">4.1<!--tex4ht:ref: sec:model --></a>. In Section&#x00A0;<a 
+href="thesis-emeijse20.html#x28-520002">4.2<!--tex4ht:ref: chapter04:sec:expsetup --></a> we detail the experimental setup. In Section&#x00A0;<a 
+href="thesis-emeijse21.html#x29-530003">4.3<!--tex4ht:ref: sec:prelfb --></a>
+we discuss the performance and robustness of the models under pseudo relevance
+feedback, whereas we consider explicit relevance feedback in Section&#x00A0;<a 
+href="thesis-emeijse22.html#x30-610004">4.4<!--tex4ht:ref: sec:rfresults --></a>. We end with
+a concluding section.
+<a 
+ id="x26-47005r54"></a>
+   <div class="sectionTOCS">
+   &#x00A0;<span class="sectionToc" >4.1 <a 
+href="thesis-emeijse19.html#x27-480001">Estimating the Importance of Feedback Documents</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >4.1.1 <a 
+href="thesis-emeijse19.html#x27-490001">MLgen: A Generative Model</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >4.1.2 <a 
+href="thesis-emeijse19.html#x27-500002">Normalized Log-likelihood Ratio</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >4.1.3 <a 
+href="thesis-emeijse19.html#x27-510003">Models Related to MLgen and NLLR</a></span>
+<br />   &#x00A0;<span class="sectionToc" >4.2 <a 
+href="thesis-emeijse20.html#x28-520002">Experimental Setup</a></span>
+<br />   &#x00A0;<span class="sectionToc" >4.3 <a 
+href="thesis-emeijse21.html#x29-530003">Pseudo Relevance Feedback</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >4.3.1 <a 
+href="thesis-emeijse21.html#x29-540001">Results and Discussion</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >4.3.2 <a 
+href="thesis-emeijse21.html#x29-590002">Per-topic Results</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >4.3.3 <a 
+href="thesis-emeijse21.html#x29-600003">Number of Terms in the Query Models</a></span>
+<br />   &#x00A0;<span class="sectionToc" >4.4 <a 
+href="thesis-emeijse22.html#x30-610004">Explicit Relevance Feedback</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >4.4.1 <a 
+href="thesis-emeijse22.html#x30-620001">Experimental Results</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >4.4.2 <a 
+href="thesis-emeijse22.html#x30-630002">Per-topic Results</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >4.4.3 <a 
+href="thesis-emeijse22.html#x30-640003">Number of Relevant Documents</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >4.4.4 <a 
+href="thesis-emeijse22.html#x30-650004">Number of Terms in the Query Models</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >4.4.5 <a 
+href="thesis-emeijse22.html#x30-660005">Upshot</a></span>
+<br />   &#x00A0;<span class="sectionToc" >4.5 <a 
+href="thesis-emeijse23.html#x31-670005">Summary and Conclusions</a></span>
+</div>
+
+<a 
+ id="x26-51003r58"></a>
+
+<a 
+ id="x26-52002r62"></a>
+
+<a 
+ id="x26-60001r63"></a>
+
+<a 
+ id="x26-66001r85"></a>
+
+                                                                   
+                                                                   
+<table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeij.html#thesis-emeijch4.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijch5.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijch3.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijch3.html#tailthesis-emeijch3.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijch4.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijch4.html"></a>                      
+</body></html> 

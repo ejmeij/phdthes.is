@@ -1,0 +1,2934 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Query Modeling</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch2.html#thesis-emeijse10.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse11.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse9.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse9.html#tailthesis-emeijse9.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse10.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">2.3    </span> <a 
+ id="x14-160003"></a>Query Modeling</h3>
+<!--l. 367--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+                                                                   
+                                                                   
+<a 
+ id="x14-160011"></a>
+                                                                   
+                                                                   
+<!--l. 369--><p class="noindent" ><img 
+src="thesis-emeij2x.png" alt="PIC" class="graphics" width="317.53044pt" height="50.21223pt" ><!--tex4ht:graphics  
+name="thesis-emeij2x.png" src="chapter02/qms/expanded.eps"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;2.1: </span><span  
+class="content">Example query model for the topic &#x201C;poker tournaments,&#x201D; obtained
+using RM-1 (See page&#x00A0;<a 
+href="#x14-21008r2.24">55<!--tex4ht:ref: eq:rm1 --></a>). The size of a term is proportional to its probability in
+the query model. </span></div><!--tex4ht:label?: x14-160011 -->
+                                                                   
+                                                                   
+<!--l. 372--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 374--><p class="indent" >   Examining how queries can be transformed to equivalent, potentially better queries
+is a theme of recurring interest to the <a 
+href="thesis-emeijli3.html#IR">IR</a> community. Such transformations include
+expansion of short queries to long queries&#x00A0;[<a 
+href="thesis-emeijli2.html#XIR:2009:ogilvie">242</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:1994:Voorhees">327</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:1996:Xu">345</a>], paraphrasing queries
+using an alternative vocabulary&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2006:diaz">92</a>], mapping unstructured queries to structured
+ones&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2005:metzler">224</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:2007:metzler">225</a>], identifying key concepts in verbose queries&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2008:bendersky">29</a>], substituting terms
+in the query&#x00A0;[<a 
+href="thesis-emeijli2.html#XWSDM:2010:dang">86</a>], etc.
+<!--l. 386--><p class="indent" >   Multiple types of information source have been considered as input to the query
+transformation process. In traditional set-ups, resources such as thesauri and controlled
+vocabularies have long been used to address word mismatch problems&#x00A0;[<a 
+href="thesis-emeijli2.html#XCIKM:2005:bai">21</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:1994:Voorhees">327</a>],
+whilst other techniques are based on analyzing the local context of a query&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:1996:Xu">345</a>]. In
+relevance feedback, retrieved documents (possibly with associated relevance
+assessments) serve as examples to select additional query terms from&#x00A0;[<a 
+href="thesis-emeijli2.html#XBook:1971:rocchio">267</a>]; relevance
+feedback will be further introduced in Section&#x00A0;<a 
+href="#x14-180002">2.3.2<!--tex4ht:ref: relwork:ssec:lm-fbmethods --></a>. Other types of information
+sources to be used for query transformations include recent ones such as using
+anchor texts or search engine logs for query substitutions&#x00A0;[<a 
+href="thesis-emeijli2.html#XWSDM:2010:dang">86</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#Xwang:mini08">335</a>]. Another
+recent example is where users complement their traditional keyword query
+with additional information, such as example documents&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2008:balog">24</a>], tags&#x00A0;[<a 
+href="thesis-emeijli2.html#Xipm:2009:clements">73</a>],
+images&#x00A0;[<a 
+href="thesis-emeijli2.html#Ximageclefoverview">76</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#Ximageclef2005">91</a>], categories&#x00A0;[<a 
+href="thesis-emeijli2.html#Xagenerativelang09.754">338</a>], or their search history&#x00A0;[<a 
+href="thesis-emeijli2.html#XIPM:2008:bai">20</a>]. The recent interest of
+the semantic web community regarding models and methods related to ontologies has
+also sparked a renewed interest in using ontological information for query
+expansion&#x00A0;[<a 
+href="thesis-emeijli2.html#XIPM:2007:bhogal">35</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XWWW:2004:rocha">268</a>].
+<!--l. 413--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                   
+                                                                   
+<a 
+ id="x14-160022"></a>
+                                                                   
+                                                                   
+<!--l. 415--><p class="noindent" ><img 
+src="thesis-emeij3x.png" alt="PIC" class="graphics" width="317.53044pt" height="195.44154pt" ><!--tex4ht:graphics  
+name="thesis-emeij3x.png" src="chapter02/figures/qe.eps"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;2.2: </span><span  
+class="content">Sources for query expansion. </span></div><!--tex4ht:label?: x14-160022 -->
+                                                                   
+                                                                   
+<!--l. 418--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 420--><p class="indent" >   Query expansion is a form of query transformation that aims to bridge the
+vocabulary gap between queries and documents by adding and reweighting terms in
+the original query; Dang and Croft&#x00A0;[<a 
+href="thesis-emeijli2.html#XWSDM:2010:dang">86</a>] show that it is more robust than substituting
+terms in the query. Figure&#x00A0;<a 
+href="#x14-160022">2.2<!--tex4ht:ref: fig:relwork:qe --></a> is based on a diagram from&#x00A0;[<a 
+href="thesis-emeijli2.html#XARIST:1996:efthimiadis">97</a>] and shows various
+types of query expansion as well as the various sources of information that are
+commonly used. Query expansion can be local or global&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:1996:Xu">345</a>]. Global query expansion
+uses global collection statistics or &#x201C;external&#x201D; knowledge sources such as concept
+languages to enhance the query. Examples of the former include word associations such
+as those defined by term co-occurrences or <a 
+ id="section*.12"></a>latent semantic indexing (<a 
+href="thesis-emeijli3.html#LSI">LSI</a>)&#x00A0;[<a 
+href="thesis-emeijli2.html#XJASIST:1990:dumais">88</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XBook:1979:Rijsbergen">325</a>].
+Concepts and lexical-syntactic relations as defined in a thesaurus have been used with
+varying degrees of effectiveness&#x00A0;[<a 
+href="thesis-emeijli2.html#XCIKM:2005:bai">21</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:2005:cao">57</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XARIST:1996:efthimiadis">97</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XECDL:2007:meij">209</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:1993:Qiu">252</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XWWW:2004:rocha">268</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XJoD:2006:tudhope">321</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:1994:Voorhees">327</a>]. Local query
+expansion methods try to take into account the context of a query, specifically through
+looking at a set of feedback documents. Finkelstein <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XTOIS:2002:finkelstein">102</a>] propose to use the
+local context of query terms as they appear in documents to locate additional query
+terms. One might also consider a user&#x2019;s history or profile, in order to automatically
+enrich queries&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:1984:korfhage">168</a>]. Much later, this idea was adopted in a language modeling setting
+by&#x00A0;Bai and Nie&#x00A0;[<a 
+href="thesis-emeijli2.html#XIPM:2008:bai">20</a>]. One could utilize many different sources of information to
+improve the estimate of the query model, including external corpora&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2006:diaz">92</a>], example
+documents&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2008:balog">24</a>], amongst others. Lease <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XECIR:2009:Lease">184</a>] apply machine learning to learn
+which terms to select from verbose queries. Cao <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2008:cao">58</a>] use an <a 
+ id="section*.13"></a>support vector
+machine (<a 
+href="thesis-emeijli3.html#SVM">SVM</a>) classifier to learn which terms improve retrieval performance. He and
+Ounis&#x00A0;[<a 
+href="thesis-emeijli2.html#XCIKM:2009:he">124</a>] use machine learning to select documents for relevance feedback. In the
+remainder of this section we discuss common approaches to query modeling,
+including the translation model, relevance feedback, and term dependencies.
+In Chapter&#x00A0;<a 
+href="thesis-emeijch4.html#x26-470004">4<!--tex4ht:ref: chap:relfb --></a>&#x00A0;we introduce and evaluate new relevance feedback methods
+for query modeling. In Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a>&#x00A0;we introduce a method that uses query
+modeling in conjunction with document annotations for query modeling. In
+Chapter&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860006">6<!--tex4ht:ref: chap:linkingconcepts --></a> we use a machine learning method to map queries to concepts
+and in Chapter&#x00A0;<a 
+href="thesis-emeijch7.html#x47-1210007">7<!--tex4ht:ref: chap:cikm2010 --></a> we use concepts obtained using machine learning for query
+modeling.
+<a 
+ id="x14-16003r17"></a>
+<h4 class="subsectionHead"><span class="titlemark">2.3.1    </span> <a 
+ id="x14-170001"></a>Translation Model</h4>
+<!--l. 457--><p class="noindent" >Berger and Lafferty&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:1999:Berger">31</a>] integrate term relationships in the language modeling
+framework using a translation model. They view each term in a query as a translation
+from each term in a document, which is modeled as a noisy channel. Here, each source
+term has a certain probability of being translated into another term (including a
+&#x201C;self-translation&#x201D; onto the source term) and each document is then scored based on the
+translated terms. More formally,
+                                                                   
+                                                                   
+<!--tex4ht:inline--><!--l. 461--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo><munder class="msub"><mrow 
+><mo mathsize="big" 
+> &#x2211;</mo>
+   </mrow><mrow 
+><mi 
+>j</mi></mrow></munder 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>j</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>j</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">,</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.11)</mtext><mtext 
+   id="x14-17001r2.11"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                                 </mtr></mtable>
+</math>
+<!--l. 464--><p class="nopar" >
+<!--l. 466--><p class="indent" >   where <!--l. 466--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>j</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></math> is the
+translation probability of <!--l. 466--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+></math>
+to <!--l. 466--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>j</mi></mrow></msub 
+></math>.
+Berger and Lafferty&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:1999:Berger">31</a>] estimate this relation for pairs of words in the same language
+by considering each sentence parallel to the paragraph it contains. In essence,
+Eq.&#x00A0;<a 
+href="#x14-17001r2.11">2.11<!--tex4ht:ref: eq:relwork:translation --></a> describes a form of smoothing that uses translation probabilities
+instead of collection estimates. It also features an inherent query expansion
+component.
+<!--l. 468--><p class="indent" >   Various other authors have built upon this model. For example, Cao <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2005:cao">57</a>] and
+Nie <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XTALIP:2006:Nie">241</a>] incorporate WordNet relations and co-occurrence information for
+query modeling. Jin <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2002:jin">150</a>] estimate the probability of using a query as the title
+for each document, and Wei and Croft&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2006:wei">340</a>] smooth each document using a number of
+topic models obtained using <a 
+href="thesis-emeijli3.html#LDA">LDA</a> (which is introduced below). Lalmas <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XECIR:2006">176</a>] use
+the translation model to leverage information from lexical entailments. Lavrenko and
+Croft&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2001:Lavrenko">183</a>] use the same intuitions to incorporate relevance feedback information, as
+we describe in the next section. Jimeno-Yepes <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XIPM:2010:jimeno">149</a>] use this model to include
+semantic information when ranking documents, with similar intuitions as we present in
+Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a>.
+<a 
+ id="x14-17002r21"></a>
+<h4 class="subsectionHead"><span class="titlemark">2.3.2    </span> <a 
+ id="x14-180002"></a>Relevance Feedback</h4>
+<!--l. 479--><p class="noindent" >A well-studied source of information for transforming a query is the user, through
+relevance feedback&#x00A0;[<a 
+href="thesis-emeijli2.html#XJOD:1979:croft">81</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XBook:1971:rocchio">267</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XKER:2003:ruthven">272</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XJASIST:1990:salton">276</a>]: given a query, a set of documents, and
+judgments on the documents retrieved for that query, how does a system take
+advantage of the judgments in order to transform the original query and retrieve
+                                                                   
+                                                                   
+more documents that will be useful to the user? Despite a history dating back
+several decades, relevance feedback is perhaps one of the least understood
+techniques in <a 
+href="thesis-emeijli3.html#IR">IR</a>. Indeed, as demonstrated by the recent launch of a dedicated
+relevance feedback track at TREC&#x00A0;[<a 
+href="thesis-emeijli2.html#XTREC:2008:relfb:overview">48</a>], we still lack the definitive answer to this
+question.
+<!--l. 488--><p class="indent" >   Relevance feedback is a form of local query expansion that relies on the analysis of
+feedback documents, for example obtained through an initial retrieval run. Three
+variants with respect to how the judgments are obtained can be discerned: <span 
+class="bchri8t-">pseudo</span>,
+<span 
+class="bchri8t-">explicit</span>, and <span 
+class="bchri8t-">implicit </span>relevance feedback. Pseudo relevance feedback methods assume
+the top ranked documents to be relevant. It was first introduced by Croft and
+Harper&#x00A0;[<a 
+href="thesis-emeijli2.html#XJOD:1979:croft">81</a>] and applied in the context of the <a 
+href="thesis-emeijli3.html#PRP">PRP</a> model to obtain an alternative for
+the <a 
+href="thesis-emeijli3.html#IDF">IDF</a> term weighting function. Explicit relevance feedback uses explicit relevance
+assessments from users&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2003:Anick">9</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIR:2008:Keskustalo">165</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XJOD:2004:vakkari">323</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:1996:Xu">345</a>]. Implicit relevance feedback obtains such
+assessments indirectly, e.g., from query or click logs&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2003:Anick">9</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XWWW:2002:cui">85</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XTOIS:2007:joachims">153</a>], historical
+queries&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2005:shen">283</a>] or by considering user interactions with the system, such as
+dwell time and scrolling behavior&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2001:kelly">162</a>]. White <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XTOIS:2005:white">341</a>] compare implicit
+relevance feedback (obtained from user interaction with the system) with
+explicit relevance feedback and find that the two methods are statistically
+indistinguishable.
+<!--l. 501--><p class="indent" >   In a language modeling setting, relevance feedback has been mainly applied to
+(re-)estimate query models&#x00A0;[<a 
+href="thesis-emeijli2.html#XLMIR:2003:lafferty">175</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#Xbook:2008:lavrenko">181</a>&#x2013;<a 
+href="thesis-emeijli2.html#XSIGIR:2001:Lavrenko">183</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:2006:tao">310</a>], although other approaches such as
+document expansion using query feedback also exist&#x00A0;[<a 
+href="thesis-emeijli2.html#XCIKM:2003:Nallapati">239</a>]. In the remainder of this
+section, we detail the various relevance feedback methods for query modeling that we
+evaluate and employ in later chapters. First, we consider the simplest case where the
+set of relevant documents is considered as a whole. We then turn to Zhai and
+Lafferty&#x2019;s <a 
+ id="section*.14"></a>model-based feedback (<a 
+href="thesis-emeijli3.html#MBF">MBF</a>)&#x00A0;[<a 
+href="thesis-emeijli2.html#XCIKM:2001:zhai">354</a>] and Lavrenko and Croft&#x2019;s <a 
+ id="section*.15"></a>relevance
+model (<a 
+href="thesis-emeijli3.html#RM">RM</a>)&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:lavrenko:2003">182</a>]. Figure&#x00A0;<a 
+href="thesis-emeijch4.html#x26-470011">4.1<!--tex4ht:ref: fig:dependence --></a> displays these four models using Bayesian
+networks, whereas Table&#x00A0;<a 
+href="thesis-emeijch4.html#x26-470021">4.1<!--tex4ht:ref: tab:abbrevs --></a> lists the abbreviations used throughout the thesis (see
+page&#x00A0;<a 
+href="thesis-emeijch4.html#x26-470011">107<!--tex4ht:ref: fig:dependence --></a>).
+<h5 class="subsubsectionHead"><a 
+ id="x14-190002"></a>Maximum Likelihood</h5>
+<!--l. 512--><p class="noindent" >If we were able to obtain a complete set of relevance judgments from the user and,
+hence, could fully enumerate all documents relevant to a query, we could
+simply use the empirical estimate of the terms in those documents to obtain
+<!--l. 513--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03B8;</mi><mi 
+>Q</mi></math>. Given
+all sources of information available to the system (the query, assessments, and documents
+in the collection), the parameters of this model would fully describe the information
+need from the system&#x2019;s point of view. The joint likelihood of observing the terms given
+<!--l. 517--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03B8;</mi><mi 
+>Q</mi></math> under
+this model (again assuming independence between terms) is:
+                                                                   
+                                                                   
+<!--tex4ht:inline--><!--l. 521--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-op">&#x2026;</mo><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+mathvariant="bold-script">V</mi><mo 
+class="MathClass-rel">|</mo></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>&#x03B8;</mi><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo><munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+> &#x220F;</mo>
+  </mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+mathvariant="bold-script">V</mi><mo 
+class="MathClass-rel">|</mo></mrow></munderover 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+>
+<mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>R</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">,</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.12)</mtext><mtext 
+   id="x14-19001r2.12"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                                </mtr></mtable>
+</math>
+<!--l. 526--><p class="nopar" >
+<!--l. 528--><p class="indent" >   where <!--l. 528--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>R</mi></math>
+denotes the set of relevant documents. Then, we can use a maximum likelihood estimate over the
+documents in <!--l. 529--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>R</mi></math>
+to obtain
+<!--tex4ht:inline--><!--l. 531--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>R</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">  <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0303;</mo></mover></mrow><mrow 
+><mi 
+>R</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow>         </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray"></mtext></mtd>
+</mtr><mtr><mtd 
+class="eqnarray-1">      </mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">     <mfrac><mrow 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>D</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+>R</mi></mrow></munder 
+><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow>
+<mrow 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>D</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+>R</mi></mrow></munder 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><msup><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+></mrow></munder 
+><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msup><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfrac><mo 
+class="MathClass-punc">.</mo></mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.13)</mtext><mtext 
+   id="x14-19002r2.13"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                                     </mtr></mtable>
+</math>
+<!--l. 539--><p class="nopar" >
+                                                                   
+                                                                   
+<!--l. 547--><p class="indent" >   Below, we refer to this model as <a 
+ id="section*.16"></a>maximum likelihood expansion (<a 
+href="thesis-emeijli3.html#MLE">MLE</a>).
+<!--l. 553--><p class="indent" >   In contrast to this hypothetical case, however, a typical search engine user would
+only produce judgments on the relevance status of a small number of documents, if at
+all&#x00A0;[<a 
+href="thesis-emeijli2.html#XIRes:2000:Spink">299</a>]. Even in larger-scale, system-based TREC evaluations, the number of
+assessments per query is still a fraction of the total number of documents in the
+collection&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2004:Buckley-eval">50</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIR:2007:Buckley">52</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:2007:Soboroff">288</a>]. So in any realistic scenario, the relevance of all
+remaining, non-judged documents is unknown and this fact jeopardizes the
+confidence we can put in the model described by Eq.&#x00A0;<a 
+href="#x14-19001r2.12">2.12<!--tex4ht:ref: eq:rel:mle:likelihood --></a> to accurately estimate
+<!--l. 563--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03B8;</mi><mi 
+>Q</mi></math>. This is one
+of the motivations behind the model proposed by&#x00A0;Zhai and Lafferty&#x00A0;[<a 
+href="thesis-emeijli2.html#XCIKM:2001:zhai">354</a>] that iteratively
+updates <!--l. 564--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>&#x03B8;</mi><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>
+by comparing it to a background model of general English. We further detail their
+model below.
+<!--l. 566--><p class="indent" >   Besides having a limited number of relevance assessments, not every document in
+<!--l. 566--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>R</mi></math> is
+necessarily entirely relevant to the information need. Ideally, we would like to weight
+documents according to their &#x201C;relative&#x201D; level of relevance. We could consider each
+relevant document as a separate piece of evidence towards the estimation of
+<!--l. 569--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03B8;</mi><mi 
+>Q</mi></math>,
+instead of assuming full independence as in Eq.&#x00A0;<a 
+href="#x14-19002r2.13">2.13<!--tex4ht:ref: eq:rel:mle --></a>. Let&#x2019;s consider the following
+sampling process to substantiate this intuition. We pick a relevant document
+according to some probability and then select a term from that document.
+Assuming that each term is generated independently once we pick a relevant
+document, the probability of randomly picking a document and then observing
+<!--l. 575--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>t</mi></math>
+is
+                                                                   
+                                                                   
+<!--tex4ht:inline--><!--l. 578--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>D</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>&#x03B8;</mi><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>R</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">.</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.14)</mtext><mtext 
+   id="x14-19003r2.14"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                                    </mtr></mtable>
+</math>
+<!--l. 581--><p class="nopar" >
+<!--l. 583--><p class="indent" >   Then, the overall probability of observing all terms can be expressed as a sum of the
+marginals:
+<!--tex4ht:inline--><!--l. 586--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-op">&#x2026;</mo><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+mathvariant="bold-script">V</mi><mo 
+class="MathClass-rel">|</mo></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>&#x03B8;</mi><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">  <munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>D</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+>R</mi></mrow></munder 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>R</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo><mo>&#x2026;</mo><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+mathvariant="bold-script">V</mi><mo 
+class="MathClass-rel">|</mo></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow>   </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.15)</mtext><mtext 
+   id="x14-19004r2.15"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>
+</mtr><mtr><mtd 
+class="eqnarray-1">             </mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">  <munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>D</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+>R</mi></mrow></munder 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>R</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+>&#x220F;</mo>
+  </mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+mathvariant="bold-script">V</mi><mo 
+class="MathClass-rel">|</mo></mrow></munderover 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+>
+<mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">.</mo></mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray"></mtext></mtd>                  </mtr></mtable>
+</math>
+<!--l. 598--><p class="nopar" >
+<!--l. 600--><p class="indent" >   The key term here is <!--l. 600--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>R</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>; it conveys
+the probability of selecting <!--l. 600--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>D</mi></math>
+given <!--l. 600--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>R</mi></math>
+or, slightly paraphrased, the level of relevance of
+<!--l. 600--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>D</mi></math>.
+                                                                   
+                                                                   
+Lavrenko and Croft&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:lavrenko:2003">182</a>] use this mechanism to obtain a posterior estimate of
+<!--l. 601--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>&#x03B8;</mi><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>, as
+detailed below. In Chapter&#x00A0;<a 
+href="thesis-emeijch4.html#x26-470004">4<!--tex4ht:ref: chap:relfb --></a>&#x00A0;we introduce and evaluate a novel way of estimating both
+<!--l. 601--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>R</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math> and
+<!--l. 601--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>&#x03B8;</mi><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>.
+<h5 class="subsubsectionHead"><a 
+ id="x14-200002"></a>Model-based Feedback</h5>
+<!--l. 609--><p class="noindent" >Zhai and Lafferty&#x00A0;[<a 
+href="thesis-emeijli2.html#XCIKM:2001:zhai">354</a>] propose a model for pseudo relevance feedback that is closely
+related to <a 
+href="thesis-emeijli3.html#MLE">MLE</a>. Their model also assumes document independence (like Eq.&#x00A0;<a 
+href="#x14-19002r2.13">2.13<!--tex4ht:ref: eq:rel:mle --></a>), but
+they consider the set of feedback documents to be a model consisting of a mixture of
+two components: a model of relevance and a general background model. More
+formally:
+<!--tex4ht:inline--><!--l. 615--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-op">&#x2026;</mo><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+mathvariant="bold-script">V</mi><mo 
+class="MathClass-rel">|</mo></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>R</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo> <munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+>&#x220F;</mo>
+  </mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+mathvariant="bold-script">V</mi><mo 
+class="MathClass-rel">|</mo></mrow></munderover 
+><munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+>&#x220F;</mo>
+</mrow><mrow 
+><mi 
+>j</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>R</mi><mo 
+class="MathClass-rel">|</mo></mrow></munderover 
+><msup><mrow 
+><mfenced separators="" 
+open="{"  close="}" ><mrow><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mn>1</mn><mo 
+class="MathClass-bin">&#x2212;</mo><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+>
+<mi 
+>R</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo>&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>R</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-bin">+</mo><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>R</mi></mrow></msub 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfenced></mrow><mrow 
+><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>D</mi></mrow><mrow 
+><mi 
+>j</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></msup 
+><mo 
+class="MathClass-punc">.</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.16)</mtext><mtext 
+   id="x14-20001r2.16"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd></mtr></mtable>
+</math>
+<!--l. 623--><p class="nopar" >
+<!--l. 625--><p class="indent" >   One can use an estimation method such as <a 
+ id="section*.17"></a>expectation maximization (<a 
+href="thesis-emeijli3.html#EM">EM</a>)&#x00A0;[<a 
+href="thesis-emeijli2.html#XEM-alg">90</a>] to
+maximize the likelihood of the observed data (the relevant documents):
+                                                                   
+                                                                   
+<!--tex4ht:inline--><!--l. 632--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1">    <msub><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mi 
+>t</mi></mrow></msub 
+></mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">       <mfrac><mrow 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mn>1</mn><mo 
+class="MathClass-bin">&#x2212;</mo><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>R</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>R</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow>
+<mrow 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mn>1</mn><mo 
+class="MathClass-bin">&#x2212;</mo><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>R</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>R</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-bin">+</mo><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>R</mi></mrow></msub 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfrac><mspace width="1em" class="nbsp" /><mspace width="1em" class="nbsp" /></mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.17)</mtext><mtext 
+   id="x14-20002r2.17"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>
+</mtr><mtr><mtd 
+class="eqnarray-1"> <mstyle 
+class="mbox"><mtext  ></mtext></mstyle><mspace width="-14.22636pt"/><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>R</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">     <mfrac><mrow 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>D</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+>R</mi></mrow></munder 
+><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><msub><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mi 
+>t</mi></mrow></msub 
+></mrow>
+<mrow 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><msup><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+></mrow></munder 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>D</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+>R</mi></mrow></munder 
+><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msup><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><msub><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><msup><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+></mrow></msub 
+></mrow></mfrac><mo 
+class="MathClass-punc">.</mo>    </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.18)</mtext><mtext 
+   id="x14-20002r2.18"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                                </mtr></mtable>
+</math>
+<!--l. 645--><p class="nopar" >
+<!--l. 647--><p class="indent" >   After  converging,  <a 
+href="thesis-emeijli2.html#XCIKM:2001:zhai">Zhai  and  Lafferty</a>  use
+<!--l. 647--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>R</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></math> as
+<!--l. 647--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>
+in Eq.&#x00A0;<a 
+href="thesis-emeijse9.html#x13-14003r2.10">2.10<!--tex4ht:ref: chapter04:eq:querymodel --></a>. Like <a 
+href="thesis-emeijli3.html#MLE">MLE</a>, this model also discards information pertinent to
+the individual relevant documents and only considers the set as a whole.
+The close relation between the two models is made visible by entering
+<!--l. 655--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>R</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <mn>0</mn></math> in Eq.&#x00A0;<a 
+href="#x14-20002r2.17">2.17<!--tex4ht:ref: eq:zhai:Estep --></a>,
+which yields <!--l. 655--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mi 
+>t</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <mn>1</mn></math>
+and, hence, <a 
+href="thesis-emeijli3.html#MLE">MLE</a> (cf.&#x00A0;Eq.&#x00A0;<a 
+href="#x14-19002r2.13">2.13<!--tex4ht:ref: eq:rel:mle --></a>): <table class="equation"><tr><td> <a 
+ id="x14-20003r19"></a>
+<!--l. 658--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+         <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>R</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo>    <mfrac><mrow 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>D</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+>R</mi></mrow></munder 
+><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow> 
+<mrow 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><msup><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+></mrow></munder 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>D</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+>R</mi></mrow></munder 
+><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msup><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfrac> <mo 
+class="MathClass-rel">=</mo>    <mfrac><mrow 
+><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>R</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow> 
+<mrow 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><msup><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+></mrow></munder 
+><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msup><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><mi 
+>R</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfrac> <mo 
+class="MathClass-rel">=</mo> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0303;</mo></mover></mrow><mrow 
+><mi 
+>R</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">.</mo>
+</math></td><td class="eq-no">(2.19)</td></tr></table>
+<!--l. 670--><p class="indent" >   Various other researchers have used the intuitions behind MBF
+for their models. For example, Tao and Zhai&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2006:tao">310</a>] extend MBF and
+remove the need for the subsequent interpolation of the initial query and
+<!--l. 673--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></math> (cf. Eq.&#x00A0;<a 
+href="thesis-emeijse9.html#x13-14003r2.10">2.10<!--tex4ht:ref: chapter04:eq:querymodel --></a>), by
+defining a conjugate prior <!--l. 673--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>D</mi><mi 
+>i</mi><mi 
+>r</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mrow ><mo 
+class="MathClass-open">{</mo><mrow><mn>1</mn><mo 
+class="MathClass-bin">+</mo><mi 
+>&#x03BC;</mi><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0303;</mo></mover></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow><mo 
+class="MathClass-close">}</mo></mrow></mrow><mrow 
+><mi 
+>t</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+mathvariant="bold-script">V</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>
+                                                                   
+                                                                   
+on <!--l. 673--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03B8;</mi><mi 
+>Q</mi></math>.
+Hiemstra <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2004:Hiemstra">136</a>] follow the same assumptions as MBF, but propose to model
+<!--l. 674--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03B8;</mi><mi 
+>Q</mi></math> as a
+three component mixture by incorporating a separate document model, as described
+below.
+<h5 class="subsubsectionHead"><a 
+ id="x14-210002"></a>Relevance Models</h5>
+<!--l. 682--><p class="noindent" >In contrast to the estimation method used by MBF, the relevance modeling
+approach uses relevance feedback information to arrive at a posterior estimate of
+<!--l. 682--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03B8;</mi><mi 
+>Q</mi></math>&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:lavrenko:2003">182</a>].
+Relevance models are one of the baselines we employ at various points later in the
+thesis. They are centered around the notion that there exists a query-dependent
+model of relevance; the initial source for estimating the parameters of this
+model is the query itself, but relevance feedback information can provide
+additional evidence. It is assumed that for every information need there exists
+an underlying relevance model and that the query and relevant documents
+are random samples from this model. The query model, parametrized by
+<!--l. 692--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></math>, may be
+viewed as an approximation of this model. However, in a typical retrieval setting improving the
+estimation of <!--l. 694--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></math>
+is problematic because we have no or only limited training data. Lavrenko and
+Croft&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:lavrenko:2003">182</a>] discern three situations:
+     <dl class="enumerate"><dt class="enumerate">
+  1. </dt><dd 
+class="enumerate">when the full set of relevant documents is known;
+     </dd><dt class="enumerate">
+  2. </dt><dd 
+class="enumerate">when a partial set of relevant documents is known;
+     </dd><dt class="enumerate">
+  3. </dt><dd 
+class="enumerate">when there is only pseudo relevance feedback information.</dd></dl>
+<!--l. 708--><p class="noindent" >In the first and second situation, they define:
+                                                                   
+                                                                   
+<!--tex4ht:inline--><!--l. 710--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-op">&#x2026;</mo><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+mathvariant="bold-script">V</mi><mo 
+class="MathClass-rel">|</mo></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>&#x03B8;</mi><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">&#x221D;</mo></mtd><mtd 
+class="eqnarray-3">  <munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+>&#x220F;</mo>
+  </mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+mathvariant="bold-script">V</mi><mo 
+class="MathClass-rel">|</mo></mrow></munderover 
+> <mfrac><mrow 
+><mn>1</mn></mrow>
+<mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>R</mi><mo 
+class="MathClass-rel">|</mo></mrow></mfrac><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>D</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+>R</mi></mrow></munder 
+><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo>&#x0303;</mo></mover></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-bin">+</mo><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mn>1</mn><mo 
+class="MathClass-bin">&#x2212;</mo><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">.</mo><mspace width="1em" class="quad"/></mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.20)</mtext><mtext 
+   id="x14-21004r2.20"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>     </mtr></mtable>
+</math>
+<!--l. 719--><p class="nopar" >
+<!--l. 721--><p class="indent" >   For the first situation (called RM-0), <!--l. 721--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></math>
+is set to 1, which makes this model equivalent to MBF except for the way it
+treats the set of relevant documents. MBF considers the set as a whole,
+whereas RM considers each document individually. So, besides using a
+different estimation method, MBF is highly similar to RM, except for two
+assumptions: MBF assumes (i)&#x00A0;independence between relevant documents and
+(ii)&#x00A0;<!--l. 723--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>R</mi></mrow></msub 
+><mo 
+class="MathClass-rel">&#x2260;</mo><mn>0</mn></math>. In
+situation 2, <!--l. 723--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></math>
+is set to a value between 0 and 1.
+<!--l. 727--><p class="indent" >   In situation 3, i.e., the case of pseudo relevance feedback where
+<!--l. 727--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>R</mi></math> is a
+set of top-ranked documents of which the relevance status is unknown, <a 
+href="thesis-emeijli2.html#Xbook:lavrenko:2003">Lavrenko and
+Croft</a> discern two methods (model 1 and model 2). Contrary to situations 1 and
+2, these are also dependent on the initial query. Model 2 (RM-2) is defined
+as:
+                                                                   
+                                                                   
+<!--tex4ht:inline--><!--l. 768--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-op">&#x2026;</mo><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+mathvariant="bold-script">V</mi><mo 
+class="MathClass-rel">|</mo></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">&#x221D;</mo><munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+>&#x220F;</mo>
+  </mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+mathvariant="bold-script">V</mi><mo 
+class="MathClass-rel">|</mo></mrow></munderover 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+>
+<mi 
+>i</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+>&#x220F;</mo>
+  </mrow><mrow 
+><mi 
+>j</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>Q</mi><mo 
+class="MathClass-rel">|</mo></mrow></munderover 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>D</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+>R</mi></mrow></munder 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>q</mi></mrow><mrow 
+><mi 
+>j</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">,</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.21)</mtext><mtext 
+   id="x14-21005r2.21"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>     </mtr></mtable>
+</math>
+<!--l. 773--><p class="nopar" >
+<!--l. 775--><p class="indent" >   where
+<!--tex4ht:inline--><!--l. 777--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo><munder class="msub"><mrow 
+><mo mathsize="big" 
+> &#x2211;</mo>
+   </mrow><mrow 
+><mi 
+>D</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+>R</mi></mrow></munder 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mspace width="2em" class="qquad"/><mstyle 
+class="mbox"><mtext  >and</mtext></mstyle><mspace width="2em" class="qquad"/><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>t</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo>      <mfrac><mrow 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow> 
+<mrow 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>D</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+>R</mi></mrow></munder 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfrac><mo 
+class="MathClass-punc">.</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.22)</mtext><mtext 
+   id="x14-21006r2.22"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>        </mtr></mtable>
+</math>
+<!--l. 784--><p class="nopar" >
+<!--l. 786--><p class="indent" >   Then we can rewrite Eq.&#x00A0;<a 
+href="#x14-21005r2.21">2.21<!--tex4ht:ref: eq:lavrenko:rm2:1 --></a> into:
+                                                                   
+                                                                   
+<!--tex4ht:inline--><!--l. 788--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-op">&#x2026;</mo><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+mathvariant="bold-script">V</mi><mo 
+class="MathClass-rel">|</mo></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">&#x221D;</mo><munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+>&#x220F;</mo>
+  </mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+mathvariant="bold-script">V</mi><mo 
+class="MathClass-rel">|</mo></mrow></munderover 
+><munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+>&#x220F;</mo>
+  </mrow><mrow 
+><mi 
+>j</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>Q</mi><mo 
+class="MathClass-rel">|</mo></mrow></munderover 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>D</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+>R</mi></mrow></munder 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>q</mi></mrow><mrow 
+><mi 
+>j</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">.</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.23)</mtext><mtext 
+   id="x14-21007r2.23"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>    </mtr></mtable>
+</math>
+<!--l. 796--><p class="nopar" >
+<!--l. 802--><p class="indent" >   As is clear from Eq.&#x00A0;<a 
+href="#x14-21007r2.23">2.23<!--tex4ht:ref: eq:lavrenko:rm2:2 --></a>, this model considers each relevant document individually
+and explicitly takes the initial query into account by first gathering evidence from each
+document for a query term and, next, combining the evidence for all query terms.
+Model 1 (RM-1), on the other hand, is defined as:
+<!--tex4ht:inline--><!--l. 806--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-op">&#x2026;</mo><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+mathvariant="bold-script">V</mi><mo 
+class="MathClass-rel">|</mo></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">&#x221D;</mo></mtd><mtd 
+class="eqnarray-3">  <munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+>&#x220F;</mo>
+  </mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+mathvariant="bold-script">V</mi><mo 
+class="MathClass-rel">|</mo></mrow></munderover 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>D</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+>R</mi></mrow></munder 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow>             </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray"></mtext></mtd>
+</mtr><mtr><mtd 
+class="eqnarray-1">             </mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">&#x221D;</mo></mtd><mtd 
+class="eqnarray-3">  <munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+>&#x220F;</mo>
+  </mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+mathvariant="bold-script">V</mi><mo 
+class="MathClass-rel">|</mo></mrow></munderover 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>D</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+>R</mi></mrow></munder 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+>&#x220F;</mo>
+  </mrow><mrow 
+><mi 
+>j</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>Q</mi><mo 
+class="MathClass-rel">|</mo></mrow></munderover 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>q</mi></mrow><mrow 
+>
+<mi 
+>j</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray"></mtext></mtd>
+</mtr><mtr><mtd 
+class="eqnarray-1">             </mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">&#x221D;</mo></mtd><mtd 
+class="eqnarray-3">  <munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+>&#x220F;</mo>
+  </mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+mathvariant="bold-script">V</mi><mo 
+class="MathClass-rel">|</mo></mrow></munderover 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>D</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+>R</mi></mrow></munder 
+><munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+>&#x220F;</mo>
+  </mrow><mrow 
+><mi 
+>j</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>Q</mi><mo 
+class="MathClass-rel">|</mo></mrow></munderover 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>q</mi></mrow><mrow 
+>
+<mi 
+>j</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">.</mo></mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.24)</mtext><mtext 
+   id="x14-21008r2.24"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>     </mtr></mtable>
+</math>
+<!--l. 820--><p class="nopar" >
+<!--l. 822--><p class="indent" >   This restructured equation makes clear that in case of RM-1 the evidence is first
+aggregated per query term and subsequently per document. So, RM-1 and
+                                                                   
+                                                                   
+RM-2 differ in the way they aggregate evidence of terms co-occuring with
+the query: RM-1 first aggregates evidence for all query terms and then sums
+over the documents, whilst RM-2 does the opposite. In both RM-1 and RM-2,
+<!--l. 822--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math> is assumed to be
+uniform, i.e., <!--l. 822--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo> <mn>1</mn><mo 
+class="MathClass-bin">&#x2215;</mo><mo 
+class="MathClass-rel">|</mo><mi 
+>R</mi><mo 
+class="MathClass-rel">|</mo></math>.
+<!--l. 825--><p class="indent" >   Various extensions and adaptations of relevance models have been proposed in the
+literature. Li&#x00A0;[<a 
+href="thesis-emeijli2.html#XIPM:2008:li">188</a>] adds three heuristics to the relevance model estimation, including
+adding the original query as pseudo-document, adding a document length based prior,
+and discounting a term&#x2019;s probability based on estimates on the collection. Diaz and
+Metzler&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2006:diaz">92</a>] estimate relevance models on external corpora and find that this
+approach helps to reduce noise in the query models; a finding corroborated by
+Weerkamp <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#Xweer:gene09">337</a>]. Balog <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2008:balog">24</a>] apply relevance model estimation
+methods on example documents provided by the user and find that their model
+significantly outperforms several baselines. In [<a 
+href="thesis-emeijli2.html#XICTIR:2007:meij">208</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XECDL:2007:meij">209</a>] we have biased the
+relevance model estimations towards concepts assigned to the documents.
+This approach was later refined in [<a 
+href="thesis-emeijli2.html#XIPM:2010:Meij">221</a>] and will be further introduced in
+Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a>.
+<h5 class="subsubsectionHead"><a 
+ id="x14-220002"></a>Parsimonious Relevance Models</h5>
+<!--l. 834--><p class="noindent" >Hiemstra <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2004:Hiemstra">136</a>] propose an approach to language modeling, called parsimonious
+relevance models (PRM), that is based on [<a 
+href="thesis-emeijli2.html#Xbook:2003:lm:sparck">297</a>]. It hinges on the notion that language
+models should not model language blindly, but instead model the language
+that distinguishes a relevant document from other documents. <a 
+href="thesis-emeijli2.html#XSIGIR:2004:Hiemstra">Hiemstra <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span></a>
+present an iterative algorithm based on <a 
+href="thesis-emeijli3.html#EM">EM</a> that takes away probability mass
+from terms that are frequent in a model of general English and gives it to the
+terms that are distinct in a document. It re-estimates the document models as
+follows:
+                                                                   
+                                                                   
+<!--tex4ht:inline--><!--l. 836--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1">   <mstyle 
+class="mbox"><mtext  >E-step</mtext></mstyle><mspace width="2em" class="qquad"/><mspace width="2em" class="qquad"/></mtd><mtd 
+class="eqnarray-2">    </mtd><mtd 
+class="eqnarray-3">                                </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray"></mtext></mtd>
+</mtr><mtr><mtd 
+class="eqnarray-1">       <msub><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mi 
+>t</mi></mrow></msub 
+></mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">  <mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow>          <mfrac><mrow 
+><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow>
+<mrow 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mn>1</mn><mo 
+class="MathClass-bin">&#x2212;</mo><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-bin">+</mo><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfrac><mo 
+class="MathClass-punc">,</mo></mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray"></mtext></mtd>
+</mtr><mtr><mtd 
+class="eqnarray-1">   <mstyle 
+class="mbox"><mtext  >M-step</mtext></mstyle><mspace width="2em" class="qquad"/><mspace width="2em" class="qquad"/></mtd><mtd 
+class="eqnarray-2">    </mtd><mtd 
+class="eqnarray-3">                                </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray"></mtext></mtd>
+</mtr><mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">     <mfrac><mrow 
+><msub><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mi 
+>t</mi></mrow></msub 
+></mrow>
+<mrow 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><msup><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+></mrow></munder 
+><msub><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><msup><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+></mrow></msub 
+></mrow></mfrac><mo 
+class="MathClass-punc">,</mo>                       </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.25)</mtext><mtext 
+   id="x14-22001r2.25"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                      </mtr></mtable>
+</math>
+<!--l. 847--><p class="nopar" >
+<!--l. 849--><p class="indent" >   until the estimates do not change significantly anymore. The resulting
+<!--l. 849--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></math> is
+then used instead of the document model in Eq.&#x00A0;<a 
+href="thesis-emeijse9.html#x13-14001r2.8">2.8<!--tex4ht:ref: eq:relwork:kl-div --></a>.
+<!--l. 851--><p class="indent" >   In the case of relevance feedback, Hiemstra <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2004:Hiemstra">136</a>] define a three-level model,
+that adds a model of relevance to Eq.&#x00A0;<a 
+href="#x14-22001r2.25">2.25<!--tex4ht:ref: eq:PRM --></a>. In this case, each relevant document is
+considered to be a linear interpolation of these three models:
+<!--tex4ht:inline--><!--l. 853--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-op">&#x2026;</mo><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+mathvariant="bold-script">V</mi><mo 
+class="MathClass-rel">|</mo></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo><munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+> &#x220F;</mo>
+  </mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+mathvariant="bold-script">V</mi><mo 
+class="MathClass-rel">|</mo></mrow></munderover 
+><mfenced separators="" 
+open="("  close=")" ><mrow><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mn>1</mn><mo 
+class="MathClass-bin">&#x2212;</mo><mi 
+>&#x03BB;</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mi 
+>&#x03BC;</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+>
+<mi 
+>i</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-bin">+</mo><mi 
+>&#x03BC;</mi><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>R</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-bin">+</mo><mi 
+>&#x03BB;</mi><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfenced><mo 
+class="MathClass-punc">.</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.26)</mtext><mtext 
+   id="x14-22002r2.26"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>  </mtr></mtable>
+</math>
+                                                                   
+                                                                   
+<!--l. 862--><p class="nopar" >
+<!--l. 864--><p class="indent" >   Given a set of relevant documents, the following iterative algorithm is
+applied:
+<!--tex4ht:inline--><!--l. 868--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1">   <mstyle 
+class="mbox"><mtext  >E-step</mtext></mstyle><mspace width="2em" class="qquad"/><mspace width="2em" class="qquad"/></mtd><mtd 
+class="eqnarray-2">    </mtd><mtd 
+class="eqnarray-3">                                            </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray"></mtext></mtd>
+</mtr><mtr><mtd 
+class="eqnarray-1">       <msub><mrow 
+><mi 
+>r</mi></mrow><mrow 
+><mi 
+>t</mi></mrow></msub 
+></mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">  <mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow>                    <mfrac><mrow 
+><mi 
+>&#x03BC;</mi><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>R</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow>
+<mrow 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mn>1</mn><mo 
+class="MathClass-bin">&#x2212;</mo><mi 
+>&#x03BB;</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mi 
+>&#x03BC;</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-bin">+</mo><mi 
+>&#x03BC;</mi><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>R</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-bin">+</mo><mi 
+>&#x03BB;</mi><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfrac><mo 
+class="MathClass-punc">,</mo></mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray"></mtext></mtd>
+</mtr><mtr><mtd 
+class="eqnarray-1">       <msub><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mi 
+>t</mi></mrow></msub 
+></mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">  <mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow>                    <mfrac><mrow 
+><mi 
+>&#x03BB;</mi><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow>
+<mrow 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mn>1</mn><mo 
+class="MathClass-bin">&#x2212;</mo><mi 
+>&#x03BB;</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mi 
+>&#x03BC;</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-bin">+</mo><mi 
+>&#x03BC;</mi><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>R</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-bin">+</mo><mi 
+>&#x03BB;</mi><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfrac><mo 
+class="MathClass-punc">,</mo></mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray"></mtext></mtd>
+</mtr><mtr><mtd 
+class="eqnarray-1">   <mstyle 
+class="mbox"><mtext  >M-step</mtext></mstyle><mspace width="2em" class="qquad"/><mspace width="2em" class="qquad"/></mtd><mtd 
+class="eqnarray-2">    </mtd><mtd 
+class="eqnarray-3">                                            </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray"></mtext></mtd>
+</mtr><mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>R</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">  <munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>D</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+>R</mi></mrow></munder 
+>    <mfrac><mrow 
+><msub><mrow 
+><mi 
+>r</mi></mrow><mrow 
+><mi 
+>t</mi></mrow></msub 
+></mrow> 
+<mrow 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><msup><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+></mrow></munder 
+><msub><mrow 
+><mi 
+>r</mi></mrow><mrow 
+><msup><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+></mrow></msub 
+></mrow></mfrac><mo 
+class="MathClass-punc">,</mo>                            </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray"></mtext></mtd>
+</mtr><mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">     <mfrac><mrow 
+><msub><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mi 
+>t</mi></mrow></msub 
+></mrow>
+<mrow 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><msup><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+></mrow></munder 
+><msub><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><msup><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+></mrow></msub 
+></mrow></mfrac><mo 
+class="MathClass-punc">.</mo>                                  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.27)</mtext><mtext 
+   id="x14-22003r2.27"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>           </mtr></mtable>
+</math>
+<!--l. 888--><p class="nopar" >
+<!--l. 890--><p class="indent" >   Hiemstra  <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2004:Hiemstra">136</a>]  propose  to  use
+<!--l. 890--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>R</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>
+instead of the query model, again using Eq.&#x00A0;<a 
+href="thesis-emeijse9.html#x13-14001r2.8">2.8<!--tex4ht:ref: eq:relwork:kl-div --></a>. When a fixed value of
+<!--l. 892--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03BC;</mi> <mo 
+class="MathClass-rel">=</mo> <mn>0</mn></math> is
+used in Eq.&#x00A0;<a 
+href="#x14-22003r2.27">2.27<!--tex4ht:ref: eq:PRM:RM --></a>, it results in RM-0 with parsimonious document models.
+<!--l. 894--><p class="indent" >   Hiemstra <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2004:Hiemstra">136</a>] find that the size of the posting list for each document (in
+which the terms with a non-zero value are stored for each document in an index)
+can be greatly reduced, without a significant loss in retrieval performance.
+When Eq.&#x00A0;<a 
+href="#x14-22003r2.27">2.27<!--tex4ht:ref: eq:PRM:RM --></a> is evaluated on a routing task (cf. Chapter&#x00A0;<a 
+href="thesis-emeijch3.html#x19-330003">3<!--tex4ht:ref: chap:methodology --></a>), they find that
+retrieval performance is slightly improved over RM-0. They do not find further
+improvements when introducing re-estimated document models (i.e., when
+                                                                   
+                                                                   
+<!--l. 894--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03BB;</mi> <mo 
+class="MathClass-rel">&#x003E;</mo> <mn>0</mn></math>).
+<!--l. 897--><p class="indent" >   In [<a 
+href="thesis-emeijli2.html#XSIGIR:2008:Meij-prm">216</a>] we have proposed a combination of MBF and RM-2 that uses relevance
+models in conjunction with the estimation methods of MBF. In Chapter&#x00A0;<a 
+href="thesis-emeijch4.html#x26-470004">4<!--tex4ht:ref: chap:relfb --></a>&#x00A0;we also
+include PRM in the comparative performance evaluations. In Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a>&#x00A0;we apply a
+similar <a 
+href="thesis-emeijli3.html#EM">EM</a> algorithm when incorporating document level annotations during
+query modeling and find that this step is essential for obtaining significant
+improvements.
+<a 
+ id="x14-22004r22"></a>
+<h4 class="subsectionHead"><span class="titlemark">2.3.3    </span> <a 
+ id="x14-230003"></a>Term Dependence Models</h4>
+<!--l. 901--><p class="noindent" ><a 
+href="thesis-emeijli3.html#IR">IR</a> has a long history of attempts to incorporate syntactic information such as term
+dependencies, with varying success&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:1971:ksj">291</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIPM:1968:sparck">294</a>]. All language modeling variations
+presented so far are based on the assumption that terms (in both queries and
+documents) are independent of each other. Given common knowledge about language,
+such an assumption might seem unrealistic (or even plainly wrong). Various
+researchers have attempted folding in syntactic information (ranging from
+n-gram information&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:1999:miller">229</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XCIKM:1999:song">290</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:2002:srikanth">301</a>] to using HAL (Hyperspace Analog to
+Language) space&#x00A0;[<a 
+href="thesis-emeijli2.html#XICTIR:2009:Hoenkamp">137</a>]). Such efforts have not yet resulted in consistent, significant
+improvements however. This fact is commonly attributed to data sparsity in corpora;
+most of the features (e.g., the n-grams) simply do not occur with sufficient
+frequency.
+<!--l. 904--><p class="indent" >   Song and Croft&#x00A0;[<a 
+href="thesis-emeijli2.html#XCIKM:1999:song">290</a>] do observe an improved performance for their
+proposed general language model that combines bigram language models
+with Good-Turing estimates and corpus-based smoothing of unigram
+probabilities. This form of smoothing interpolates the probabilities for bigrams
+with those of unigrams; the probability of observing the sequence of terms
+<!--l. 904--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mrow ><mo 
+class="MathClass-open">&#x2329;</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-op">&#x2026;</mo><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>n</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">&#x232A;</mo></mrow></math>
+becomes:
+                                                                   
+                                                                   
+<!--tex4ht:inline--><!--l. 906--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mrow ><mo 
+class="MathClass-open">&#x2329;</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-op">&#x2026;</mo><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>n</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">&#x232A;</mo></mrow></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mn>1</mn></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mn>2</mn></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mn>1</mn></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-op">&#x2026;</mo><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>n</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>n</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">,</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.28)</mtext><mtext 
+   id="x14-23001r2.28"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                          </mtr></mtable>
+</math>
+<!--l. 909--><p class="nopar" >
+<!--l. 911--><p class="indent" >   where
+<!--tex4ht:inline--><!--l. 913--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo> <mi 
+>&#x03BB;</mi><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-bin">+</mo><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mn>1</mn><mo 
+class="MathClass-bin">&#x2212;</mo><mi 
+>&#x03BB;</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">.</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.29)</mtext><mtext 
+   id="x14-23002r2.29"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                             </mtr></mtable>
+</math>
+<!--l. 916--><p class="nopar" >
+<!--l. 918--><p class="indent" >   Such back-off bigram language models give a higher probability to documents
+containing a bigram from the query as a phrase (e.g. documents containing the phrase
+&#x201C;information retrieval&#x201D; would obtain a larger probability than documents containing
+solely the constituent terms). Srikanth and Srihari&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2002:srikanth">301</a>] build upon this idea and
+propose the use of so-called <span 
+class="bchri8t-">biterms</span>. Biterms are similar in nature to back-off bigram
+language models, with the distinction that the constraint of term ordering is relaxed.
+Using their method, a document containing the phrase &#x201C;retrieval of information&#x201D; would
+be assigned the same probability as using the bigram model. Similar intuitions have
+                                                                   
+                                                                   
+been applied to query modeling and applying positional information there has met with
+improvements in retrieval performance, especially in terms of precision on larger web
+collections&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2005:metzler">224</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XECIR:2005:mishne">232</a>].
+                                                                   
+                                                                   
+<!--l. 924--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch2.html#thesis-emeijse10.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse11.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse9.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse9.html#tailthesis-emeijse9.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijse10.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse10.html"></a> 
+</body></html> 

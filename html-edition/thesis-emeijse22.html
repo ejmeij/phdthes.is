@@ -1,0 +1,1747 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Explicit Relevance Feedback</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch4.html#thesis-emeijse22.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse23.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse21.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse21.html#tailthesis-emeijse21.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse22.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">4.4    </span> <a 
+ id="x30-610004"></a>Explicit Relevance Feedback</h3>
+<!--l. 5--><p class="noindent" >In this section we present the results of applying the models to <span 
+class="bchri8t-">explicit </span>relevance
+feedback. We make use of the TREC Relevance Feedback 2008 test collection as
+described in Chapter&#x00A0;<a 
+href="thesis-emeijch3.html#x19-330003">3<!--tex4ht:ref: chap:methodology --></a>&#x00A0;and we follow the same approach as in Section&#x00A0;<a 
+href="thesis-emeijse21.html#x29-530003">4.3<!--tex4ht:ref: sec:prfresults --></a>. In this
+case, however, we remove the non-relevant documents from the list of initially retrieved
+documents. Furthermore, we append to this list the relevant documents that were not
+retrieved, ordered by their QL score with respect to the query, until a maximum of
+200.
+<!--l. 9--><p class="indent" >   Recall that for the TREC Relevance Feedback track, an additional round of relevance
+assessments was performed, based on the pooled submissions of the participants
+from which the known relevant documents were removed. We use these novel
+assessments for evaluation. Because of this, the results presented here are not directly
+comparable to the results presented in the previous section for the TREC-PRF-08 test
+collection.
+<!--l. 11--><p class="indent" >   We explore the behavior of our two novel models, MLgen and NLLR, in detail
+and examine the results of the other methods which focus solely on the two
+distinct features that our models combine: the set of relevant documents and
+the individual documents that it comprises. We also zoom in on each model&#x2019;s
+performance on individual topics. Then, since these experiments require explicit
+relevance assessments, we take a user-oriented view and turn to the number
+of relevant documents. Recall from Section&#x00A0;<a 
+href="thesis-emeijse15.html#x21-350002">3.2<!--tex4ht:ref: sec:relwork:evaluation --></a> that we use a large number
+of relevant documents available to us (around 150 documents per query on
+average). Clearly, such numbers are not indicative of the effort an average
+user is willing to spend. Therefore, we will incrementally add documents to
+<!--l. 19--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>R</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></math> (where
+<!--l. 19--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>R</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover> <mo 
+class="MathClass-rel">&#x2286;</mo> <mi 
+>R</mi></math>) and
+look at the resulting retrieval performance in order to determine how many relevant
+documents need to be identified to arrive at a stable retrieval performance. We
+conclude this section by determining the optimal number of terms to use for explicit
+relevance feedback.
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 40--><p class="indent" >   <a 
+ id="x30-610018"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="center" 
+>
+<!--l. 41--><p class="noindent" >
+
+ <table id="TBL-26" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-26-1g"><col 
+id="TBL-26-1"><col 
+id="TBL-26-2"><col 
+id="TBL-26-3"><col 
+id="TBL-26-4"><col 
+id="TBL-26-5"><col 
+id="TBL-26-6"><col 
+id="TBL-26-7"><col 
+id="TBL-26-8"><col 
+id="TBL-26-9"><col 
+id="TBL-26-10"><col 
+id="TBL-26-11"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-26-1-"><td  style="text-align:center; white-space:nowrap;" id="TBL-26-1-1"  
+class="td11">    <div class="multicolumn"  style="text-align:center; white-space:nowrap;"> </div>   </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-26-1-2"  
+class="td11">       <div class="multicolumn"  style="text-align:center; white-space:nowrap;"> <span 
+class="bchr8t-x-x-80">P5 </span></div>     </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-26-1-4"  
+class="td11">      <div class="multicolumn"  style="text-align:center; white-space:nowrap;"> <a 
+href="thesis-emeijli3.html#P10"><span 
+class="bchr8t-x-x-80">P10</span></a> </div>     </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-26-1-6"  
+class="td11">      <div class="multicolumn"  style="text-align:center; white-space:nowrap;"> <a 
+href="thesis-emeijli3.html#MAP"><span 
+class="bchr8t-x-x-80">MAP</span></a> </div>     </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-26-1-8"  
+class="td11">     <div class="multicolumn"  style="text-align:center; white-space:nowrap;"> <span 
+class="bchr8t-x-x-80">RelRet </span></div>    </td><td  style="text-align:center; white-space:nowrap;" id="TBL-26-1-10"  
+class="td11"> <div class="multicolumn"  style="text-align:center; white-space:nowrap;"> <!--l. 129--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></math> </div> </td><td  style="text-align:center; white-space:nowrap;" id="TBL-26-1-11"  
+class="td11"> <div class="multicolumn"  style="text-align:center; white-space:nowrap;"> <!--l. 129--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">|</mo><mover 
+accent="true"><mrow 
+><mi 
+>R</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover><mo 
+class="MathClass-rel">|</mo></math></div>
+
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-26-2-"><td  style="text-align:left; white-space:nowrap;" id="TBL-26-2-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">QL         </span></td><td  style="text-align:left;" id="TBL-26-2-2"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.245</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-2-3"  
+class="td11">          </td><td  style="text-align:left;" id="TBL-26-2-4"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.242</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-2-5"  
+class="td11">          </td><td  style="text-align:left;" id="TBL-26-2-6"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.131</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-2-7"  
+class="td11">          </td><td  style="text-align:left;" id="TBL-26-2-8"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">1030</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-2-9"  
+class="td11">          </td><td  style="text-align:left; white-space:nowrap;" id="TBL-26-2-10"  
+class="td11"> <span 
+class="bchr8t-x-x-80">1.0                                                                                                                                                              </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-2-11"  
+class="td11">                                                                                     <span 
+class="bchr8t-x-x-80">&#x2013;   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-26-3-"><td  style="text-align:left; white-space:nowrap;" id="TBL-26-3-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MLE      </span></td><td  style="text-align:left;" id="TBL-26-3-2"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.361*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-3-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+47.3%   </span></td><td  style="text-align:left;" id="TBL-26-3-4"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.336*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-3-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+38.8%   </span></td><td  style="text-align:left;" id="TBL-26-3-6"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.194*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-3-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+48.1%   </span></td><td  style="text-align:left;" id="TBL-26-3-8"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">1217*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-3-9"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+18.2%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-26-3-10"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4                                                                                                                                                              </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-3-11"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">110   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-26-4-"><td  style="text-align:left; white-space:nowrap;" id="TBL-26-4-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MBF      </span></td><td  style="text-align:left;" id="TBL-26-4-2"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.338</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-4-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+38.0%   </span></td><td  style="text-align:left;" id="TBL-26-4-4"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.321*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-4-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+32.6%   </span></td><td  style="text-align:left;" id="TBL-26-4-6"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.175*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-4-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+33.6%   </span></td><td  style="text-align:left;" id="TBL-26-4-8"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">1162*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-4-9"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+12.8%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-26-4-10"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.6                                                                                                                                                              </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-4-11"  
+class="td11">                                                                                   <span 
+class="bchr8t-x-x-80">95   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-26-5-"><td  style="text-align:left; white-space:nowrap;" id="TBL-26-5-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RM-0     </span></td><td  style="text-align:left;" id="TBL-26-5-2"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.394*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-5-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+60.8%   </span></td><td  style="text-align:left;" id="TBL-26-5-4"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.355*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-5-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+46.7%   </span></td><td  style="text-align:left;" id="TBL-26-5-6"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.215*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-5-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+64.1%   </span></td><td  style="text-align:left;" id="TBL-26-5-8"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">1258*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-5-9"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+22.1%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-26-5-10"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3                                                                                                                                                              </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-5-11"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">132   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-26-6-"><td  style="text-align:left; white-space:nowrap;" id="TBL-26-6-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RM-1     </span></td><td  style="text-align:left;" id="TBL-26-6-2"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.348</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-6-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+42.0%   </span></td><td  style="text-align:left;" id="TBL-26-6-4"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.352</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-6-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+45.5%   </span></td><td  style="text-align:left;" id="TBL-26-6-6"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.198*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-6-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+51.1%   </span></td><td  style="text-align:left;" id="TBL-26-6-8"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">1278*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-6-9"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+24.1%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-26-6-10"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3                                                                                                                                                              </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-6-11"  
+class="td11">                                                                                   <span 
+class="bchr8t-x-x-80">40   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-26-7-"><td  style="text-align:left; white-space:nowrap;" id="TBL-26-7-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RM-2     </span></td><td  style="text-align:left;" id="TBL-26-7-2"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.368</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-7-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+50.2%   </span></td><td  style="text-align:left;" id="TBL-26-7-4"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.358*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-7-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+47.9%   </span></td><td  style="text-align:left;" id="TBL-26-7-6"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.208*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-7-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+58.8%   </span></td><td  style="text-align:left;" id="TBL-26-7-8"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchb8t-x-x-80">1342</span><span 
+class="bchr8t-x-x-80">*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-7-9"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+30.3%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-26-7-10"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4                                                                                                                                                              </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-7-11"  
+class="td11">                                                                                   <span 
+class="bchr8t-x-x-80">66   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-26-8-"><td  style="text-align:left; white-space:nowrap;" id="TBL-26-8-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">PRM      </span></td><td  style="text-align:left;" id="TBL-26-8-2"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.414*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-8-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+69.0%   </span></td><td  style="text-align:left;" id="TBL-26-8-4"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.372*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-8-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+53.7%   </span></td><td  style="text-align:left;" id="TBL-26-8-6"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.212*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-8-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+61.8%   </span></td><td  style="text-align:left;" id="TBL-26-8-8"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">1238*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-8-9"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+20.2%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-26-8-10"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.6                                                                                                                                                              </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-8-11"  
+class="td11">                                                                                   <span 
+class="bchr8t-x-x-80">18   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-26-9-"><td  style="text-align:left; white-space:nowrap;" id="TBL-26-9-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MLgen   </span></td><td  style="text-align:left;" id="TBL-26-9-2"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.374</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-9-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+52.7%   </span></td><td  style="text-align:left;" id="TBL-26-9-4"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.342*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-9-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+41.3%   </span></td><td  style="text-align:left;" id="TBL-26-9-6"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.214*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-9-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+63.4%   </span></td><td  style="text-align:left;" id="TBL-26-9-8"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">1288*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-9-9"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+25.0%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-26-9-10"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4                                                                                                                                                              </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-9-11"  
+class="td11">                                                                                   <span 
+class="bchr8t-x-x-80">60   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-26-10-"><td  style="text-align:left; white-space:nowrap;" id="TBL-26-10-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">NLLR     </span></td><td  style="text-align:left;" id="TBL-26-10-2"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchb8t-x-x-80">0.432</span><span 
+class="bchr8t-x-x-80">*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-10-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+76.3%   </span></td><td  style="text-align:left;" id="TBL-26-10-4"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchb8t-x-x-80">0.374</span><span 
+class="bchr8t-x-x-80">*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-10-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+54.5%   </span></td><td  style="text-align:left;" id="TBL-26-10-6"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchb8t-x-x-80">0.230</span><span 
+class="bchr8t-x-x-80">*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-10-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+75.6%   </span></td><td  style="text-align:left;" id="TBL-26-10-8"  
+class="td11"> <!--l. 129--><p class="noindent" ><span 
+class="bchr8t-x-x-80">1333*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-10-9"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+29.4%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-26-10-10"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4                                                                                                                                                              </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-26-10-11"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">200   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-26-11-"><td  style="text-align:left; white-space:nowrap;" id="TBL-26-11-1"  
+class="td11">        </td></tr></table>
+</div>
+<br />   <div class="caption" 
+><span class="id">Table&#x00A0;4.8:     </span><span  
+class="content">Best     results     (optimized     for     MAP)     of     the     models
+contrasted    in    this    chapter    on    the    TREC-RF-08    test    collection    using
+<!--l. 133--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+mathvariant="bold-script">V</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo> <mo 
+class="MathClass-rel">=</mo> <mn>1</mn><mn>0</mn></math>.
+</span></div><!--tex4ht:label?: x30-610018 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 137--><p class="indent" >   <a 
+ id="x30-610029"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="center" 
+>
+<!--l. 138--><p class="noindent" >
+
+ <table id="TBL-28" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-28-1g"><col 
+id="TBL-28-1"><col 
+id="TBL-28-2"><col 
+id="TBL-28-3"><col 
+id="TBL-28-4"><col 
+id="TBL-28-5"><col 
+id="TBL-28-6"><col 
+id="TBL-28-7"><col 
+id="TBL-28-8"><col 
+id="TBL-28-9"><col 
+id="TBL-28-10"><col 
+id="TBL-28-11"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-28-1-"><td  style="text-align:center; white-space:nowrap;" id="TBL-28-1-1"  
+class="td11">    <div class="multicolumn"  style="text-align:center; white-space:nowrap;"> </div>   </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-28-1-2"  
+class="td11">       <div class="multicolumn"  style="text-align:center; white-space:nowrap;"> <span 
+class="bchr8t-x-x-80">P5 </span></div>     </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-28-1-4"  
+class="td11">      <div class="multicolumn"  style="text-align:center; white-space:nowrap;"> <a 
+href="thesis-emeijli3.html#P10"><span 
+class="bchr8t-x-x-80">P10</span></a> </div>     </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-28-1-6"  
+class="td11">      <div class="multicolumn"  style="text-align:center; white-space:nowrap;"> <a 
+href="thesis-emeijli3.html#MAP"><span 
+class="bchr8t-x-x-80">MAP</span></a> </div>     </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-28-1-8"  
+class="td11">     <div class="multicolumn"  style="text-align:center; white-space:nowrap;"> <span 
+class="bchr8t-x-x-80">RelRet </span></div>    </td><td  style="text-align:center; white-space:nowrap;" id="TBL-28-1-10"  
+class="td11"> <div class="multicolumn"  style="text-align:center; white-space:nowrap;"> <!--l. 224--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></math> </div> </td><td  style="text-align:center; white-space:nowrap;" id="TBL-28-1-11"  
+class="td11"> <div class="multicolumn"  style="text-align:center; white-space:nowrap;"> <!--l. 224--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">|</mo><mover 
+accent="true"><mrow 
+><mi 
+>R</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover><mo 
+class="MathClass-rel">|</mo></math></div>
+
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-28-2-"><td  style="text-align:left; white-space:nowrap;" id="TBL-28-2-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">QL         </span></td><td  style="text-align:left;" id="TBL-28-2-2"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.245</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-2-3"  
+class="td11">          </td><td  style="text-align:left;" id="TBL-28-2-4"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.242</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-2-5"  
+class="td11">          </td><td  style="text-align:left;" id="TBL-28-2-6"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.131</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-2-7"  
+class="td11">          </td><td  style="text-align:left;" id="TBL-28-2-8"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">1030</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-2-9"  
+class="td11">          </td><td  style="text-align:left; white-space:nowrap;" id="TBL-28-2-10"  
+class="td11"> <span 
+class="bchr8t-x-x-80">1.0                                                                                                                                                              </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-2-11"  
+class="td11">                                                                                     <span 
+class="bchr8t-x-x-80">&#x2013;   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-28-3-"><td  style="text-align:left; white-space:nowrap;" id="TBL-28-3-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MLE      </span></td><td  style="text-align:left;" id="TBL-28-3-2"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.342</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-3-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+39.6%   </span></td><td  style="text-align:left;" id="TBL-28-3-4"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.355*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-3-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+46.7%   </span></td><td  style="text-align:left;" id="TBL-28-3-6"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.185*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-3-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+41.2%   </span></td><td  style="text-align:left;" id="TBL-28-3-8"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">1181</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-3-9"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+14.7%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-28-3-10"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3                                                                                                                                                              </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-3-11"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">109   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-28-4-"><td  style="text-align:left; white-space:nowrap;" id="TBL-28-4-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MBF      </span></td><td  style="text-align:left;" id="TBL-28-4-2"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.379*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-4-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+54.7%   </span></td><td  style="text-align:left;" id="TBL-28-4-4"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.335*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-4-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+38.4%   </span></td><td  style="text-align:left;" id="TBL-28-4-6"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.174*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-4-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+32.8%   </span></td><td  style="text-align:left;" id="TBL-28-4-8"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">1159*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-4-9"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+12.5%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-28-4-10"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.6                                                                                                                                                              </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-4-11"  
+class="td11">                                                                                   <span 
+class="bchr8t-x-x-80">71   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-28-5-"><td  style="text-align:left; white-space:nowrap;" id="TBL-28-5-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RM-0     </span></td><td  style="text-align:left;" id="TBL-28-5-2"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.374</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-5-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+52.7%   </span></td><td  style="text-align:left;" id="TBL-28-5-4"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.390*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-5-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+61.2%   </span></td><td  style="text-align:left;" id="TBL-28-5-6"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.191*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-5-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+45.8%   </span></td><td  style="text-align:left;" id="TBL-28-5-8"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">1218*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-5-9"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+18.3%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-28-5-10"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2                                                                                                                                                              </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-5-11"  
+class="td11">                                                                                   <span 
+class="bchr8t-x-x-80">33   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-28-6-"><td  style="text-align:left; white-space:nowrap;" id="TBL-28-6-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RM-1     </span></td><td  style="text-align:left;" id="TBL-28-6-2"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.374</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-6-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+52.7%   </span></td><td  style="text-align:left;" id="TBL-28-6-4"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.364*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-6-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+50.4%   </span></td><td  style="text-align:left;" id="TBL-28-6-6"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.185*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-6-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+41.2%   </span></td><td  style="text-align:left;" id="TBL-28-6-8"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">1216</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-6-9"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+18.1%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-28-6-10"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1                                                                                                                                                              </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-6-11"  
+class="td11">                                                                                   <span 
+class="bchr8t-x-x-80">23   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-28-7-"><td  style="text-align:left; white-space:nowrap;" id="TBL-28-7-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RM-2     </span></td><td  style="text-align:left;" id="TBL-28-7-2"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.394*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-7-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+60.8%   </span></td><td  style="text-align:left;" id="TBL-28-7-4"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.368*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-7-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+52.1%   </span></td><td  style="text-align:left;" id="TBL-28-7-6"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.195*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-7-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+48.9%   </span></td><td  style="text-align:left;" id="TBL-28-7-8"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">1314*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-7-9"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+27.6%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-28-7-10"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3                                                                                                                                                              </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-7-11"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">200   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-28-8-"><td  style="text-align:left; white-space:nowrap;" id="TBL-28-8-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">PRM      </span></td><td  style="text-align:left;" id="TBL-28-8-2"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.386*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-8-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+57.6%   </span></td><td  style="text-align:left;" id="TBL-28-8-4"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchb8t-x-x-80">0.397</span><span 
+class="bchr8t-x-x-80">*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-8-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+64.0%   </span></td><td  style="text-align:left;" id="TBL-28-8-6"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.203*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-8-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+55.0%   </span></td><td  style="text-align:left;" id="TBL-28-8-8"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">1195*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-8-9"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+16.0%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-28-8-10"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.6                                                                                                                                                              </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-8-11"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">200   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-28-9-"><td  style="text-align:left; white-space:nowrap;" id="TBL-28-9-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">MLgen   </span></td><td  style="text-align:left;" id="TBL-28-9-2"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.348</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-9-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+42.0%   </span></td><td  style="text-align:left;" id="TBL-28-9-4"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.384*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-9-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+58.7%   </span></td><td  style="text-align:left;" id="TBL-28-9-6"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.200*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-9-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+52.7%   </span></td><td  style="text-align:left;" id="TBL-28-9-8"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">1265*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-9-9"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+22.8%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-28-9-10"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3                                                                                                                                                              </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-9-11"  
+class="td11">                                                                                   <span 
+class="bchr8t-x-x-80">38   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-28-10-"><td  style="text-align:left; white-space:nowrap;" id="TBL-28-10-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">NLLR     </span></td><td  style="text-align:left;" id="TBL-28-10-2"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchb8t-x-x-80">0.419</span><span 
+class="bchr8t-x-x-80">*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-10-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+71.0%   </span></td><td  style="text-align:left;" id="TBL-28-10-4"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.394*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-10-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+62.8%   </span></td><td  style="text-align:left;" id="TBL-28-10-6"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchb8t-x-x-80">0.220</span><span 
+class="bchr8t-x-x-80">*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-10-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+67.9%   </span></td><td  style="text-align:left;" id="TBL-28-10-8"  
+class="td11"> <!--l. 224--><p class="noindent" ><span 
+class="bchb8t-x-x-80">1358</span><span 
+class="bchr8t-x-x-80">*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-10-9"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+31.8%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-28-10-10"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5                                                                                                                                                              </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-28-10-11"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">200   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-28-11-"><td  style="text-align:left; white-space:nowrap;" id="TBL-28-11-1"  
+class="td11">        </td></tr></table>
+</div>
+<br />   <div class="caption" 
+><span class="id">Table&#x00A0;4.9:     </span><span  
+class="content">Best     results     (optimized     for     P10)     of     the     models
+contrasted    in    this    chapter    on    the    TREC-RF-08    test    collection    using
+<!--l. 228--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+mathvariant="bold-script">V</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo> <mo 
+class="MathClass-rel">=</mo> <mn>1</mn><mn>0</mn></math>.
+</span></div><!--tex4ht:label?: x30-610029 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<a 
+ id="x30-61003r84"></a>
+<h4 class="subsectionHead"><span class="titlemark">4.4.1    </span> <a 
+ id="x30-620001"></a>Experimental Results</h4>
+<!--l. 235--><p class="noindent" >First, we look at the results when using all known relevant documents (up to a maximum of
+200). Tables&#x00A0;<a 
+href="#x30-610018">4.8<!--tex4ht:ref: tab:rf:bestresult:map --></a> and&#x00A0;<a 
+href="#x30-610029">4.9<!--tex4ht:ref: tab:rf:bestresult:p10 --></a> show the experimental results of applying the various approaches for
+estimating <!--l. 235--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>&#x03B8;</mi><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>;
+Table&#x00A0;<a 
+href="#x30-610018">4.8<!--tex4ht:ref: tab:rf:bestresult:map --></a> shows the results when optimizing for MAP, Table&#x00A0;<a 
+href="#x30-610029">4.9<!--tex4ht:ref: tab:rf:bestresult:p10 --></a> when optimzing P10.
+As indicated earlier, these results are obtained using the full set of judged
+relevant documents for estimation and subsequently removing these from the
+rankings.
+<!--l. 242--><p class="indent" >   First, we observe that the query-likelihood results are on par with the median of all
+submitted runs for the TREC Relevance Feedback track&#x00A0;[<a 
+href="thesis-emeijli2.html#XTREC:2008:relfb:overview">48</a>] and all models improve
+over this baseline. If we would have submitted the results of the NLLR model, it would
+have ended up in the top-3 for this particular category. The RM-2 run would have been
+placed at around rank 7.
+<!--l. 246--><p class="indent" >   Since these results are obtained using the full set of relevance assessments, one
+might expect that the MLE achieves high scores, because this set should be
+representative of the information need. Contrary to this intuition, however, the MLE
+approach does not achieve the highest performance when new relevant documents are
+to be retrieved; a finding in line with observations made by&#x00A0;Buckley <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XIR:2007:Buckley">52</a>].
+MBF (which re-estimates the MLE model) mainly has a precision-enhancing
+effect: recall and MAP are hurt using this approach when compared against
+MLE.
+<!--l. 261--><p class="indent" >   A precision enhancing effect is also visible when using NLLR and RM. Indeed, NLLR
+achieves the highest scores overall, except for the number of relevant retrieved
+documents (RM-2 retrieves 9 relevant documents more). NLLR obtains a significant
+75.6% improvement in terms of MAP over the baseline.
+<!--l. 267--><p class="indent" >   We further note that PRM and MBF share the same optimal setting for
+<!--l. 267--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></math>.
+The remaining models obtain optimal results using
+<!--l. 267--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>3</mn> <mo 
+class="MathClass-rel">&#x2264;</mo> <msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">&#x2264;</mo> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>4</mn></math>.
+The number of documents needed to arrive at an optimal performance varies
+greatly per model. In Section&#x00A0;<a 
+href="#x30-640003">4.4.3<!--tex4ht:ref: ssec:reldocs --></a> we further discuss this particular parameter
+settings.
+<!--l. 269--><p class="indent" >   Table&#x00A0;<a 
+href="#x30-610029">4.9<!--tex4ht:ref: tab:rf:bestresult:p10 --></a> shows the results when optimizing for P10. In this case, PRM slightly
+outperforms NLLR terms of P10. All models again significantly outperform the
+baseline, in terms of both P10 and MAP. In this case, however, the value of
+<!--l. 270--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></math> for all
+models except PRM and MBF is slightly lower. PRM and MBF have the same setting and
+                                                                   
+                                                                   
+merely use a different number of documents.
+<!--l. 274--><p class="indent" >   An interesting thing to note is that NLLR performs much better using explicit
+relevance feedback than when using pseudo relevance feedback. In Section&#x00A0;<a 
+href="thesis-emeijse21.html#x29-530003">4.3<!--tex4ht:ref: sec:prfresults --></a> we
+have observed that using this model on the TREC Robust and TREC Web collections
+typically resulted in a performance below the baseline. On the TREC-PRF-08 test
+collection, however, this model slightly improved over the baseline when using the right
+parameter settings, cf. Figure&#x00A0;<a 
+href="thesis-emeijse21.html#x29-59002r2">4.9(b)<!--tex4ht:ref: fig:chapter03:prf:terms:rf --></a>. Since the TREC-RF-08 test collection
+uses the same document collection as TREC-PRF-08 and a subset of its topics,
+we conclude that NLLR is better suited towards this collection. Furthermore,
+we are now dealing with explicit relevance feedback and the fact that NLLR
+outperforms all other models may be attributed to this fact; as there are no
+non-relevant documents in the set of feedback documents, we hypothesize that the
+estimation method of NLLR performs better than in the case of pseudo relevance
+feedback.
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 1--><p class="indent" >   <a 
+ id="x30-6200110"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="center" 
+>
+<!--l. 2--><p class="noindent" >
+
+ <table id="TBL-31" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-31-1g"><col 
+id="TBL-31-1"><col 
+id="TBL-31-2"><col 
+id="TBL-31-3"><col 
+id="TBL-31-4"><col 
+id="TBL-31-5"><col 
+id="TBL-31-6"><col 
+id="TBL-31-7"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-31-1-"><td  style="text-align:left;" id="TBL-31-1-1"  
+class="td11"> <!--l. 65--><p class="noindent" ><span 
+class="bchr8t-x-x-80">Model</span>         </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-31-1-2"  
+class="td11">    <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Topic #708</span></div>   </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-31-1-4"  
+class="td11">       <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Topic #766</span></div>     </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-31-1-6"  
+class="td11">       <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Topic #814</span></div>
+
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-2-"><td  style="text-align:left;" id="TBL-31-2-1"  
+class="td11"> <!--l. 65--><p class="noindent" ><span 
+class="bchr8t-x-x-80">QL</span>               </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-2-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3333   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-2-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">sourc   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-2-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5000   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-2-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">smuggl         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-2-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5000   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-2-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">flood             </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-3-"><td  style="text-align:left;" id="TBL-31-3-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-3-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3333   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-3-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">decor   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-3-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5000   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-3-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">diamond      </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-3-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.5000   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-3-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">johnstown     </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-4-"><td  style="text-align:left;" id="TBL-31-4-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-4-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3333   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-4-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">slate    </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-4-4"  
+class="td11">         </td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-4-5"  
+class="td11">            </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-4-6"  
+class="td11">         </td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-4-7"  
+class="td11">            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-5-"><td  style="text-align:left;" id="TBL-31-5-1"  
+class="td11"> <!--l. 65--><p class="noindent" ><span 
+class="bchr8t-x-x-80">MLE</span>             </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-5-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2125   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-5-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">slate    </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-5-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2723   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-5-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">diamond      </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-5-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2992   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-5-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">flood             </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-6-"><td  style="text-align:left;" id="TBL-31-6-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-6-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1333   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-6-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">sourc   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-6-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2000   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-6-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">smuggl         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-6-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2357   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-6-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">johnstown     </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-7-"><td  style="text-align:left;" id="TBL-31-7-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-7-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1333   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-7-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">decor   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-7-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0837   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-7-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">drug             </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-7-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1455   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-7-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0                   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-8-"><td  style="text-align:left;" id="TBL-31-8-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-8-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0975   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-8-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">stone   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-8-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0700   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-8-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">state             </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-8-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0701   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-8-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">dam              </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-9-"><td  style="text-align:left;" id="TBL-31-9-1"  
+class="td11"> <!--l. 65--><p class="noindent" ><span 
+class="bchr8t-x-x-80">MBF</span>            </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-9-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3164   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-9-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">slate    </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-9-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3718   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-9-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">diamond      </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-9-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3060   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-9-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">flood             </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-10-"><td  style="text-align:left;" id="TBL-31-10-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-10-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1448   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-10-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">stone   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-10-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2374   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-10-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">smuggl         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-10-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2944   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-10-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">johnstown     </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-11-"><td  style="text-align:left;" id="TBL-31-11-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-11-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1333   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-11-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">sourc   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-11-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0604   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-11-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">launder        </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-11-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0966   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-11-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">dv                 </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-12-"><td  style="text-align:left;" id="TBL-31-12-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-12-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1333   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-12-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">decor   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-12-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0586   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-12-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">leon             </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-12-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0891   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-12-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">dam              </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-13-"><td  style="text-align:left;" id="TBL-31-13-1"  
+class="td11"> <!--l. 65--><p class="noindent" ><span 
+class="bchr8t-x-x-80">RM-0</span>           </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-13-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2241   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-13-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">slate    </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-13-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3555   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-13-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">diamond      </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-13-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3498   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-13-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">flood             </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-14-"><td  style="text-align:left;" id="TBL-31-14-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-14-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1333   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-14-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">sourc   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-14-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2000   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-14-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">smuggl         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-14-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2831   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-14-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">johnstown     </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-15-"><td  style="text-align:left;" id="TBL-31-15-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-15-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1333   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-15-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">decor   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-15-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0656   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-15-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">state             </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-15-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0801   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-15-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">dam              </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-16-"><td  style="text-align:left;" id="TBL-31-16-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-16-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0980   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-16-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">stone   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-16-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0571   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-16-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">trade            </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-16-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0534   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-16-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">club              </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-17-"><td  style="text-align:left;" id="TBL-31-17-1"  
+class="td11"> <!--l. 65--><p class="noindent" ><span 
+class="bchr8t-x-x-80">RM-1</span>           </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-17-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3509   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-17-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">slate    </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-17-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3977   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-17-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">diamond      </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-17-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3146   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-17-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">flood             </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-18-"><td  style="text-align:left;" id="TBL-31-18-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-18-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1333   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-18-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">sourc   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-18-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2000   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-18-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">smuggl         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-18-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2923   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-18-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">johnstown     </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-19-"><td  style="text-align:left;" id="TBL-31-19-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-19-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1333   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-19-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">decor   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-19-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0732   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-19-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">sierra           </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-19-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0677   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-19-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">noaa             </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-20-"><td  style="text-align:left;" id="TBL-31-20-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-20-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0969   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-20-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">roof     </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-20-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0648   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-20-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">leon             </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-20-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0541   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-20-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">histor            </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-21-"><td  style="text-align:left;" id="TBL-31-21-1"  
+class="td11"> <!--l. 65--><p class="noindent" ><span 
+class="bchr8t-x-x-80">RM-2</span>           </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-21-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4214   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-21-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">slate    </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-21-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4237   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-21-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">diamond      </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-21-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3405   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-21-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">johnstown     </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-22-"><td  style="text-align:left;" id="TBL-31-22-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-22-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1333   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-22-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">sourc   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-22-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2000   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-22-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">smuggl         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-22-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2957   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-22-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">flood             </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-23-"><td  style="text-align:left;" id="TBL-31-23-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-23-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1333   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-23-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">decor   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-23-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1093   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-23-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">kimberlei     </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-23-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0490   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-23-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">1889             </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-24-"><td  style="text-align:left;" id="TBL-31-24-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-24-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0502   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-24-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">dmr     </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-24-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0498   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-24-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">spokesman   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-24-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0472   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-24-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">photograph   </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-25-"><td  style="text-align:left;" id="TBL-31-25-1"  
+class="td11"> <!--l. 65--><p class="noindent" ><span 
+class="bchr8t-x-x-80">PRM</span>            </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-25-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2749   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-25-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">slate    </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-25-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.4853   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-25-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">diamond      </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-25-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3364   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-25-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">johnstown     </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-26-"><td  style="text-align:left;" id="TBL-31-26-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-26-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1546   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-26-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">stone   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-26-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2000   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-26-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">smuggl         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-26-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3363   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-26-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">flood             </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-27-"><td  style="text-align:left;" id="TBL-31-27-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-27-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1333   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-27-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">sourc   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-27-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0646   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-27-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">leon             </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-27-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0685   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-27-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">dam              </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-28-"><td  style="text-align:left;" id="TBL-31-28-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-28-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1333   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-28-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">decor   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-28-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0634   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-28-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">sierra           </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-28-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0579   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-28-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">conemaugh   </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-29-"><td  style="text-align:left;" id="TBL-31-29-1"  
+class="td11"> <!--l. 65--><p class="noindent" ><span 
+class="bchr8t-x-x-80">MLgen</span>         </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-29-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2155   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-29-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">slate    </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-29-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3558   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-29-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">diamond      </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-29-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3680   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-29-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">flood             </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-30-"><td  style="text-align:left;" id="TBL-31-30-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-30-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1333   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-30-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">sourc   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-30-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2000   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-30-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">smuggl         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-30-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2731   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-30-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">johnstown     </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-31-"><td  style="text-align:left;" id="TBL-31-31-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-31-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1333   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-31-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">decor   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-31-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0611   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-31-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">state             </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-31-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0787   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-31-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">dam              </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-32-"><td  style="text-align:left;" id="TBL-31-32-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-32-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1008   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-32-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">stone   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-32-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0552   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-32-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">trade            </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-32-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0613   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-32-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">water            </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-33-"><td  style="text-align:left;" id="TBL-31-33-1"  
+class="td11"> <!--l. 65--><p class="noindent" ><span 
+class="bchr8t-x-x-80">NLLR</span>           </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-33-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2439   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-33-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">slate    </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-33-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3569   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-33-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">diamond      </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-33-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.3338   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-33-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">flood             </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-34-"><td  style="text-align:left;" id="TBL-31-34-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-34-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1333   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-34-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">sourc   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-34-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2000   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-34-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">smuggl         </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-34-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.2812   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-34-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">johnstown     </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-35-"><td  style="text-align:left;" id="TBL-31-35-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-35-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1333   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-35-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">decor   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-35-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0685   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-35-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">state             </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-35-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0813   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-35-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">dam              </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-36-"><td  style="text-align:left;" id="TBL-31-36-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-36-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.1105   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-36-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">stone   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-36-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0561   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-36-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">trade            </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-31-36-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.0583   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-31-36-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">club              </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-31-37-"><td  style="text-align:left;" id="TBL-31-37-1"  
+class="td11"> <!--l. 65--><p class="noindent" >          </td></tr></table>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;4.10: </span><span  
+class="content">Stemmed terms with the highest probability for each model using all
+available                         relevant                         documents                         with
+<!--l. 69--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>4</mn></math>
+and
+<!--l. 69--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+mathvariant="bold-script">V</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo> <mo 
+class="MathClass-rel">=</mo> <mn>1</mn><mn>0</mn></math>
+for the topics #708 (&#x201C;decorative slate sources&#x201D;), #766 (&#x201C;diamond smuggling&#x201D;),
+and #814 (&#x201C;johnstown flood&#x201D;). </span></div><!--tex4ht:label?: x30-6200110 -->
+</div>
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 24--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                   
+                                                                   
+<a 
+ id="x30-6201010"></a>
+                                                                   
+                                                                   
+<a 
+ id="x30-62002r1"></a>
+<div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij41x.png" alt="PIC" class="graphics" width="155.23901pt" height="108.668pt" ><!--tex4ht:graphics  
+name="thesis-emeij41x.png" src="chapter03/figures/rf-rf/pertopic/map-ql-eval-PRF-MLE-d110-t10-l04-eval.eps"  
+-->
+              <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(a) MLE</span></div>              </td></tr></table></div>
+<a 
+ id="x30-62003r2"></a><div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij42x.png" alt="PIC" class="graphics" width="155.23901pt" height="108.668pt" ><!--tex4ht:graphics  
+name="thesis-emeij42x.png" src="chapter03/figures/rf-rf/pertopic/map-ql-eval-PRF-MBF-d95-t10-l06-eval.eps"  
+-->
+              <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(b) MBF</span></div>              </td></tr></table></div><br />
+<a 
+ id="x30-62004r3"></a>
+<div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij43x.png" alt="PIC" class="graphics" width="155.23901pt" height="108.668pt" ><!--tex4ht:graphics  
+name="thesis-emeij43x.png" src="chapter03/figures/rf-rf/pertopic/map-ql-eval-PRF-ML-d132-t10-l03-eval.eps"  
+-->
+              <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(c) RM-0</span></div>              </td></tr></table></div>
+<a 
+ id="x30-62005r4"></a><div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij44x.png" alt="PIC" class="graphics" width="155.23901pt" height="108.668pt" ><!--tex4ht:graphics  
+name="thesis-emeij44x.png" src="chapter03/figures/rf-rf/pertopic/map-ql-eval-PRF-RM1-d40-t10-l03-eval.eps"  
+-->
+              <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(d) RM-1</span></div>              </td></tr></table></div><br />
+<a 
+ id="x30-62006r5"></a>
+                                                                   
+                                                                   
+<div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij45x.png" alt="PIC" class="graphics" width="155.23901pt" height="108.668pt" ><!--tex4ht:graphics  
+name="thesis-emeij45x.png" src="chapter03/figures/rf-rf/pertopic/map-ql-eval-PRF-RM2-d66-t10-l04-eval.eps"  
+-->
+              <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(e) RM-2</span></div>              </td></tr></table></div>
+<a 
+ id="x30-62007r6"></a><div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij46x.png" alt="PIC" class="graphics" width="155.23901pt" height="108.668pt" ><!--tex4ht:graphics  
+name="thesis-emeij46x.png" src="chapter03/figures/rf-rf/pertopic/map-ql-eval-PRF-PRM-d18-t10-l06-eval.eps"  
+-->
+              <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(f) PRM</span></div>              </td></tr></table></div><br />
+<a 
+ id="x30-62008r7"></a>
+<div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij47x.png" alt="PIC" class="graphics" width="155.23901pt" height="108.668pt" ><!--tex4ht:graphics  
+name="thesis-emeij47x.png" src="chapter03/figures/rf-rf/pertopic/map-ql-eval-PRF-MLgen-d60-t10-l04-eval.eps"  
+-->
+             <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(g) MLgen</span></div>             </td></tr></table></div>
+<a 
+ id="x30-62009r8"></a><div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij48x.png" alt="PIC" class="graphics" width="155.23901pt" height="108.668pt" ><!--tex4ht:graphics  
+name="thesis-emeij48x.png" src="chapter03/figures/rf-rf/pertopic/map-ql-eval-PRF-NLLR-d200-t10-l04-eval.eps"  
+-->
+              <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(h) NLLR</span></div>              </td></tr></table></div><br />
+  <div class="caption" 
+><span class="id">Figure&#x00A0;4.10:    </span><span  
+class="content">Per-topic    breakdown    of    the    improvement    over    the
+                                                                   
+                                                                   
+<a 
+href="thesis-emeijli3.html#QL">QL</a>    baseline    in    terms    of    AP    (topics    sorted    in    decreasing    order    of
+<!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x0394;</mi></math>AP)
+with <!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>4</mn></math>
+and <!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+mathvariant="bold-script">V</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo> <mo 
+class="MathClass-rel">=</mo> <mn>1</mn><mn>0</mn></math>.
+</span></div><!--tex4ht:label?: x30-6201010 -->
+                                                                   
+                                                                   
+<!--l. 49--><p class="indent" >   </div><hr class="endfigure">
+<a 
+ id="x30-62011r88"></a>
+<h4 class="subsectionHead"><span class="titlemark">4.4.2    </span> <a 
+ id="x30-630002"></a>Per-topic Results</h4>
+<!--l. 294--><p class="noindent" >Table&#x00A0;<a 
+href="#x30-6200110">4.10<!--tex4ht:ref: tab:qms --></a> shows query models for three example topics. It is clear that the baseline
+distributes the probability mass evenly across all the terms in the topics. MLE
+sometimes picks op &#x201C;noisy&#x201D; terms (cf.&#x00A0;topic #814), whose probability MBF properly
+re-estimates. MBF does pick up the term &#x2018;dv&#x2019; for this topic, which seems to occur more
+frequently in the relevant documents than the collection (and which is why MBF
+assigns a high probability). For topic #814, RM-1 and RM-2 are the only models that do
+not pick up &#x2018;dam&#x2019;, which seems a reasonable term given the topic. PRM is the only
+model that picks up &#x2018;Conemaugh,&#x2019; which is the name of lake the dam was holding
+back.
+<!--l. 308--><p class="indent" >   Figure&#x00A0;<a 
+href="#x30-6201010">4.10<!--tex4ht:ref: chapter03:fig:pertopic:rf --></a> shows a per-topic breakdown of the relative performance of the various
+models with respect to the baseline. Topic #808 (&#x201C;north korean counterfeiting&#x201D;) seems
+a particularly difficult topic and the retrieval performance is worst on this topic for all
+employed query models (although there are 530 judged relevant and 330 new relevant
+documents available). All query models emphasize different aspects of the feedback
+documents, ranging from drugs to other kinds of trafficking. We further note that
+most models select the same terms, albeit with a different probability. RM-0
+shows only minor differences with MLgen in the terms they assign the highest
+probability.
+<!--l. 317--><p class="indent" >   In general, NLLR is able to substantially improve over the baseline on a larger
+number of topics than the other methods. RM-2 works best for topic #766, on which
+NLLR also performs very well (this topic is the second from the left for NLLR). MBF and
+MLE improve most on topic #814. Interestingly, this topic is also helped a lot by NLLR
+(this topic is the first from the left for NLLR), but not by RM. These observations
+provide evidence that NLLR is indeed able to reap the benefits both of the individual
+relevant documents (like RM) and of the set as a whole (like MBF, MLE, and MLgen).
+Out of the various relevance modeling approaches, RM-0 performs best. This
+finding is in line with observations made by&#x00A0;Lavrenko and Croft&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:lavrenko:2003">182</a>], who
+specifically design this relevance modeling variant to be used with explicit
+relevance feedback. In contrast, PRM (which is RM-0 applied to re-estimated
+document models) performs slightly worse than RM-0. Most notably, topic #766
+(&#x201C;diamond smuggling&#x201D;) is helped to a much smaller extent using PRM. It turns
+out that PRM picks up terms that are highly discriminative (such as &#x201C;liberia&#x201D;
+and &#x201C;angola&#x201D;) but that do not contribute much towards identifying relevant
+documents.
+<a 
+ id="x30-63001r91"></a>
+<h4 class="subsectionHead"><span class="titlemark">4.4.3    </span> <a 
+ id="x30-640003"></a>Number of Relevant Documents</h4>
+<!--l. 60--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+                                                                   
+                                                                   
+<a 
+ id="x30-6400111"></a>
+                                                                   
+                                                                   
+<!--l. 62--><p class="noindent" ><img 
+src="thesis-emeij49x.png" alt="PIC" class="graphics" width="352.81401pt" height="246.84468pt" ><!--tex4ht:graphics  
+name="thesis-emeij49x.png" src="chapter03/figures/rf-rf/perdoc/map-all.eps"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;4.11: </span><span  
+class="content">Influence of the size of <!--l. 66--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>R</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></math>
+on     retrieval     performance     using     explicit     relevance     feedback,     with
+<!--l. 66--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>4</mn></math>
+and <!--l. 66--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+mathvariant="bold-script">V</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo> <mo 
+class="MathClass-rel">=</mo> <mn>1</mn><mn>0</mn></math>.
+</span></div><!--tex4ht:label?: x30-6400111 -->
+                                                                   
+                                                                   
+<!--l. 70--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 73--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                   
+                                                                   
+<a 
+ id="x30-6400412"></a>
+                                                                   
+                                                                   
+<a 
+ id="x30-64002r1"></a>
+<div class="subfigure"><table><tr><td style="text-align:left"> <img 
+src="thesis-emeij50x.png" alt="PIC" class="graphics" width="352.81401pt" height="138.67577pt" ><!--tex4ht:graphics  
+name="thesis-emeij50x.png" src="chapter03/figures/rf-rf/perterm/map-all.eps"  
+-->
+                                 <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(a) MAP</span></div>                                 </td></tr></table></div><br />
+<a 
+ id="x30-64003r2"></a>
+<div class="subfigure"><table><tr><td style="text-align:left"> <img 
+src="thesis-emeij51x.png" alt="PIC" class="graphics" width="352.81401pt" height="138.67577pt" ><!--tex4ht:graphics  
+name="thesis-emeij51x.png" src="chapter03/figures/rf-rf/perterm/p10-all.eps"  
+-->
+                                 <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(b) P10</span></div>                                 </td></tr></table></div><br />
+ <div class="caption" 
+><span class="id">Figure&#x00A0;4.12: </span><span  
+class="content">Influence of the size of <!--l. 89--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+mathvariant="bold-script">V</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo></math>
+on      MAP      and      P10,      using      explicit      relevance      feedback      and
+<!--l. 89--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>4</mn></math>.
+</span></div><!--tex4ht:label?: x30-6400412 -->
+                                                                   
+                                                                   
+<!--l. 92--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 97--><p class="indent" >   Intuitively, using a large sample of known relevant documents to determine the parameters
+of <!--l. 98--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03B8;</mi><mi 
+>Q</mi></math> means
+that we can be fairly certain in the predictive quality of the employed estimation method.
+But how many documents would we need to arrive at a stable retrieval performance? In
+order to answer this question, we select an increasing amount of relevant documents
+<!--l. 103--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>R</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></math> from
+the QL run, ranked by their retrieval score. For each increment we estimate new
+query models and use them to determine the resulting retrieval performance.
+Note that we still remove <span 
+class="bchri8t-">all </span>the judged relevant documents, i.e., the full set
+<!--l. 107--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>R</mi></math>,
+from the resulting rankings in order to make the obtained retrieval results
+comparable those described in Section&#x00A0;<a 
+href="thesis-emeijse21.html#x29-530003">4.3<!--tex4ht:ref: sec:prfresults --></a>. This experiment corresponds to a user
+selecting relevant documents from a result list, in order to further improve the
+results. By determining the relationship between retrieval performance and
+<!--l. 112--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">|</mo><mover 
+accent="true"><mrow 
+><mi 
+>R</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover><mo 
+class="MathClass-rel">|</mo></math>, we
+can quantify how many documents a user should judge in order to arrive at a stable
+retrieval performance.
+<!--l. 116--><p class="indent" >   Figure&#x00A0;<a 
+href="#x30-6400111">4.11<!--tex4ht:ref: fig:reldocs --></a> shows the retrieval performance at increasing amounts of relevance
+information. Again, NLLR achieves the highest absolute MAP scores, whereas MBF
+performs the worst. We observe that all models have a very steep increase in MAP
+between 1 and 5 relevant documents. This means that that the biggest relative
+improvement is gained when a user identifies only a small number of relevant
+documents. Moreover, this improvement is a very conservative estimate, since the full
+set of initially judged relevant documents is removed and we only look at newly
+retrieved relevant documents. We also observe that all models respond roughly
+similarly to the amount of relevant documents; the more documents are used,
+the higher the resulting retrieval performance. MBF and PRM are sensitive to
+which documents are added. Both models show considerable variation in MAP
+at certain intervals. MLgen responds similarly to RM-0 when adding more
+feedback documents. RM-2 also, although its results are slightly worse. RM-1
+again shows different behavior, stabilizing its performance after 90 feedback
+documents.
+<a 
+ id="x30-64005r92"></a>
+<h4 class="subsectionHead"><span class="titlemark">4.4.4    </span> <a 
+ id="x30-650004"></a>Number of Terms in the Query Models</h4>
+<!--l. 206--><p class="noindent" >So far we created rather conservative query models which consisted of only 10 terms
+with the highest probability. In this section, we consider this parameter under explicit
+relevance feedback in more detail.
+<!--l. 222--><p class="indent" >   Figure&#x00A0;<a 
+href="#x30-6400412">4.12<!--tex4ht:ref: fig:chapter03:rf:terms --></a> shows the effects of varying the number of terms for
+<!--l. 222--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>4</mn></math> in terms
+                                                                   
+                                                                   
+of both MAP and P10. In terms of MAP, we observe that PRM is highly sensitive to the
+number of terms included in the query model. NLLR only outperforms this model on MAP
+using <!--l. 224--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+mathvariant="bold-script">V</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo> <mo 
+class="MathClass-rel">&#x003C;</mo> <mn>2</mn><mn>0</mn></math>.
+Furthermore, we note that, in terms of MAP, all models except PRM obtain
+close-to-optimal performance when at least 10 terms are used. MBF performs worst of
+all models except for the baseline. As to P10, PRM is equal to or outperforms NLLR on
+any number of terms used. PRM and RM-1 only reach their optimal performance when
+<!--l. 226--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+mathvariant="bold-script">V</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo> <mo 
+class="MathClass-rel">=</mo> <mn>3</mn><mn>0</mn></math>. MBF
+is again at the bottom of the spectrum, although its performance is in this case closely
+matched by that of MLE and RM-1.
+<a 
+ id="x30-65001r95"></a>
+<h4 class="subsectionHead"><span class="titlemark">4.4.5    </span> <a 
+ id="x30-660005"></a>Upshot</h4>
+<!--l. 230--><p class="noindent" >Buckley <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:1994:buckley">51</a>] find that, using the vector space model in a TREC routing task,
+there exists a linear relationship between the log of the number of terms added to a
+query and the resulting retrieval effectiveness (and they find the same kind of
+relationship between the log of the number of documents used for relevance feedback
+and retrieval effectiveness). The maximum improvement they obtain ranges from 19%
+to 38% (the latter obtained using 5000 explicitly relevant documents and adding 4000
+terms). We do not observe such relationships on ad hoc retrieval for this test collection,
+neither for the number of documents, nor for the number of terms. We do find
+consistent increases in performance using explicit relevance feedback for all models. We
+conclude, therefore, that acquiring explicit relevance assessments from users can
+substantially and significantly improve retrieval performance using any model. NLLR
+and PRM, however, obtain the highest retrieval scores of all models evaluated in this
+chapter.
+                                                                   
+                                                                   
+<!--l. 39--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch4.html#thesis-emeijse22.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse23.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse21.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse21.html#tailthesis-emeijse21.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijse22.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse22.html"></a> 
+</body></html> 

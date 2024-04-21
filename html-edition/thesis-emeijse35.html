@@ -1,0 +1,1210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Linking queries to Wikipedia</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch7.html#thesis-emeijse35.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse36.html" >Next</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse35.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">7.1    </span> <a 
+ id="x48-1220001"></a>Linking queries to Wikipedia</h3>
+<!--l. 99--><p class="noindent" >To be able to derive query models based on the concepts meant by the query, we
+first need to link queries to concepts (in the form of Wikipedia articles or,
+equivalently, DBpedia concepts). To this end, we follow the approach from
+Chapter&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860006">6<!--tex4ht:ref: chap:linkingconcepts --></a>, which maps queries to DBpedia concepts. In this case, however, we
+subsequently apply query modeling. We take the best performing settings from
+that chapter, i.e., <a 
+href="thesis-emeijli3.html#SVM">SVM</a> with a polynomial kernel using full queries. Instead of
+using the Sound and Vision dataset, however, we employ two ad hoc TREC test
+collections in tandem with a dump of the English version of Wikipedia (dump date
+                                                                   
+                                                                   
+20090920).
+<!--l. 103--><p class="indent" >   In order to classify concepts as being relevant to a query, the approach uses manual
+query-to-concept annotations to train the <a 
+href="thesis-emeijli3.html#SVM">SVM</a> model. During testing, a retrieval run is
+performed on Wikipedia for new, unseen queries. The results of which are then
+classified using the learned model. The output of this step is a label for each concept,
+indicating whether it is relevant or not. This dichotomy represents our binary
+classification problem.
+<!--l. 109--><p class="indent" >   Wikipedia and supervised machine learning have previously been used to select
+optimal terms to include in the query model&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2009:xu">347</a>]. We, however, are interested in
+selecting those concepts that best describe the query and use those to sample terms
+from. This is similar to the unsupervised manner used, e.g., in the context of retrieving
+blogs [<a 
+href="thesis-emeijli2.html#Xweer:gene09">337</a>]. Such approaches are completely unsupervised in that they only
+consider a fixed number of pseudo relevant Wikipedia articles. As we will
+see below, focusing this set using machine learning improves overall retrieval
+performance.
+<!--l. 111--><p class="indent" >   The features that we use include those pertaining to the query, the Wikipedia article,
+and their combination. See Section&#x00A0;<a 
+href="thesis-emeijse30.html#x42-910003">6.2.3<!--tex4ht:ref: ssec:features --></a> for an extensive description of each. Since we
+are using ad hoc test collections in this case, we do not have session information
+and omit the history-based features. In order to obtain training data, we have
+asked 4 annotators to manually identify all relevant Wikipedia articles for
+queries in the same fashion as presented in the previous chapter. The average
+number of Wikipedia articles the annotators identified per query is around
+2 for both collections. The average number of articles identified as relevant
+per query by SVM is slightly different between the test collections, with 1.6
+for TREC Terabyte and 2.7 for TREC Web 2009. This seems to be due to the
+differences in queries; the TREC Web queries are shorter and, thus, more prone to
+ambiguity.
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 2--><p class="indent" >   <a 
+ id="x48-1220011"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+
+ <table id="TBL-116" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-116-1g"><col 
+id="TBL-116-1"><col 
+id="TBL-116-2"><col 
+id="TBL-116-3"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-116-1-"><td  style="text-align:left;" id="TBL-116-1-1"  
+class="td11"> <!--l. 73--><p class="noindent" ><span 
+class="bchr8t-x-x-80">Topic</span>
+   <span 
+class="bchr8t-x-x-80">#</span>       </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-1-2"  
+class="td11">                       <span 
+class="bchr8t-x-x-80">Query   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-1-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">Concepts                                                            </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-2-"><td  style="text-align:left;" id="TBL-116-2-1"  
+class="td11"> <!--l. 73--><p class="noindent" ><span 
+class="bchr8t-x-x-80">2</span>        </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-2-2"  
+class="td11">     <span 
+class="bchr8t-x-x-80">french lick resort and casino   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-2-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">F<span 
+class="small-caps">R</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">C</span><span 
+class="small-caps">H</span> L<span 
+class="small-caps">I</span><span 
+class="small-caps">C</span><span 
+class="small-caps">K</span> R<span 
+class="small-caps">E</span><span 
+class="small-caps">S</span><span 
+class="small-caps">O</span><span 
+class="small-caps">R</span><span 
+class="small-caps">T</span> C<span 
+class="small-caps">A</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span><span 
+class="small-caps">O</span>                           </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-3-"><td  style="text-align:left;" id="TBL-116-3-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-3-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-3-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">F<span 
+class="small-caps">R</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">C</span><span 
+class="small-caps">H</span> L<span 
+class="small-caps">I</span><span 
+class="small-caps">C</span><span 
+class="small-caps">K</span>, I<span 
+class="small-caps">N</span><span 
+class="small-caps">D</span><span 
+class="small-caps">I</span><span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">A</span>                                      </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-4-"><td  style="text-align:left;" id="TBL-116-4-1"  
+class="td11"> <!--l. 73--><p class="noindent" ><span 
+class="bchr8t-x-x-80">13</span>      </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-4-2"  
+class="td11">                         <span 
+class="bchr8t-x-x-80">map   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-4-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">M<span 
+class="small-caps">A</span><span 
+class="small-caps">P</span>                                                                  </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-5-"><td  style="text-align:left;" id="TBL-116-5-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-5-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-5-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">T<span 
+class="small-caps">O</span><span 
+class="small-caps">P</span><span 
+class="small-caps">O</span><span 
+class="small-caps">G</span><span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">P</span><span 
+class="small-caps">H</span><span 
+class="small-caps">I</span><span 
+class="small-caps">C</span> <span 
+class="small-caps">M</span><span 
+class="small-caps">A</span><span 
+class="small-caps">P</span>                                            </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-6-"><td  style="text-align:left;" id="TBL-116-6-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-6-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-6-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">W<span 
+class="small-caps">O</span><span 
+class="small-caps">R</span><span 
+class="small-caps">L</span><span 
+class="small-caps">D</span> <span 
+class="small-caps">M</span><span 
+class="small-caps">A</span><span 
+class="small-caps">P</span>                                                      </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-7-"><td  style="text-align:left;" id="TBL-116-7-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-7-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-7-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">T<span 
+class="small-caps">H</span><span 
+class="small-caps">E</span> N<span 
+class="small-caps">A</span><span 
+class="small-caps">T</span><span 
+class="small-caps">I</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span><span 
+class="small-caps">A</span><span 
+class="small-caps">L</span> M<span 
+class="small-caps">A</span><span 
+class="small-caps">P</span>                                          </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-8-"><td  style="text-align:left;" id="TBL-116-8-1"  
+class="td11"> <!--l. 73--><p class="noindent" ><span 
+class="bchr8t-x-x-80">14</span>      </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-8-2"  
+class="td11">                    <span 
+class="bchr8t-x-x-80">dinosaurs   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-8-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">D<span 
+class="small-caps">I</span><span 
+class="small-caps">N</span><span 
+class="small-caps">O</span><span 
+class="small-caps">S</span><span 
+class="small-caps">A</span><span 
+class="small-caps">U</span><span 
+class="small-caps">R</span><span 
+class="small-caps">S</span>                                                        </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-9-"><td  style="text-align:left;" id="TBL-116-9-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-9-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-9-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">H<span 
+class="small-caps">A</span><span 
+class="small-caps">R</span><span 
+class="small-caps">R</span><span 
+class="small-caps">Y</span> <span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">D</span> H<span 
+class="small-caps">I</span><span 
+class="small-caps">S</span> B<span 
+class="small-caps">U</span><span 
+class="small-caps">C</span><span 
+class="small-caps">K</span><span 
+class="small-caps">E</span><span 
+class="small-caps">T</span> F<span 
+class="small-caps">U</span><span 
+class="small-caps">L</span><span 
+class="small-caps">L</span> <span 
+class="small-caps">O</span><span 
+class="small-caps">F</span> D<span 
+class="small-caps">I</span><span 
+class="small-caps">N</span><span 
+class="small-caps">O</span><span 
+class="small-caps">S</span><span 
+class="small-caps">A</span><span 
+class="small-caps">U</span><span 
+class="small-caps">R</span><span 
+class="small-caps">S</span>   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-10-"><td  style="text-align:left;" id="TBL-116-10-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-10-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-10-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">W<span 
+class="small-caps">A</span><span 
+class="small-caps">L</span><span 
+class="small-caps">K</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span><span 
+class="small-caps">G</span> <span 
+class="small-caps">W</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">H</span> D<span 
+class="small-caps">I</span><span 
+class="small-caps">N</span><span 
+class="small-caps">O</span><span 
+class="small-caps">S</span><span 
+class="small-caps">A</span><span 
+class="small-caps">U</span><span 
+class="small-caps">R</span><span 
+class="small-caps">S</span>                               </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-11-"><td  style="text-align:left;" id="TBL-116-11-1"  
+class="td11"> <!--l. 73--><p class="noindent" ><span 
+class="bchr8t-x-x-80">15</span>      </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-11-2"  
+class="td11">                   <span 
+class="bchr8t-x-x-80">espn sports   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-11-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">ESPN S<span 
+class="small-caps">T</span><span 
+class="small-caps">A</span><span 
+class="small-caps">R</span> S<span 
+class="small-caps">P</span><span 
+class="small-caps">O</span><span 
+class="small-caps">R</span><span 
+class="small-caps">T</span><span 
+class="small-caps">S</span>                                           </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-12-"><td  style="text-align:left;" id="TBL-116-12-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-12-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-12-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">ESPN                                                                </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-13-"><td  style="text-align:left;" id="TBL-116-13-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-13-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-13-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">ESPN <span 
+class="small-caps">O</span><span 
+class="small-caps">N</span> ABC                                                  </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-14-"><td  style="text-align:left;" id="TBL-116-14-1"  
+class="td11"> <!--l. 73--><p class="noindent" ><span 
+class="bchr8t-x-x-80">16</span>      </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-14-2"  
+class="td11">          <span 
+class="bchr8t-x-x-80">arizona game and fish   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-14-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">A<span 
+class="small-caps">R</span><span 
+class="small-caps">I</span><span 
+class="small-caps">Z</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span><span 
+class="small-caps">A</span> G<span 
+class="small-caps">A</span><span 
+class="small-caps">M</span><span 
+class="small-caps">E</span> <span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">D</span> F<span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">H</span> D<span 
+class="small-caps">E</span><span 
+class="small-caps">P</span><span 
+class="small-caps">A</span><span 
+class="small-caps">R</span><span 
+class="small-caps">T</span><span 
+class="small-caps">M</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">T</span>            </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-15-"><td  style="text-align:left;" id="TBL-116-15-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-15-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-15-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">L<span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">T</span> <span 
+class="small-caps">O</span><span 
+class="small-caps">F</span> <span 
+class="small-caps">L</span><span 
+class="small-caps">A</span><span 
+class="small-caps">K</span><span 
+class="small-caps">E</span><span 
+class="small-caps">S</span> <span 
+class="small-caps">I</span><span 
+class="small-caps">N</span> A<span 
+class="small-caps">R</span><span 
+class="small-caps">I</span><span 
+class="small-caps">Z</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span><span 
+class="small-caps">A</span>                                </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-16-"><td  style="text-align:left;" id="TBL-116-16-1"  
+class="td11"> <!--l. 73--><p class="noindent" ><span 
+class="bchr8t-x-x-80">17</span>      </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-16-2"  
+class="td11">             <span 
+class="bchr8t-x-x-80">poker tournaments   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-16-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">P<span 
+class="small-caps">O</span><span 
+class="small-caps">K</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span> <span 
+class="small-caps">T</span><span 
+class="small-caps">O</span><span 
+class="small-caps">U</span><span 
+class="small-caps">R</span><span 
+class="small-caps">N</span><span 
+class="small-caps">A</span><span 
+class="small-caps">M</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">T</span>                                         </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-17-"><td  style="text-align:left;" id="TBL-116-17-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-17-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-17-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">U<span 
+class="small-caps">L</span><span 
+class="small-caps">T</span><span 
+class="small-caps">I</span><span 
+class="small-caps">M</span><span 
+class="small-caps">A</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span> P<span 
+class="small-caps">O</span><span 
+class="small-caps">K</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span> C<span 
+class="small-caps">H</span><span 
+class="small-caps">A</span><span 
+class="small-caps">L</span><span 
+class="small-caps">L</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">G</span><span 
+class="small-caps">E</span>                            </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-18-"><td  style="text-align:left;" id="TBL-116-18-1"  
+class="td11"> <!--l. 73--><p class="noindent" ><span 
+class="bchr8t-x-x-80">23</span>      </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-18-2"  
+class="td11">                       <span 
+class="bchr8t-x-x-80">yahoo   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-18-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">Y<span 
+class="small-caps">A</span><span 
+class="small-caps">H</span><span 
+class="small-caps">O</span><span 
+class="small-caps">O</span>!                                                             </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-19-"><td  style="text-align:left;" id="TBL-116-19-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-19-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-19-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">Y<span 
+class="small-caps">A</span><span 
+class="small-caps">H</span><span 
+class="small-caps">O</span><span 
+class="small-caps">O</span>! M<span 
+class="small-caps">U</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">C</span>                                                  </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-20-"><td  style="text-align:left;" id="TBL-116-20-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-20-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-20-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">Y<span 
+class="small-caps">A</span><span 
+class="small-caps">H</span><span 
+class="small-caps">O</span><span 
+class="small-caps">O</span>! N<span 
+class="small-caps">E</span><span 
+class="small-caps">W</span><span 
+class="small-caps">S</span>                                                   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-21-"><td  style="text-align:left;" id="TBL-116-21-1"  
+class="td11"> <!--l. 73--><p class="noindent" ><span 
+class="bchr8t-x-x-80">24</span>      </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-21-2"  
+class="td11">                     <span 
+class="bchr8t-x-x-80">diversity   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-21-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">S<span 
+class="small-caps">P</span><span 
+class="small-caps">E</span><span 
+class="small-caps">C</span><span 
+class="small-caps">I</span><span 
+class="small-caps">E</span><span 
+class="small-caps">S</span> <span 
+class="small-caps">D</span><span 
+class="small-caps">I</span><span 
+class="small-caps">V</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">Y</span>                                            </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-22-"><td  style="text-align:left;" id="TBL-116-22-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-22-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-22-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">G<span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">E</span><span 
+class="small-caps">T</span><span 
+class="small-caps">I</span><span 
+class="small-caps">C</span> <span 
+class="small-caps">D</span><span 
+class="small-caps">I</span><span 
+class="small-caps">V</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">Y</span>                                           </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-23-"><td  style="text-align:left;" id="TBL-116-23-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-23-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-23-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">C<span 
+class="small-caps">U</span><span 
+class="small-caps">L</span><span 
+class="small-caps">T</span><span 
+class="small-caps">U</span><span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">L</span> <span 
+class="small-caps">D</span><span 
+class="small-caps">I</span><span 
+class="small-caps">V</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">Y</span>                                         </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-24-"><td  style="text-align:left;" id="TBL-116-24-1"  
+class="td11"> <!--l. 73--><p class="noindent" ><span 
+class="bchr8t-x-x-80">26</span>      </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-24-2"  
+class="td11">               <span 
+class="bchr8t-x-x-80">lower heart rate   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-24-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">H<span 
+class="small-caps">E</span><span 
+class="small-caps">A</span><span 
+class="small-caps">R</span><span 
+class="small-caps">T</span> <span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span>                                                       </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-25-"><td  style="text-align:left;" id="TBL-116-25-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-25-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-25-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">H<span 
+class="small-caps">E</span><span 
+class="small-caps">A</span><span 
+class="small-caps">R</span><span 
+class="small-caps">T</span> <span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span> <span 
+class="small-caps">V</span><span 
+class="small-caps">A</span><span 
+class="small-caps">R</span><span 
+class="small-caps">I</span><span 
+class="small-caps">A</span><span 
+class="small-caps">B</span><span 
+class="small-caps">I</span><span 
+class="small-caps">L</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">Y</span>                                   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-26-"><td  style="text-align:left;" id="TBL-116-26-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-26-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-26-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">D<span 
+class="small-caps">O</span><span 
+class="small-caps">P</span><span 
+class="small-caps">P</span><span 
+class="small-caps">L</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span> <span 
+class="small-caps">F</span><span 
+class="small-caps">E</span><span 
+class="small-caps">T</span><span 
+class="small-caps">A</span><span 
+class="small-caps">L</span> <span 
+class="small-caps">M</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">O</span><span 
+class="small-caps">R</span>                                  </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-27-"><td  style="text-align:left;" id="TBL-116-27-1"  
+class="td11"> <!--l. 73--><p class="noindent" ><span 
+class="bchr8t-x-x-80">28</span>      </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-27-2"  
+class="td11">                     <span 
+class="bchr8t-x-x-80">inuyasha   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-27-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">I<span 
+class="small-caps">N</span><span 
+class="small-caps">U</span>Y<span 
+class="small-caps">A</span><span 
+class="small-caps">S</span><span 
+class="small-caps">H</span><span 
+class="small-caps">A</span>                                                          </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-28-"><td  style="text-align:left;" id="TBL-116-28-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-28-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-28-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">L<span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">T</span> <span 
+class="small-caps">O</span><span 
+class="small-caps">F</span> I<span 
+class="small-caps">N</span><span 
+class="small-caps">U</span>Y<span 
+class="small-caps">A</span><span 
+class="small-caps">S</span><span 
+class="small-caps">H</span><span 
+class="small-caps">A</span> <span 
+class="small-caps">E</span><span 
+class="small-caps">P</span><span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">O</span><span 
+class="small-caps">D</span><span 
+class="small-caps">E</span><span 
+class="small-caps">S</span>                             </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-29-"><td  style="text-align:left;" id="TBL-116-29-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-29-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-29-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">L<span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">T</span> <span 
+class="small-caps">O</span><span 
+class="small-caps">F</span> I<span 
+class="small-caps">N</span><span 
+class="small-caps">U</span>Y<span 
+class="small-caps">A</span><span 
+class="small-caps">S</span><span 
+class="small-caps">H</span><span 
+class="small-caps">A</span> <span 
+class="small-caps">C</span><span 
+class="small-caps">H</span><span 
+class="small-caps">A</span><span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">C</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span><span 
+class="small-caps">S</span>                        </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-30-"><td  style="text-align:left;" id="TBL-116-30-1"  
+class="td11"> <!--l. 73--><p class="noindent" ><span 
+class="bchr8t-x-x-80">39</span>      </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-30-2"  
+class="td11">               <span 
+class="bchr8t-x-x-80">disneyland hotel   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-30-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">D<span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">N</span><span 
+class="small-caps">E</span><span 
+class="small-caps">Y</span><span 
+class="small-caps">L</span><span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">D</span> H<span 
+class="small-caps">O</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span><span 
+class="small-caps">L</span> (C<span 
+class="small-caps">A</span><span 
+class="small-caps">L</span><span 
+class="small-caps">I</span><span 
+class="small-caps">F</span><span 
+class="small-caps">O</span><span 
+class="small-caps">R</span><span 
+class="small-caps">N</span><span 
+class="small-caps">I</span><span 
+class="small-caps">A</span>)                   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-31-"><td  style="text-align:left;" id="TBL-116-31-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-31-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-31-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">D<span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">N</span><span 
+class="small-caps">E</span><span 
+class="small-caps">Y</span><span 
+class="small-caps">L</span><span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">D</span> H<span 
+class="small-caps">O</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span><span 
+class="small-caps">L</span> (P<span 
+class="small-caps">A</span><span 
+class="small-caps">R</span><span 
+class="small-caps">I</span><span 
+class="small-caps">S</span>)                             </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-32-"><td  style="text-align:left;" id="TBL-116-32-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-32-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-32-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">T<span 
+class="small-caps">O</span><span 
+class="small-caps">K</span><span 
+class="small-caps">Y</span><span 
+class="small-caps">O</span> D<span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">N</span><span 
+class="small-caps">E</span><span 
+class="small-caps">Y</span><span 
+class="small-caps">L</span><span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">D</span> H<span 
+class="small-caps">O</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span><span 
+class="small-caps">L</span>                               </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-33-"><td  style="text-align:left;" id="TBL-116-33-1"  
+class="td11"> <!--l. 73--><p class="noindent" ><span 
+class="bchr8t-x-x-80">41</span>      </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-33-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">orange county convention center   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-33-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">O<span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">G</span><span 
+class="small-caps">E</span> C<span 
+class="small-caps">O</span><span 
+class="small-caps">U</span><span 
+class="small-caps">N</span><span 
+class="small-caps">T</span><span 
+class="small-caps">Y</span> C<span 
+class="small-caps">O</span><span 
+class="small-caps">N</span><span 
+class="small-caps">V</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">T</span><span 
+class="small-caps">I</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span> C<span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span>            </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-34-"><td  style="text-align:left;" id="TBL-116-34-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-34-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-34-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">O<span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">G</span><span 
+class="small-caps">E</span> C<span 
+class="small-caps">O</span><span 
+class="small-caps">U</span><span 
+class="small-caps">N</span><span 
+class="small-caps">T</span><span 
+class="small-caps">Y</span>, C<span 
+class="small-caps">A</span><span 
+class="small-caps">L</span><span 
+class="small-caps">I</span><span 
+class="small-caps">F</span><span 
+class="small-caps">O</span><span 
+class="small-caps">R</span><span 
+class="small-caps">N</span><span 
+class="small-caps">I</span><span 
+class="small-caps">A</span>                          </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-35-"><td  style="text-align:left;" id="TBL-116-35-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-35-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-35-3"  
+class="td11"> <span 
+class="bchrc8t-x-x-80">&#x00A0;L<span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">T</span> <span 
+class="small-caps">O</span><span 
+class="small-caps">F</span> <span 
+class="small-caps">C</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span><span 
+class="small-caps">V</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">T</span><span 
+class="small-caps">I</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span> &#x0026; <span 
+class="small-caps">E</span><span 
+class="small-caps">X</span><span 
+class="small-caps">H</span><span 
+class="small-caps">I</span><span 
+class="small-caps">B</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">I</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span> <span 
+class="small-caps">C</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span><span 
+class="small-caps">S</span>   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-36-"><td  style="text-align:left;" id="TBL-116-36-1"  
+class="td11"> <!--l. 73--><p class="noindent" ><span 
+class="bchr8t-x-x-80">42</span>      </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-36-2"  
+class="td11">                <span 
+class="bchr8t-x-x-80">the music man   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-36-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">T<span 
+class="small-caps">H</span><span 
+class="small-caps">E</span> M<span 
+class="small-caps">U</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">C</span> M<span 
+class="small-caps">A</span><span 
+class="small-caps">N</span>                                               </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-37-"><td  style="text-align:left;" id="TBL-116-37-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-37-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-37-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">T<span 
+class="small-caps">H</span><span 
+class="small-caps">E</span> M<span 
+class="small-caps">U</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">C</span> M<span 
+class="small-caps">A</span><span 
+class="small-caps">N</span> (1962 <span 
+class="small-caps">fi</span><span 
+class="small-caps">L</span><span 
+class="small-caps">M</span>)                          </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-38-"><td  style="text-align:left;" id="TBL-116-38-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-38-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-38-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">M<span 
+class="small-caps">U</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">C</span> M<span 
+class="small-caps">A</span><span 
+class="small-caps">N</span>                                                       </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-39-"><td  style="text-align:left;" id="TBL-116-39-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-39-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-39-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">T<span 
+class="small-caps">H</span><span 
+class="small-caps">E</span> M<span 
+class="small-caps">U</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">C</span> M<span 
+class="small-caps">A</span><span 
+class="small-caps">N</span> (<span 
+class="small-caps">S</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span><span 
+class="small-caps">G</span>)                                  </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-40-"><td  style="text-align:left;" id="TBL-116-40-1"  
+class="td11"> <!--l. 73--><p class="noindent" ><span 
+class="bchr8t-x-x-80">45</span>      </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-40-2"  
+class="td11">                   <span 
+class="bchr8t-x-x-80">solar panels   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-40-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">P<span 
+class="small-caps">H</span><span 
+class="small-caps">O</span><span 
+class="small-caps">T</span><span 
+class="small-caps">O</span><span 
+class="small-caps">V</span><span 
+class="small-caps">O</span><span 
+class="small-caps">L</span><span 
+class="small-caps">T</span><span 
+class="small-caps">A</span><span 
+class="small-caps">I</span><span 
+class="small-caps">C</span> <span 
+class="small-caps">M</span><span 
+class="small-caps">O</span><span 
+class="small-caps">D</span><span 
+class="small-caps">U</span><span 
+class="small-caps">L</span><span 
+class="small-caps">E</span>                                     </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-41-"><td  style="text-align:left;" id="TBL-116-41-1"  
+class="td11"> <!--l. 73--><p class="noindent" ><span 
+class="bchr8t-x-x-80">48</span>      </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-41-2"  
+class="td11">                <span 
+class="bchr8t-x-x-80">wilson antenna   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-41-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">R<span 
+class="small-caps">O</span><span 
+class="small-caps">B</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span><span 
+class="small-caps">T</span> W<span 
+class="small-caps">O</span><span 
+class="small-caps">O</span><span 
+class="small-caps">D</span><span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">W</span> W<span 
+class="small-caps">I</span><span 
+class="small-caps">L</span><span 
+class="small-caps">S</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span>                             </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-42-"><td  style="text-align:left;" id="TBL-116-42-1"  
+class="td11"> <!--l. 73--><p class="noindent" ><span 
+class="bchr8t-x-x-80">49</span>      </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-42-2"  
+class="td11">                 <span 
+class="bchr8t-x-x-80">flame designs   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-42-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">F<span 
+class="small-caps">L</span><span 
+class="small-caps">A</span><span 
+class="small-caps">M</span><span 
+class="small-caps">E</span> <span 
+class="small-caps">O</span><span 
+class="small-caps">F</span> R<span 
+class="small-caps">E</span><span 
+class="small-caps">C</span><span 
+class="small-caps">C</span><span 
+class="small-caps">A</span>                                               </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-43-"><td  style="text-align:left;" id="TBL-116-43-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-116-43-2"  
+class="td11">                              </td><td  style="text-align:left; white-space:nowrap;" id="TBL-116-43-3"  
+class="td11">  <span 
+class="bchrc8t-x-x-80">G<span 
+class="small-caps">E</span><span 
+class="small-caps">O</span><span 
+class="small-caps">R</span><span 
+class="small-caps">D</span><span 
+class="small-caps">I</span><span 
+class="small-caps">E</span> <span 
+class="small-caps">L</span><span 
+class="small-caps">A</span><span 
+class="small-caps">M</span><span 
+class="small-caps">P</span>                                                  </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-116-44-"><td  style="text-align:left;" id="TBL-116-44-1"  
+class="td11"> <!--l. 73--><p class="noindent" >     </td></tr></table>
+ <div class="caption" 
+><span class="id">Table&#x00A0;7.1: </span><span  
+class="content">Examples of topics automatically linked to concepts on the TREC Web
+2009 test collection.</span></div><!--tex4ht:label?: x48-1220011 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 257--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                   
+                                                                   
+<a 
+ id="x48-1220041"></a>
+                                                                   
+                                                                   
+<a 
+ id="x48-122002r1"></a>
+<div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij81x.png" alt="PIC" class="graphics" width="169.34921pt" height="85.54823pt" ><!--tex4ht:graphics  
+name="thesis-emeij81x.png" src="chapter07/musicman_bw.eps"  
+-->
+        <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(a) Topic #42 (&#x201C;music man&#x201D;). </span></div>        </td></tr></table></div>
+<a 
+ id="x48-122003r2"></a><div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij82x.png" alt="PIC" class="graphics" width="169.34921pt" height="57.12378pt" ><!--tex4ht:graphics  
+name="thesis-emeij82x.png" src="chapter07/disneyland_bw.eps"  
+-->
+      <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(b) Topic #39 (&#x201C;disneyland hotel&#x201D;). </span></div>      </td></tr></table></div><br />
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;7.1:  </span><span  
+class="content">Example  query  models.  The  size  of  a  term  is  proportional  to  its
+probability in the query model. </span></div><!--tex4ht:label?: x48-1220041 -->
+                                                                   
+                                                                   
+<!--l. 266--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 132--><p class="indent" >   Let&#x2019;s look at some examples. Table&#x00A0;<a 
+href="#x48-1220011">7.1<!--tex4ht:ref: tbl:chapter07:exampleconcepts --></a> shows examples of concepts that are
+identified by the <a 
+href="thesis-emeijli3.html#SVM">SVM</a> model on the TREC Web 2009 test collection. We first observe
+that, as pointed out above, the queries themselves are short and ambiguous.
+For query (#48) &#x201C;wilson antenna,&#x201D; it predicts <span 
+class="bchrc8t-">R<span 
+class="small-caps">O</span><span 
+class="small-caps">B</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span><span 
+class="small-caps">T</span> W<span 
+class="small-caps">O</span><span 
+class="small-caps">O</span><span 
+class="small-caps">D</span><span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">W</span> W<span 
+class="small-caps">I</span><span 
+class="small-caps">L</span><span 
+class="small-caps">S</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span></span>
+as the only relevant concept, classifying concepts such as <span 
+class="bchrc8t-">M<span 
+class="small-caps">O</span><span 
+class="small-caps">U</span><span 
+class="small-caps">N</span><span 
+class="small-caps">T</span> W<span 
+class="small-caps">I</span><span 
+class="small-caps">L</span><span 
+class="small-caps">S</span><span 
+class="small-caps">O</span><span 
+class="small-caps">N</span></span>
+<span 
+class="bchrc8t-">(C<span 
+class="small-caps">A</span><span 
+class="small-caps">L</span><span 
+class="small-caps">I</span><span 
+class="small-caps">F</span><span 
+class="small-caps">O</span><span 
+class="small-caps">R</span><span 
+class="small-caps">N</span><span 
+class="small-caps">I</span><span 
+class="small-caps">A</span>) </span>as not relevant. For the query &#x201C;the music man&#x201D; (#42) it identifies
+the company, song, film, and musical which indicates the inherent ambiguity
+that is typical for many web queries. The same effect can be observed for the
+query &#x201C;disneyland hotel&#x201D; (#39) with concepts <span 
+class="bchrc8t-">T<span 
+class="small-caps">O</span><span 
+class="small-caps">K</span><span 
+class="small-caps">Y</span><span 
+class="small-caps">O</span> D<span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">N</span><span 
+class="small-caps">E</span><span 
+class="small-caps">Y</span><span 
+class="small-caps">L</span><span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">D</span> H<span 
+class="small-caps">O</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span><span 
+class="small-caps">L</span></span>,
+<span 
+class="bchrc8t-">D<span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">N</span><span 
+class="small-caps">E</span><span 
+class="small-caps">Y</span><span 
+class="small-caps">L</span><span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">D</span> H<span 
+class="small-caps">O</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span><span 
+class="small-caps">L</span> (C<span 
+class="small-caps">A</span><span 
+class="small-caps">L</span><span 
+class="small-caps">I</span><span 
+class="small-caps">F</span><span 
+class="small-caps">O</span><span 
+class="small-caps">R</span><span 
+class="small-caps">N</span><span 
+class="small-caps">I</span><span 
+class="small-caps">A</span>)</span>, and <span 
+class="bchrc8t-">D<span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">N</span><span 
+class="small-caps">E</span><span 
+class="small-caps">Y</span><span 
+class="small-caps">L</span><span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">D</span> H<span 
+class="small-caps">O</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span><span 
+class="small-caps">L</span> (P<span 
+class="small-caps">A</span><span 
+class="small-caps">R</span><span 
+class="small-caps">I</span><span 
+class="small-caps">S</span>)</span>. There
+are also mistakes, however, such as predicting the concepts <span 
+class="bchrc8t-">F<span 
+class="small-caps">L</span><span 
+class="small-caps">A</span><span 
+class="small-caps">M</span><span 
+class="small-caps">E</span> <span 
+class="small-caps">O</span><span 
+class="small-caps">F</span> R<span 
+class="small-caps">E</span><span 
+class="small-caps">C</span><span 
+class="small-caps">C</span><span 
+class="small-caps">A</span></span>
+and <span 
+class="bchrc8t-">G<span 
+class="small-caps">E</span><span 
+class="small-caps">O</span><span 
+class="small-caps">R</span><span 
+class="small-caps">D</span><span 
+class="small-caps">I</span><span 
+class="small-caps">E</span> <span 
+class="small-caps">L</span><span 
+class="small-caps">A</span><span 
+class="small-caps">M</span><span 
+class="small-caps">P</span> </span>for the query (#49) &#x201C;flame designs.&#x201D; The first concept is a
+Japanese manga series, whereas &#x2018;Geordie&#x2019; was the nickname of the designer of the
+mine lamp that served as a solution to explosions due to firedamp in coal
+mines.
+<!--l. 153--><p class="indent" >   In the next stage, we take the predicted concepts for each query and estimate
+query models from the Wikipedia article associated with each concept. For this,
+we adopt the language modeling approach detailed in Section&#x00A0;<a 
+href="thesis-emeijse9.html#x13-140002">2.2.2<!--tex4ht:ref: ssec:relwork:kldiv --></a> and as
+query model we use the linear interpolation from Eq.&#x00A0;<a 
+href="thesis-emeijse9.html#x13-14003r2.10">2.10<!--tex4ht:ref: chapter04:eq:querymodel --></a>. Recall that there,
+<!--l. 153--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0303;</mo></mover></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>
+indicates the empirical estimate on the initial query and
+<!--l. 153--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>
+the expanded part. In Chapter&#x00A0;<a 
+href="thesis-emeijch4.html#x26-470004">4<!--tex4ht:ref: chap:relfb --></a>, relevance model 1 (RM-1, cf. Eq.&#x00A0;<a 
+href="thesis-emeijse10.html#x14-21008r2.24">2.24<!--tex4ht:ref: eq:lavrenko:rm1 --></a>)
+had the most robust performance. We therefore use this model to obtain
+<!--l. 153--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></math> and
+estimate it on the contents of the Wikipedia articles associated with the concepts. In
+essence, this method is similar to the one we presented in Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a>. There, we used
+conceptual document annotations to (i) obtain a conceptual representation of each
+query and to (ii) &#x201C;translate&#x201D; the found concepts to vocabulary terms. In this chapter, we
+use the learned <a 
+href="thesis-emeijli3.html#SVM">SVM</a> model to obtain the first step. Since each concept is now
+associated with a single document (the Wikipedia article), we use those to update the
+estimate of the query model.
+<!--l. 157--><p class="indent" >   Figure&#x00A0;<a 
+href="#x48-1220041">7.1<!--tex4ht:ref: fig:chapter07:examples --></a> shows two example query models for topics #42 and #39 from the TREC
+Web 2009 test collection. We note that the initial query terms receive the largest
+probability mass and that the terms that are introduced seem mostly related to the
+topic.
+                                                                   
+                                                                   
+<!--l. 159--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch7.html#thesis-emeijse35.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse36.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse35.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse35.html"></a> 
+</body></html> 

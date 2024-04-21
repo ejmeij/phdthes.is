@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Experimental Setup</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch7.html#thesis-emeijse36.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse37.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse35.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse35.html#tailthesis-emeijse35.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse36.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">7.2    </span> <a 
+ id="x49-1230002"></a>Experimental Setup</h3>
+<!--l. 163--><p class="noindent" >To determine whether the automatically identified concepts are a useful resource to
+improve retrieval performance by updating the query model, we compare our approach
+(WP-SVM) against a query likelihood (<a 
+href="thesis-emeijli3.html#QL">QL</a>) baseline and against RM-1 estimated on
+pseudo relevant documents. In particular, we obtain the set of pseudo relevant
+documents in three ways:
+     <dl class="enumerate"><dt class="enumerate">
+  1. </dt><dd 
+class="enumerate">on  the  collection  (&#x201C;normal&#x201D;  pseudo  relevance  feedback&#x2014;similar  to  the
+     approach presented in Chapter&#x00A0;<a 
+href="thesis-emeijch4.html#x26-470004">4<!--tex4ht:ref: chap:relfb --></a>),
+     </dd><dt class="enumerate">
+  2. </dt><dd 
+class="enumerate">on Wikipedia (similar to the approach presented in Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a>&#x00A0; as well as
+     so-called &#x201C;external expansion&#x201D;&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2006:diaz">92</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#Xweer:gene09">337</a>]), and
+     </dd><dt class="enumerate">
+  3. </dt><dd 
+class="enumerate">on automatically linked Wikipedia articles (linked using the approach from
+     Chapter&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860006">6<!--tex4ht:ref: chap:linkingconcepts --></a>), as introduced in the previous section.</dd></dl>
+<!--l. 174--><p class="noindent" >So, as reference, we use either the collection (RM (C)) or top-ranked Wikipedia articles
+(RM (WP)) for query modeling. RM (WP) is obtained using a full-text index of
+Wikipedia, containing all the fields introduced in the previous chapter and including
+within-Wikipedia anchortexts and titles. For both RM (WP) and RM (C) we use the top
+10 retrieved documents and include the 10 terms with the highest probability in
+<!--l. 179--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>,
+similar to the experimental setup used in Chapter&#x00A0;<a 
+href="thesis-emeijch4.html#x26-470004">4<!--tex4ht:ref: chap:relfb --></a>&#x00A0;(there, on the TREC-PRF-08
+collection, RM-1 obtained its highest retrieval performance when 10 terms were
+used).
+<!--l. 181--><p class="indent" >   To train the <a 
+href="thesis-emeijli3.html#SVM">SVM</a> model, we split the topic set of each test collection in a
+training and test set. For TREC Terabyte 2004&#x2013;2006, we have 149 topics of
+which 74 are used for training and 75 for testing. For TREC Web 2009 we have
+50 topics and use 5-fold cross validation&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:datamining">344</a>]. Similar to the experiments
+presented in Chapter&#x00A0;<a 
+href="thesis-emeijch4.html#x26-470004">4<!--tex4ht:ref: chap:relfb --></a>&#x00A0;and described in Section&#x00A0;<a 
+href="thesis-emeijse17.html#x24-450004">3.4<!--tex4ht:ref: sec:parameterest --></a> (cf. page&#x00A0;<a 
+href="thesis-emeijse17.html#x24-450004">100<!--tex4ht:ref: sec:parameterest --></a>), we perform
+a line search of the parameter space to determine the optimal value for
+<!--l. 184--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></math>.
+                                                                   
+                                                                   
+<!--l. 192--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch7.html#thesis-emeijse36.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse37.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse35.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse35.html#tailthesis-emeijse35.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijse36.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse36.html"></a> 
+</body></html> 

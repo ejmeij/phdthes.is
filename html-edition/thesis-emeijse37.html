@@ -1,0 +1,946 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Results and Discussion</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch7.html#thesis-emeijse37.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse38.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse36.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse36.html#tailthesis-emeijse36.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse37.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">7.3    </span> <a 
+ id="x50-1240003"></a>Results and Discussion</h3>
+<!--l. 195--><p class="noindent" >Before we report on the experimental results, we first note the performance of results
+reported in the literature on the test collections employed in this chapter. For the TREC
+Terabyte test collection, this number is not available since we (i) use an aggregation of
+the topic sets from all TREC Terabyte 2004&#x2013;2006 tracks and (ii) split this new
+topic set in a training and test set. We do note, however, that the average <a 
+href="thesis-emeijli3.html#MAP">MAP</a>
+score of all systems participating in the TREC Terabyte 2004&#x2013;2006 tracks is
+roughly 0.30. For TREC Web 2009, we cannot compare our absolute scores
+with those presented in the literature, since we use the mtc-eval evaluation
+methodology&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2006:carterette">61</a>]. Hence, we determine the probability of relevance for each
+unjudged document retrieved by the runs presented in this chapter using the <span 
+class="ec-lmtt-10">expert</span>
+tool.<span class="footnote-mark"><a 
+href="thesis-emeij51.html#fn1x15"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x50-124001f1"></a> 
+<!--l. 204--><p class="indent" >   Table&#x00A0;<a 
+href="#x50-1240022">7.2<!--tex4ht:ref: tab:chapter07:results:tb --></a> lists the results on the TREC Terabyte test collection, optimized for <a 
+href="thesis-emeijli3.html#MAP">MAP</a>.
+Here, applying RM-1 to pseudo relevant documents from the collection yields
+highest <a 
+href="thesis-emeijli3.html#MAP">MAP</a>, although the difference with respect to the <a 
+href="thesis-emeijli3.html#MAP">MAP</a> values for RM
+(WP) and WP-SVM is very small. All models obtain significant improvements
+over the baseline in terms of <a 
+href="thesis-emeijli3.html#MAP">MAP</a>. When the query models are estimated on
+Wikipedia, the highest <a 
+ id="section*.54"></a>mean reciprocal rank (<a 
+href="thesis-emeijli3.html#MRR">MRR</a>) is obtained, with WP-SVM
+following closely; only WP-SVM and RM (WP) obtain significant improvements in
+terms of <a 
+href="thesis-emeijli3.html#MRR">MRR</a> and recall. WP-SVM retrieves the most relevant documents of all
+the models on this collection. Interestingly, it also obtains the highest early
+precision.
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 208--><p class="indent" >   <a 
+ id="x50-1240022"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="center" 
+>
+<!--l. 209--><p class="noindent" >
+
+ <table id="TBL-118" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-118-1g"><col 
+id="TBL-118-1"><col 
+id="TBL-118-2"><col 
+id="TBL-118-3"><col 
+id="TBL-118-4"><col 
+id="TBL-118-5"><col 
+id="TBL-118-6"><col 
+id="TBL-118-7"><col 
+id="TBL-118-8"><col 
+id="TBL-118-9"><col 
+id="TBL-118-10"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-118-1-"><td  style="text-align:left; white-space:nowrap;" id="TBL-118-1-1"  
+class="td11">          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-118-1-2"  
+class="td11"> <!--l. 245--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></math>  </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-118-1-3"  
+class="td11">      <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">P10</span></div>     </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-118-1-5"  
+class="td11">     <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">RelRet</span></div>    </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-118-1-7"  
+class="td11">     <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">MRR</span></div>    </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-118-1-9"  
+class="td11">     <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">MAP</span></div>
+
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-118-2-"><td  style="text-align:left; white-space:nowrap;" id="TBL-118-2-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">QL             </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-118-2-2"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">0.0   </span></td><td  style="text-align:left;" id="TBL-118-2-3"  
+class="td11"> <!--l. 245--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.439</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-118-2-4"  
+class="td11">    <span 
+class="bchr8t-x-x-80">0%   </span></td><td  style="text-align:left;" id="TBL-118-2-5"  
+class="td11"> <!--l. 245--><p class="noindent" ><span 
+class="bchr8t-x-x-80">6965</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-118-2-6"  
+class="td11">    <span 
+class="bchr8t-x-x-80">0%   </span></td><td  style="text-align:left;" id="TBL-118-2-7"  
+class="td11"> <!--l. 245--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.631</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-118-2-8"  
+class="td11">    <span 
+class="bchr8t-x-x-80">0%   </span></td><td  style="text-align:left;" id="TBL-118-2-9"  
+class="td11"> <!--l. 245--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.228</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-118-2-10"  
+class="td11">    <span 
+class="bchr8t-x-x-80">0%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-118-3-"><td  style="text-align:left; white-space:nowrap;" id="TBL-118-3-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RM (C)      </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-118-3-2"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">0.3   </span></td><td  style="text-align:left;" id="TBL-118-3-3"  
+class="td11"> <!--l. 245--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.515*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-118-3-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+17%   </span></td><td  style="text-align:left;" id="TBL-118-3-5"  
+class="td11"> <!--l. 245--><p class="noindent" ><span 
+class="bchr8t-x-x-80">7872*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-118-3-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+13%   </span></td><td  style="text-align:left;" id="TBL-118-3-7"  
+class="td11"> <!--l. 245--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.623</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-118-3-8"  
+class="td11">   <span 
+class="bchr8t-x-x-80">-1%   </span></td><td  style="text-align:left;" id="TBL-118-3-9"  
+class="td11"> <!--l. 245--><p class="noindent" ><span 
+class="bchb8t-x-x-80">0.294</span><span 
+class="bchr8t-x-x-80">*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-118-3-10"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+29%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-118-4-"><td  style="text-align:left; white-space:nowrap;" id="TBL-118-4-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">RM (WP)   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-118-4-2"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">0.2   </span></td><td  style="text-align:left;" id="TBL-118-4-3"  
+class="td11"> <!--l. 245--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.527*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-118-4-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+20%   </span></td><td  style="text-align:left;" id="TBL-118-4-5"  
+class="td11"> <!--l. 245--><p class="noindent" ><span 
+class="bchr8t-x-x-80">7836*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-118-4-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+13%   </span></td><td  style="text-align:left;" id="TBL-118-4-7"  
+class="td11"> <!--l. 245--><p class="noindent" ><span 
+class="bchb8t-x-x-80">0.713</span><span 
+class="bchr8t-x-x-80">*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-118-4-8"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+13%   </span></td><td  style="text-align:left;" id="TBL-118-4-9"  
+class="td11"> <!--l. 245--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.287*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-118-4-10"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+26%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-118-5-"><td  style="text-align:left; white-space:nowrap;" id="TBL-118-5-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">WP-SVM    </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-118-5-2"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">0.2   </span></td><td  style="text-align:left;" id="TBL-118-5-3"  
+class="td11"> <!--l. 245--><p class="noindent" ><span 
+class="bchb8t-x-x-80">0.532</span><span 
+class="bchr8t-x-x-80">*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-118-5-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+21%   </span></td><td  style="text-align:left;" id="TBL-118-5-5"  
+class="td11"> <!--l. 245--><p class="noindent" ><span 
+class="bchb8t-x-x-80">7902</span><span 
+class="bchr8t-x-x-80">*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-118-5-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+13%   </span></td><td  style="text-align:left;" id="TBL-118-5-7"  
+class="td11"> <!--l. 245--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.711*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-118-5-8"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+13%   </span></td><td  style="text-align:left;" id="TBL-118-5-9"  
+class="td11"> <!--l. 245--><p class="noindent" ><span 
+class="bchr8t-x-x-80">0.286*</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-118-5-10"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+25%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-118-6-"><td  style="text-align:left; white-space:nowrap;" id="TBL-118-6-1"  
+class="td11">           </td></tr></table>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;7.2: </span><span  
+class="content">Results on the TREC Terabyte test collection, optimized for <a 
+href="thesis-emeijli3.html#MAP">MAP</a>. </span></div><!--tex4ht:label?: x50-1240022 -->
+</div>
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 253--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                   
+                                                                   
+<a 
+ id="x50-1240052"></a>
+                                                                   
+                                                                   
+<a 
+ id="x50-124003r1"></a>
+<div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij83x.png" alt="PIC" class="graphics" width="169.34921pt" height="118.5448pt" ><!--tex4ht:graphics  
+name="thesis-emeij83x.png" src="chapter07/trectb/p10-fullquery-features-5_en-RM1-t10-l10-res-eval-fullquery-features-5_en-RM1-t10-l08-res-eval.eps"  
+-->
+               <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(a) P10</span></div>               </td></tr></table></div>
+<a 
+ id="x50-124004r2"></a><div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij84x.png" alt="PIC" class="graphics" width="169.34921pt" height="118.5448pt" ><!--tex4ht:graphics  
+name="thesis-emeij84x.png" src="chapter07/trectb/map-fullquery-features-5_en-RM1-t10-l10-res-eval-fullquery-features-5_en-RM1-t10-l08-res-eval.eps"  
+-->
+               <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(b) MAP</span></div>               </td></tr></table></div><br />
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;7.2: </span><span  
+class="content">Per-topic breakdown of the improvement of WP-SVM over the <a 
+href="thesis-emeijli3.html#QL">QL</a>
+baseline on the TREC Terabyte test collection. </span></div><!--tex4ht:label?: x50-1240052 -->
+                                                                   
+                                                                   
+<!--l. 264--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 266--><p class="indent" >   Figure&#x00A0;<a 
+href="#x50-1240052">7.2<!--tex4ht:ref: chapter07:fig:pertopic:tb --></a> shows a per-topic plot of the performance of WP-SVM relative to
+the baseline (a positive value indicates an improvement over the baseline).
+The first thing to note is that there are a number of topics that are neither
+helped nor hurt. One of the properties of the conceptual mapping approach is
+that the <a 
+href="thesis-emeijli3.html#SVM">SVM</a> may decide that none of the candidate concepts are relevant.
+The query model is left as is in that case, yielding the same performance as
+the baseline. This is the case for 30 out of the 75 TREC Terabyte topics. We
+further observe that, although about as many topics are helped as hurt in terms
+of MAP, there are more topics that are helped more using WP-SVM on early
+precision. So, in those cases where concepts are identified, early precision is helped
+most.
+<!--l. 272--><p class="indent" >   Topic #847 (&#x201C;Portugal World War II&#x201D;) is a topic that is hurt when applying WP-SVM.
+Here, the two concepts that are returned (<span 
+class="bchrc8t-">L<span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">T</span> <span 
+class="small-caps">O</span><span 
+class="small-caps">F</span> <span 
+class="small-caps">M</span><span 
+class="small-caps">I</span><span 
+class="small-caps">L</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">A</span><span 
+class="small-caps">R</span><span 
+class="small-caps">Y</span> <span 
+class="small-caps">V</span><span 
+class="small-caps">E</span><span 
+class="small-caps">H</span><span 
+class="small-caps">I</span><span 
+class="small-caps">C</span><span 
+class="small-caps">L</span><span 
+class="small-caps">E</span><span 
+class="small-caps">S</span> </span>and <span 
+class="bchrc8t-">L<span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">T</span> <span 
+class="small-caps">O</span><span 
+class="small-caps">F</span></span>
+<span 
+class="bchrc8t-"><span 
+class="small-caps">S</span><span 
+class="small-caps">H</span><span 
+class="small-caps">I</span><span 
+class="small-caps">P</span><span 
+class="small-caps">W</span><span 
+class="small-caps">R</span><span 
+class="small-caps">E</span><span 
+class="small-caps">C</span><span 
+class="small-caps">K</span><span 
+class="small-caps">S</span> <span 
+class="small-caps">I</span><span 
+class="small-caps">N</span> 1943</span>) are vaguely related but not relevant to the query. Topics that are
+helped using WP-SVM include &#x201C;train station security measures&#x201D; (#711), caused
+by the suggested concept <span 
+class="bchrc8t-">S<span 
+class="small-caps">E</span><span 
+class="small-caps">C</span><span 
+class="small-caps">U</span><span 
+class="small-caps">R</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">Y</span> <span 
+class="small-caps">O</span><span 
+class="small-caps">N</span> <span 
+class="small-caps">T</span><span 
+class="small-caps">H</span><span 
+class="small-caps">E</span> M<span 
+class="small-caps">A</span><span 
+class="small-caps">S</span><span 
+class="small-caps">S</span> R<span 
+class="small-caps">A</span><span 
+class="small-caps">P</span><span 
+class="small-caps">I</span><span 
+class="small-caps">D</span> T<span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span></span>. Another
+topic that is helped on this test collection is topic #733 &#x201C;Airline overbooking&#x201D;.
+Here, the concept <span 
+class="bchrc8t-">A<span 
+class="small-caps">I</span><span 
+class="small-caps">R</span><span 
+class="small-caps">L</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span><span 
+class="small-caps">E</span> </span>is the only suggestion. For topic #849 (&#x201C;Scalable
+Vector Graphics&#x201D;), the concepts <span 
+class="bchrc8t-">S<span 
+class="small-caps">C</span><span 
+class="small-caps">A</span><span 
+class="small-caps">L</span><span 
+class="small-caps">A</span><span 
+class="small-caps">B</span><span 
+class="small-caps">L</span><span 
+class="small-caps">E</span> V<span 
+class="small-caps">E</span><span 
+class="small-caps">C</span><span 
+class="small-caps">T</span><span 
+class="small-caps">O</span><span 
+class="small-caps">R</span> G<span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">P</span><span 
+class="small-caps">H</span><span 
+class="small-caps">I</span><span 
+class="small-caps">C</span><span 
+class="small-caps">S</span> </span>and <span 
+class="bchrc8t-">V<span 
+class="small-caps">E</span><span 
+class="small-caps">C</span><span 
+class="small-caps">T</span><span 
+class="small-caps">O</span><span 
+class="small-caps">R</span></span>
+<span 
+class="bchrc8t-">G<span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">P</span><span 
+class="small-caps">H</span><span 
+class="small-caps">I</span><span 
+class="small-caps">C</span><span 
+class="small-caps">S</span> </span>are returned, causing 42 more relevant documents to be returned.
+These findings provide evidence that Wikipedia is a useful resource for query
+modeling; the approach functions as both a recall- and a precision-enhancing
+device.
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 281--><p class="indent" >   <a 
+ id="x50-1240063"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="center" 
+>
+<!--l. 282--><p class="noindent" >
+
+ <table id="TBL-120" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-120-1g"><col 
+id="TBL-120-1"><col 
+id="TBL-120-2"><col 
+id="TBL-120-3"><col 
+id="TBL-120-4"><col 
+id="TBL-120-5"><col 
+id="TBL-120-6"><col 
+id="TBL-120-7"><col 
+id="TBL-120-8"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-120-1-"><td  style="text-align:left;" id="TBL-120-1-1"  
+class="td11"> <!--l. 313--><p class="noindent" >   </td><td  style="text-align:right; white-space:nowrap;" id="TBL-120-1-2"  
+class="td11"> <!--l. 313--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></math>  </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-120-1-3"  
+class="td11">        <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">eP10</span></div>      </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-120-1-5"  
+class="td11">      <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">eR-prec</span></div>     </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-120-1-7"  
+class="td11">       <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">eMAP</span></div>
+
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-120-2-"><td  style="text-align:left;" id="TBL-120-2-1"  
+class="td11"> <!--l. 313--><p class="noindent" ><span 
+class="bchr8t-x-x-80">QL</span>   </td><td  style="text-align:right; white-space:nowrap;" id="TBL-120-2-2"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">1.0   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-120-2-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.077     </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-120-2-4"  
+class="td11">     <span 
+class="bchr8t-x-x-80">0%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-120-2-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.272     </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-120-2-6"  
+class="td11">    <span 
+class="bchr8t-x-x-80">0%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-120-2-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.127     </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-120-2-8"  
+class="td11">    <span 
+class="bchr8t-x-x-80">0%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-120-3-"><td  style="text-align:left;" id="TBL-120-3-1"  
+class="td11"> <!--l. 313--><p class="noindent" ><span 
+class="bchr8t-x-x-80">RM</span>
+   <span 
+class="bchr8t-x-x-80">(C)</span>  </td><td  style="text-align:right; white-space:nowrap;" id="TBL-120-3-2"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">0.5   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-120-3-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.070     </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-120-3-4"  
+class="td11">    <span 
+class="bchr8t-x-x-80">-9%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-120-3-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.278     </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-120-3-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+2%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-120-3-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.130     </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-120-3-8"  
+class="td11">  <span 
+class="bchr8t-x-x-80">+2%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-120-4-"><td  style="text-align:left;" id="TBL-120-4-1"  
+class="td11"> <!--l. 313--><p class="noindent" ><span 
+class="bchr8t-x-x-80">RM</span>
+   <span 
+class="bchr8t-x-x-80">(WP)</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-120-4-2"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">0.5   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-120-4-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.082*   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-120-4-4"  
+class="td11">    <span 
+class="bchr8t-x-x-80">+6%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-120-4-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.268*   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-120-4-6"  
+class="td11">   <span 
+class="bchr8t-x-x-80">-1%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-120-4-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.123*   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-120-4-8"  
+class="td11">   <span 
+class="bchr8t-x-x-80">-3%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-120-5-"><td  style="text-align:left;" id="TBL-120-5-1"  
+class="td11"> <!--l. 313--><p class="noindent" ><span 
+class="bchr8t-x-x-80">WP-SVM</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-120-5-2"  
+class="td11">                                                                                 <span 
+class="bchr8t-x-x-80">0.0   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-120-5-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.241</span><span 
+class="bchr8t-x-x-80">*   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-120-5-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+213%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-120-5-5"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.348</span><span 
+class="bchr8t-x-x-80">*   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-120-5-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+28%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-120-5-7"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.193</span><span 
+class="bchr8t-x-x-80">*   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-120-5-8"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+52%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-120-6-"><td  style="text-align:left;" id="TBL-120-6-1"  
+class="td11"> <!--l. 313--><p class="noindent" >    </td></tr></table>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;7.3: </span><span  
+class="content">Results on the TREC Web test collection (Category A), optimized for
+eMAP. </span></div><!--tex4ht:label?: x50-1240063 -->
+</div>
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 322--><p class="indent" >   As to TREC Web 2009, Table&#x00A0;<a 
+href="#x50-1240063">7.3<!--tex4ht:ref: tab:chapter07:results:web --></a> shows the results on this test collection, using
+mtc-eval measures&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2006:carterette">61</a>], which were introduced in Chapter&#x00A0;<a 
+href="thesis-emeijch3.html#x19-330003">3<!--tex4ht:ref: chap:methodology --></a>. On this collection of
+web pages, we observe that merely relying on the baseline approach yields very low
+retrieval performance. Applying pseudo relevance feedback on the collection does not
+help; in fact, retrieval performance in terms of early precision is degraded in that
+case.
+<!--l. 327--><p class="indent" >   When estimating a relevance model from Wikipedia (RM (WP)), we find a slight
+decrease in terms of eMAP. It does yield a significant improvement in terms of eP10,
+however. Moreover, in this case, eR-prec is also significantly improved. WP-SVM improves
+the performance on all metrics. Interestingly, the best results here are obtained when
+<!--l. 329--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <mn>1</mn><mo 
+class="MathClass-punc">.</mo><mn>0</mn></math>, i.e.,
+when all probability mass is given to the expanded query part.
+<!--l. 331--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                   
+                                                                   
+<a 
+ id="x50-1240093"></a>
+                                                                   
+                                                                   
+<a 
+ id="x50-124007r1"></a>
+<div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij85x.png" alt="PIC" class="graphics" width="169.34921pt" height="118.5448pt" ><!--tex4ht:graphics  
+name="thesis-emeij85x.png" src="chapter07/web/mtc-eval/p10-l10-res-eval-fullquery-features-5_en-l00-res-eval.eps"  
+-->
+               <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(a) eP10</span></div>               </td></tr></table></div>
+<a 
+ id="x50-124008r2"></a><div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij86x.png" alt="PIC" class="graphics" width="169.34921pt" height="118.5448pt" ><!--tex4ht:graphics  
+name="thesis-emeij86x.png" src="chapter07/web/mtc-eval/map-l10-res-eval-fullquery-features-5_en-l00-res-eval.eps"  
+-->
+               <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(b) eMAP</span></div>               </td></tr></table></div><br />
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;7.3: </span><span  
+class="content">Per-topic breakdown of the improvement of WP-SVM over the <a 
+href="thesis-emeijli3.html#QL">QL</a>
+baseline on the TREC Web test collection using ad hoc measures. </span></div><!--tex4ht:label?: x50-1240093 -->
+                                                                   
+                                                                   
+<!--l. 342--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 344--><p class="indent" >   Figure&#x00A0;<a 
+href="#x50-1240093">7.3<!--tex4ht:ref: chapter07:fig:pertopic:web --></a> again shows per-topic plots, this time for the TREC Web test collection.
+From these plots it is clear that WP-SVM helps to substantially improve early precision
+on this test collection; eMAP is also improved over almost all topics. Topics that are
+helped most include #46 (&#x201C;alexian brothers hospital&#x201D;&#x2014;caused by the concepts
+<span 
+class="bchrc8t-">A<span 
+class="small-caps">L</span><span 
+class="small-caps">E</span><span 
+class="small-caps">X</span><span 
+class="small-caps">I</span><span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">S</span> </span>and <span 
+class="bchrc8t-">L<span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">T</span> <span 
+class="small-caps">O</span><span 
+class="small-caps">F</span> <span 
+class="small-caps">H</span><span 
+class="small-caps">O</span><span 
+class="small-caps">S</span><span 
+class="small-caps">P</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">A</span><span 
+class="small-caps">L</span><span 
+class="small-caps">S</span> <span 
+class="small-caps">I</span><span 
+class="small-caps">N</span> I<span 
+class="small-caps">L</span><span 
+class="small-caps">L</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span><span 
+class="small-caps">O</span><span 
+class="small-caps">I</span><span 
+class="small-caps">S</span></span>) and #25 (&#x201C;euclid&#x201D;&#x2014;caused by the single
+matching concept <span 
+class="bchrc8t-">E<span 
+class="small-caps">U</span><span 
+class="small-caps">C</span><span 
+class="small-caps">L</span><span 
+class="small-caps">I</span><span 
+class="small-caps">D</span></span>). Topic #12 (&#x201C;djs&#x201D;) is hurt most in terms of eP10
+and is the only topic that is hurt on eMAP. Here, three DJs are identified as
+concepts (<span 
+class="bchrc8t-">Q<span 
+class="small-caps">U</span><span 
+class="small-caps">A</span><span 
+class="small-caps">D</span> C<span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">Y</span> DJ&#x2019;<span 
+class="small-caps">S</span></span>, <span 
+class="bchrc8t-">P<span 
+class="small-caps">L</span><span 
+class="small-caps">U</span><span 
+class="small-caps">M</span><span 
+class="small-caps">P</span> DJ<span 
+class="small-caps">S</span></span>, and <span 
+class="bchrc8t-">S<span 
+class="small-caps">O</span><span 
+class="small-caps">U</span><span 
+class="small-caps">L</span><span 
+class="small-caps">W</span><span 
+class="small-caps">A</span><span 
+class="small-caps">X</span></span>) but they do not help
+to improve on early precision. In sum, the results presented so far indicate
+that supervised query modeling using Wikipedia is helpful for large, noisy
+collections.
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 352--><p class="indent" >   <a 
+ id="x50-1240104"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="center" 
+>
+<!--l. 353--><p class="noindent" >
+
+ <table id="TBL-122" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-122-1g"><col 
+id="TBL-122-1"><col 
+id="TBL-122-2"><col 
+id="TBL-122-3"><col 
+id="TBL-122-4"><col 
+id="TBL-122-5"><col 
+id="TBL-122-6"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-122-1-"><td  style="text-align:left;" id="TBL-122-1-1"  
+class="td11"> <!--l. 379--><p class="noindent" >   </td><td  style="text-align:right; white-space:nowrap;" id="TBL-122-1-2"  
+class="td11"> <!--l. 379--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></math>  </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-122-1-3"  
+class="td11">      <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">IA-P@10</span></div>     </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-122-1-5"  
+class="td11"> <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><!--l. 379--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03B1;</mi></math><span 
+class="bchr8t-x-x-80">-nDCG@10</span></div>
+
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-122-2-"><td  style="text-align:left;" id="TBL-122-2-1"  
+class="td11"> <!--l. 379--><p class="noindent" ><span 
+class="bchr8t-x-x-80">QL</span>   </td><td  style="text-align:right; white-space:nowrap;" id="TBL-122-2-2"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">1.0   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-122-2-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.017   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-122-2-4"  
+class="td11">     <span 
+class="bchr8t-x-x-80">0%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-122-2-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.041    </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-122-2-6"  
+class="td11">                                                                                 <span 
+class="bchr8t-x-x-80">0%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-122-3-"><td  style="text-align:left;" id="TBL-122-3-1"  
+class="td11"> <!--l. 379--><p class="noindent" ><span 
+class="bchr8t-x-x-80">RM</span>
+   <span 
+class="bchr8t-x-x-80">(C)</span>  </td><td  style="text-align:right; white-space:nowrap;" id="TBL-122-3-2"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">0.5   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-122-3-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.013   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-122-3-4"  
+class="td11">   <span 
+class="bchr8t-x-x-80">-24%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-122-3-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.032*   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-122-3-6"  
+class="td11">                                                                               <span 
+class="bchr8t-x-x-80">-22%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-122-4-"><td  style="text-align:left;" id="TBL-122-4-1"  
+class="td11"> <!--l. 379--><p class="noindent" ><span 
+class="bchr8t-x-x-80">RM</span>
+   <span 
+class="bchr8t-x-x-80">(WP)</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-122-4-2"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">0.5   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-122-4-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.016   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-122-4-4"  
+class="td11">    <span 
+class="bchr8t-x-x-80">-6%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-122-4-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.038    </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-122-4-6"  
+class="td11">                                                                                <span 
+class="bchr8t-x-x-80">-7%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-122-5-"><td  style="text-align:left;" id="TBL-122-5-1"  
+class="td11"> <!--l. 379--><p class="noindent" ><span 
+class="bchr8t-x-x-80">WP-SVM</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-122-5-2"  
+class="td11">                                                                                 <span 
+class="bchr8t-x-x-80">0.6   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-122-5-3"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.035   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-122-5-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">+106%   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-122-5-5"  
+class="td11"> <span 
+class="bchb8t-x-x-80">0.065    </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-122-5-6"  
+class="td11">                                                                              <span 
+class="bchr8t-x-x-80">+59%   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-122-6-"><td  style="text-align:left;" id="TBL-122-6-1"  
+class="td11"> <!--l. 379--><p class="noindent" >    </td></tr></table>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;7.4:  </span><span  
+class="content">Results  on  the  TREC  Web  test  collection  in  terms  of  diversity,
+optimized for <!--l. 382--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03B1;</mi></math>-NDCG@10.
+</span></div><!--tex4ht:label?: x50-1240104 -->
+</div>
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 387--><p class="indent" >   The TREC Web 2009 track featured a sub-track in which the aim was to improve
+upon diversity in the document ranking, as introduced in Chapter&#x00A0;<a 
+href="thesis-emeijch3.html#x19-330003">3<!--tex4ht:ref: chap:methodology --></a>. Recall that
+diversity aims to reward those document rankings in which documents that are related
+to subtopics of the query appear at the top. Moreover, rankings that retrieve documents
+relating to many subtopics are preferred to those that cover fewer subtopics. The
+subtopics for the TREC Web 2009 track are based on information extracted from the
+logs of a commercial search engine and roughly balanced in terms of popularity. When
+we evaluate WP-SVM on the TREC Web 2009 collection using the diversity
+track&#x2019;s measures, cf. Table&#x00A0;<a 
+href="#x50-1240104">7.4<!--tex4ht:ref: tab:chapter07:results:web:div --></a>, we arrive at the same picture as for ad hoc
+retrieval.<span class="footnote-mark"><a 
+href="thesis-emeij51.html#fn1x15"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x50-124011f1"></a><span class="footnote-mark"><a 
+ id="fn1x15">     <sup class="textsuperscript">1</sup></a></span><span 
+class="bchr8t-x-x-80">The absolute values shown in Table</span><span 
+class="bchr8t-x-x-80">&#x00A0;</span><a 
+href="#x50-1240104"><span 
+class="bchr8t-x-x-80">7.4</span><!--tex4ht:ref: tab:chapter07:results:web:div --></a> <span 
+class="bchr8t-x-x-80">are low as compared to those obtained by the participants of</span>
+  <span 
+class="bchr8t-x-x-80">that particular track (the median IA-P@10 score lies around 0.054). We note, however, that the runs</span>
+  <span 
+class="bchr8t-x-x-80">presented in this chapter do not incorporate any information pertaining to the graph structure associated with</span>
+  <span 
+class="bchr8t-x-x-80">the web pages, nor do they explicitly incorporate diversity information</span><span 
+class="bchr8t-x-x-80">&#x00A0;[</span><a 
+href="thesis-emeijli2.html#XJASIST:2010:he"><span 
+class="bchr8t-x-x-80">126</span></a><span 
+class="bchr8t-x-x-80">,</span><span 
+class="bchr8t-x-x-80">&#x00A0;</span><a 
+href="thesis-emeijli2.html#XSIGIR:2010:koolen"><span 
+class="bchr8t-x-x-80">167</span></a><span 
+class="bchr8t-x-x-80">]. The method presented</span>
+  <span 
+class="bchr8t-x-x-80">here may be applied in conjunction with any diversity-improving algorithm.</span> 
+Pseudo relevance feedback on the collection hurts diversity using both measures. We
+observe the same results, although to a lesser extent, when applying pseudo
+relevance feedback on Wikipedia. When we use WP-SVM, however, the diversity
+of the document rankings is improved, as measured by both IA-P@10 and
+<!--l. 395--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03B1;</mi></math>-nDCG@10,
+although not significantly so.
+<!--l. 398--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                   
+                                                                   
+<a 
+ id="x50-1240144"></a>
+                                                                   
+                                                                   
+<a 
+ id="x50-124012r1"></a>
+<div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij87x.png" alt="PIC" class="graphics" width="169.34921pt" height="118.5448pt" ><!--tex4ht:graphics  
+name="thesis-emeij87x.png" src="chapter07/web/div/IA-P@10-l10-res-eval-fullquery-features-5_en-l06-res-eval.eps"  
+-->
+              <div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(a) IA-P@10</span></div>              </td></tr></table></div>
+<a 
+ id="x50-124013r2"></a><div class="subfigure"><table><tr><td style="text-align:left"><img 
+src="thesis-emeij88x.png" alt="PIC" class="graphics" width="169.34921pt" height="118.5448pt" ><!--tex4ht:graphics  
+name="thesis-emeij88x.png" src="chapter07/web/div/alpha-ndcg@10-l10-res-eval-fullquery-features-5_en-l06-res-eval.eps"  
+-->
+<div class="subfigcaption"><span 
+class="bchr8t-x-x-80">(b) </span><!--l. 405--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03B1;</mi></math><span 
+class="bchr8t-x-x-80">-NDCG@10</span></div></td></tr></table></div><br />
+ <div class="caption" 
+><span class="id">Figure&#x00A0;7.4: </span><span  
+class="content">Per-topic breakdown of the improvement of WP-SVM over the <a 
+href="thesis-emeijli3.html#QL">QL</a>
+baseline on the TREC Web test collection using diversity measures. </span></div><!--tex4ht:label?: x50-1240144 -->
+                                                                   
+                                                                   
+<!--l. 409--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 411--><p class="indent" >   Figure&#x00A0;<a 
+href="#x50-1240144">7.4<!--tex4ht:ref: chapter07:fig:pertopic:web:div --></a> shows per-topic plots of the diversity measures, comparing the baseline
+to WP-SVM. From these plots it is clear why we do not obtain significant improvements;
+diversity is only helped on a small number of topics. Topic #49 (&#x201C;flame designs&#x201D;) is
+the only topic that is hurt. For this topic, the concepts  <span 
+class="bchrc8t-">F<span 
+class="small-caps">L</span><span 
+class="small-caps">A</span><span 
+class="small-caps">M</span><span 
+class="small-caps">E</span> <span 
+class="small-caps">O</span><span 
+class="small-caps">F</span> R<span 
+class="small-caps">E</span><span 
+class="small-caps">C</span><span 
+class="small-caps">C</span><span 
+class="small-caps">A</span> </span>and
+<span 
+class="bchrc8t-">G<span 
+class="small-caps">E</span><span 
+class="small-caps">O</span><span 
+class="small-caps">R</span><span 
+class="small-caps">D</span><span 
+class="small-caps">I</span><span 
+class="small-caps">E</span> <span 
+class="small-caps">L</span><span 
+class="small-caps">A</span><span 
+class="small-caps">M</span><span 
+class="small-caps">P</span> </span>are retrieved. Both do not seem relevant to the topic, causing
+the decline in terms of diversity performance. In contrast, topics #1 (&#x201C;obama
+family tree&#x201D;) and #46 (&#x201C;alexian brothers hospital&#x201D;) are examples of topics that
+are helped. For the first, the concepts  <span 
+class="bchrc8t-">F<span 
+class="small-caps">A</span><span 
+class="small-caps">M</span><span 
+class="small-caps">I</span><span 
+class="small-caps">L</span><span 
+class="small-caps">Y</span> <span 
+class="small-caps">T</span><span 
+class="small-caps">R</span><span 
+class="small-caps">E</span><span 
+class="small-caps">E</span></span>,  <span 
+class="bchrc8t-">M<span 
+class="small-caps">I</span><span 
+class="small-caps">C</span><span 
+class="small-caps">H</span><span 
+class="small-caps">E</span><span 
+class="small-caps">L</span><span 
+class="small-caps">L</span><span 
+class="small-caps">E</span> O<span 
+class="small-caps">B</span><span 
+class="small-caps">A</span><span 
+class="small-caps">M</span><span 
+class="small-caps">A</span></span>, and
+<span 
+class="bchrc8t-">R<span 
+class="small-caps">U</span><span 
+class="small-caps">L</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span><span 
+class="small-caps">S</span> <span 
+class="small-caps">O</span><span 
+class="small-caps">F</span> R<span 
+class="small-caps">U</span><span 
+class="small-caps">S</span><span 
+class="small-caps">S</span><span 
+class="small-caps">I</span><span 
+class="small-caps">A</span> <span 
+class="small-caps">F</span><span 
+class="small-caps">A</span><span 
+class="small-caps">M</span><span 
+class="small-caps">I</span><span 
+class="small-caps">L</span><span 
+class="small-caps">Y</span> <span 
+class="small-caps">T</span><span 
+class="small-caps">R</span><span 
+class="small-caps">E</span><span 
+class="small-caps">E</span> </span>are identified. For the second, the concepts
+<span 
+class="bchrc8t-">A<span 
+class="small-caps">L</span><span 
+class="small-caps">E</span><span 
+class="small-caps">X</span><span 
+class="small-caps">I</span><span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">S</span> </span>and  <span 
+class="bchrc8t-">L<span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">T</span> <span 
+class="small-caps">O</span><span 
+class="small-caps">F</span> <span 
+class="small-caps">H</span><span 
+class="small-caps">O</span><span 
+class="small-caps">S</span><span 
+class="small-caps">P</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">A</span><span 
+class="small-caps">L</span><span 
+class="small-caps">S</span> <span 
+class="small-caps">I</span><span 
+class="small-caps">N</span> I<span 
+class="small-caps">L</span><span 
+class="small-caps">L</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span><span 
+class="small-caps">O</span><span 
+class="small-caps">I</span><span 
+class="small-caps">S</span> </span>are identified. In both cases,
+each concept refers to a different <span 
+class="bchri8t-">aspect </span>of the query. Hence, the estimated
+query models are also diverse in these aspects which in turn helps to improve
+diversity in the resulting document ranking. These findings, in conjunction with
+the examples provided earlier, indicate that our query modeling approach
+caters for multiple interpretations of the query since prominent terms from the
+Wikipedia article associated with each identified concept are included in the query
+model.
+                                                                   
+                                                                   
+<!--l. 434--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch7.html#thesis-emeijse37.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse38.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse36.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse36.html#tailthesis-emeijse36.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijse37.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse37.html"></a> 
+</body></html> 

@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Experimental Setup</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch5.html#thesis-emeijse25.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse26.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse24.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse24.html#tailthesis-emeijse24.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse25.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">5.2    </span> <a 
+ id="x35-720002"></a>Experimental Setup</h3>
+<!--l. 4--><p class="noindent" >To answer the research questions specified in the introduction to this chapter, we set up
+a number of experiments in which we compare our conceptual language models with
+other retrieval approaches. Below, we describe the baseline approaches that we use for
+comparison, our experimental environment, and estimation methods. In Section&#x00A0;<a 
+href="thesis-emeijse26.html#x36-760003">5.3<!--tex4ht:ref: chapter04:sec:results --></a>,
+we turn to the results of our experiments. The test collections we employ in this chapter
+have been introduced in Section&#x00A0;<a 
+href="thesis-emeijse16.html#x23-380003">3.3<!--tex4ht:ref: sec:testcollections --></a>.
+<a 
+ id="x35-72001r105"></a>
+<h4 class="subsectionHead"><span class="titlemark">5.2.1    </span> <a 
+ id="x35-730001"></a>Parameter Estimation</h4>
+<!--l. 13--><p class="noindent" >Given the models introduced in the previous sections, we have a number of parameters
+that need to be set (cf. Section&#x00A0;<a 
+href="thesis-emeijse17.html#x24-450004">3.4<!--tex4ht:ref: sec:parameterest --></a>). Table&#x00A0;<a 
+href="#x35-730015">5.5<!--tex4ht:ref: chapter04:tab:parameters --></a> summarizes the parameters that we
+need to set.
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 17--><p class="indent" >   <a 
+ id="x35-730015"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+
+ <table id="TBL-47" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-47-1g"><col 
+id="TBL-47-1"><col 
+id="TBL-47-2"><col 
+id="TBL-47-3"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-47-1-"><td colspan="2" style="text-align:left; white-space:nowrap;" id="TBL-47-1-1"  
+class="td11"> <div class="multicolumn"  style="text-align:left; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Parameter</span></div>                                                                               </td><td  style="text-align:left;" id="TBL-47-1-3"  
+class="td11"> <!--l. 46--><p class="noindent" ><span 
+class="bchr8t-x-x-80">Description</span> </td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-47-2-"><td  style="text-align:center; white-space:nowrap;" id="TBL-47-2-1"  
+class="td11"> <!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></math>  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-47-2-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">Eq.</span><span 
+class="bchr8t-x-x-80">&#x00A0;</span><a 
+href="thesis-emeijse9.html#x13-14003r2.10"><span 
+class="bchr8t-x-x-80">2.10</span><!--tex4ht:ref: chapter04:eq:querymodel --></a>                      </td><td  style="text-align:left;" id="TBL-47-2-3"  
+class="td11"> <!--l. 46--><p class="noindent" ><span 
+class="bchr8t-x-x-80">Interpolation</span>
+   <span 
+class="bchr8t-x-x-80">between</span>
+   <span 
+class="bchr8t-x-x-80">initial</span>
+   <span 
+class="bchr8t-x-x-80">query</span>
+   <span 
+class="bchr8t-x-x-80">and</span>
+   <span 
+class="bchr8t-x-x-80">expanded</span>
+   <span 
+class="bchr8t-x-x-80">query</span>
+   <span 
+class="bchr8t-x-x-80">part</span> </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-47-3-"><td  style="text-align:center; white-space:nowrap;" id="TBL-47-3-1"  
+class="td11"> <!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">|</mo><mi 
+>R</mi><mo 
+class="MathClass-rel">|</mo></math> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-47-3-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">Eq.</span><span 
+class="bchr8t-x-x-80">&#x00A0;</span><a 
+href="thesis-emeijse10.html#x14-21007r2.23"><span 
+class="bchr8t-x-x-80">2.23</span><!--tex4ht:ref: eq:lavrenko:rm2:2 --></a> <span 
+class="bchr8t-x-x-80">and Eq.</span><span 
+class="bchr8t-x-x-80">&#x00A0;</span><a 
+href="thesis-emeijse24.html#x34-70001r5.2"><span 
+class="bchr8t-x-x-80">5.2</span><!--tex4ht:ref: chapter04:eq:PcQ --></a>   </td><td  style="text-align:left;" id="TBL-47-3-3"  
+class="td11"> <!--l. 46--><p class="noindent" ><span 
+class="bchr8t-x-x-80">The</span>
+   <span 
+class="bchr8t-x-x-80">size</span>
+   <span 
+class="bchr8t-x-x-80">of</span>
+   <span 
+class="bchr8t-x-x-80">the</span>
+   <span 
+class="bchr8t-x-x-80">set</span>
+   <span 
+class="bchr8t-x-x-80">of</span>
+   <span 
+class="bchr8t-x-x-80">pseudo</span>
+   <span 
+class="bchr8t-x-x-80">relevant</span>
+   <span 
+class="bchr8t-x-x-80">documents</span> </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-47-4-"><td  style="text-align:center; white-space:nowrap;" id="TBL-47-4-1"  
+class="td11"> <!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+mathvariant="bold-script">V</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo></math> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-47-4-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">Eq.</span><span 
+class="bchr8t-x-x-80">&#x00A0;</span><a 
+href="thesis-emeijse10.html#x14-21007r2.23"><span 
+class="bchr8t-x-x-80">2.23</span><!--tex4ht:ref: eq:lavrenko:rm2:2 --></a> <span 
+class="bchr8t-x-x-80">and Eq.</span><span 
+class="bchr8t-x-x-80">&#x00A0;</span><a 
+href="thesis-emeijse24.html#x34-71002r5.4"><span 
+class="bchr8t-x-x-80">5.4</span><!--tex4ht:ref: chapter04:eq:PtcFirst --></a>   </td><td  style="text-align:left;" id="TBL-47-4-3"  
+class="td11"> <!--l. 46--><p class="noindent" ><span 
+class="bchr8t-x-x-80">The</span>
+   <span 
+class="bchr8t-x-x-80">number</span>
+   <span 
+class="bchr8t-x-x-80">of</span>
+   <span 
+class="bchr8t-x-x-80">terms</span>
+   <span 
+class="bchr8t-x-x-80">to</span>
+   <span 
+class="bchr8t-x-x-80">use,</span>
+   <span 
+class="bchr8t-x-x-80">either</span>
+   <span 
+class="bchr8t-x-x-80">for</span>
+   <span 
+class="bchr8t-x-x-80">the</span>
+   <span 
+class="bchr8t-x-x-80">expanded</span>
+   <span 
+class="bchr8t-x-x-80">query</span>
+   <span 
+class="bchr8t-x-x-80">part</span>
+   <span 
+class="bchr8t-x-x-80">or</span>
+   <span 
+class="bchr8t-x-x-80">for</span>
+   <span 
+class="bchr8t-x-x-80">each</span>
+   <span 
+class="bchr8t-x-x-80">concept</span> </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-47-5-"><td  style="text-align:center; white-space:nowrap;" id="TBL-47-5-1"  
+class="td11"> <!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">|</mo><mi 
+mathvariant="bold-script">C</mi><mo 
+class="MathClass-rel">|</mo></math> </td><td  style="text-align:left; white-space:nowrap;" id="TBL-47-5-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">Eq.</span><span 
+class="bchr8t-x-x-80">&#x00A0;</span><a 
+href="thesis-emeijse24.html#x34-69002r5.1"><span 
+class="bchr8t-x-x-80">5.1</span><!--tex4ht:ref: chapter04:eq:conceptquerymodel --></a>                        </td><td  style="text-align:left;" id="TBL-47-5-3"  
+class="td11"> <!--l. 46--><p class="noindent" ><span 
+class="bchr8t-x-x-80">The</span>
+   <span 
+class="bchr8t-x-x-80">number</span>
+   <span 
+class="bchr8t-x-x-80">of</span>
+   <span 
+class="bchr8t-x-x-80">concepts</span>
+   <span 
+class="bchr8t-x-x-80">to</span>
+   <span 
+class="bchr8t-x-x-80">use</span>
+   <span 
+class="bchr8t-x-x-80">for</span>
+   <span 
+class="bchr8t-x-x-80">the</span>
+   <span 
+class="bchr8t-x-x-80">conceptual</span>
+   <span 
+class="bchr8t-x-x-80">query</span>
+   <span 
+class="bchr8t-x-x-80">representation</span> </td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-47-6-"><td  style="text-align:center; white-space:nowrap;" id="TBL-47-6-1"  
+class="td11">                                                                                      </td></tr></table>
+ <div class="caption" 
+><span class="id">Table&#x00A0;5.5: </span><span  
+class="content">Free parameters in the models described in the previous sections. </span></div><!--tex4ht:label?: x35-730015 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 53--><p class="noindent" >There are various approaches that may be used to estimate these parameters. We choose to
+optimize the parameter values by determining the mean average precision for each set of
+parameters, i.e., a grid search&#x00A0;[<a 
+href="thesis-emeijli2.html#Xtechrep:2005:Metzler">223</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIR:2007:Robertson">262</a>], and show the results of the best performing
+settings. For <!--l. 63--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></math>
+we sweep in the interval [0,1] with increments of 0.1. The other parameters are
+investigated in the range [1,10] with increments of 1. We determine the <a 
+href="thesis-emeijli3.html#MAP">MAP</a> scores on
+the same topics that we present results for, similar to [<a 
+href="thesis-emeijli2.html#XSIGIR:2001:lafferty">173</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:2004:Liu">189</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:2005:metzler">224</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:1998:mitra">235</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XTOIS:2004:Zhai">356</a>].
+While computationally expensive (exponential in the number of parameters), it
+provides us with an upper bound on the attainable retrieval performance using the
+described models.
+<a 
+ id="x35-73002r108"></a>
+<h4 class="subsectionHead"><span class="titlemark">5.2.2    </span> <a 
+ id="x35-740002"></a>Complexity and Implementation</h4>
+<!--l. 76--><p class="noindent" >As to the complexity of our methods, we need to calculate two terms additional to the
+standard language modeling estimations&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2001:lafferty">173</a>]: the generative concept models
+(offline) and the conceptual query model (online). The former is most time-consuming,
+with a maximum complexity per concept proportional to the number of terms in the
+vocabulary, the number of documents annotated with the concept, and the number of
+<a 
+href="thesis-emeijli3.html#EM">EM</a> iterations. The advantage of this step, however, is that it can be performed offline.
+Determining a conceptual query model is, in terms of efficiency, comparable to standard
+pseudo relevance feedback approaches except for the addition of the number of <a 
+href="thesis-emeijli3.html#EM">EM</a>
+iterations.
+                                                                   
+                                                                   
+<!--l. 1--><p class="indent" >   <a 
+ id="x35-740016"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="center" 
+>
+<!--l. 2--><p class="noindent" >
+
+ <table id="TBL-50" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-50-1g"><col 
+id="TBL-50-1"><col 
+id="TBL-50-2"><col 
+id="TBL-50-3"><col 
+id="TBL-50-4"><col 
+id="TBL-50-5"><col 
+id="TBL-50-6"><col 
+id="TBL-50-7"><col 
+id="TBL-50-8"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-50-1-"><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-50-1-1"  
+class="td11">       <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">QL</span></div>      </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-50-1-3"  
+class="td11">        <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">RM</span></div>       </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-50-1-5"  
+class="td11">        <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">EC</span></div>       </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-50-1-7"  
+class="td11">        <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">GC</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-50-2-"><td colspan="2" style="text-align:right; white-space:nowrap;" id="TBL-50-2-1"  
+class="td11"><!--cmidrule-->
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-50-3-"><td colspan="2" style="text-align:right; white-space:nowrap;" id="TBL-50-3-1"  
+class="td11">              </td><td colspan="2" style="text-align:right; white-space:nowrap;" id="TBL-50-3-3"  
+class="td11"><!--cmidrule-->
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-50-4-"><td colspan="4" style="text-align:right; white-space:nowrap;" id="TBL-50-4-1"  
+class="td11">                               </td><td colspan="2" style="text-align:right; white-space:nowrap;" id="TBL-50-4-5"  
+class="td11"><!--cmidrule-->
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-50-5-"><td colspan="6" style="text-align:right; white-space:nowrap;" id="TBL-50-5-1"  
+class="td11">                                                 </td><td colspan="2" style="text-align:right; white-space:nowrap;" id="TBL-50-5-7"  
+class="td11"><!--cmidrule-->
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-50-6-"><td  style="text-align:right; white-space:nowrap;" id="TBL-50-6-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.500   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-50-6-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">citi        </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-50-6-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.272   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-50-6-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">citi           </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-50-6-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.250   </span></td><td  style="text-align:left;" id="TBL-50-6-6"  
+class="td11"> <!--l. 29--><p class="noindent" ><span 
+class="ec-lmss-8">urban</span>     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-50-6-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.216   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-50-6-8"  
+class="td11"> <span 
+class="bchr8t-x-x-80">citi           </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-50-7-"><td  style="text-align:right; white-space:nowrap;" id="TBL-50-7-1"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.500   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-50-7-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">shrink   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-50-7-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.250   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-50-7-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">shrink      </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-50-7-5"  
+class="td11">        </td><td  style="text-align:left;" id="TBL-50-7-6"  
+class="td11"> <!--l. 29--><p class="noindent" ><span 
+class="ec-lmss-8">sociology</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-50-7-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.200   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-50-7-8"  
+class="td11"> <span 
+class="bchr8t-x-x-80">shrink      </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-50-8-"><td  style="text-align:right; white-space:nowrap;" id="TBL-50-8-1"  
+class="td11">        </td><td  style="text-align:left; white-space:nowrap;" id="TBL-50-8-2"  
+class="td11">        </td><td  style="text-align:right; white-space:nowrap;" id="TBL-50-8-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.024   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-50-8-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">of             </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-50-8-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.250   </span></td><td  style="text-align:left;" id="TBL-50-8-6"  
+class="td11"> <!--l. 29--><p class="noindent" ><span 
+class="ec-lmss-8">urban</span>     </td><td  style="text-align:right; white-space:nowrap;" id="TBL-50-8-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.164   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-50-8-8"  
+class="td11"> <span 
+class="bchr8t-x-x-80">urban      </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-50-9-"><td  style="text-align:right; white-space:nowrap;" id="TBL-50-9-1"  
+class="td11">        </td><td  style="text-align:left; white-space:nowrap;" id="TBL-50-9-2"  
+class="td11">        </td><td  style="text-align:right; white-space:nowrap;" id="TBL-50-9-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.024   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-50-9-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">develop    </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-50-9-5"  
+class="td11">        </td><td  style="text-align:left;" id="TBL-50-9-6"  
+class="td11"> <!--l. 29--><p class="noindent" ><span 
+class="ec-lmss-8">planning</span>  </td><td  style="text-align:right; white-space:nowrap;" id="TBL-50-9-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.090   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-50-9-8"  
+class="td11"> <span 
+class="bchr8t-x-x-80">town        </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-50-10-"><td  style="text-align:right; white-space:nowrap;" id="TBL-50-10-1"  
+class="td11">        </td><td  style="text-align:left; white-space:nowrap;" id="TBL-50-10-2"  
+class="td11">        </td><td  style="text-align:right; white-space:nowrap;" id="TBL-50-10-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.015   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-50-10-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">popul       </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-50-10-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.250   </span></td><td  style="text-align:left;" id="TBL-50-10-6"  
+class="td11"> <!--l. 29--><p class="noindent" ><span 
+class="ec-lmss-8">town</span>      </td><td  style="text-align:right; white-space:nowrap;" id="TBL-50-10-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.089   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-50-10-8"  
+class="td11"> <span 
+class="bchr8t-x-x-80">develop   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-50-11-"><td  style="text-align:right; white-space:nowrap;" id="TBL-50-11-1"  
+class="td11">        </td><td  style="text-align:left; white-space:nowrap;" id="TBL-50-11-2"  
+class="td11">        </td><td  style="text-align:right; white-space:nowrap;" id="TBL-50-11-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.014   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-50-11-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">town        </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-50-11-5"  
+class="td11">        </td><td  style="text-align:left;" id="TBL-50-11-6"  
+class="td11"> <!--l. 29--><p class="noindent" ><span 
+class="ec-lmss-8">planning</span>  </td><td  style="text-align:right; white-space:nowrap;" id="TBL-50-11-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.083   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-50-11-8"  
+class="td11"> <span 
+class="bchr8t-x-x-80">plan         </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-50-12-"><td  style="text-align:right; white-space:nowrap;" id="TBL-50-12-1"  
+class="td11">        </td><td  style="text-align:left; white-space:nowrap;" id="TBL-50-12-2"  
+class="td11">        </td><td  style="text-align:right; white-space:nowrap;" id="TBL-50-12-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.010   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-50-12-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">economi   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-50-12-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.250   </span></td><td  style="text-align:left;" id="TBL-50-12-6"  
+class="td11"> <!--l. 29--><p class="noindent" ><span 
+class="ec-lmss-8">town</span>      </td><td  style="text-align:right; white-space:nowrap;" id="TBL-50-12-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.047   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-50-12-8"  
+class="td11"> <span 
+class="bchr8t-x-x-80">hous        </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-50-13-"><td  style="text-align:right; white-space:nowrap;" id="TBL-50-13-1"  
+class="td11">        </td><td  style="text-align:left; white-space:nowrap;" id="TBL-50-13-2"  
+class="td11">        </td><td  style="text-align:right; white-space:nowrap;" id="TBL-50-13-3"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.009   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-50-13-4"  
+class="td11"> <span 
+class="bchr8t-x-x-80">sociolog   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-50-13-5"  
+class="td11">        </td><td  style="text-align:left;" id="TBL-50-13-6"  
+class="td11"> <!--l. 29--><p class="noindent" ><span 
+class="ec-lmss-8">development</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-50-13-7"  
+class="td11"> <span 
+class="bchr8t-x-x-80">0.040   </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-50-13-8"  
+class="td11"> <span 
+class="bchr8t-x-x-80">sociolog   </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-50-14-"><td  style="text-align:right; white-space:nowrap;" id="TBL-50-14-1"  
+class="td11">        </td></tr></table>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;5.6:  </span><span  
+class="content">Concepts  or  stemmed  terms  with  the  highest  probability  in  the
+query models for the <a 
+href="thesis-emeijli3.html#CLEF">CLEF</a> Domain-specific topic &#x201C;Shrinking cities&#x201D; generated by
+the  query  likelihood  baseline  (QL;  Eq.&#x00A0;<a 
+href="thesis-emeijse9.html#x13-14002r2.9">2.9<!--tex4ht:ref: eq:relwork:qm --></a>),  relevance  model  (RM;  Eq.&#x00A0;<a 
+href="thesis-emeijse10.html#x14-21007r2.23">2.23<!--tex4ht:ref: eq:lavrenko:rm2:2 --></a>),
+conceptual query model (EC; Eq.&#x00A0;<a 
+href="thesis-emeijse24.html#x34-70001r5.2">5.2<!--tex4ht:ref: chapter04:eq:PcQ --></a>), and the conceptual language models (GC;
+Eq.&#x00A0;<a 
+href="thesis-emeijse24.html#x34-69002r5.1">5.1<!--tex4ht:ref: chapter04:eq:conceptquerymodel --></a>). </span></div><!--tex4ht:label?: x35-740016 -->
+</div>
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+<a 
+ id="x35-74002r110"></a>
+<h4 class="subsectionHead"><span class="titlemark">5.2.3    </span> <a 
+ id="x35-750003"></a>Baselines</h4>
+<!--l. 95--><p class="noindent" >We use two baseline retrieval approaches for comparison purposes. Table&#x00A0;<a 
+href="#x35-740016">5.6<!--tex4ht:ref: chapter04:tab:qms --></a>
+shows an example of the generated query models for these baseline
+approaches and the <a 
+href="thesis-emeijli3.html#CLEF">CLEF</a>-DS-08 query &#x201C;Shrinking cities.&#x201D; As our first baseline,
+we employ a run based on the KL divergence retrieval method and set
+<!--l. 98--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <mn>1</mn></math>. This
+uses only the information from the initial, textual query and amounts to performing
+retrieval using query likelihood, as was detailed in Chapter&#x00A0;<a 
+href="thesis-emeijch2.html#x11-100002">2<!--tex4ht:ref: chap:background --></a>. All the results on which
+we report in this chapter use this baseline as their initially retrieved document
+set.
+<!--l. 106--><p class="indent" >   Since our concept language models also rely on <a 
+ id="section*.45"></a>pseudo relevance feedback (<a 
+href="thesis-emeijli3.html#PRF">PRF</a>),
+we use the text-based <a 
+href="thesis-emeijli3.html#PRF">PRF</a> method introduced in Chapter&#x00A0;<a 
+href="thesis-emeijch2.html#x11-100002">2<!--tex4ht:ref: chap:background --></a>&#x00A0;(RM-2, cf. Eq.&#x00A0;<a 
+href="thesis-emeijse10.html#x14-21007r2.23">2.23<!--tex4ht:ref: eq:lavrenko:rm2:2 --></a>) as
+another baseline. The functional form of our conceptual query model is reminiscent of
+RM-1 (cf. Eq.&#x00A0;<a 
+href="thesis-emeijse10.html#x14-21008r2.24">2.24<!--tex4ht:ref: eq:rm1 --></a>) and we also evaluated RM-1 as a text-based pseudo relevance
+feedback baseline. We found that its performance was inferior to RM-2 on all test
+collections&#x2014;a finding in line with results obtained by Lavrenko and Croft&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2001:Lavrenko">183</a>], other
+researchers&#x00A0;[<a 
+href="thesis-emeijli2.html#Xthesis:balog">23</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XCIKM:2009:lv">197</a>], as well as our own (on all the test collections we evaluated in
+Chapter&#x00A0;<a 
+href="thesis-emeijch4.html#x26-470004">4<!--tex4ht:ref: chap:relfb --></a>). Consequently, we use RM-2 in our experiments (labeled as &#x201C;RM&#x201D; in the
+remainder of this chapter) and refrain from mentioning the results of RM-1.
+                                                                   
+                                                                   
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch5.html#thesis-emeijse25.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse26.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse24.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse24.html#tailthesis-emeijse24.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijse25.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse25.html"></a> 
+</body></html> 

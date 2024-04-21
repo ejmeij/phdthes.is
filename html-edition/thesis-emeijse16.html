@@ -1,0 +1,924 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Test Collections</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch3.html#thesis-emeijse16.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse17.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse15.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse15.html#tailthesis-emeijse15.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse16.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">3.3    </span> <a 
+ id="x23-380003"></a>Test Collections</h3>
+<!--l. 1498--><p class="noindent" >The test collections we employ in this thesis are described in the following sections.
+We use the Lemur Toolkit for indexing, retrieval, and all language modeling
+calculations.<span class="footnote-mark"><a 
+href="thesis-emeij22.html#fn1x7"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x23-38001f1"></a><span class="footnote-mark"><a 
+ id="fn1x7">     <sup class="textsuperscript">1</sup></a></span><span 
+class="bchr8t-x-x-80">See </span><a 
+href="http://sourceforge.net/projects/lemur" class="url" ><span 
+class="ec-lmtt-8">http://sourceforge.net/projects/lemur</span></a><span 
+class="bchr8t-x-x-80">.</span> 
+For all test collections we use only the topic titles as queries. The test collections
+described first are used for our experiments in Chapters&#x00A0;<a 
+href="thesis-emeijch4.html#x26-470004">4<!--tex4ht:ref: chap:relfb --></a> and&#x00A0;<a 
+href="thesis-emeijch7.html#x47-1210007">7<!--tex4ht:ref: chap:cikm2010 --></a>. For all of these
+collections, we remove a modest list of around 400 stopwords. Our retrieval
+model presented in Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a> requires collections in which the documents
+have been manually annotated with an appropriate concept language. The test
+collections that we describe last (CLEF-DS and TREC-GEN) both satisfy this
+requirement.
+<!--l. 1516--><p class="indent" >   Below we provide a more fine-grained description of each test collection.
+Tables&#x00A0;<a 
+href="#x23-380022">3.2<!--tex4ht:ref: tab:collections --></a>,&#x00A0;<a 
+href="#x23-420013">3.3<!--tex4ht:ref: tab:topics --></a>, and&#x00A0;<a 
+href="#x23-420024">3.4<!--tex4ht:ref: tab:qrels --></a> list descriptive statistics from each test collection.
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 1520--><p class="indent" >   <a 
+ id="x23-380022"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="center" 
+>
+<!--l. 1521--><p class="noindent" >
+
+ <table id="TBL-5" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-5-1g"><col 
+id="TBL-5-1"><col 
+id="TBL-5-2"><col 
+id="TBL-5-3"><col 
+id="TBL-5-4"><col 
+id="TBL-5-5"><col 
+id="TBL-5-6"><col 
+id="TBL-5-7"><col 
+id="TBL-5-8"><col 
+id="TBL-5-9"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-5-1-"><td  style="text-align:left;" id="TBL-5-1-1"  
+class="td11"> <!--l. 1631--><p class="noindent" >   </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-5-1-2"  
+class="td11">                                        <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-90">Documents</span></div>                                    </td><td colspan="3" style="text-align:center; white-space:nowrap;" id="TBL-5-1-4"  
+class="td11">                                                                                                                   <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-90">Terms</span></div>                                                                                                        </td><td colspan="3" style="text-align:center; white-space:nowrap;" id="TBL-5-1-7"  
+class="td11">                                                                                                                  <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-90">Concepts</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-2-"><td  style="text-align:left;" id="TBL-5-2-1"  
+class="td11">    </td><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-5-2-2"  
+class="td11"><!--cmidrule-->
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-3-"><td colspan="3" style="text-align:left;" id="TBL-5-3-1"  
+class="td11">                                                                                       </td><td colspan="3" style="text-align:right; white-space:nowrap;" id="TBL-5-3-4"  
+class="td11"><!--cmidrule-->
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-4-"><td colspan="6" style="text-align:left;" id="TBL-5-4-1"  
+class="td11">                                                                                                                                                                                                                                                                                                             </td><td colspan="3" style="text-align:right; white-space:nowrap;" id="TBL-5-4-7"  
+class="td11"><!--cmidrule-->
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-5-"><td  style="text-align:left;" id="TBL-5-5-1"  
+class="td11"> <!--l. 1631--><p class="noindent" >    </td><td  style="text-align:center; white-space:nowrap;" id="TBL-5-5-2"  
+class="td11"> <span 
+class="bchr8t-x-x-90">(</span><!--l. 1631--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" > <mo 
+class="MathClass-bin">&#x00D7;</mo><mn>1</mn><mn>0</mn><mn>6</mn></math><span 
+class="bchr8t-x-x-90">)  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-5-3"  
+class="td11">    <span 
+class="bchr8t-x-x-90">Size  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-5-4"  
+class="td11"> <!--l. 1631--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03BC;</mi></math>  </td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-5-5"  
+class="td11"> <!--l. 1631--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03C3;</mi></math>  </td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-5-6"  
+class="td11"> <!--l. 1631--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>m</mi></math>  </td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-5-7"  
+class="td11"> <!--l. 1631--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03BC;</mi></math>  </td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-5-8"  
+class="td11"> <!--l. 1631--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03C3;</mi></math>  </td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-5-9"  
+class="td11"> <!--l. 1631--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>m</mi></math>  </td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-6-"><td  style="text-align:left;" id="TBL-5-6-1"  
+class="td11"> <!--l. 1631--><p class="noindent" ><span 
+class="bchr8t-x-x-90">TREC</span>
+  <span 
+class="bchr8t-x-x-90">Rob</span>
+  <span 
+class="bchr8t-x-x-90">2004</span> </td><td  style="text-align:center; white-space:nowrap;" id="TBL-5-6-2"  
+class="td11">                                      <span 
+class="bchr8t-x-x-90">0.5                                                                        </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-6-3"  
+class="td11">    <span 
+class="bchr8t-x-x-90">2 GB  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-6-4"  
+class="td11">                                                                         <span 
+class="bchr8t-x-x-90">510  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-6-5"  
+class="td11">                                                                         <span 
+class="bchr8t-x-x-90">871  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-6-6"  
+class="td11">                                                                         <span 
+class="bchr8t-x-x-90">359  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-6-7"  
+class="td11">                                                                           <span 
+class="bchr8t-x-x-90">-  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-6-8"  
+class="td11">                                                                           <span 
+class="bchr8t-x-x-90">-  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-6-9"  
+class="td11">                                                                           <span 
+class="bchr8t-x-x-90">-  </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-7-"><td  style="text-align:left;" id="TBL-5-7-1"  
+class="td11"> <!--l. 1631--><p class="noindent" ><span 
+class="bchr8t-x-x-90">.GOV2</span> </td><td  style="text-align:center; white-space:nowrap;" id="TBL-5-7-2"  
+class="td11">                                      <span 
+class="bchr8t-x-x-90">25                                                                        </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-7-3"  
+class="td11">  <span 
+class="bchr8t-x-x-90">426 GB  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-7-4"  
+class="td11">                                                                         <span 
+class="bchr8t-x-x-90">956  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-7-5"  
+class="td11">                                                                        <span 
+class="bchr8t-x-x-90">2723  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-7-6"  
+class="td11">                                                                         <span 
+class="bchr8t-x-x-90">326  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-7-7"  
+class="td11">                                                                           <span 
+class="bchr8t-x-x-90">-  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-7-8"  
+class="td11">                                                                           <span 
+class="bchr8t-x-x-90">-  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-7-9"  
+class="td11">                                                                           <span 
+class="bchr8t-x-x-90">-  </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-8-"><td  style="text-align:left;" id="TBL-5-8-1"  
+class="td11"> <!--l. 1631--><p class="noindent" ><span 
+class="bchr8t-x-x-90">ClueWeb09</span>
+  <span 
+class="bchr8t-x-x-90">cat.</span>
+  <span 
+class="bchr8t-x-x-90">A</span>     </td><td  style="text-align:center; white-space:nowrap;" id="TBL-5-8-2"  
+class="td11">                                      <span 
+class="bchr8t-x-x-90">500                                                                       </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-8-3"  
+class="td11"> <span 
+class="bchr8t-x-x-90">13.4 TB  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-8-4"  
+class="td11">                                                                         <span 
+class="bchr8t-x-x-90">748  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-8-5"  
+class="td11">                                                                         <span 
+class="bchr8t-x-x-90">975  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-8-6"  
+class="td11">                                                                         <span 
+class="bchr8t-x-x-90">460  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-8-7"  
+class="td11">                                                                           <span 
+class="bchr8t-x-x-90">-  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-8-8"  
+class="td11">                                                                           <span 
+class="bchr8t-x-x-90">-  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-8-9"  
+class="td11">                                                                           <span 
+class="bchr8t-x-x-90">-  </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-9-"><td  style="text-align:left;" id="TBL-5-9-1"  
+class="td11"> <!--l. 1631--><p class="noindent" ><span 
+class="bchr8t-x-x-90">ClueWeb09</span>
+  <span 
+class="bchr8t-x-x-90">cat.</span>
+  <span 
+class="bchr8t-x-x-90">B</span>     </td><td  style="text-align:center; white-space:nowrap;" id="TBL-5-9-2"  
+class="td11">                                      <span 
+class="bchr8t-x-x-90">50                                                                        </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-9-3"  
+class="td11">  <span 
+class="bchr8t-x-x-90">1.5 TB  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-9-4"  
+class="td11">                                                                         <span 
+class="bchr8t-x-x-90">857  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-9-5"  
+class="td11">                                                                        <span 
+class="bchr8t-x-x-90">1186  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-9-6"  
+class="td11">                                                                         <span 
+class="bchr8t-x-x-90">507  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-9-7"  
+class="td11">                                                                           <span 
+class="bchr8t-x-x-90">-  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-9-8"  
+class="td11">                                                                           <span 
+class="bchr8t-x-x-90">-  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-9-9"  
+class="td11">                                                                           <span 
+class="bchr8t-x-x-90">-  </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-10-"><td  style="text-align:left;" id="TBL-5-10-1"  
+class="td11"> <!--l. 1631--><p class="noindent" ><span 
+class="bchr8t-x-x-90">CLEF-DS-07/08</span> </td><td  style="text-align:center; white-space:nowrap;" id="TBL-5-10-2"  
+class="td11">                              <span 
+class="bchr8t-x-x-90">0.17                                                                       </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-10-3"  
+class="td11"> <span 
+class="bchr8t-x-x-90">232 MB  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-10-4"  
+class="td11">                                                                          <span 
+class="bchr8t-x-x-90">62  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-10-5"  
+class="td11">                                                                          <span 
+class="bchr8t-x-x-90">42  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-10-6"  
+class="td11">                                                                          <span 
+class="bchr8t-x-x-90">51  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-10-7"  
+class="td11">                                                                        <span 
+class="bchr8t-x-x-90">10.1  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-10-8"  
+class="td11">                                                                         <span 
+class="bchr8t-x-x-90">4.2  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-10-9"  
+class="td11">                                                                          <span 
+class="bchr8t-x-x-90">10  </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-11-"><td  style="text-align:left;" id="TBL-5-11-1"  
+class="td11"> <!--l. 1631--><p class="noindent" ><span 
+class="bchr8t-x-x-90">TREC-GEN-04/05</span> </td><td  style="text-align:center; white-space:nowrap;" id="TBL-5-11-2"  
+class="td11">                             <span 
+class="bchr8t-x-x-90">4.6                                                                        </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-11-3"  
+class="td11">   <span 
+class="bchr8t-x-x-90">20 GB  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-11-4"  
+class="td11">                                                                         <span 
+class="bchr8t-x-x-90">174  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-11-5"  
+class="td11">                                                                         <span 
+class="bchr8t-x-x-90">114  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-11-6"  
+class="td11">                                                                         <span 
+class="bchr8t-x-x-90">171  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-11-7"  
+class="td11">                                                                        <span 
+class="bchr8t-x-x-90">11.4  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-11-8"  
+class="td11">                                                                         <span 
+class="bchr8t-x-x-90">5.1  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-11-9"  
+class="td11">                                                                          <span 
+class="bchr8t-x-x-90">11  </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-12-"><td  style="text-align:left;" id="TBL-5-12-1"  
+class="td11"> <!--l. 1631--><p class="noindent" ><span 
+class="bchr8t-x-x-90">TREC-GEN-06</span> </td><td  style="text-align:center; white-space:nowrap;" id="TBL-5-12-2"  
+class="td11">                               <span 
+class="bchr8t-x-x-90">0.16                                                                       </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-12-3"  
+class="td11">   <span 
+class="bchr8t-x-x-90">12 GB  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-12-4"  
+class="td11">                                                                        <span 
+class="bchr8t-x-x-90">4160  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-12-5"  
+class="td11">                                                                        <span 
+class="bchr8t-x-x-90">2750  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-12-6"  
+class="td11">                                                                        <span 
+class="bchr8t-x-x-90">4525  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-12-7"  
+class="td11">                                                                        <span 
+class="bchr8t-x-x-90">15.1  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-12-8"  
+class="td11">                                                                         <span 
+class="bchr8t-x-x-90">6.1  </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-5-12-9"  
+class="td11">                                                                          <span 
+class="bchr8t-x-x-90">15  </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-13-"><td  style="text-align:left;" id="TBL-5-13-1"  
+class="td11"> <!--l. 1631--><p class="noindent" >    </td></tr></table>
+</div>
+<br />  <div class="caption" 
+><span class="id">Table&#x00A0;3.2:   </span><span  
+class="content">Statistics   of   the   document   collections   used   in   this   thesis.
+<!--l. 1636--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03BC;</mi></math>
+and
+<!--l. 1636--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>m</mi></math>
+indicate                              the                              average                              and
+median number of terms in, or concepts assigned to a document respectively and
+<!--l. 1636--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03C3;</mi></math>
+the standard deviation. The second group of collections are domain-specific and
+contain manually assigned concepts as document annotations. </span></div><!--tex4ht:label?: x23-380022 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<a 
+ id="x23-38003r42"></a>
+<h4 class="subsectionHead"><span class="titlemark">3.3.1    </span> <a 
+ id="x23-390001"></a>TREC Robust 2004</h4>
+<!--l. 1644--><p class="noindent" >The first is TREC Robust 2004 (TREC-ROB-04), comprising a relatively small document
+collection and topics which were selected because of their low performance in the TREC
+ad hoc task&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:forum:2005:voorhees">329</a>]. It is the smallest of all collections used in this thesis and contains
+TREC disks 4 and 5, minus the Congressional Record&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:forum:2005:voorhees">329</a>]. The documents are
+small news articles from the Financial Times, Federal Register, LA Times, and
+Foreign Broadcast Information Service, covering 1989 through 1996. It is a
+collection that is routinely used when evaluating the performance of relevance
+feedback algorithms; 200 of its 250 topics were selected from earlier TREC ad hoc
+tracks based on their relatively poor performance and the ineffectiveness of
+relevance feedback techniques; 50 new topics were developed especially for the
+track.
+<a 
+ id="x23-39001r45"></a>
+<h4 class="subsectionHead"><span class="titlemark">3.3.2    </span> <a 
+ id="x23-400002"></a>TREC Terabyte 2004&#x2013;2006</h4>
+<!--l. 1648--><p class="noindent" >The second document collection is .GOV2, used in the TREC Terabyte, Million Query,
+and Relevance Feedback tracks&#x00A0;[<a 
+href="thesis-emeijli2.html#XTREC:2008:relfb:overview">48</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XTREC:2006:Terabyte">55</a>]; it contains a crawl of websites from the .gov
+domain. The TREC Terabyte track ran from 2004 through 2006 and used the first
+substantially sized TREC document collection&#x00A0;[<a 
+href="thesis-emeijli2.html#XTREC:2006:Terabyte">55</a>]; its goal was to develop
+an evaluation methodology for terabyte-scale document collections. As topic
+set for this test collection (TREC-TB) we use the combined topics from all
+years.
+<a 
+ id="x23-40001r46"></a>
+<h4 class="subsectionHead"><span class="titlemark">3.3.3    </span> <a 
+ id="x23-410003"></a>TREC Relevance Feedback 2008</h4>
+<!--l. 1657--><p class="noindent" >This test collection comprises test data provided by the TREC Relevance Feedback track,
+where the task is to retrieve additional relevant documents given a query and an initial
+set of relevance assessments&#x00A0;[<a 
+href="thesis-emeijli2.html#XTREC:2008:relfb:overview">48</a>]. Retrieval is done on the TREC Terabyte collection
+(the .GOV2 corpus) using 264 topics taken from earlier TREC Terabyte and TREC
+Million Query tracks&#x00A0;[<a 
+href="thesis-emeijli2.html#XTREC:2007:MQ">4</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XTREC:2006:Terabyte">55</a>].
+<!--l. 1661--><p class="indent" >   For our explicit relevance feedback experiments (TREC-RF-08) we take the 33 TREC
+Terabyte topics which were selected from the full set of available topics for an
+additional round of assessments&#x00A0;[<a 
+href="thesis-emeijli2.html#XTREC:2008:relfb:overview">48</a>]. A large set of relevance assessments
+was provided for these topics (159 relevant documents on average, with a
+minimum of 50 and a maximum of 338). Participating systems were to return 2500
+documents, from which the initially provided relevant documents were removed, a
+procedure similar to <span 
+class="bchri8t-">residual ranking </span>(when performing residual ranking, all <span 
+class="bchri8t-">judged</span>
+documents are removed&#x2014;instead of only the relevant ones). The resulting rankings
+                                                                   
+                                                                   
+were then pooled and re-assessed. This yielded 55 new relevant documents on
+average per topic, with a minimum of 4 and a maximum of 177. We follow
+the same setup by keeping only the newly assessed, relevant documents for
+evaluation and discard all initially judged documents from the final rankings in our
+experiments.
+<!--l. 1664--><p class="indent" >   In order to evaluate pseudo relevance feedback on this test collection (TREC-PRF-08),
+we use all 264 topics and the combined relevance assessments, i.e., the &#x201C;original&#x201D; pools
+and the new assessments.
+<a 
+ id="x23-41001r47"></a>
+<h4 class="subsectionHead"><span class="titlemark">3.3.4    </span> <a 
+ id="x23-420004"></a>TREC Web 2009</h4>
+<!--l. 1671--><p class="noindent" >The fourth ad hoc test collection that we use has ClueWeb09 as its document
+collection (TREC-WEB-09). It was employed at the TREC 2009 and 2010 Web
+Track&#x00A0;[<a 
+href="thesis-emeijli2.html#XTREC:2009:web">72</a>]. It is a large-scale web crawl and contains the largest number of
+documents. Two subsets are identified; Category B (that contains over 50,000,000
+English web pages) and Category A (that contains over 500,000,000 English web
+pages). In 2009, participating runs were evaluated using shallow pools and the
+methodology introduced by the TREC Million Query track&#x00A0;[<a 
+href="thesis-emeijli2.html#XTREC:2007:MQ">4</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:2006:carterette">61</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:2008:carterette">62</a>] as
+introduced above. The 50 ad hoc topics are taken from a web search engine&#x2019;s query
+logs.
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 1675--><p class="indent" >   <a 
+ id="x23-420013"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="center" 
+>
+<!--l. 1676--><p class="noindent" >
+
+ <table id="TBL-7" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-7-1g"><col 
+id="TBL-7-1"><col 
+id="TBL-7-2"><col 
+id="TBL-7-3"><col 
+id="TBL-7-4"><col 
+id="TBL-7-5"><col 
+id="TBL-7-6"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-7-1-"><td  style="text-align:left;" id="TBL-7-1-1"  
+class="td11"> <!--l. 1783--><p class="noindent" >   </td><td  style="text-align:right; white-space:nowrap;" id="TBL-7-1-2"  
+class="td11">                  </td><td colspan="4" style="text-align:center; white-space:nowrap;" id="TBL-7-1-3"  
+class="td11">                                                                                             <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Length</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-2-"><td colspan="2" style="text-align:left;" id="TBL-7-2-1"  
+class="td11">                     </td><td colspan="4" style="text-align:center; white-space:nowrap;" id="TBL-7-2-3"  
+class="td11"><!--cmidrule-->
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-3-"><td  style="text-align:left;" id="TBL-7-3-1"  
+class="td11"> <!--l. 1783--><p class="noindent" >    </td><td  style="text-align:right; white-space:nowrap;" id="TBL-7-3-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">With(out) rel. docs   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-3-3"  
+class="td11"> <!--l. 1783--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03BC;</mi></math>  </td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-3-4"  
+class="td11"> <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><!--l. 1783--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03C3;</mi></math></div> </td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-3-5"  
+class="td11"> <span 
+class="bchr8t-x-x-80">Min.   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-3-6"  
+class="td11"> <span 
+class="bchr8t-x-x-80">Max.   </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-4-"><td  style="text-align:left;" id="TBL-7-4-1"  
+class="td11"> <!--l. 1783--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-ROB-04</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-7-4-2"  
+class="td11">     <span 
+class="bchr8t-x-x-80">249 (1)   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-4-3"  
+class="td11">                                          <span 
+class="bchr8t-x-x-80">2                                                                                 </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-7-4-4"  
+class="td11">                                                                                 <span 
+class="bchr8t-x-x-80">0.71   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-4-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">1     </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-4-6"  
+class="td11">   <span 
+class="bchr8t-x-x-80">5      </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-5-"><td  style="text-align:left;" id="TBL-7-5-1"  
+class="td11"> <!--l. 1783--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-TB</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-7-5-2"  
+class="td11">         <span 
+class="bchr8t-x-x-80">149 (0)   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-5-3"  
+class="td11">                                          <span 
+class="bchr8t-x-x-80">3                                                                                 </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-7-5-4"  
+class="td11">                                                                                 <span 
+class="bchr8t-x-x-80">0.88   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-5-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">1     </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-5-6"  
+class="td11">   <span 
+class="bchr8t-x-x-80">5      </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-6-"><td  style="text-align:left;" id="TBL-7-6-1"  
+class="td11"> <!--l. 1783--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-PRF-08</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-7-6-2"  
+class="td11">      <span 
+class="bchr8t-x-x-80">264 (0)   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-6-3"  
+class="td11">                                          <span 
+class="bchr8t-x-x-80">3                                                                                 </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-7-6-4"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">1.0   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-6-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">1     </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-6-6"  
+class="td11">   <span 
+class="bchr8t-x-x-80">8      </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-7-"><td  style="text-align:left;" id="TBL-7-7-1"  
+class="td11"> <!--l. 1783--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-RF-08</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-7-7-2"  
+class="td11">        <span 
+class="bchr8t-x-x-80">31 (2)   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-7-3"  
+class="td11">                                          <span 
+class="bchr8t-x-x-80">3                                                                                 </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-7-7-4"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">1.0   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-7-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">1     </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-7-6"  
+class="td11">   <span 
+class="bchr8t-x-x-80">6      </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-8-"><td  style="text-align:left;" id="TBL-7-8-1"  
+class="td11"> <!--l. 1783--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-WEB-09</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-7-8-2"  
+class="td11">      <span 
+class="bchr8t-x-x-80">49 (1)   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-8-3"  
+class="td11">                                          <span 
+class="bchr8t-x-x-80">1                                                                                 </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-7-8-4"  
+class="td11">                                                                                 <span 
+class="bchr8t-x-x-80">0.85   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-8-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">1     </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-8-6"  
+class="td11">   <span 
+class="bchr8t-x-x-80">4      </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-9-"><td  style="text-align:left;" id="TBL-7-9-1"  
+class="td11"> <!--l. 1783--><p class="noindent" ><span 
+class="bchr8t-x-x-80">CLEF-DS-07</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-7-9-2"  
+class="td11">        <span 
+class="bchr8t-x-x-80">25 (0)   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-9-3"  
+class="td11">                                          <span 
+class="bchr8t-x-x-80">4                                                                                 </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-7-9-4"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">1.6   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-9-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">2     </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-9-6"  
+class="td11">   <span 
+class="bchr8t-x-x-80">8      </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-10-"><td  style="text-align:left;" id="TBL-7-10-1"  
+class="td11"> <!--l. 1783--><p class="noindent" ><span 
+class="bchr8t-x-x-80">CLEF-DS-08</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-7-10-2"  
+class="td11">        <span 
+class="bchr8t-x-x-80">25 (0)   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-10-3"  
+class="td11">                                          <span 
+class="bchr8t-x-x-80">3                                                                                 </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-7-10-4"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">1.7   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-10-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">2     </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-10-6"  
+class="td11">   <span 
+class="bchr8t-x-x-80">8      </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-11-"><td  style="text-align:left;" id="TBL-7-11-1"  
+class="td11"> <!--l. 1783--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-GEN-04</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-7-11-2"  
+class="td11">      <span 
+class="bchr8t-x-x-80">50 (0)   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-11-3"  
+class="td11">                                          <span 
+class="bchr8t-x-x-80">5                                                                                 </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-7-11-4"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">3.0   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-11-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">1     </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-11-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">16     </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-12-"><td  style="text-align:left;" id="TBL-7-12-1"  
+class="td11"> <!--l. 1783--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-GEN-05</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-7-12-2"  
+class="td11">      <span 
+class="bchr8t-x-x-80">49 (1)   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-12-3"  
+class="td11">                                          <span 
+class="bchr8t-x-x-80">5                                                                                 </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-7-12-4"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">2.6   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-12-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">2     </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-12-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">12     </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-13-"><td  style="text-align:left;" id="TBL-7-13-1"  
+class="td11"> <!--l. 1783--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-GEN-06</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-7-13-2"  
+class="td11">      <span 
+class="bchr8t-x-x-80">26 (2)   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-13-3"  
+class="td11">                                          <span 
+class="bchr8t-x-x-80">5                                                                                 </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-7-13-4"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">2.5   </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-13-5"  
+class="td11">   <span 
+class="bchr8t-x-x-80">2     </span></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-13-6"  
+class="td11">  <span 
+class="bchr8t-x-x-80">12     </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-14-"><td  style="text-align:left;" id="TBL-7-14-1"  
+class="td11"> <!--l. 1783--><p class="noindent" >    </td></tr></table>
+</div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;3.3: </span><span  
+class="content">Statistics of the topic sets used in this thesis. </span></div><!--tex4ht:label?: x23-420013 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 1790--><p class="indent" >   <a 
+ id="x23-420024"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="center" 
+>
+<!--l. 1791--><p class="noindent" >
+
+ <table id="TBL-9" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-9-1g"><col 
+id="TBL-9-1"><col 
+id="TBL-9-2"><col 
+id="TBL-9-3"><col 
+id="TBL-9-4"><col 
+id="TBL-9-5"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-9-1-"><td  style="text-align:left;" id="TBL-9-1-1"  
+class="td11"> <!--l. 1888--><p class="noindent" >   </td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-1-2"  
+class="td11">        </td><td colspan="3" style="text-align:center; white-space:nowrap;" id="TBL-9-1-3"  
+class="td11">                                                <div class="multicolumn"  style="text-align:center; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Per topic</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-2-"><td colspan="2" style="text-align:left;" id="TBL-9-2-1"  
+class="td11">            </td><td colspan="3" style="text-align:right; white-space:nowrap;" id="TBL-9-2-3"  
+class="td11"><!--cmidrule-->
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-3-"><td  style="text-align:left;" id="TBL-9-3-1"  
+class="td11"> <!--l. 1888--><p class="noindent" >    </td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-3-2"  
+class="td11">   <div class="multicolumn"  style="text-align:right; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Total</span></div> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-3-3"  
+class="td11"> <div class="multicolumn"  style="text-align:right; white-space:nowrap;"><!--l. 1888--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03BC;</mi></math></div> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-3-4"  
+class="td11"> <div class="multicolumn"  style="text-align:right; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Min.</span></div> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-3-5"  
+class="td11"> <div class="multicolumn"  style="text-align:right; white-space:nowrap;"><span 
+class="bchr8t-x-x-80">Max.</span></div>
+
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-4-"><td  style="text-align:left;" id="TBL-9-4-1"  
+class="td11"> <!--l. 1888--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-ROB-04</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-4-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">17412   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-4-3"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">70   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-4-4"  
+class="td11">    <span 
+class="bchr8t-x-x-80">3   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-4-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">448   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-5-"><td  style="text-align:left;" id="TBL-9-5-1"  
+class="td11"> <!--l. 1888--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-TB</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-5-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">26917   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-5-3"  
+class="td11">                                                                                 <span 
+class="bchr8t-x-x-80">180   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-5-4"  
+class="td11">    <span 
+class="bchr8t-x-x-80">4   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-5-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">617   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-6-"><td  style="text-align:left;" id="TBL-9-6-1"  
+class="td11"> <!--l. 1888--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-PRF-08</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-6-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">12639   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-6-3"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">47   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-6-4"  
+class="td11">    <span 
+class="bchr8t-x-x-80">4   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-6-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">457   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-7-"><td  style="text-align:left;" id="TBL-9-7-1"  
+class="td11"> <!--l. 1888--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-RF-08</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-7-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">1723   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-7-3"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">55   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-7-4"  
+class="td11">    <span 
+class="bchr8t-x-x-80">4   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-7-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">177   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-8-"><td  style="text-align:left;" id="TBL-9-8-1"  
+class="td11"> <!--l. 1888--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-WEB-2009</span>
+   <span 
+class="bchr8t-x-x-80">(Cat.</span>
+   <span 
+class="bchr8t-x-x-80">A)</span>   </td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-8-2"  
+class="td11">  <span 
+class="bchr8t-x-x-80">5684   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-8-3"  
+class="td11">                                                                                 <span 
+class="bchr8t-x-x-80">116   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-8-4"  
+class="td11">    <span 
+class="bchr8t-x-x-80">2   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-8-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">260   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-9-"><td  style="text-align:left;" id="TBL-9-9-1"  
+class="td11"> <!--l. 1888--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-WEB-2009</span>
+   <span 
+class="bchr8t-x-x-80">(Cat.</span>
+   <span 
+class="bchr8t-x-x-80">B)</span>    </td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-9-2"  
+class="td11">  <span 
+class="bchr8t-x-x-80">4002   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-9-3"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">82   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-9-4"  
+class="td11">    <span 
+class="bchr8t-x-x-80">2   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-9-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">179   </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-10-"><td  style="text-align:left;" id="TBL-9-10-1"  
+class="td11"> <!--l. 1888--><p class="noindent" ><span 
+class="bchr8t-x-x-80">CLEF-DS-07</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-10-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">4530   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-10-3"  
+class="td11">                                                                                 <span 
+class="bchr8t-x-x-80">181   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-10-4"  
+class="td11">   <span 
+class="bchr8t-x-x-80">18   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-10-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">497   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-11-"><td  style="text-align:left;" id="TBL-9-11-1"  
+class="td11"> <!--l. 1888--><p class="noindent" ><span 
+class="bchr8t-x-x-80">CLEF-DS-08</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-11-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">2133   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-11-3"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">85   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-11-4"  
+class="td11">    <span 
+class="bchr8t-x-x-80">4   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-11-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">206   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-12-"><td  style="text-align:left;" id="TBL-9-12-1"  
+class="td11"> <!--l. 1888--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-GEN-04</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-12-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">8268   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-12-3"  
+class="td11">                                                                                 <span 
+class="bchr8t-x-x-80">165   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-12-4"  
+class="td11">    <span 
+class="bchr8t-x-x-80">1   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-12-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">697   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-13-"><td  style="text-align:left;" id="TBL-9-13-1"  
+class="td11"> <!--l. 1888--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-GEN-05</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-13-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">4584   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-13-3"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">93   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-13-4"  
+class="td11">    <span 
+class="bchr8t-x-x-80">2   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-13-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">709   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-14-"><td  style="text-align:left;" id="TBL-9-14-1"  
+class="td11"> <!--l. 1888--><p class="noindent" ><span 
+class="bchr8t-x-x-80">TREC-GEN-06</span> </td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-14-2"  
+class="td11"> <span 
+class="bchr8t-x-x-80">1449   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-14-3"  
+class="td11">                                                                                  <span 
+class="bchr8t-x-x-80">55   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-14-4"  
+class="td11">    <span 
+class="bchr8t-x-x-80">2   </span></td><td  style="text-align:right; white-space:nowrap;" id="TBL-9-14-5"  
+class="td11">  <span 
+class="bchr8t-x-x-80">234   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-15-"><td  style="text-align:left;" id="TBL-9-15-1"  
+class="td11"> <!--l. 1888--><p class="noindent" >    </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;3.4: </span><span  
+class="content">Statistics of the relevant documents per collection used in this thesis.
+</span></div><!--tex4ht:label?: x23-420024 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<a 
+ id="x23-42003r48"></a>
+<h4 class="subsectionHead"><span class="titlemark">3.3.5    </span> <a 
+ id="x23-430005"></a>CLEF Domain-Specific 2007&#x2013;2008</h4>
+<!--l. 2004--><p class="noindent" >The <a 
+href="thesis-emeijli3.html#CLEF">CLEF</a> domain-specific track evaluates retrieval on structured scientific
+documents, using bibliographic databases from the social sciences domain as
+document collections&#x00A0;[<a 
+href="thesis-emeijli2.html#XCLEF:2008:DS:overview">244</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XCLEF:2007:DS:overview">245</a>]. The track emphasizes leveraging the structure
+of data in collections (defined by concept languages) to improve retrieval
+performance. The 2007 (CLEF-DS-07) and 2008 (CLEF-DS-08) tracks use the combined
+<a 
+ id="section*.29"></a>German Indexing and Retrieval Testdatabase (<a 
+href="thesis-emeijli3.html#GIRT">GIRT</a>) and <a 
+ id="section*.30"></a>Cambridge Scientific
+Abstracts (<a 
+href="thesis-emeijli3.html#CSA">CSA</a>) databases as their document collection. The <a 
+href="thesis-emeijli3.html#GIRT">GIRT</a> database
+contains extracts from two databases maintained by the German Social Science
+Information Centre from the years 1990&#x2013;2000. The English <a 
+href="thesis-emeijli3.html#GIRT">GIRT</a> collection is a
+pseudo-parallel corpus to the German <a 
+href="thesis-emeijli3.html#GIRT">GIRT</a> collection, providing translated versions of
+the German documents (17% of these documents contain an abstract). For
+the 2007 domain-specific track, an extract from <a 
+href="thesis-emeijli3.html#CSA">CSA</a>&#x2019;s Sociological abstracts
+was added, covering the years 1994, 1995, and 1996. Besides the title and
+abstract, each <a 
+href="thesis-emeijli3.html#CSA">CSA</a> record also contains subject-describing keywords from
+the <a 
+href="thesis-emeijli3.html#CSA">CSA</a> Thesaurus of Sociological Indexing Terms and classification codes
+from the Sociological Abstracts classification. In this sub-collection, 94% of the
+records contains an abstract. We only use the English mono-lingual topics
+and relevance assessments, which amounts to a total of 50 test topics. The
+documents in the collection contain three separate fields with concepts, we use
+<span 
+class="ec-lmtt-10">CLASSIFICATION-TEXT-EN</span>.
+<a 
+ id="x23-43001r51"></a>
+<h4 class="subsectionHead"><span class="titlemark">3.3.6    </span> <a 
+ id="x23-440006"></a>TREC Genomics 2004&#x2013;2006</h4>
+<!--l. 2136--><p class="noindent" >The document collection for the <a 
+href="thesis-emeijli3.html#TREC">TREC</a> 2004 and 2005 Genomics ad hoc search
+task (TREC-GEN-04 and TREC-GEN-05) consists of a subset of the MEDLINE
+database&#x00A0;[<a 
+href="thesis-emeijli2.html#XTREC:2004:Gen:overview">129</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XTREC:2005:Gen:overview">130</a>]. MEDLINE is the bibliographic database maintained
+by the <a 
+ id="section*.31"></a>U.S. National Library of Medicine (<a 
+href="thesis-emeijli3.html#NLM">NLM</a>). At the time of writing, it
+contains over 18.5 million biomedical citations from around 5,500 journals and
+several hundred thousand records are added each year. Despite the growing
+availability of full-text articles on the Web, MEDLINE remains a central access
+point for biomedical literature. Each MEDLINE record contains free text fields
+(such as title and abstract), a number of fields containing other metadata
+(such as publication date and journal), and, most important for our model in
+Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a>, terms from the <a 
+href="thesis-emeijli3.html#MeSH">MeSH</a> thesaurus. We only use the main descriptors,
+without qualifiers. <a 
+href="thesis-emeijli3.html#MeSH">MeSH</a> terms are manually assigned to citations by trained
+annotators from the <a 
+href="thesis-emeijli3.html#NLM">NLM</a>. The over 20,000 biomedical concepts in <a 
+href="thesis-emeijli3.html#MeSH">MeSH</a> are
+organized hierarchically, see Figure&#x00A0;<a 
+href="thesis-emeijse1.html#x4-30022">1.2<!--tex4ht:ref: fig:intro:mesh --></a> for an example. Relationships between
+                                                                   
+                                                                   
+concepts are primarily of the &#x201C;broader/narrower than&#x201D; type. The &#x201C;narrower
+than&#x201D; relationship is close to expressing hypernymy (is a), but can also include
+meronymy (part of) relations. One concept is narrower than another if the
+documents it is assigned to are contained in the set of documents assigned to the
+broader term. Each MEDLINE record is annotated with 10&#x2013;12 <a 
+href="thesis-emeijli3.html#MeSH">MeSH</a> terms on
+average.
+<!--l. 2156--><p class="indent" >   It should be noted that the <a 
+href="thesis-emeijli3.html#MeSH">MeSH</a> thesaurus is not the most appropriate for
+Genomics information retrieval, since it covers general biomedical concepts rather than
+the specific genomics terminology used in the <a 
+href="thesis-emeijli3.html#TREC">TREC</a> topics&#x00A0;[<a 
+href="thesis-emeijli2.html#XIR.2009.stokes">305</a>]. Despite this limited
+coverage, the thesaurus can still be used to improve retrieval effectiveness, as we will
+show later.
+<!--l. 2163--><p class="indent" >   The document collection for <a 
+href="thesis-emeijli3.html#TREC">TREC</a> Genomics 2004 and 2005 contains 10 years of
+citations covering 1993 to 2004, which amounts to a total of 4,591,008 documents. All
+documents have a title, 75.8% contain an abstract and 99% are annotated with <a 
+href="thesis-emeijli3.html#MeSH">MeSH</a>
+terms. For the 2004 track, 50 test topics are available, with an average length of 7
+terms, cf.&#x00A0;Table&#x00A0;<a 
+href="#x23-420013">3.3<!--tex4ht:ref: tab:topics --></a>. The 50 topics for 2005 (one of which has no relevant documents)
+follow pre-defined templates, so-called Generic Topic Types. An example of such a
+template is: &#x201C;Find articles describing the role of <span 
+class="bchb8t-">[gene] </span>in <span 
+class="bchb8t-">[disease]</span>&#x201D;, where the topics
+instantiate the bold-faced terms. The topics in our experiments are derived from the
+original topic by only selecting the instantiated terms and discarding the remainder of
+the template.
+<!--l. 2177--><p class="indent" >   The <a 
+href="thesis-emeijli3.html#TREC">TREC</a> 2006 Genomics track introduced a full-text document collection,
+replacing the bibliographical abstracts from the previous years&#x00A0;[<a 
+href="thesis-emeijli2.html#XTREC:2006:Gen:overview">131</a>]. The
+documents in the collection are full-text versions of scientific journal papers.
+The files themselves are provided as HTML, including all the journal-specific
+formatting. Most of the documents (99%) have a valid Pubmed identifier through
+which the accompanying MEDLINE record can be retrieved. We use the <a 
+href="thesis-emeijli3.html#MeSH">MeSH</a>
+terms assigned to the corresponding citation as the annotations of the full-text
+document.
+<!--l. 2187--><p class="indent" >   The 2006 test topics are again based on topic templates and instantiated with
+specific genes, diseases or biological processes. Thus, we preprocess them in a similar
+fashion as the topics for the <a 
+href="thesis-emeijli3.html#TREC">TREC</a> Genomics 2005 track, by removing all the
+template-specific terms. This test collection has 28 topics, of which 2 do not have any
+relevant documents in the collection. The task put forward for this test collection is to
+first identify relevant documents and then extract the most relevant passage(s) from
+each document; relevance is measured at the document, passage, and aspect level. We
+do not perform any passage extraction and only use the judgments at the document
+level.<span class="footnote-mark"><a 
+href="thesis-emeij22.html#fn1x7"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x23-44001f1"></a><span class="footnote-mark"><a 
+ id="fn1x7">     <sup class="textsuperscript">1</sup></a></span><span 
+class="bchr8t-x-x-80">2007 was the final year of the </span><a 
+href="thesis-emeijli3.html#TREC"><span 
+class="bchr8t-x-x-80">TREC</span></a> <span 
+class="bchr8t-x-x-80">Genomics track and used the same document collection as 2006.</span>
+  <span 
+class="bchr8t-x-x-80">However, in this edition a new task was introduced and because of the different nature of that task, we do not</span>
+  <span 
+class="bchr8t-x-x-80">perform experiments using the 2007 topics.</span> 
+                                                                   
+                                                                   
+<!--l. 2202--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch3.html#thesis-emeijse16.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse17.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse15.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse15.html#tailthesis-emeijse15.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijse16.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse16.html"></a> 
+</body></html> 

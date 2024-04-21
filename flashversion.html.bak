@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html lang="en" class=" ext-strict">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Edgar Meij's PhD Thesis | Combining Concepts and Language Models for Information Access</title>
+<link rel="alternate" 
+      type="application/rss+xml" 
+      title="RSS" 
+      href="/rss.php" />
+<link href="mailto:info@meij.pro" rev="made" />        
+<META name="Author" content="Edgar Meij">
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-441496-12']);
+      _gaq.push(['_setDomainName', '.phdthes.is']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+<link rel="stylesheet" type="text/css" href="index.css" media="all">
+</head>
+<body class="home-page  ext-gecko ext-gecko3 ext-mac" style="background:none;">
+
+<object style="width:1200px;height:860px" ><param name="movie" value="http://static.issuu.com/webembed/viewers/style1/v1/IssuuViewer.swf?mode=embed&amp;layout=http%3A%2F%2Fskin.issuu.com%2Fv%2Flight%2Flayout.xml&amp;showFlipBtn=true&amp;documentId=101124094817-a9015b81dc4d4e80a6ce5fa829923a57&amp;docName=phd-thesis-edgar-meij&amp;username=emeij&amp;loadingInfoText=Edgar%20Meij's%20PhD%20Thesis%3A%20Combining%20Concepts%20and%20Language%20Models%20for%20Information%20Access&amp;et=1290593666153&amp;er=21" /><param name="allowfullscreen" value="true"/><param name="menu" value="false"/><embed src="http://static.issuu.com/webembed/viewers/style1/v1/IssuuViewer.swf" type="application/x-shockwave-flash" allowfullscreen="true" menu="false" style="width:1200px;height:860px" flashvars="mode=embed&amp;layout=http%3A%2F%2Fskin.issuu.com%2Fv%2Flight%2Flayout.xml&amp;showFlipBtn=true&amp;documentId=101124094817-a9015b81dc4d4e80a6ce5fa829923a57&amp;docName=phd-thesis-edgar-meij&amp;username=emeij&amp;loadingInfoText=Edgar%20Meij's%20PhD%20Thesis%3A%20Combining%20Concepts%20and%20Language%20Models%20for%20Information%20Access&amp;et=1290593666153&amp;er=21" /></object>
+
+	<div class="grid_1">&nbsp;</div>
+	<div class="clear"></div>
+	<div id="main" class="grid_16">
+    <div id="footer" style="width:1200px; margin-left:auto; margin-right:auto;">
+			Copyright © 2010 <a href="http://staff.science.uva.nl/~emeij/">Edgar Meij</a>
+		</div>
+	</div>
+	<div class="clear"></div>
+
+<div id="banner"></div>
+
+<script src="ext-core.js"></script>
+<script src="ecp.js"></script>
+</body>
+</html>

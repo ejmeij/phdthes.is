@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Summary and Conclusions</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch5.html#thesis-emeijse28.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse27.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse27.html#tailthesis-emeijse27.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse28.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">5.5    </span> <a 
+ id="x38-850005"></a>Summary and Conclusions</h3>
+<!--l. 5--><p class="noindent" >In this chapter we have introduced and investigated conceptual language models and
+we have shown that knowledge captured using concepts from a concept language can
+be effectively used to improve full-text, ad hoc retrieval. In our method, the
+original textual query is translated to a <span 
+class="bchri8t-">conceptual query model </span>and, by means of
+<span 
+class="bchri8t-">generative concept models </span>this conceptual query model is used to update the
+textual query model. The motivation behind this dual translation is that an
+explicit conceptual representation of the information need can be used to
+derive related terms which are less dependent on the original query text. In
+both translation steps we have applied an EM algorithm to improve model
+estimation.
+<!--l. 16--><p class="indent" >   In this chapter we have addressed <span 
+class="bchb8t-">RQ 2 </span>and its subquestions by using an extensive
+set of experiments on five test collections from two domains.
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">RQ 2.</span> </dt><dd 
+class="description">What  are  effective  ways  of  using  conceptual  information  for  query
+     modeling to improve retrieval performance?</dd></dl>
+<!--l. 25--><p class="noindent" >We have used the <a 
+href="thesis-emeijli3.html#EM">EM</a> algorithm to re-estimate textual and conceptual document
+models. These models are used in the process of determining a conceptual
+query model based on pseudo relevant documents and for determining the
+translation probabilities from concepts to text. This element is essential in order
+to achieve good performance, since it makes sure that the language models
+only generate content-bearing terms. Moreover, since the resulting terms and
+concepts are more specific than without <a 
+href="thesis-emeijli3.html#EM">EM</a>-based re-estimation, we believe
+they would be useful for presenting as suggestions to a user. We find that,
+although each step in our method of applying conceptual language models is not
+significantly different from the other, the full model is able to significantly
+outperform both a standard language modeling and a relevance modeling
+approach.
+<!--l. 29--><p class="indent" >   To estimate a conceptual query model we propose a method that looks at the
+top-ranked documents in an initially retrieved set. In order to assess the effectiveness of
+this step, we compare the results of using these concepts with a standard language
+modeling approach. Moreover, since this method relies on pseudo relevant documents
+from an initial retrieval run, we also compare the results of our conceptual query
+models to another, established pseudo relevance feedback algorithm based on relevance
+models. We asked:
+     <dl class="description"><dt class="description">
+                                                                   
+                                                                   
+<span 
+class="bchb8t-">RQ 2a.</span>  </dt><dd 
+class="description">What is the relative retrieval effectiveness of this method with respect
+     to  the  standard  language  modeling  and  conventional  pseudo  relevance
+     feedback approach?</dd></dl>
+<!--l. 49--><p class="noindent" >We have found that the conceptual language models yield significant improvements over a
+query likelihood baseline on all the evaluated measures. When compared to
+relevance models and using the same pseudo relevant documents, conceptual
+language models show a significant improvement in terms of <a 
+href="thesis-emeijli3.html#MAP">MAP</a> on two
+test collections, as well as a significant increase in recall on two other test
+collections. On the remaining measures, it gives similar improvements as relevance
+models.
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">RQ 2b.</span>  </dt><dd 
+class="description">How portable is our conceptual language model? That is, what are the
+     results of the model across multiple concept languages and test collections?</dd></dl>
+<!--l. 69--><p class="noindent" >As to the portability of our models, the usefulness of the proposed approach has been
+evaluated in two domains, social sciences and genomics, each with different types of
+documents and their own concept vocabularies. Despite these large differences, the
+concept-based feedback shows consistent improvements. It is interesting to note that
+while a thesaurus might be limited in representing specific information needs, it can
+still be used to improve retrieval effectiveness. The <a 
+href="thesis-emeijli3.html#MeSH">MeSH</a> thesaurus can, be used to
+improve genomics information retrieval despite its general biomedical coverage.
+The annotations of the <a 
+href="thesis-emeijli3.html#CLEF">CLEF</a> collections seems to fit the information needs
+better, resulting in even better retrieval performance in the social sciences
+domain.
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">RQ 2c.</span>  </dt><dd 
+class="description">Can we say anything about which evaluation measures are helped most
+     using our model? Is it mainly a recall or precision-enhancing device?</dd></dl>
+<!--l. 83--><p class="noindent" >We have observed a significant improvement in terms of recall on all collections, which is
+in line with results obtained from relevance feedback methods in general. On the TREC
+collections, however, we have also observed a significant increase in early precision. As
+such, our method is both a recall enhancing device and a precision enhancing
+device.
+<!--l. 92--><p class="indent" >   In sum, we have shown that conceptual language models (using the document
+annotations as a pivot language) can improve text-based retrieval, both with and
+without conventional pseudo relevance feedback. We have observed that solely using
+the document annotations for expansion does not significantly improve retrieval results.
+These two findings confirm conclusions from earlier work; Srinivasan&#x00A0;[<a 
+href="thesis-emeijli2.html#XIPM:1996:Srinivasan">302</a>], for
+example, also concludes that only using <a 
+href="thesis-emeijli3.html#MeSH">MeSH</a> terms for expansion is not effective.
+Hersh <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XASCAPM:1992:hersh">127</a>] also find that mapping queries to a knowledge structure (the
+UMLS Metathesaurus in their case, of which MeSH is a part) during indexing
+                                                                   
+                                                                   
+does not aid retrieval effectiveness. Yang and Chute&#x00A0;[<a 
+href="thesis-emeijli2.html#XASCAMC:1993:yang">349</a>], on the other hand,
+do find improvements when using the same knowledge structure. In more
+recent work, Liu&#x00A0;[<a 
+href="thesis-emeijli2.html#Xthesis:YHLiu">190</a>] performed a user study in which he compared users&#x2019;
+interaction with a query reformulation interface using biomedical abstracts
+with and without the associated <a 
+href="thesis-emeijli3.html#MeSH">MeSH</a> terms. He finds that <a 
+href="thesis-emeijli3.html#MeSH">MeSH</a> terms are
+more useful for domain experts than for search experts for obtaining early
+precision. As to the reason for this, he speculates that non-experts lack sufficient
+knowledge of the domain to understand and therefore make use of the MeSH
+terms. Using conceptual query models, we are able to move the burden of
+locating appropriate conceptual annotations from the user to the system, without
+compromising retrieval performance. In the next chapter we use machine learning to
+obtain a different way of automatically identifying relevant concepts given a
+query.
+<!--l. 101--><p class="indent" >   Besides using conceptual query models to improve retrieval as we did in this
+chapter, the generated concepts may also be used as conceptual suggestions or feedback
+to the user. Here we have obtained these models using pseudo relevance feedback
+techniques; in the next chapter we consider the task of mapping queries to concepts in a
+different context and without annotated documents. Furthermore, the queries we use
+there are general domain queries and, hence, we map them to a more general
+knowledge structure, i.e., DBpedia.
+<!--l. 105--><p class="indent" >   In Chapter&#x00A0;<a 
+href="thesis-emeijch7.html#x47-1210007">7<!--tex4ht:ref: chap:cikm2010 --></a> we take the mapping method presented in the next chapter and use
+the linked concepts for each query to update the query model. To this end, we apply
+several of the intuitions behind the conceptual language models presented and
+evaluated in this chapter.
+                                                                   
+                                                                   
+<!--l. 24--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch5.html#thesis-emeijse28.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse27.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse27.html#tailthesis-emeijse27.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijse28.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse28.html"></a> 
+</body></html> 

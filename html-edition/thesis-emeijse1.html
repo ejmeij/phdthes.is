@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Indexing</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch1.html#thesis-emeijse1.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse2.html" >Next</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse1.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">1.1    </span> <a 
+ id="x4-30001"></a>Indexing</h3>
+<!--l. 35--><p class="noindent" >In the earliest days, textual documents were the sole unit of retrieval and most of
+the initial <a 
+href="thesis-emeijli3.html#IR">IR</a> systems were used to search bibliographic databases. Contrary
+to many modern-day <a 
+href="thesis-emeijli3.html#IR">IR</a> systems, they used information from references to
+documents instead of the contents of the documents themselves for searching.
+This had two main reasons. First, there was only very limited information
+storage capacity available and documents could only be represented by punched
+data cards. Information retrieval in that day and age constituted finding cards
+that had holes in the right places&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:1958:joyce">157</a>]. As such, documents could only be
+represented by the presence of a very limited number of &#x201C;terms.&#x201D; Second, small-sized
+controlled vocabularies which unambiguously and precisely represented the
+content of documents had been in use for a long time in libraries&#x00A0;[<a 
+href="thesis-emeijli2.html#XCACM:1987:furnas">105</a>]. Obvious
+vocabularies of choice were the indexing systems commonly used by libraries,
+although other domain-specific thesauri were also used&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:1958:joyce">157</a>]. Documents were
+treated in the same fashion as library books; trained annotators would assign to
+them the terms by which the documents were to be indexed in the retrieval
+                                                                   
+                                                                   
+system.
+<!--l. 44--><p class="indent" >   Later, as computing power and storage space increased, the <span 
+class="bchri8t-">assigned </span>indexing terms
+were gradually replaced by terms that can be found in the actual content of the
+documents, i.e., their vocabulary. This development was further accelerated by a rapidly
+increasing number of documents and document types that made manual annotations
+prohibitively expensive. In the Cranfield experiments, a controlled study was performed
+to measure the effect of various factors on retrieval effectiveness&#x00A0;[<a 
+href="thesis-emeijli2.html#Xcranfield:1966:cleverdon">75</a>]. In
+Cranfield II, the indexing languages constituted the performance variable under
+investigation and the aim was to investigate the retrieval effectiveness of systems
+using different indexing languages and methods&#x00A0;[<a 
+href="thesis-emeijli2.html#Xcranfield:1970:cleverdon">74</a>]. Here, it was found
+that retrieval based on vocabulary terms (or: full-text indexing) performed
+better than retrieval based on assigned indexing terms. This finding was later
+corroborated by Salton&#x00A0;[<a 
+href="thesis-emeijli2.html#XJASIST:1996:salton">275</a>] who lead the development of the SMART system in the
+1960s&#x00A0;[<a 
+href="thesis-emeijli2.html#XISR:1969:lesk">186</a>].
+<!--l. 53--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                   
+                                                                   
+<a 
+ id="x4-30011"></a>
+                                                                   
+                                                                   
+<!--l. 55--><p class="noindent" ><img 
+src="thesis-emeij0x.png" alt="PIC" class="graphics" width="317.53044pt" height="207.82845pt" ><!--tex4ht:graphics  
+name="thesis-emeij0x.png" src="chapter01/ir_system.eps"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;1.1: </span><span  
+class="content">Schematic representation of an <a 
+href="thesis-emeijli3.html#IR">IR</a> system. </span></div><!--tex4ht:label?: x4-30011 -->
+                                                                   
+                                                                   
+<!--l. 58--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 60--><p class="indent" >   The effectiveness and popularity of indexing using assigned terms and controlled
+vocabularies further waned, as the size of the documents and collections grew larger
+(the Cranfield experiments used only 1,400 documents). Today, most of the early
+retrieval systems have been replaced by full-text search systems, with well-known web
+search engines including Google, Bing, and Yahoo! as prime examples. As to search
+engines using assigned indexing terms, MEDLINE is a prime example of such an <a 
+href="thesis-emeijli3.html#IR">IR</a>
+system from the 1960s that still exists today&#x00A0;[<a 
+href="thesis-emeijli2.html#XAD:1969:lancaster">177</a>].
+<!--l. 65--><p class="indent" >   Unlike assigned terms from controlled vocabularies, the terms occurring in a
+document are only constrained by the grammar of the language and the imagination of
+the author. They are, as such, noisier and more prone to ambiguity. Despite the
+popularity of using full-text indexing, the clear semantics and manual labor involved
+with assigning indexing terms to documents has many merits, ranging from enabling
+browsing facilities of a collection to enabling result list segmentation and query
+refinement&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:1958:joyce">157</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XJOD:1984:norman">257</a>]. Let&#x2019;s refer to the broad range of assigned indexing
+terms (whether they originate from global classification schemes, thesauri,
+ontologies, or anything else) as <span 
+class="bchri8t-">concept languages </span>and to the terms themselves
+as <span 
+class="bchri8t-">concepts</span>. In this thesis, then, concepts are defined to be cognitive units of
+meaning that have been formalized in a knowledge structure such as a controlled
+vocabulary, thesaurus, or ontology. Furthermore, we impose the restriction that such
+concepts should be agreed upon by a number of people (who typically are domain
+experts). This definition includes, for example, concepts taken from thesauri
+such as <a 
+ id="section*.2"></a>Medical Subject Headings (<a 
+href="thesis-emeijli3.html#MeSH">MeSH</a>), but also Wikipedia articles (as
+captured, for example, in the DBpedia knowledge base). It excludes, for example,
+user-generated tags (such as those generated through social bookmarking
+websites), since they are typically agreed upon by only a single user. Figure&#x00A0;<a 
+href="#x4-30022">1.2<!--tex4ht:ref: fig:intro:mesh --></a>
+shows an excerpt of the <a 
+href="thesis-emeijli3.html#MeSH">MeSH</a> thesaurus which will be further introduced in
+Chapter&#x00A0;<a 
+href="thesis-emeijch3.html#x19-330003">3<!--tex4ht:ref: chap:methodology --></a>.
+<!--l. 71--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                   
+                                                                   
+<a 
+ id="x4-30022"></a>
+                                                                   
+                                                                   
+<!--l. 73--><p class="noindent" ><img 
+src="thesis-emeij1x.png" alt="PIC" class="graphics" width="317.53044pt" height="207.51353pt" ><!--tex4ht:graphics  
+name="thesis-emeij1x.png" src="chapter01/mesh_excerpt_bw.eps"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;1.2: </span><span  
+class="content">Excerpt of the MeSH thesaurus, partially showing the concepts below
+the concept &#x201C;Central Nervous System Diseases.&#x201D; </span></div><!--tex4ht:label?: x4-30022 -->
+                                                                   
+                                                                   
+<!--l. 76--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 78--><p class="indent" >   Recent semantic web initiatives have sparked a renewed interest in the discussion,
+development, semantics, and interoperability of concept languages&#x00A0;[<a 
+href="thesis-emeijli2.html#XISWC:2007:Auer">15</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSA:2001:berners-lee">33</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XFORUM:2004:sparckjones">292</a>].
+Berners-Lee <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XSA:2001:berners-lee">33</a>] define an ontology as a structure of well-defined, i.e.,
+unambiguous, concepts. Ontologies define objects as well as their relations and
+properties, with an accompanying logic allowing inference. The semantic web, then, is
+envisaged to be a layer over the current World Wide Web defined in terms of such
+concepts. To further this goal, the semantic annotation of web pages, their contents, or
+any other kind of resource using concepts that can not be directly derived from
+their content is gaining in popularity&#x00A0;[<a 
+href="thesis-emeijli2.html#XIPM:2010:SAIR">6</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XWTM:2000:ghani">110</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XACMCS:2009:qi">251</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XJWS:2006:stumme">306</a>]. In a way, this is a
+step &#x201C;back&#x201D; towards the controlled vocabularies that were in use in the early
+days of <a 
+href="thesis-emeijli3.html#IR">IR</a>&#x00A0;[<a 
+href="thesis-emeijli2.html#XFORUM:2004:sparckjones">292</a>]. However, recent advances in information extraction have
+ameliorated the need for manual, labor-intensive mappings. Later in this thesis, in
+Chapter&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860006">6<!--tex4ht:ref: chap:linkingconcepts --></a>, we will look at several methods for automatically mapping queries to
+concepts. Furthermore, we will also introduce a method that leverages the
+manual annotations of documents as well as their full-text representations
+to improve end-to-end retrieval performance. As we will see later, manual
+annotations and controlled vocabularies can effectively be used in conjunction with
+full-text indexing to improve information access. We will present, implement, and
+evaluate various intuitions about leveraging controlled vocabularies and manual
+annotations to improve end-to-end retrieval performance by introducing ways of
+combining information from documents, concept languages, and relevance
+assessments.
+                                                                   
+                                                                   
+<!--l. 85--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch1.html#thesis-emeijse1.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse2.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse1.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse1.html"></a> 
+</body></html> 

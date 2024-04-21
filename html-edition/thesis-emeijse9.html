@@ -1,0 +1,1346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Generative Language Modeling for IR</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch2.html#thesis-emeijse9.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse10.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse8.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse8.html#tailthesis-emeijse8.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse9.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">2.2    </span> <a 
+ id="x13-120002"></a>Generative Language Modeling for IR</h3>
+<a 
+ id="dx13-12001"></a>
+<!--l. 105--><p class="noindent" >The success of using statistical <a 
+ id="section*.8"></a>language models (<a 
+href="thesis-emeijli3.html#LM">LM</a>s) to improve <a 
+ id="section*.9"></a>automatic speech
+recognition (<a 
+href="thesis-emeijli3.html#ASR">ASR</a>), as well as the practical challenges associated with using
+the <a 
+href="thesis-emeijli3.html#PRP">PRP</a> model inspired several IR researchers to re-cast IR in a generative
+probabilistic framework, by representing documents as generative probabilistic
+models.
+<!--l. 109--><p class="indent" >   The main task of automatic speech recognition is the transcription of spoken utterances.
+An effective and theoretically well-founded way of approaching this task is by estimating a
+probabilistic model based on the occurrences of word sequences in a particular
+language&#x00A0;[<a 
+href="thesis-emeijli2.html#XBook:1990:jelinek">147</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIEEE:2000:rosenfeld">271</a>]. Such models are distributions over term sequences (or: n-grams,
+where <!--l. 109--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>n</mi></math>
+indicates the length of each sequence) and can be used to compute the probability of
+observing a sequence of terms, by computing the product of the probabilities of
+observing the individual terms. Then, when a new piece of audio material
+<!--l. 109--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>A</mi></math>
+needs to be transcribed, each possible interpretation of each observation is
+compared to this probabilistic model (the <a 
+href="thesis-emeijli3.html#LM">LM</a>) and the most likely candidate
+<!--l. 109--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>S</mi></math> is
+returned:
+<!--tex4ht:inline--><!--l. 111--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <msup><mrow 
+><mi 
+>S</mi></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2217;</mo></mrow></msup 
+> <mo 
+class="MathClass-rel">=</mo><munder class="msub"><mrow 
+><mo class="qopname"> arg<mspace width="0.3em" class="thinspace"/>max</mo></mrow><mrow 
+>
+<mi 
+>S</mi></mrow></munder 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>S</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>A</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo><munder class="msub"><mrow 
+><mo class="qopname"> arg<mspace width="0.3em" class="thinspace"/>max</mo></mrow><mrow 
+><mi 
+>S</mi></mrow></munder 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>A</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>S</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>S</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">.</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.1)</mtext><mtext 
+   id="x13-12002r2.1"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                      </mtr></mtable>
+</math>
+                                                                   
+                                                                   
+<!--l. 114--><p class="nopar" >
+<!--l. 116--><p class="indent" >   Here, <!--l. 116--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>S</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math> is the
+language model. <!--l. 116--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>S</mi></math>
+is viewed as having been generated according to some probability
+and transmitted through a noisy channel that transforms
+<!--l. 116--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>S</mi></math> to
+<!--l. 116--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>A</mi></math> with probability
+<!--l. 116--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>A</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>S</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>. Instead of
+selecting a single <!--l. 116--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>S</mi></math>,
+this source-channel model can also be used to rank a set of candidates; this is exactly
+what happens in <a 
+href="thesis-emeijli3.html#IR">IR</a>, as we will see later.
+<!--l. 118--><p class="indent" >   It is common in <a 
+href="thesis-emeijli3.html#ASR">ASR</a> to use higher order n-grams, although deriving trigram or even
+bigram probabilities is a sparse estimation problem, even with large training corpora.
+Higher order n-grams have also been tried for <a 
+href="thesis-emeijli3.html#IR">IR</a> but these experiments were met with
+limited success; the mainstream approach is to use n-grams of length 1 (or: unigrams).
+Ironically, n-gram based language models use very little knowledge of what language
+really is. They take no advantage of the fact that what is being modeled is language&#x2014;it
+may as well be a sequence of arbitrary symbols&#x00A0;[<a 
+href="thesis-emeijli2.html#XIEEE:2000:rosenfeld">271</a>]. Efforts to include syntactic
+information in n-gram based models have yielded modest improvements at
+best&#x00A0;[<a 
+href="thesis-emeijli2.html#XACL:1998:chelba">63</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XICTIR:2009:Hoenkamp">137</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XCIKM:1999:song">290</a>].
+<!--l. 121--><p class="indent" >   The first published application of language modeling for <a 
+href="thesis-emeijli3.html#IR">IR</a> was based on the
+multivariate Bernoulli distribution [<a 
+href="thesis-emeijli2.html#XSIGIR:1998:Ponte">248</a>], but the simpler multinomial model became
+the mainstream model [<a 
+href="thesis-emeijli2.html#XECDL:1998:Hiemstra">134</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XTREC7:1999:Miller">228</a>]. In the multivariate Bernoulli model, each
+term position in a document is a vector over the entire vocabulary with all
+zeroes, except for a single element (the term) which is set to 1. The multinomial
+model, on the other hand, explicitly captures the frequency of occurrence of a
+term.
+<!--l. 129--><p class="indent" >   Mccallum and Nigam&#x00A0;[<a 
+href="thesis-emeijli2.html#XAAAI:1998:mccallum">204</a>] find that, for text classification using Naive Bayes, the
+multivariate Bernoulli model performs well with small vocabulary sizes, but that the
+multinomial usually performs better at larger vocabulary sizes. Losada and
+Azzopardi&#x00A0;[<a 
+href="thesis-emeijli2.html#XTOIS:2008:losada">192</a>] observe that for most retrieval tasks (except sentence retrieval) the
+multivariate Bernoulli model is significantly outperformed by the multinomial model;
+their analysis reveals that the multivariate Bernoulli model tends to promote long
+documents.
+<!--l. 133--><p class="indent" >   However, recent work has addressed some of the shortcomings of using the
+multinomial distribution for modeling text&#x00A0;[<a 
+href="thesis-emeijli2.html#XICML:2005:madsen">198</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XICML:2003:rennie">256</a>]. A common argument against
+using a multinomial is that it insufficiently captures the &#x201C;burstiness&#x201D; of language. This
+property of language is derived from the observation that there is a higher
+chance of observing a term when it has already been observed before. Such
+burstiness also implies a power law distribution, similar to a Zipfian curve
+often observed in natural language&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:manning:statnlp">201</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#X1929:zipf">360</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#X1932:zipf">361</a>]. Zipf&#x2019;s law states that, if
+                                                                   
+                                                                   
+<!--l. 139--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>F</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+></math> is the frequency
+of the <!--l. 139--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>i</mi></math>-th
+most frequent event, then
+<!--tex4ht:inline--><!--l. 141--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <msub><mrow 
+><mi 
+>F</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">&#x223C;</mo> <mfrac><mrow 
+><mn>1</mn></mrow> 
+<mrow 
+><msup><mrow 
+><mi 
+>i</mi></mrow><mrow 
+><mi 
+>&#x03B1;</mi></mrow></msup 
+></mrow></mfrac><mo 
+class="MathClass-punc">,</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.2)</mtext><mtext 
+   id="x13-12003r2.2"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                                                      </mtr></mtable>
+</math>
+<!--l. 143--><p class="nopar" >
+<!--l. 145--><p class="indent" >   where <!--l. 145--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03B1;</mi></math>
+is a constant (as well as the only parameter of the distribution). In practice this means
+that there are very few words which occur frequently and many unusual words. Due to
+this distribution, the number of distinct words in a vocabulary does not grow linearly
+(but sublinearly) with the size of the collection. Alternative models that try
+to incorporate this information include the Dirichlet compound multinomial
+distribution&#x00A0;[<a 
+href="thesis-emeijli2.html#XIPM:2010:xu">348</a>] or the related Hierarchical Pitman-Yor model&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2010:momtazi">236</a>]. These
+distributions provide a better model of language use and the authors show significant
+improvements over the standard multinomial model. Sunehag&#x00A0;[<a 
+href="thesis-emeijli2.html#XAISTATS:2007:sunehag">308</a>] provides an
+analysis of such approaches and shows that TF.IDF follows naturally from
+them.
+<a 
+ id="x13-12004r1"></a>
+<h4 class="subsectionHead"><span class="titlemark">2.2.1    </span> <a 
+ id="x13-130001"></a>Query Likelihood</h4>
+<a 
+ id="dx13-13001"></a>
+<!--l. 160--><p class="noindent" >The earliest work in the query likelihood family of approaches can be attributed
+to&#x00A0;Kalt&#x00A0;[<a 
+href="thesis-emeijli2.html#Xtech:1996:kalt">158</a>]. He suggests that term probabilities for documents related to a single
+topic can be modeled by a single stochastic process; documents related to different
+topics would be generated by different stochastic processes. Kalt&#x2019;s model treats each
+document as a sample from a topic language model. Since the problem he considered
+                                                                   
+                                                                   
+was text classification, &#x201C;queries&#x201D; were derived from a training set instead of solicited
+from actual queries. Kalt&#x2019;s approach was based on the <a 
+ id="section*.10"></a>maximum likelihood (<a 
+href="thesis-emeijli3.html#ML">ML</a>)
+estimate (which will be introduced below in Eq.&#x00A0;<a 
+href="#x13-13006r2.4">2.4<!--tex4ht:ref: eq:relwork:doc:mle --></a>) and incorporated collection
+statistics, term frequency, and document length as integral parts of the model. Although
+later query likelihood approaches are more robust in that they consider each document
+(vs. a group of documents) as being described by an underlying language model,
+Kalt&#x2019;s early work is clearly a precursor to language modeling for information
+retrieval.
+<!--l. 162--><p class="indent" >   In the multinomial unigram language modeling approach to <a 
+href="thesis-emeijli3.html#IR">IR</a>, each document
+<!--l. 162--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>D</mi></math>
+is represented as a multinomial probability distribution
+<!--l. 162--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></math> over all
+terms <!--l. 162--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>t</mi></math>
+in the vocabulary. At retrieval time, each document is ranked according to the likelihood of
+having generated the query, which is why this model is commonly referred to as the
+<a 
+ id="section*.11"></a>query likelihood (<a 
+href="thesis-emeijli3.html#QL">QL</a>) model. It determines the probability that the query terms
+(<!--l. 163--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>t</mi> <mo 
+class="MathClass-rel">&#x2208;</mo> <mi 
+>Q</mi></math>) are
+sampled from the document language model&#x00A0;[<a 
+href="thesis-emeijli2.html#XECDL:1998:Hiemstra">134</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:1999:miller">229</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XTREC8:2000:Ng">240</a>]:
+<!--tex4ht:inline--><!--l. 165--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mstyle 
+class="mbox"><mtext  >Score</mtext></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">  <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow>                </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray"></mtext></mtd>
+</mtr><mtr><mtd 
+class="eqnarray-1">          </mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">   <mfrac><mrow 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow>
+     <mrow 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfrac>              </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray"></mtext></mtd>
+</mtr><mtr><mtd 
+class="eqnarray-1">          </mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">&#x221D;</mo></mtd><mtd 
+class="eqnarray-3">  <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow>           </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray"></mtext></mtd>
+</mtr><mtr><mtd 
+class="eqnarray-1">          </mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">  <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x220F;</mo>
+  </mrow><mrow 
+><mi 
+>t</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+>Q</mi></mrow></munder 
+><mi 
+>P</mi><msup><mrow 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow><mrow 
+><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo></mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.3)</mtext><mtext 
+   id="x13-13002r2.3"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                           </mtr></mtable>
+</math>
+<!--l. 173--><p class="nopar" >
+                                                                   
+                                                                   
+<!--l. 175--><p class="indent" >   where <!--l. 175--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math> denotes
+the count of term <!--l. 175--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>t</mi></math>
+in query <!--l. 175--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math>.
+The term <!--l. 175--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>
+is the same for all documents and, since it does not influence the ranking of documents
+for a given query, it can safely be ignored for ad hoc search. As is clear from Eq.&#x00A0;<a 
+href="#x13-13002r2.3">2.3<!--tex4ht:ref: chapter04:eq:ql --></a>,
+independence between terms in the query is assumed. Note that this formulation is
+exactly the source-channel model described above, only for document ranking. <a 
+ id="dx13-13003"></a>The
+term <!--l. 181--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>
+is the prior probability of selecting a document and may be used to model a
+document&#x2019;s higher a priori chance of being relevant&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:1999:miller">229</a>], for example based on its
+authoritativeness or the number of incoming links or citations&#x00A0;[<a 
+href="thesis-emeijli2.html#XRIAO:2007:meij">210</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XACL:2008:Weerkamp">336</a>]. In
+all the experiments in this thesis we assume this probability to be uniform,
+however.
+<a 
+ id="dx13-13004"></a>
+<a 
+ id="dx13-13005"></a>
+<!--l. 189--><p class="indent" >   A common way of estimating a document&#x2019;s generative language model is through
+the use of an <a 
+href="thesis-emeijli3.html#ML">ML</a> estimate on the contents of the document,
+<!--tex4ht:inline--><!--l. 191--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0303;</mo></mover></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo> <mfrac><mrow 
+><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow> 
+  <mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi><mo 
+class="MathClass-rel">|</mo></mrow></mfrac>  <mo 
+class="MathClass-punc">.</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.4)</mtext><mtext 
+   id="x13-13006r2.4"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                                            </mtr></mtable>
+</math>
+<!--l. 195--><p class="nopar" >
+<!--l. 197--><p class="indent" >   Here, <!--l. 197--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi><mo 
+class="MathClass-rel">|</mo></math> indicates
+the length of <!--l. 197--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>D</mi></math>.
+It is an essential condition for retrieval models that are based on measuring the
+probability of observed data given a reference generative model, that the reference
+                                                                   
+                                                                   
+model is adequately smoothed. Smoothing is applied both to avoid data sparsity (and,
+hence, zero-frequency) problems occurring with a maximum likelihood approach
+(which happens, for example, when one of the query terms does not appear in the
+document) and to account for general and document-specific language use. So, the goal
+of smoothing is to account for unseen events (terms) in the documents&#x00A0;[<a 
+href="thesis-emeijli2.html#XACL:1996:Chen">65</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XTOIS:2004:Zhai">356</a>].
+Various types of smoothing have been proposed including discounting techniques such
+as Laplace, Good-Turing, or leave-one-out smoothing. These methods add (or subtract)
+small amounts of probability mass with varying levels of sophistication. Another
+type is interpolation-based smoothing, which adjusts the probabilities of both
+seen and unseen events. One interpolation method commonly used in <a 
+href="thesis-emeijli3.html#IR">IR</a> is
+Jelinek-Mercer smoothing which considers each document to be a mixture
+of a document-specific model and a more general background model. Each
+document model is estimated using the maximum likelihood estimate of the terms
+in the document, linearly interpolated with a background language model
+<!--l. 208--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>&#x00A0;[<a 
+href="thesis-emeijli2.html#XPRIP:1980:jelinek">148</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:1999:miller">229</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XTOIS:2004:Zhai">356</a>]:
+<!--tex4ht:inline--><!--l. 210--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo> <msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0303;</mo></mover></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-bin">+</mo><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mn>1</mn><mo 
+class="MathClass-bin">&#x2212;</mo><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">.</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.5)</mtext><mtext 
+   id="x13-13007r2.5"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                             </mtr></mtable>
+</math>
+<!--l. 213--><p class="nopar" >
+<!--l. 215--><p class="indent" >   Here, <!--l. 215--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math> is calculated as
+the likelihood of observing <!--l. 215--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>t</mi></math>
+in a sufficiently large corpus, such as the document collection,
+<!--l. 215--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>C</mi></math>:
+                                                                   
+                                                                   
+<!--tex4ht:inline--><!--l. 217--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">     <mfrac><mrow 
+><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>C</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow>
+<mrow 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><msup><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+></mrow></munder 
+><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msup><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><mi 
+>C</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfrac><mo 
+class="MathClass-punc">.</mo></mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.6)</mtext><mtext 
+   id="x13-13008r2.6"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                                             </mtr></mtable>
+</math>
+<!--l. 221--><p class="nopar" >
+<!--l. 223--><p class="indent" >   In this thesis, we use Bayesian smoothing using a Dirichlet prior which
+has been shown to achieve superior performance on a variety of tasks and
+collections&#x00A0;[<a 
+href="thesis-emeijli2.html#XADC:2008:bennett">30</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XACL:1996:Chen">65</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIRJ:2008:losado">191</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:2003:hugo">352</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XTOIS:2004:Zhai">356</a>] and set:
+<!--tex4ht:inline--><!--l. 225--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">    <mfrac><mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi><mo 
+class="MathClass-rel">|</mo></mrow>
+<mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi><mo 
+class="MathClass-rel">|</mo><mo 
+class="MathClass-bin">+</mo><mi 
+>&#x03BC;</mi></mrow></mfrac><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0303;</mo></mover></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-bin">+</mo>    <mfrac><mrow 
+><mi 
+>&#x03BC;</mi></mrow> 
+<mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi><mo 
+class="MathClass-rel">|</mo><mo 
+class="MathClass-bin">+</mo><mi 
+>&#x03BC;</mi></mrow></mfrac><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">,</mo></mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.7)</mtext><mtext 
+   id="x13-13009r2.7"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                          </mtr></mtable>
+</math>
+<!--l. 231--><p class="nopar" >
+<!--l. 233--><p class="indent" >   where <!--l. 233--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03BC;</mi></math>
+is a hyperparameter that controls the level of smoothing which is typically set to the
+average document length of all documents in the collection.
+<!--l. 235--><p class="indent" >   Various improvements upon this model have been proposed with varying
+complexity. For example, Shakery and Zhai&#x00A0;[<a 
+href="thesis-emeijli2.html#XIR:2007:shakery">281</a>] use a graph-based method to smooth
+                                                                   
+                                                                   
+document models, similar to Mei <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2008:mei">206</a>]. Tao <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XHLT:2006:tao">311</a>] use document
+expansion to improve end-to-end retrieval.
+<a 
+ id="x13-13010r15"></a>
+<h4 class="subsectionHead"><span class="titlemark">2.2.2    </span> <a 
+ id="x13-140002"></a>KL divergence</h4>
+<!--l. 242--><p class="noindent" >Soon after its conception, the query likelihood model was generalized by realizing that
+an information need can also be represented as a language model. This way, a
+comparison of two language models forms the basis for ranking and, hence, a more
+general and flexible retrieval model than query likelihood was obtained. Several
+authors have proposed the use of the Kullback-Leibler (KL) divergence for ranking,
+since it is a well established measure for the comparison of probability distributions
+with some intuitive properties&#x2014;it always has a non-negative value and equal
+distributions receive a zero divergence value&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2001:lafferty">173</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XTREC8:2000:Ng">240</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:1999:Xu">346</a>]. Using KL divergence,
+documents are scored by measuring the divergence between a query model
+<!--l. 255--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></math> and document
+model <!--l. 255--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></math>.
+Since we want to assign a high score for high similarity and a low score for low
+similarity, the KL divergence is negated for ranking purposes. More formally, the
+score for each query-document pair using the KL divergence retrieval model
+is:
+<!--tex4ht:inline--><!--l. 261--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mstyle 
+class="mbox"><mtext  >Score</mtext></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>Q</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">  <mo 
+class="MathClass-bin">&#x2212;</mo><mstyle 
+class="mbox"><mtext  >KL</mtext></mstyle><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+><mo 
+class="MathClass-rel">|</mo><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow>                                   </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray"></mtext></mtd>
+</mtr><mtr><mtd 
+class="eqnarray-1">          </mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">  <mo 
+class="MathClass-bin">&#x2212;</mo><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>t</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+mathvariant="bold-script">V</mi></mrow></munder 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo class="qopname">log</mo><!--nolimits--> <mfrac><mrow 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow> 
+<mrow 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfrac>                       </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray"></mtext></mtd>
+</mtr><mtr><mtd 
+class="eqnarray-1">          </mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">  <munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>t</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+mathvariant="bold-script">V</mi></mrow></munder 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo class="qopname">log</mo><!--nolimits--><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-bin">&#x2212;</mo><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>t</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+mathvariant="bold-script">V</mi></mrow></munder 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo class="qopname">log</mo><!--nolimits--><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">,</mo><mspace width="1em" class="quad"/></mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.8)</mtext><mtext 
+   id="x13-14001r2.8"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>   </mtr></mtable>
+</math>
+<!--l. 272--><p class="nopar" >
+                                                                   
+                                                                   
+<!--l. 274--><p class="indent" >   where <!--l. 274--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+mathvariant="bold-script">V</mi></math>
+denotes the set of all terms used in all documents in the collection. KL divergence is also
+known as the relative entropy, which is defined as the cross-entropy of the observed
+distribution (in this case the query) as if it was generated by a reference distribution (in
+this case the document) minus the entropy of the observed distribution. KL divergence
+can also be measured in the reverse direction (also known as document likelihood), but
+this leads to poorer results for ad hoc search tasks&#x00A0;[<a 
+href="thesis-emeijli2.html#Xthesis:lavrenko">180</a>]. The entropy of the query,
+<!--l. 282--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mo 
+class="MathClass-op">&#x2211;</mo>
+  <!--nolimits--></mrow><mrow 
+><mi 
+>t</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+mathvariant="bold-script">V</mi></mrow></msub 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo class="qopname">log</mo><!--nolimits--><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>, is a
+query specific constant and can thus be ignored for ranking purposes in the case of ad
+hoc retrieval (cf. Section&#x00A0;<a 
+href="thesis-emeijse15.html#x21-360001">3.2.1<!--tex4ht:ref: ssec:measures --></a>).
+<!--l. 286--><p class="indent" >   When the query model is estimated using the empirical <a 
+href="thesis-emeijli3.html#ML">ML</a> estimate on the original
+query, i.e.,
+<!--tex4ht:inline--><!--l. 288--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0303;</mo></mover></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo> <mfrac><mrow 
+><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow> 
+  <mrow 
+><mo 
+class="MathClass-rel">|</mo><mi 
+>Q</mi><mo 
+class="MathClass-rel">|</mo></mrow></mfrac>  <mo 
+class="MathClass-punc">,</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.9)</mtext><mtext 
+   id="x13-14002r2.9"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                                            </mtr></mtable>
+</math>
+<!--l. 292--><p class="nopar" >
+<!--l. 294--><p class="indent" >   it can be shown that documents are ranked in the same order as using the query
+likelihood model from Eq.&#x00A0;<a 
+href="#x13-13002r2.3">2.3<!--tex4ht:ref: chapter04:eq:ql --></a>&#x00A0;[<a 
+href="thesis-emeijli2.html#Xthesis:zhai">353</a>]. Later in this thesis, we use Eq.&#x00A0;<a 
+href="#x13-14001r2.8">2.8<!--tex4ht:ref: eq:relwork:kl-div --></a> in conjunction
+with Eq.&#x00A0;<a 
+href="#x13-14002r2.9">2.9<!--tex4ht:ref: eq:relwork:qm --></a> as a baseline retrieval model.
+<!--l. 298--><p class="indent" >   Note that a query is a verbal expression of an underlying information need and the
+query model (derived from the query) is therefore also only an estimate of this
+information need. Given that queries are typically short&#x00A0;[<a 
+href="thesis-emeijli2.html#XIEEE:2002:spink">300</a>], this initial, crude
+estimate can often be improved upon by adding and reweighting terms. Since the query
+is modeled in its own fashion using the KL divergence framework, elaborate ways of
+estimating or updating the query model may be employed&#x2014;a procedure known as
+<span 
+class="bchri8t-">query modeling</span>.
+                                                                   
+                                                                   
+<!--l. 307--><p class="indent" >   In order to obtain a query model that is a better estimate of the information need, the
+initial query <!--l. 308--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0303;</mo></mover></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>
+may  be  interpolated  with  the  expanded  part
+<!--l. 310--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2008:balog">24</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:2005:Kurland">172</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XBook:1971:rocchio">267</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XCIKM:2001:zhai">354</a>].
+Effectively, this reweights the initial query terms and provides smoothing for the
+relatively sparse initial sample:
+<!--tex4ht:inline--><!--l. 314--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo> <msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0303;</mo></mover></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-bin">+</mo><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mn>1</mn><mo 
+class="MathClass-bin">&#x2212;</mo><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">.</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.10)</mtext><mtext 
+   id="x13-14003r2.10"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                         </mtr></mtable>
+</math>
+<!--l. 320--><p class="nopar" >
+<!--l. 322--><p class="indent" >   Figure&#x00A0;<a 
+href="thesis-emeijse10.html#x14-160011">2.1<!--tex4ht:ref: fig:chapter02:example --></a> shows an example of an interpolated query model; query modeling will
+be further introduced in Section&#x00A0;<a 
+href="thesis-emeijse10.html#x14-160003">2.3<!--tex4ht:ref: sec:relwork:qm --></a>. In the remainder of this thesis, we will use this
+mechanism to incorporate relevance feedback information (Chapter&#x00A0;<a 
+href="thesis-emeijch4.html#x26-470004">4<!--tex4ht:ref: chap:relfb --></a>) or leverage
+conceptual knowledge in the form of document annotations (Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a>) or in the form
+of Wikipedia articles (Chapter&#x00A0;<a 
+href="thesis-emeijch7.html#x47-1210007">7<!--tex4ht:ref: chap:cikm2010 --></a>). In Section&#x00A0;<a 
+href="thesis-emeijse10.html#x14-160003">2.3<!--tex4ht:ref: sec:relwork:qm --></a> we zoom in on ways of estimating
+<!--l. 322--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>.
+We discuss the issue of setting the smoothing parameter
+<!--l. 323--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></math> in
+Section&#x00A0;<a 
+href="thesis-emeijse17.html#x24-450004">3.4<!--tex4ht:ref: sec:parameterest --></a>.
+<a 
+ id="x13-14004r16"></a>
+<h4 class="subsectionHead"><span class="titlemark">2.2.3    </span> <a 
+ id="x13-150003"></a>Relation to Probabilistic Approaches</h4>
+<!--l. 329--><p class="noindent" >As indicated above, several researchers have attempted to relate the <a 
+href="thesis-emeijli3.html#LM">LM</a> approach to
+traditional probabilistic approaches, including the <a 
+href="thesis-emeijli3.html#PRP">PRP</a> model&#x00A0;[<a 
+href="thesis-emeijli2.html#XFORUM:2001:croft">83</a>]. Sparck-Jones and
+Robertson&#x00A0;[<a 
+href="thesis-emeijli2.html#Xlmprp:2001:sparckjones">295</a>] examine the notion of relevance in both the <a 
+href="thesis-emeijli3.html#PRP">PRP</a> and the
+query likelihood language modeling approach. They identify the following two
+distinctions.
+                                                                   
+                                                                   
+     <dl class="enumerate"><dt class="enumerate">
+  1. </dt><dd 
+class="enumerate">Although in both approaches a match between terms in the query and a
+     document implies relevance, the notion of relevance features explicitly in
+     <a 
+href="thesis-emeijli3.html#PRP">PRP</a> but is never mentioned in <a 
+href="thesis-emeijli3.html#LM">LM</a>.
+     </dd><dt class="enumerate">
+  2. </dt><dd 
+class="enumerate">The underlying principle of <a 
+href="thesis-emeijli3.html#LM">LM</a> is to identify the <span 
+class="bchri8t-">ideal </span>document, i.e., the one
+     that generated the query (as exemplified by the <!--l. 335--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo class="qopname">arg<mspace width="0.3em" class="thinspace"/>max</mo></math>
+     in Eq.&#x00A0;<a 
+href="#x13-12002r2.1">2.1<!--tex4ht:ref: eq:relwork:asr --></a>).</dd></dl>
+<!--l. 338--><p class="noindent" ><a 
+href="thesis-emeijli2.html#Xlmprp:2001:sparckjones">Sparck-Jones and Robertson</a> emphasize that the last point implies that retrieval stops after
+the document that generated the query is found. Furthermore, this fact, coupled with
+simply assuming that query generation and relevance are correlated, implies that it is
+difficult to describe methods such as relevance feedback (or any method pertaining to
+relevance) in existing <a 
+href="thesis-emeijli3.html#LM">LM</a> approaches.
+<!--l. 342--><p class="indent" >   Hiemstra and de&#x00A0;Vries&#x00A0;[<a 
+href="thesis-emeijli2.html#Xtechreport:2000:hiemstra">135</a>] relate <a 
+href="thesis-emeijli3.html#LM">LM</a> to traditional approaches by comparing the
+<a 
+href="thesis-emeijli3.html#QL">QL</a> model presented in [<a 
+href="thesis-emeijli2.html#XECDL:1998:Hiemstra">134</a>] with the TF.IDF weighting scheme and the combination
+with relevance weighting as done in Okapi BM25. Lafferty and Zhai&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2001:lafferty">173</a>] and
+Lavrenko and Croft&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2001:Lavrenko">183</a>] address the two issues mentioned above by suggesting
+new forms of <a 
+href="thesis-emeijli3.html#LM">LM</a> for retrieval that are more closely related to the <a 
+href="thesis-emeijli3.html#PRP">PRP</a> model
+and move away from the estimating the query generation probability. Lafferty
+and Zhai&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2001:lafferty">173</a>] include a binary, latent variable that indicates relevance of
+a document with respect to a query. They point out that document length
+normalization is an issue in <a 
+href="thesis-emeijli3.html#PRP">PRP</a> but not in <a 
+href="thesis-emeijli3.html#LM">LM</a>; another difference is that in <a 
+href="thesis-emeijli3.html#LM">LM</a>
+we typically have more data for estimation purposes that <a 
+href="thesis-emeijli3.html#PRP">PRP</a>. Greiff&#x00A0;[<a 
+href="thesis-emeijli2.html#Xlmprp:2001:greiff">115</a>]
+observes that the main contribution of <a 
+href="thesis-emeijli3.html#LM">LM</a> is the recognition of the importance of
+parameter estimation in modeling and in the treatment of term frequency as the
+manifestation of an underlying probability distribution rather than as the probability of
+word occurrence itself. Lavrenko and Croft&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2001:Lavrenko">183</a>] take a similar view and
+explicitly define a latent model of relevance. According to this model, both the
+query and the relevant documents are samples from this model. Hiemstra
+<span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2004:Hiemstra">136</a>] build upon work presented in&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:2003:lm:sparck">297</a>] and also attempt to bridge the gap
+between <a 
+href="thesis-emeijli3.html#PRP">PRP</a> and <a 
+href="thesis-emeijli3.html#LM">LM</a>. They posit that <a 
+href="thesis-emeijli3.html#LM">LM</a> should not blindly model language use.
+Instead, <a 
+href="thesis-emeijli3.html#LM">LM</a> should model what language use <span 
+class="bchri8t-">distinguishes </span>a relevant document
+from the other documents. In Section&#x00A0;<a 
+href="thesis-emeijse10.html#x14-180002">2.3.2<!--tex4ht:ref: relwork:ssec:lm-fbmethods --></a> we introduce these approaches
+further. In Chapter&#x00A0;<a 
+href="thesis-emeijch4.html#x26-470004">4<!--tex4ht:ref: chap:relfb --></a>&#x00A0;we evaluate their performance on three distinct test
+collections.
+<!--l. 352--><p class="indent" >   Another, more recent spin-off of the discussion centers around the notion of event
+spaces for probabilistic models&#x00A0;[<a 
+href="thesis-emeijli2.html#XIR:2005:robertson">259</a>]. Since <a 
+href="thesis-emeijli3.html#LM">LM</a> (and, in particular, the <a 
+href="thesis-emeijli3.html#QL">QL</a>
+approach) is based on the probability of a query given a document, the event
+space would consist of queries in relation to a single, particular document.
+These event spaces would therefore be unique to each document. Under this
+interpretation, the query-likelihood scores of different documents for the same
+                                                                   
+                                                                   
+query would not be comparable because they come from different probability
+distributions in different event spaces. In line with the observations above,
+this implies that relevance feedback (in the form of documents) for a given
+query is impossible (although relevant <span 
+class="bchri8t-">query </span>feedback for a given document
+would indeed be feasible&#x00A0;[<a 
+href="thesis-emeijli2.html#XCIKM:2003:Nallapati">239</a>]). Luk&#x00A0;[<a 
+href="thesis-emeijli2.html#XIR:2008:Luk">195</a>] responds to <a 
+href="thesis-emeijli2.html#XIR:2005:robertson">Robertson</a> in a fashion
+similar to [<a 
+href="thesis-emeijli2.html#XICTIR:2007:azzopardi">16</a>] and proves that, under certain assumptions, the latent variable
+indicating relevance introduced by [<a 
+href="thesis-emeijli2.html#Xbook:2003:lm:zhai">174</a>] is implicit in the ranking formula.
+Boscarino and de&#x00A0;Vries&#x00A0;[<a 
+href="thesis-emeijli2.html#XICTIR:2009:boscarino">43</a>] reply to <a 
+href="thesis-emeijli2.html#XIR:2008:Luk">Luk</a> in turn and argue that this claim is also
+problematic. <a 
+href="thesis-emeijli2.html#XICTIR:2009:boscarino">Boscarino and de&#x00A0;Vries</a> state that <a 
+href="thesis-emeijli2.html#XIR:2008:Luk">Luk</a> attempts to solve the issue at the
+statistical level, while it should be addressed through a proper selection of
+priors. All in all, a definitive bridge between <a 
+href="thesis-emeijli3.html#PRP">PRP</a> and <a 
+href="thesis-emeijli3.html#LM">LM</a> is still missing. Even if
+the <a 
+href="thesis-emeijli3.html#LM">LM</a> approach to <a 
+href="thesis-emeijli3.html#IR">IR</a> is &#x201C;misusing&#x201D; some of its fundamental premises, the
+theoretical and experimental evidence suggest that the approach does indeed have
+merit.
+                                                                   
+                                                                   
+<!--l. 364--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch2.html#thesis-emeijse9.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse10.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse8.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse8.html#tailthesis-emeijse8.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijse9.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse9.html"></a> 
+</body></html> 

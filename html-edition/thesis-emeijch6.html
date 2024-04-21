@@ -1,0 +1,475 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6 Linking Queries to Concepts</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeij.html#thesis-emeijch6.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijch7.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijch5.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijch5.html#tailthesis-emeijch5.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijch6.html">Tail</a></td></tr></table><h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;6</span><br /><a 
+ id="x39-860006"></a>Linking Queries to Concepts</h2>
+<!--l. 3--><p class="noindent" >In Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a> we have used annotated documents to obtain a conceptual representation
+of a query model: a conceptual query model. As we have seen there, leveraging textual
+observations associated with concepts during query modeling significantly improves
+end-to-end retrieval performance. In this chapter we further investigate the process of
+mapping queries to concepts, a procedure we call <span 
+class="bchri8t-">conceptual mapping</span>. We do so in a
+more general context, by linking large numbers of actual search engine queries (taken
+from a transaction log) to DBpedia&#x00A0;[<a 
+href="thesis-emeijli2.html#XISWC:2007:Auer">15</a>], which is an ontology extracted from
+Wikipedia. The methods presented and evaluated in this chapter serve as a precursor to
+the next chapter. There, we evaluate retrieval performance when using the natural
+language text associated with concepts that are obtained using the methods presented
+here.
+<!--l. 10--><p class="indent" >   Performing a conceptual mapping between queries to concepts could serve several
+purposes. For one, in the case of a collection of documents annotated using concepts,
+the obtained concepts may be used to match the documents to the query. They may
+also be used to obtain a contribution to the textual query model, similar to
+the method presented in the preceding chapter. Furthermore, such mappings
+may serve to retrieve concepts themselves. The <a 
+href="thesis-emeijli3.html#INEX">INEX</a> Entity Ranking track,
+for example, provides a use-case for retrieving entities (which are defined as
+Wikipedia articles). As we have seen in Chapter&#x00A0;<a 
+href="thesis-emeijch2.html#x11-100002">2<!--tex4ht:ref: chap:background --></a>, other uses for conceptual
+mappings also include natural language interfaces to databases or knowledge
+repositories.
+<!--l. 12--><p class="indent" >   Conceptually mapping queries is not only interesting from an <a 
+href="thesis-emeijli3.html#IR">IR</a> point of view, but
+also has clear benefits for the <a 
+ id="section*.48"></a>semantic web (<a 
+href="thesis-emeijli3.html#SW">SW</a>) community in that it provides an easy
+access method into the <a 
+ id="section*.49"></a>Linked Open Data (<a 
+href="thesis-emeijli3.html#LOD">LOD</a>) cloud (of which DBpedia is a part&#x2014;cf.
+Figure&#x00A0;<a 
+href="#x39-860011">6.1<!--tex4ht:ref: fig:lod --></a>). A significant task towards building and maintaining the semantic web is
+link generation. Links allow a person or machine to explore and understand the
+web of data more easily: when you have <span 
+class="bchri8t-">linked </span>data, you can find related
+data&#x00A0;[<a 
+href="thesis-emeijli2.html#Xurl:linkeddata">32</a>]. The <a 
+href="thesis-emeijli3.html#LOD">LOD</a>&#x00A0;[<a 
+href="thesis-emeijli2.html#Xurl:linkeddata">32</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XWWW:2008:bizer">36</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIJSWIS:2009:Bizer">37</a>] initiative extends the web by publishing
+various open data sets and by setting links between items (or concepts) from
+different data sources in a (semi-)automated fashion&#x00A0;[<a 
+href="thesis-emeijli2.html#XISWC:2007:Auer">15</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIJCAI:2007:banko">27</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XWS:2008:yago">307</a>]. The resulting
+data commons is termed the Linked Open Data cloud, and provides a key
+ingredient for realizing the semantic web. At the time of writing, the <a 
+href="thesis-emeijli3.html#LOD">LOD</a>
+cloud contains millions of concepts from over one hundred structured data
+sets.
+                                                                   
+                                                                   
+<!--l. 27--><p class="indent" >   <a 
+ id="x39-860011"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<img 
+src="thesis-emeij75x.png" alt="PIC" class="graphics" width="352.81401pt" height="264.3015pt" ><!--tex4ht:graphics  
+name="thesis-emeij75x.png" src="chapter05/lod-datasets_2009-07-14_bw.eps"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;6.1: </span><span  
+class="content">The knowledge sources comprising the <a 
+href="thesis-emeijli3.html#LOD">LOD</a> cloud. </span></div><!--tex4ht:label?: x39-860011 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+<!--l. 36--><p class="indent" >   Unstructured data resources&#x2014;such as textual documents or queries submitted
+to a search engine&#x2014;can be enriched by mapping their content to structured
+knowledge repositories like the <a 
+href="thesis-emeijli3.html#LOD">LOD</a> cloud. This type of enrichment may serve
+multiple goals, such as explicit anchoring of the data resources in background
+knowledge or ontology learning and population. The former enables new forms of
+intelligent search and browsing; authors or readers of a piece of text may find
+mappings to the <a 
+href="thesis-emeijli3.html#LOD">LOD</a> cloud to supply useful pointers, for example, to concepts
+capturing or relating to the contents of the document. In ontology learning
+applications, mappings may be used to learn new concepts or relations between
+them&#x00A0;[<a 
+href="thesis-emeijli2.html#XISWC:2004:vanhage">324</a>]. Recently, data-driven methods have been proposed to map phrases
+appearing in full-text documents to Wikipedia articles. For example, Mihalcea and
+Csomai&#x00A0;[<a 
+href="thesis-emeijli2.html#XCIKM:2007:mihalcea">226</a>] propose incorporating linguistic features in a machine learning
+framework to map phrases in full-text documents to Wikipedia articles&#x2014;this
+approach is further improved upon by Milne and Witten&#x00A0;[<a 
+href="thesis-emeijli2.html#Xwikify:cikm08">230</a>]. Because of the
+connection between Wikipedia and DBpedia&#x00A0;[<a 
+href="thesis-emeijli2.html#XISWC:2007:Auer">15</a>], such data-driven linking methods
+help us to establish links between textual documents and the <a 
+href="thesis-emeijli3.html#LOD">LOD</a> cloud, with
+DBpedia being one of the key interlinking hubs in the cloud. Indeed, we consider
+DBpedia to be an integral part of and, as such, a perfect entry point into the <a 
+href="thesis-emeijli3.html#LOD">LOD</a>
+cloud.
+<!--l. 58--><p class="indent" >   Search engine queries are one type of unstructured data that could benefit from
+being mapped to a structured knowledge base such as DBpedia. Semantic mappings of
+this kind can be used to support users in their search and browsing activities, for
+example by (i)&#x00A0;helping the user acquire contextual information, (ii)&#x00A0;suggesting related
+concepts or associated terms that may be used for search, and (iii)&#x00A0;providing valuable
+navigational suggestions. In the context of web search, various methods exist for
+helping the user formulate his or her queries&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2008:anick">10</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIPM:2000:jansen">144</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:2009:meij">217</a>]. For example, the Yahoo!
+search interface features a so-called &#x201C;searchassist,&#x201D; that suggests important phrases in
+response to a query. While these suggestions inherit natural language semantics,
+they lack any formal semantics, however, which we address in this chapter by
+mapping queries to DBpedia concepts. In the case of a specialized search engine
+with accompanying knowledge base, automatic mappings between natural
+language queries and concepts aid the user in exploring the contents of both the
+collection and the knowledge base&#x00A0;[<a 
+href="thesis-emeijli2.html#XECDL:2002:blocks">41</a>]. They can also help a novice user
+understand the structure and specific nomenclature of the domain. Furthermore,
+when the items to be retrieved are also annotated (e.g., using concepts from
+the <a 
+href="thesis-emeijli3.html#LOD">LOD</a> cloud through RDFa, microformats, or any other kind of annotation
+framework), the semantic mappings on the queries can be used to facilitate
+matching at the semantic level or an advanced form of query-based faceted result
+presentation. This can partly be achieved by simply using a richer indexing
+strategy of the items in the collection together with conventional querying
+mechanisms. Generating conceptual mappings for the queries, however, can
+                                                                   
+                                                                   
+improve the matching and help clarify the structure of the domain to the end
+user.
+<!--l. 73--><p class="indent" >   Once a conceptual mapping has been established, the links between a query and a
+knowledge repository can be used to create semantic profiles of users based on the
+queries they issue. They can also be exploited to enrich items in the <a 
+href="thesis-emeijli3.html#LOD">LOD</a> cloud, for
+instance by viewing a query as a (user-generated) annotation of the items it has been
+linked to, similar to the way in which a query can be used to label images that a user
+clicks on as the result of a search&#x00A0;[<a 
+href="thesis-emeijli2.html#Xtsik:imag09">320</a>]. As we have shown in&#x00A0;[<a 
+href="thesis-emeijli2.html#XISWC:2009:mika">227</a>], this type of
+annotation can, for example, be used to discover aspects or facets of concepts. In this
+chapter, we focus on the task of automatically mapping free text search engine
+queries to the <a 
+href="thesis-emeijli3.html#LOD">LOD</a> cloud, in particular DBpedia. As an example of the task,
+consider the query &#x201C;obama white house.&#x201D; The query mapping algorithm we
+envision should return links to the concepts labeled <span 
+class="bchrc8t-">B<span 
+class="small-caps">A</span><span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">C</span><span 
+class="small-caps">K</span> O<span 
+class="small-caps">B</span><span 
+class="small-caps">A</span><span 
+class="small-caps">M</span><span 
+class="small-caps">A</span> </span>and <span 
+class="bchrc8t-">W<span 
+class="small-caps">H</span><span 
+class="small-caps">I</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span></span>
+<span 
+class="bchrc8t-">H<span 
+class="small-caps">O</span><span 
+class="small-caps">U</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span></span>.
+<!--l. 88--><p class="indent" >   Queries submitted to a search engine are particularly challenging to map to
+structured knowledge repositories, as they tend to consist of only a few terms and are
+much shorter than typical text documents&#x00A0;[<a 
+href="thesis-emeijli2.html#XIPM:2000:jansen">144</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIEEE:2002:spink">300</a>]. Their limited length implies that
+we have far less context than in regular text documents. Hence, we cannot use
+previously established approaches that rely on context such as shallow parsing or
+part-of-speech tagging&#x00A0;[<a 
+href="thesis-emeijli2.html#XCIKM:2007:mihalcea">226</a>]. To address these issues, we propose a novel method that
+leverages the textual representation of each concept as well as query-based and
+concept-based features in a machine learning framework. At the same time,
+working with search engine queries entails that we do have search history
+information available that provides a form of contextual anchoring. In this
+chapter, we employ this query-specific kind of context as a separate type of
+feature.
+<!--l. 102--><p class="indent" >   Our approach to conceptual mapping of queries to concepts can be summarized as
+follows. First, given a query, we use language modeling for <a 
+href="thesis-emeijli3.html#IR">IR</a> to retrieve the most relevant
+concepts as potential targets for mapping. We then use supervised machine learning
+methods to decide which of the retrieved concepts should be mapped and which should
+be discarded. In order to train the machine learner, we examined close to 1000 search
+engine queries and manually mapped over 600 of these to relevant concepts in
+DBpedia.<span class="footnote-mark"><a 
+href="thesis-emeij40.html#fn1x13"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x39-86002f1"></a> 
+<!--l. 115--><p class="indent" >   The research questions we address in this chapter are the following.
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">RQ 3.</span> </dt><dd 
+class="description">Can we successfully address the task of mapping search engine queries to
+     concepts using a combination of information retrieval and machine learning
+                                                                   
+                                                                   
+     techniques? <span 
+class="bchri8t-">A typical approach for mapping text to concepts is to apply some form</span>
+     <span 
+class="bchri8t-">of lexical matching between concept labels and terms, typically using the</span>
+     <span 
+class="bchri8t-">context of the text for disambiguation purposes. What are the results of</span>
+     <span 
+class="bchri8t-">applying this method to our task? What are the results when using a purely</span>
+     <span 
+class="bchri8t-">retrieval-based approach? How do these results compare to those of our proposed</span>
+     <span 
+class="bchri8t-">method?</span>
+         <dl class="enumerate"><dt class="enumerate">
+      <span 
+class="bchb8t-">a.</span>  </dt><dd 
+class="enumerate">What  is  the  best  way  of  handling  a  query?  That  is,  what  is  the
+         performance when we map individual n-grams in a query instead of
+         the query as a whole?
+         </dd><dt class="enumerate">
+      <span 
+class="bchb8t-">b.</span>  </dt><dd 
+class="enumerate">As input to the machine learning algorithms we extract and compute
+         a  wide  variety  of  features,  pertaining  to  the  query  terms,  concepts,
+         and search history. Which type of feature helps most? Which individual
+         feature is most informative?
+         </dd><dt class="enumerate">
+      <span 
+class="bchb8t-">c.</span>  </dt><dd 
+class="enumerate">Machine  learning  generally  comes  with  a  number  of  parameter
+         settings.  We  ask:  what  are  the  effects  of  varying  these  parameters?
+         <span 
+class="bchri8t-">What are the effects of varying the size of the training set, the fraction</span>
+         <span 
+class="bchri8t-">of  positive  examples,  as  well  as  any  algorithm-specific  parameters?</span>
+         <span 
+class="bchri8t-">Furthermore, we provide the machine learning step with a small set of</span>
+         <span 
+class="bchri8t-">candidate concepts. What are the effects of varying the size of this set?</span></dd></dl>
+     </dd></dl>
+<!--l. 178--><p class="noindent" >Our main contributions are as follows. We propose and evaluate two variations of a
+novel and effective approach for mapping queries to DBpedia and, hence, the <a 
+href="thesis-emeijli3.html#LOD">LOD</a>
+cloud. We accompany this with an extensive analysis of the results, of the
+robustness of our methods, and of the contributions of the features used. We also
+facilitate future work on the problem by making our used resources publicly
+available.
+<!--l. 183--><p class="indent" >   The remainder of this chapter is structured as follows. Sections&#x00A0;<a 
+href="thesis-emeijse29.html#x41-870001">6.1<!--tex4ht:ref: sec:task --></a> and&#x00A0;<a 
+href="thesis-emeijse30.html#x42-880002">6.2<!--tex4ht:ref: sec:approach --></a> detail
+the query mapping task and our approach. Our experimental setup is described in
+Section&#x00A0;<a 
+href="thesis-emeijse31.html#x43-960003">6.3<!--tex4ht:ref: section:expsetup --></a> and our results are presented in Section&#x00A0;<a 
+href="thesis-emeijse32.html#x44-1010004">6.4<!--tex4ht:ref: sec:results --></a>. Section&#x00A0;<a 
+href="thesis-emeijse33.html#x45-1060005">6.5<!--tex4ht:ref: section:discussion --></a> follows with a
+discussion and detailed analysis of the results and we end with a concluding
+section.
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 3--><p class="indent" >   <a 
+ id="x39-860031"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="tabular">
+ <table id="TBL-70" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-70-1g"><col 
+id="TBL-70-1"><col 
+id="TBL-70-2"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-70-1-"><td  style="text-align:left; white-space:nowrap;" id="TBL-70-1-1"  
+class="td11"> <span 
+class="bchr8t-x-x-90">Property                  </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-70-1-2"  
+class="td11"> <span 
+class="bchr8t-x-x-90">Value                                                                                            </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-70-2-"><td  style="text-align:left; white-space:nowrap;" id="TBL-70-2-1"  
+class="td11"> <span 
+class="ec-lmtt-9">rdfs:comment     </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-70-2-2"  
+class="td11"> <span 
+class="bchr8t-x-x-90">Barack Hussein Obama II (born August 4, 1961) is the 44th       </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-70-3-"><td  style="text-align:left; white-space:nowrap;" id="TBL-70-3-1"  
+class="td11">                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-70-3-2"  
+class="td11"> <span 
+class="bchr8t-x-x-90">and current President of the United States. He is the first           </span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-70-4-"><td  style="text-align:left; white-space:nowrap;" id="TBL-70-4-1"  
+class="td
+11">                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-70-4-2"  
+class="td11"> <span 
+class="bchr8t-x-x-90">African American to hold the office. Obama previously served    </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-70-5-"><td  style="text-align:left; white-space:nowrap;" id="TBL-70-5-1"  
+class="td11">                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-70-5-2"  
+class="td11"> <span 
+class="bchr8t-x-x-90">as the junior United States Senator from Illinois, from January  </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-70-6-"><td  style="text-align:left; white-space:nowrap;" id="TBL-70-6-1"  
+class="td11">                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-70-6-2"  
+class="td11"> <span 
+class="bchr8t-x-x-90">2005 until he resigned after his election to the presidency in      </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-70-7-"><td  style="text-align:left; white-space:nowrap;" id="TBL-70-7-1"  
+class="td11">                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-70-7-2"  
+class="td11"> <span 
+class="bchr8t-x-x-90">November 2008.                                                                          </span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-70-8-"><td  style="text-align:left; white-space:nowrap;" id="TBL-70-8-1"  
+class="td
+11"> <span 
+class="ec-lmtt-9">dbpprop:abstract </span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-70-8-2"  
+class="td11"> <span 
+class="bchr8t-x-x-90">Barack Hussein Obama II (born August 4, 1961) is the 44th       </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-70-9-"><td  style="text-align:left; white-space:nowrap;" id="TBL-70-9-1"  
+class="td11">                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-70-9-2"  
+class="td11"> <span 
+class="bchr8t-x-x-90">and current President of the United States. He is the first           </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-70-10-"><td  style="text-align:left; white-space:nowrap;" id="TBL-70-10-1"  
+class="td11">                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-70-10-2"  
+class="td11"> <span 
+class="bchr8t-x-x-90">African American to hold the office. Obama previously served    </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-70-11-"><td  style="text-align:left; white-space:nowrap;" id="TBL-70-11-1"  
+class="td11">                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-70-11-2"  
+class="td11"> <span 
+class="bchr8t-x-x-90">as the junior United States Senator from Illinois, from January  </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-70-12-"><td  style="text-align:left; white-space:nowrap;" id="TBL-70-12-1"  
+class="td11">                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-70-12-2"  
+class="td11"> <span 
+class="bchr8t-x-x-90">2005 until he resigned after his election to the presidency in      </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-70-13-"><td  style="text-align:left; white-space:nowrap;" id="TBL-70-13-1"  
+class="td11">                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-70-13-2"  
+class="td11"> <span 
+class="bchr8t-x-x-90">November 2008. Originally from Hawaii, Obama is a graduate  </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-70-14-"><td  style="text-align:left; white-space:nowrap;" id="TBL-70-14-1"  
+class="td11">                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-70-14-2"  
+class="td11"> <span 
+class="bchr8t-x-x-90">of Columbia University and Harvard Law School, where he        </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-70-15-"><td  style="text-align:left; white-space:nowrap;" id="TBL-70-15-1"  
+class="td11">                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-70-15-2"  
+class="td11"> <span 
+class="bchr8t-x-x-90">was the president of the Harvard Law Review and where he       </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-70-16-"><td  style="text-align:left; white-space:nowrap;" id="TBL-70-16-1"  
+class="td11">                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-70-16-2"  
+class="td11"> <span 
+class="bchr8t-x-x-90">received a doctorate in law. He was a community organizer       </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-70-17-"><td  style="text-align:left; white-space:nowrap;" id="TBL-70-17-1"  
+class="td11">                   </td><td  style="text-align:left; white-space:nowrap;" id="TBL-70-17-2"  
+class="td11"> <span 
+class="bchr8t-x-x-90">[</span><span 
+class="bchr8t-x-x-90">&#x2026;]                                                                                               </span></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-70-18-"><td  style="text-align:left; white-space:nowrap;" id="TBL-70-18-1"  
+class="td11">                   </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;6.1: </span><span  
+class="content">Example DBpedia representation of the concept <span 
+class="bchrc8t-">B<span 
+class="small-caps">A</span><span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">C</span><span 
+class="small-caps">K</span> O<span 
+class="small-caps">B</span><span 
+class="small-caps">A</span><span 
+class="small-caps">M</span><span 
+class="small-caps">A</span></span>.</span></div><!--tex4ht:label?: x39-860031 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<a 
+ id="x39-86004r132"></a>
+   <div class="sectionTOCS">
+   &#x00A0;<span class="sectionToc" >6.1 <a 
+href="thesis-emeijse29.html#x41-870001">The Task</a></span>
+<br />   &#x00A0;<span class="sectionToc" >6.2 <a 
+href="thesis-emeijse30.html#x42-880002">Approach</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.2.1 <a 
+href="thesis-emeijse30.html#x42-890001">Ranking Concepts</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.2.2 <a 
+href="thesis-emeijse30.html#x42-900002">Learning to Select Concepts</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.2.3 <a 
+href="thesis-emeijse30.html#x42-910003">Features Used</a></span>
+<br />   &#x00A0;<span class="sectionToc" >6.3 <a 
+href="thesis-emeijse31.html#x43-960003">Experimental Setup</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.3.1 <a 
+href="thesis-emeijse31.html#x43-970001">Data</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.3.2 <a 
+href="thesis-emeijse31.html#x43-980002">Training Data</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.3.3 <a 
+href="thesis-emeijse31.html#x43-990003">Parameters</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.3.4 <a 
+href="thesis-emeijse31.html#x43-1000004">Testing and Evaluation</a></span>
+<br />   &#x00A0;<span class="sectionToc" >6.4 <a 
+href="thesis-emeijse32.html#x44-1010004">Results</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.4.1 <a 
+href="thesis-emeijse32.html#x44-1020001">Lexical Match</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.4.2 <a 
+href="thesis-emeijse32.html#x44-1030002">Retrieval Only</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.4.3 <a 
+href="thesis-emeijse32.html#x44-1040003">N-gram based Concept Selection</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.4.4 <a 
+href="thesis-emeijse32.html#x44-1050004">Full Query-based Concept Selection</a></span>
+<br />   &#x00A0;<span class="sectionToc" >6.5 <a 
+href="thesis-emeijse33.html#x45-1060005">Discussion</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.5.1 <a 
+href="thesis-emeijse33.html#x45-1070001">Inter-annotator Agreement</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.5.2 <a 
+href="thesis-emeijse33.html#x45-1080002">Textual Concept Representations</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.5.3 <a 
+href="thesis-emeijse33.html#x45-1090003">Robustness</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.5.4 <a 
+href="thesis-emeijse33.html#x45-1140004">Feature Types</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.5.5 <a 
+href="thesis-emeijse33.html#x45-1180005">Feature Selection</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.5.6 <a 
+href="thesis-emeijse33.html#x45-1190006">Error Analysis</a></span>
+<br />   &#x00A0;<span class="sectionToc" >6.6 <a 
+href="thesis-emeijse34.html#x46-1200006">Summary and Conclusions</a></span>
+</div>
+
+<a 
+ id="x39-87002r136"></a>
+
+<a 
+ id="x39-95001r138"></a>
+
+<a 
+ id="x39-100001r148"></a>
+
+<a 
+ id="x39-105002r155"></a>
+
+<a 
+ id="x39-119002r166"></a>
+
+                                                                   
+                                                                   
+<table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeij.html#thesis-emeijch6.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijch7.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijch5.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijch5.html#tailthesis-emeijch5.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijch6.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijch6.html"></a>                                    
+</body></html> 

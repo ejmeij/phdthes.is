@@ -1,0 +1,525 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Language Modeling Variations</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch2.html#thesis-emeijse11.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse12.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse10.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse10.html#tailthesis-emeijse10.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse11.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">2.4    </span> <a 
+ id="x15-240004"></a>Language Modeling Variations</h3>
+<!--l. 926--><p class="noindent" >A number of extensions and variants have been developed for language modeling for
+<a 
+href="thesis-emeijli3.html#IR">IR</a>, most of which aim to address the vocabulary gap between queries and documents.
+In the previous sections we have seen techniques such as query modeling and relevance
+feedback. Other extensions include, but are not limited to, leveraging document
+structure, collection structure, and semantics. Other <a 
+href="thesis-emeijli3.html#IR">IR</a> research avenues aim to
+develop models that use semantic information to improve performance with
+respect to standard bag-of-word based models. Many of these approaches aim at
+concept-based retrieval, but differ in the nature of the concepts. They range
+from
+     <ul class="itemize1">
+     <li class="itemize">latent  topics  derived  from  the  document  contents  (as  in  latent  semantic
+     indexing (<a 
+href="thesis-emeijli3.html#LSI">LSI</a>) or <a 
+ id="section*.18"></a>latent dirichlet allocation (<a 
+href="thesis-emeijli3.html#LDA">LDA</a>)),
+     </li>
+     <li class="itemize">document clusters in the collection, to
+     </li>
+     <li class="itemize">concepts  (a  priori  defined,  for  example,  in  linguistic  resources  such  as
+     WordNet&#x00A0;[<a 
+href="thesis-emeijli2.html#XCIKM:2005:bai">21</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:2005:cao">57</a>] or structured knowledge sources such as DBpedia&#x00A0;[<a 
+href="thesis-emeijli2.html#XIJCAI:2009:cimiano">69</a>,
+     &#x00A0;<a 
+href="thesis-emeijli2.html#XIJCAI:2007:Gabrilovich">106</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIJHCS:2009:medelyan">205</a>], as we will see in Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a>).</li></ul>
+<!--l. 941--><p class="noindent" >In the following sections we provide an overview of these models.
+<a 
+ id="x15-24001r27"></a>
+<h4 class="subsectionHead"><span class="titlemark">2.4.1    </span> <a 
+ id="x15-250001"></a>Topic Models</h4>
+<!--l. 947--><p class="noindent" >Building thesauri or other knowledge structures by hand is a very labor-intensive
+process. It is also difficult to get people to agree on a certain ordering and structuring of
+things. Because of this, it seems very attractive to automate this process, by inferring
+such structures from text in an unsupervised manner, i.e., without any human
+intervention&#x00A0;[<a 
+href="thesis-emeijli2.html#XRIAO:1994:jing">151</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XBook:1971:salton">273</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#Xbook:1971:ksj">291</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIPM:1970:sparck">293</a>]. For instance, a co-occurrence analysis of the entire
+collection might be applied to estimate dependencies between vocabulary
+terms&#x00A0;[<a 
+href="thesis-emeijli2.html#XCIKM:2005:bai">21</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIPM:2003:chung">67</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XEMNLP:2009:mitchell">234</a>]. Turney and Pantel&#x00A0;[<a 
+href="thesis-emeijli2.html#XJAIR:2010:turney">322</a>] uses a similar method which is
+commonly referred to as <span 
+class="bchri8t-">statistical semantics</span>. Alternatively, term dependencies may be
+determined on a query-dependent subset of the collection, such as a set of initially
+retrieved documents&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2005:metzler">224</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:1998:mitra">235</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:1996:Xu">345</a>]. These dependencies may then be employed to
+locate terms related to the initial query. Spiegel and Bennet already suggested
+that dependency information between terms may be used to choose terms for
+query expansion&#x00A0;[<a 
+href="thesis-emeijli2.html#XKER:2003:ruthven">272</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#Xbook:1964:spiegel">298</a>]. Peat and Willett&#x00A0;[<a 
+href="thesis-emeijli2.html#XJASIS:1991:peat">243</a>], however, do not find
+                                                                   
+                                                                   
+significant improvements in retrieval performance using such methods for query
+expansion.
+<!--l. 963--><p class="indent" >   More recently, various data driven models based on principal component
+analysis/singular value decomposition and posterior inferencing methods have caused a
+renewed interest in methods for automatically identifying implicit concepts in text.
+They capture hidden (latent) themes underlying the collection, much in the same
+way as explicit concepts. Unlike explicit topics (such as document or term
+annotations&#x2014;addressed in Section&#x00A0;<a 
+href="#x15-260002">2.4.2<!--tex4ht:ref: ssec:relwork:conceptmodels --></a>), implicit topics are estimated from the data
+and group together terms that frequently occur together in the documents. The
+assumption is that in every document collection there exist a number of such topics and
+that every document describes some combination of them. The goal, then, is to apply
+some form of dimensionality reduction in order to represent documents as topic
+mixtures. In sum, topic models are statistical models of text that assume a
+hidden space of topics in which the collection is embedded&#x00A0;[<a 
+href="thesis-emeijli2.html#XJMLR:2003:blei">40</a>]. Topic models
+are typically used as a way of expressing the &#x201C;semantic&#x201D; properties of a piece
+of text&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:2007:steyvers">303</a>] and, at the same time, can address the vocabulary mismatch
+problem&#x00A0;[<a 
+href="thesis-emeijli2.html#XCACM:1987:furnas">105</a>].
+<!--l. 978--><p class="indent" >   <a 
+href="thesis-emeijli3.html#LSI">LSI</a> was an early approach towards extracting term clusters from text&#x00A0;[<a 
+href="thesis-emeijli2.html#XJASIST:1990:dumais">88</a>].
+It is based on applying singular value decomposition to a matrix containing
+document-term counts and effectively &#x201C;collapses&#x201D; similar terms into groups.
+<a 
+ id="section*.19"></a>probabilistic latent semantic indexing (<a 
+href="thesis-emeijli3.html#PLSI">PLSI</a>) evolved from <a 
+href="thesis-emeijli3.html#LSI">LSI</a> and adds a probabilistic
+interpretation that is based on a mixture decomposition derived from a latent class
+model&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:1999:hofmann">139</a>]. Its formulation is very similar to the translation model given in
+Eq.&#x00A0;<a 
+href="thesis-emeijse10.html#x14-17001r2.11">2.11<!--tex4ht:ref: eq:relwork:translation --></a>:
+<!--tex4ht:inline--><!--l. 980--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo><munder class="msub"><mrow 
+><mo mathsize="big" 
+> &#x2211;</mo>
+   </mrow><mrow 
+><mi 
+>z</mi></mrow></munder 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>z</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>z</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">,</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(2.30)</mtext><mtext 
+   id="x15-25001r2.30"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                                    </mtr></mtable>
+</math>
+                                                                   
+                                                                   
+<!--l. 983--><p class="nopar" >
+<!--l. 985--><p class="indent" >   where <!--l. 985--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>z</mi></math>
+is a latent topic (or: aspect). However, they differ in that in the case of <a 
+href="thesis-emeijli3.html#PLSI">PLSI</a>
+<!--l. 985--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>
+is given and the objective is to <span 
+class="bchri8t-">learn </span>the probabilities
+<!--l. 985--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>z</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math> and
+<!--l. 985--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>z</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>, i.e.,
+the probability of a term given a topic and the probability of each topic given a
+document respectively. Learning is typically accomplished using an optimization
+algorithm such as <a 
+href="thesis-emeijli3.html#EM">EM</a>&#x00A0;[<a 
+href="thesis-emeijli2.html#XEM-alg">90</a>]. In fact, in Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a>, we use a variant of this model to
+incorporate <span 
+class="bchri8t-">explicit </span>topics in the form of document annotations to improve retrieval
+performance. <a 
+href="thesis-emeijli3.html#PLSI">PLSI</a> has some issues, the most important of which being the fact that it is
+a generative model of the documents it is estimated on and does not generalize to new
+documents. This fact is addressed in the <a 
+href="thesis-emeijli3.html#LDA">LDA</a> model&#x00A0;[<a 
+href="thesis-emeijli2.html#XJMLR:2003:blei">40</a>] which is a fully generative
+approach to language modeling (in fact, Girolami and Kaban&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2003:girolami">112</a>] show that <a 
+href="thesis-emeijli3.html#PLSI">PLSI</a>
+is a maximum a posteriori estimated <a 
+href="thesis-emeijli3.html#LDA">LDA</a> model under a uniform Dirichlet
+prior).
+<!--l. 991--><p class="indent" >   Topic models have been applied in the context of <a 
+href="thesis-emeijli3.html#IR">IR</a>&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2006:wei">340</a>] and text classification&#x00A0;[<a 
+href="thesis-emeijli2.html#XJMLR:2003:blei">40</a>],
+among others&#x00A0;[<a 
+href="thesis-emeijli2.html#XIR:2010:li">193</a>]. Wei and Croft&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2006:wei">340</a>] use <a 
+href="thesis-emeijli3.html#LDA">LDA</a> to apply an additional level of
+language model smoothing. Pu and He&#x00A0;[<a 
+href="thesis-emeijli2.html#XCIKM:2009:pu">250</a>] use &#x201C;Independent Component Analysis&#x201D;
+(a topic modeling variant) to determine so-called semantic clusters, defined by the
+learned topics. They sample terms for query modeling using relevance models on these
+clusters. This intuition is highly similar to our methods presented in Chapters&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a> and&#x00A0;<a 
+href="thesis-emeijch7.html#x47-1210007">7<!--tex4ht:ref: chap:cikm2010 --></a>,
+although we use explicit topics in the form of concepts instead of implicit
+topics.
+<a 
+ id="x15-25002r29"></a>
+<h4 class="subsectionHead"><span class="titlemark">2.4.2    </span> <a 
+ id="x15-260002"></a>Concept Models</h4>
+<!--l. 1006--><p class="noindent" >In this thesis we define concepts to be cognitive units of meaning that have been
+formalized in a knowledge structure such as a controlled vocabulary, thesaurus, or
+ontology. Furthermore, we impose the restriction that such concepts should be agreed
+upon by a number of people (who typically are domain experts). So, this definition
+includes concepts taken from thesauri such as <a 
+href="thesis-emeijli3.html#MeSH">MeSH</a>, but also Wikipedia articles (as
+captured, for example, in the DBpedia knowledge base). Moreover, this definition thus
+excludes machine-generated concepts (such as topics, clusters, or topic hierarchies) as
+well as personal, user generated tags. Initially, such <span 
+class="bchri8t-">concepts </span>(taken from a
+particular knowledge structure, described in some particular <span 
+class="bchri8t-">concept language</span>)
+were used in <a 
+href="thesis-emeijli3.html#IR">IR</a> for indexing purposes. The Cranfield experiments established,
+however, that retrieval performance using &#x201C;controlled&#x201D; indexing terms does not
+outperform using terms as they appear in the documents&#x00A0;[<a 
+href="thesis-emeijli2.html#Xcranfield:1970:cleverdon">74</a>]. However, later
+studies did not unanimously confirm this conclusion&#x00A0;[<a 
+href="thesis-emeijli2.html#XIPM:2007:bhogal">35</a>]. Various researchers
+                                                                   
+                                                                   
+continue to look for ways of (automatically) improving retrieval performance,
+using either manually or automatically identified concepts. In order for <a 
+href="thesis-emeijli3.html#IR">IR</a>
+models and methods to leverage concepts from concept languages, the more
+general task of (automatically) linking free text to such concepts needs to
+be addressed. In this section we zoom in on approaches related to language
+modeling and/or <a 
+href="thesis-emeijli3.html#IR">IR</a>. In Section&#x00A0;<a 
+href="thesis-emeijse12.html#x16-280005">2.5<!--tex4ht:ref: sec:relwork:linking --></a> we discuss the issue from a more general
+viewpoint.
+<!--l. 1020--><p class="indent" >   One of the first methods for automatically relating concepts with text was
+introduced in the 1980s. Giger&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:1988:Giger">111</a>] incorporated a mapping between concepts from a
+thesaurus and words as they appear in the collection. The main motivation was to move
+beyond text-based retrieval and bridge the semantic gap between the user and the
+information retrieval system. His algorithm first defines <span 
+class="bchri8t-">atomic concepts</span>, which are
+string-based concept to term mappings. Then, documents are placed in disjoint groups
+based on so-called elementary logical conjuncts, which are defined through the atomic
+concepts. At retrieval time, the query is parsed and the sets of documents with the
+lowest distance to the requested concepts are returned. His ideas relate to recent work
+done by Zhou <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2006:Zhou">357</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIEEE:2007:Zhou">358</a>], who use so-called <span 
+class="bchri8t-">topic signatures </span>to index and
+retrieve documents. These signatures are comprised of named entities recognized
+within each document and query; when named entities are not available, term
+pairs are used. The named entity recognition step in [<a 
+href="thesis-emeijli2.html#XSIGIR:2006:Zhou">357</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIEEE:2007:Zhou">358</a>] is automated
+and might not be completely accurate; we suspect that errors in this concept
+detection process do not strongly affect retrieval performance because <span 
+class="bchri8t-">pairs </span>of
+concepts (topic signatures) are used for retrieval. Below, in Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a>, we
+rely on manually curated concept annotations, making the topic signatures
+superfluous.
+<!--l. 1042--><p class="indent" >   Trieschnigg <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XTREC:2006:trieschnigg">315</a>] also use named entity recognition to obtain a conceptual
+representation of queries and documents. They conclude that searching only with an
+automatically obtained conceptual representation seriously degrades retrieval when
+searching for short documents. Interestingly, the same approach performs on par with
+text-only search when larger documents (full-text articles) are retrieved. Guo
+<span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#Xguo:nerq09">117</a>] perform named entity recognition in queries; they recognize a single entity
+in each query and subsequently classify it into one of a very small set of predefined
+classes such as &#x201C;movie&#x201D; or &#x201C;video game.&#x201D; In our concept models (presented in
+Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a>), we do not impose the restriction of having a single concept per query and,
+furthermore, our list of candidate concepts is much larger. Several other approaches
+have been proposed that link queries to a limited set of categories. French <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XIR:2002:french">104</a>]
+present an approach that uses mappings between noun phrases and concepts for query
+expansion; to this end they employ so-called Entry Vocabulary Indexes&#x00A0;[<a 
+href="thesis-emeijli2.html#XHLT:2001:gey">109</a>]. These
+are calculated as a logit-like function, operating on contingency tables with
+counts of the number of times a noun phrase is and is not associated with a
+concept. The counts are obtained by looking at the documents that are annotated
+with a certain concept, much in the same way as the approach we present
+                                                                   
+                                                                   
+in Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a>. Bendersky and Croft&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2008:bendersky">29</a>] use part-of-speech tagging and a
+supervised machine learning technique to identify the &#x201C;key noun phrases&#x201D; in
+verbose natural language queries. Key noun phrases are phrases that convey the
+most information in a query and contribute most to the resulting retrieval
+performance.
+<!--l. 1063--><p class="indent" >   Instead of using part-of-speech tagging, noun phrases, or named entity recognition,
+Gabrilovich and Markovitch&#x00A0;[<a 
+href="thesis-emeijli2.html#XIJCAI:2007:Gabrilovich">106</a>] employ document-level annotations, in
+the form of Wikipedia articles and categories&#x00A0;[<a 
+href="thesis-emeijli2.html#XIJHCS:2009:medelyan">205</a>]. They perform semantic
+interpretation of unrestricted natural language texts by representing meaning in
+a high-dimensional space of concepts derived from Wikipedia. In this way,
+the strength of association between vocabulary terms and concepts can be
+quantified, which can subsequently be used to generate vectors of concepts for a
+piece of text&#x2014;either a document or query. In Chapter&#x00A0;<a 
+href="thesis-emeijch7.html#x47-1210007">7<!--tex4ht:ref: chap:cikm2010 --></a>, we use a similar
+method using machine learning and language modeling techniques, to obtain a
+query model estimated from Wikipedia articles relevant to the query. This
+approach is also similar to the intuitions behind the topic modeling approach
+described by&#x00A0;Wei&#x00A0;[<a 
+href="thesis-emeijli2.html#Xthesis:wei">339</a>], that uses <a 
+ id="section*.20"></a>Open Directory Project (<a 
+href="thesis-emeijli3.html#ODP">ODP</a>) concepts in
+conjunction with generative language models. Instead of using concept-document
+associations, however, she uses an ad hoc approach based on the descriptions of the
+concepts in the concept language (in this case, <a 
+href="thesis-emeijli3.html#ODP">ODP</a> categories). Interestingly,
+all of these approaches open up the door to providing conceptual relevance
+feedback to users. Instead of suggesting vocabulary terms that are related to the
+query, we can now suggest related concepts that can, for example, be used for
+navigational purposes&#x00A0;[<a 
+href="thesis-emeijli2.html#XIR:2008:Keskustalo">165</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XECDL:2007:meij">209</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIPM:2004:silveira">285</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XJOD:2004:vakkari">323</a>] or directly for retrieval&#x00A0;[<a 
+href="thesis-emeijli2.html#XJASIS:1995:rajashekar">254</a>]. Trajkova
+and Gauch&#x00A0;[<a 
+href="thesis-emeijli2.html#XRIAO:2004:Trajkova">314</a>] describe another possible application; their system keeps
+track of a user&#x2019;s history by classifying visited web pages into concepts from the
+<a 
+href="thesis-emeijli3.html#ODP">ODP</a>.
+<!--l. 1091--><p class="indent" >   Concepts can be recognized at different levels of granularity, either at the term level,
+by recognizing concepts in the text, or at the document level, by using document-level
+annotations or categories. While the former can be described as a form of <span 
+class="bchri8t-">concept-based</span>
+<span 
+class="bchri8t-">indexing</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:1979:Lancaster">178</a>], the latter is more related to text classification. Indeed, the mapping of
+vocabulary terms to concepts as described above is in fact a text (or concept)
+classification algorithm&#x00A0;[<a 
+href="thesis-emeijli2.html#XIPM:1968:sparck">294</a>].
+<!--l. 1105--><p class="indent" >   Further examples of mapping queries to conceptual representations can be found in
+the area of web query classification. Broder <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2007:broder">47</a>] use a pseudo relevance
+feedback technique to classify rare queries into a commercial taxonomy of web
+queries, with the goal to improve web advertisements. A classifier is used to
+classify the highest ranked results, and these classifications are subsequently
+used to classify the query by means of voting. We use a similar method to
+obtain the conceptual representation of our query described in Section&#x00A0;<a 
+href="thesis-emeijse24.html#x34-700001">5.1.1<!--tex4ht:ref: chapter04:ssec:concquerymodels --></a>,
+with the important difference that all our documents have been manually
+classified.
+                                                                   
+                                                                   
+<!--l. 1116--><p class="indent" >   Mishne and de&#x00A0;Rijke&#x00A0;[<a 
+href="thesis-emeijli2.html#Xmish:astu06">233</a>] classify queries into taxonomies using category-based
+web services. Shen <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2006:shen">282</a>] improve web query classification by mapping the
+query to concepts in an intermediate taxonomy which in turn are linked to
+concepts in the target taxonomy. Chen <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XWSDM:2008:chen">66</a>] use a taxonomy to suggest
+keywords. After mapping the seed keywords to a concept hierarchy, content phrases
+related to the found concepts are suggested. In Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a>, the concepts are used
+to update the query model, i.e., to update the probabilities of terms based
+on the found concepts rather than the addition of related discrete terms or
+phrases.
+<!--l. 1129--><p class="indent" >   The use of a conceptual representation obtained from pseudo relevance feedback
+has also been investigated by researchers in the biomedical domain. Srinivasan&#x00A0;[<a 
+href="thesis-emeijli2.html#XIPM:1996:Srinivasan">302</a>]
+proposes directly adding concepts to an initial query and reports the largest
+improvement in retrieval effectiveness when another round of blind relevance feedback
+on vocabulary terms is applied afterwards. She creates a separate &#x201C;concept index&#x201D;
+in which tokenized concept labels are used as terms. In this way, searching
+using a concept labeled &#x201C;Stomach cancer&#x201D; also matches the related, but clearly
+different concept &#x201C;Breast cancer&#x201D; because they share the word &#x201C;cancer&#x201D;. In our
+opinion, this obfuscates the added value of using clearly defined concepts;
+searching with a textual representation containing the word &#x201C;cancer&#x201D; will already
+result in matching related concepts. In Section&#x00A0;<a 
+href="thesis-emeijse32.html#x44-1010004">6.4<!--tex4ht:ref: sec:chapter6:results --></a> we show that this kind of
+lexical matching does not perform well. <a 
+href="thesis-emeijli2.html#XIPM:1996:Srinivasan">Srinivasan</a> concludes that concepts
+are beneficial for retrieval, but remarks that the OHSUMED collection used
+for evaluation was quite small. Our evaluation in Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a> uses the larger
+<a 
+ id="section*.21"></a>Text Retrieval Conference (<a 
+href="thesis-emeijli3.html#TREC">TREC</a>) Genomics test collections and, additionally,
+investigates the use of document level annotations in another domain using the
+<a 
+ id="section*.22"></a>Cross-Language Evaluation Forum (<a 
+href="thesis-emeijli3.html#CLEF">CLEF</a>) Domain Specific test collections
+(cf. Section&#x00A0;<a 
+href="thesis-emeijse16.html#x23-380003">3.3<!--tex4ht:ref: sec:testcollections --></a>). Camous <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XCORIA:2006:camous">56</a>] also use the annotations of the top-5
+retrieved documents to obtain a conceptual query representation, but incorporate
+them in a different fashion. The authors use them to create a new ranked list
+of documents, which is subsequently combined with the initially retrieved
+documents.
+<!--l. 1155--><p class="indent" >   In addition to query expansion, various ways of directly improving text-based
+retrieval by incorporating concepts or a concept language have been proposed. For
+example, the entries from a concept language may be used to define the indexing terms
+employed by the retrieval system&#x00A0;[<a 
+href="thesis-emeijli2.html#XIPM:2005:savoy">280</a>].
+<a 
+ id="x15-26001r30"></a>
+<h4 class="subsectionHead"><span class="titlemark">2.4.3    </span> <a 
+ id="x15-270003"></a>Cluster-based Language Models</h4>
+<!--l. 1166--><p class="noindent" >Work done on cluster-based retrieval can be viewed as a variation on the concept or
+topic modeling theme; in those cases, however, the clusters are defined by the concepts
+(hard clustering) or the latent topics (soft clustering) that are associated with the
+documents in the collection.
+                                                                   
+                                                                   
+<!--l. 1170--><p class="indent" >   Cluster-based language models use document-document similarity to define
+coherent subsets of the collection. Document clusters can be construed as semantically
+coherent segments, each covering one &#x201C;concept.&#x201D; Indeed,&#x00A0;Trieschnigg <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XBIOINF:2009:trieschnigg">318</a>] have
+shown that a nearest-neighbor clustering approach yields the best performance when
+classifying documents into MeSH terms. Kurland and Lee&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2004:Kurland">171</a>] determine overlapping
+clusters of documents in a collection, which are considered <span 
+class="bchri8t-">facets </span>of the collection. They
+use a language modeling framework in which their aspect-x algorithm smoothes
+documents based on the information from the clusters and the strength of the
+connection between each document and cluster. Liu and Croft&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2004:Liu">189</a>] evaluate
+both the direct retrieval of clusters and cluster-based smoothing. Their CBDM
+model is a mixture between a document model, a collection model, and the
+cluster each document belongs to, which is able to significantly outperform a
+standard query likelihood baseline. Instead of smoothing documents, Minker
+<span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XIPM:1972:minker">231</a>] use cluster-based information for query expansion. The authors
+evaluate their algorithm on several small test collections, without achieving any
+improvements over the unexpanded queries. More recently, Lee <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2008:lee">185</a>] have
+shown that detecting clusters in a set of (pseudo-)relevant documents is helpful
+for identifying dominant documents for a query and, thus, for subsequent
+query expansion, a finding which was corroborated on different test collections
+by&#x00A0;Kurland&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2008:kurland">170</a>]. In [<a 
+href="thesis-emeijli2.html#XJASIST:2010:he">126</a>] we show that soft clustering using <a 
+href="thesis-emeijli3.html#LDA">LDA</a> can help to
+significantly improve result diversification performance, i.e., identifying and
+promoting relevant aspects of a query. These approaches all exploit the notion that
+&#x201C;associations between documents convey information about the relevance of
+documents to requests&#x201D; [<a 
+href="thesis-emeijli2.html#XASR:1971:Jardine">145</a>]. Indeed, if we have evidence that a given concept
+is relevant for a particular query, it is natural to assume that all documents
+labeled with this concept have a higher prior probability of being relevant to the
+query&#x00A0;[<a 
+href="thesis-emeijli2.html#XBook:1979:Rijsbergen">325</a>]. This is the main motivating idea for our model presented in
+Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a>.
+                                                                   
+                                                                   
+<!--l. 1202--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch2.html#thesis-emeijse11.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse12.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse10.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse10.html#tailthesis-emeijse10.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijse11.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse11.html"></a> 
+</body></html> 

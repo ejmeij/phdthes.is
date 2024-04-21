@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>7 Query Modeling Using Linked Concepts</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeij.html#thesis-emeijch7.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijch8.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijch6.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijch6.html#tailthesis-emeijch6.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijch7.html">Tail</a></td></tr></table><h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;7</span><br /><a 
+ id="x47-1210007"></a>Query Modeling Using Linked Concepts</h2>
+<!--l. 26--><p class="noindent" >In previous chapters we have seen various ways of updating the estimate of a query
+model, for example through the use of feedback information (Chapter&#x00A0;<a 
+href="thesis-emeijch4.html#x26-470004">4<!--tex4ht:ref: chap:relfb --></a>) or conceptual
+document annotations (Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a>). In essence, these approaches are a form of <span 
+class="bchri8t-">data</span>
+<span 
+class="bchri8t-">fusion</span>, where information from multiple sources is combined to influence a
+document ranking. Such fusion methods exist in a number of related tasks. For
+example, in web retrieval it is common to take into account anchor texts or some
+function of the web graph&#x00A0;[<a 
+href="thesis-emeijli2.html#Xgoogle">45</a>]. In multimedia environments, different modalities
+(text, video, speech, etc.) need to be combined. In cross-lingual <a 
+href="thesis-emeijli3.html#IR">IR</a>, where the
+queries and documents are stated in different languages, evidence from multiple
+languages is merged to obtain a final ranking. In our query modeling case, we
+have combined evidence from either top-ranked or relevant documents and
+the initial query. In Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a>&#x00A0;we have added to this concepts in the form of
+document annotations. In Chapter&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860006">6<!--tex4ht:ref: chap:linkingconcepts --></a>&#x00A0;we have linked domain-restricted queries to
+DBpedia and the question arose &#x201C;Can we apply the semantic analysis based on
+Linked Open Data (<a 
+href="thesis-emeijli3.html#LOD">LOD</a>) to the open domain?&#x201D; Furthermore, can we apply
+these linked concepts for retrieval, using the ideas presented in Chapter&#x00A0;<a 
+href="thesis-emeijch4.html#x26-470004">4<!--tex4ht:ref: chap:relfb --></a>&#x00A0;and
+Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a>?
+<!--l. 28--><p class="indent" >   Looking from a different angle, there have been several developments in web search
+over the last 20 years&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2010:broder">19</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIEEE:2002:spink">300</a>]. Initially, web pages were ranked solely based on <a 
+ id="section*.52"></a>term
+frequency (<a 
+href="thesis-emeijli3.html#TF">TF</a>) and <a 
+ id="section*.53"></a>inverse document frequency (<a 
+href="thesis-emeijli3.html#IDF">IDF</a>) of the terms a user entered
+in her query. Later, this was enriched with &#x201C;off-page&#x201D; information, such as
+information from the web graph, anchortext, and related hyperlinks and from user
+behavior such as clicks or dwell time&#x00A0;[<a 
+href="thesis-emeijli2.html#Xgoogle">45</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGKDD:2002:joachims">152</a>]. Most recently, as users are
+visiting the search engines for more diverse reasons&#x00A0;[<a 
+href="thesis-emeijli2.html#XIEEE:2002:spink">300</a>], the major web
+search engines are also moving towards semantically informed responses,
+aiming to interpret a user&#x2019;s intent and answer the information need behind the
+query&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2010:broder">19</a>]&#x2014;whether the search engines &#x201C;follow&#x201D; changing user behavior or
+whether users adapt to new functionalities offered by search engines does not
+really matter for this discussion&#x00A0;[<a 
+href="thesis-emeijli2.html#XIPM:2006:jansen">143</a>]. Aiming to answer information needs
+instead of queries involves rather low-level enhancements such as spelling
+correction, but also more fine-grained user interface enhancements such as
+query suggestions&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2003:Anick">9</a>]. A prime example is the Yahoo! query formulation tool
+called searchassist that we have mentioned as an example in the previous
+chapter. In&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2009:meij">217</a>] we have shown that blending in conceptual information in the
+query suggestion process can improve such suggestions, especially for rare,
+infrequent queries. Moving more towards determining the <span 
+class="bchri8t-">meaning </span>of queries (or,
+indeed, the information needs behind them), current enhancements include
+determining the task the user aims to solve&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:forum:2002:broder">46</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XWWW:2004:rose">270</a>] or determining the type
+of information that is being sought (through so-called <span 
+class="bchri8t-">verticals</span>&#x2014;which are
+                                                                   
+                                                                   
+typically defined as &#x201C;domain-specific subcollections&#x201D;)&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2009:arguello">11</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XWWW:2009:diemert">93</a>]. Another way
+of attempting to answer the information need behind the query is through
+semantic analysis, for example by (semi-automatic) expansion of the query using
+synonyms&#x00A0;[<a 
+href="thesis-emeijli2.html#Xurl:google:tilde">113</a>]. Other approaches aim to infer the semantics behind the queries that
+are submitted&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2010:bordino">42</a>].
+<!--l. 40--><p class="indent" >   Even other approaches try to understand the &#x201C;things&#x201D; that are being sought. For
+example, using the approach presented by&#x00A0;Gabrilovich and Markovitch&#x00A0;[<a 
+href="thesis-emeijli2.html#XJAIR:2009:Gabrilovich">107</a>], we can
+obtain a mapping of free text to concepts (in the form of Wikipedia articles); the same
+ideas are applied in a more general sense by&#x00A0;Turney and Pantel&#x00A0;[<a 
+href="thesis-emeijli2.html#XJAIR:2010:turney">322</a>]. Medelyan
+<span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XIJHCS:2009:medelyan">205</a>] present a comprehensive overview of approaches making use of Wikipedia
+to extract and make use of the concepts, relations, facts, and descriptions found in
+Wikipedia.
+<!--l. 42--><p class="indent" >   One of the current goals of the semantic web (in particular the <a 
+href="thesis-emeijli3.html#LOD">LOD</a> cloud or &#x201C;web
+of data&#x201D;) is to expose, share, and connect data&#x00A0;[<a 
+href="thesis-emeijli2.html#Xurl:linkeddata">32</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIJSWIS:2009:Bizer">37</a>]. For this, it uses URIs to
+identify concepts and provides means by which to describe the concepts themselves as
+well as any possible relationships with other concepts. One of the current goals of major
+search engines is very similar: to move beyond a web of pages towards gathering and
+exposing web-derived knowledge and a &#x201C;web of things&#x201D; instead&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2010:broder">19</a>]. Indeed, in
+this chapter we explore what happens when we apply the semantic analysis
+method from Chapter&#x00A0;<a 
+href="thesis-emeijch6.html#x39-860006">6<!--tex4ht:ref: chap:linkingconcepts --></a>, that links queries to a semantic &#x201C;backbone,&#x201D; (in the
+form of concepts in a concept language). We do so in order to &#x201C;understand&#x201D;
+open domain queries and to estimate query models based on this conceptual
+information.
+<!--l. 52--><p class="indent" >   In particular, we take the best performing machine learning method from the
+previous chapter and map queries from the open domain to DBpedia concepts. Then,
+we apply the most robust relevance feedback method, relevance model 1 (RM-1), from
+Chapter&#x00A0;<a 
+href="thesis-emeijch4.html#x26-470004">4<!--tex4ht:ref: chap:relfb --></a>&#x00A0;to the Wikipedia articles associated with the found DBpedia concepts to
+estimate a query model. The guiding intuition is that, similar to our conceptual query
+models, concepts are best described by the language use associated with them. In other
+words, once our algorithm has determined which concepts are meant by a query, we
+employ the language use associated with those concepts to update the query model. We
+compare the performance of this approach to pseudo relevance feedback on the
+collection (in the same way as presented in Chapter&#x00A0;<a 
+href="thesis-emeijch4.html#x26-470004">4<!--tex4ht:ref: chap:relfb --></a>) and to pseudo relevance
+feedback on Wikipedia (similar to the way we obtain conceptual query models in
+Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a>).
+<!--l. 76--><p class="indent" >   The research questions we address in this chapter are as follows.
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">RQ 4.</span> </dt><dd 
+class="description">What are the effects on retrieval performance of applying pseudo relevance
+     feedback methods to texts associated with concepts that are automatically
+     mapped from ad hoc queries?
+         <dl class="enumerate"><dt class="enumerate">
+                                                                   
+                                                                   
+      <span 
+class="bchb8t-">a.</span>  </dt><dd 
+class="enumerate">What are the differences with respect to pseudo relevance estimations
+         on  the  collection?  And  when  the  query  models  are  estimated  using
+         pseudo relevance estimations on the concepts&#x2019; texts?
+         </dd><dt class="enumerate">
+      <span 
+class="bchb8t-">b.</span>  </dt><dd 
+class="enumerate">Is the approach mainly a recall- or precision-enhancing device? Or does
+         it help other aspects, such as promoting diversity?</dd></dl>
+     </dd></dl>
+<!--l. 90--><p class="noindent" >The main contribution presented in this chapter is to provide an indication to what extent
+the <a 
+href="thesis-emeijli3.html#LOD">LOD</a>-based semantic analysis presented in the previous chapter can be applied for
+query modeling in the open domain. In this chapter, we therefore make use of the TREC
+Terabyte 2004&#x2013;2006 (TREC-TB) and TREC Web 2009, Category A (TREC-WEB-09) test
+collections as introduced in Section&#x00A0;<a 
+href="thesis-emeijse16.html#x23-380003">3.3<!--tex4ht:ref: sec:testcollections --></a>. Recall that TREC Terabyte uses the .GOV2
+document collection, a large crawl of the .gov domain. TREC Web 2009 uses
+the ClueWeb09 document collection, a realistically sized web collection. In
+the experiments in this chapter we use the largest subset, Category A. The
+topics associated with the TREC Web 2009 test collection are taken from a
+search engine&#x2019;s log and representative of queries submitted to a web search
+engine.
+<!--l. 94--><p class="indent" >   We continue this chapter in Section&#x00A0;<a 
+href="thesis-emeijse35.html#x48-1220001">7.1<!--tex4ht:ref: chapter07:sec:linking --></a> by introducing our method for obtaining
+DBpedia concepts from ad hoc queries. In Section&#x00A0;<a 
+href="thesis-emeijse36.html#x49-1230002">7.2<!--tex4ht:ref: chapter07:sec:qm --></a> we detail how we estimate the
+query models as well as the experimental setup used. We discuss results in Section&#x00A0;<a 
+href="thesis-emeijse37.html#x50-1240003">7.3<!--tex4ht:ref: chapter07:sec:results --></a>
+and end with a concluding section.
+<a 
+ id="x47-121001r191"></a>
+   <div class="sectionTOCS">
+   &#x00A0;<span class="sectionToc" >7.1 <a 
+href="thesis-emeijse35.html#x48-1220001">Linking queries to Wikipedia</a></span>
+<br />   &#x00A0;<span class="sectionToc" >7.2 <a 
+href="thesis-emeijse36.html#x49-1230002">Experimental Setup</a></span>
+<br />   &#x00A0;<span class="sectionToc" >7.3 <a 
+href="thesis-emeijse37.html#x50-1240003">Results and Discussion</a></span>
+<br />   &#x00A0;<span class="sectionToc" >7.4 <a 
+href="thesis-emeijse38.html#x52-1250004">Summary and Conclusions</a></span>
+</div>
+
+<a 
+ id="x47-122005r193"></a>
+
+<a 
+ id="x47-123004r196"></a>
+
+<a 
+ id="x47-124015r197"></a>
+
+                                                                   
+                                                                   
+<table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeij.html#thesis-emeijch7.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijch8.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijch6.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijch6.html#tailthesis-emeijch6.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijch7.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijch7.html"></a>      
+</body></html> 

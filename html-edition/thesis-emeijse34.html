@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Summary and Conclusions</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch6.html#thesis-emeijse34.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse33.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse33.html#tailthesis-emeijse33.html" >PrevTail</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse34.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">6.6    </span> <a 
+ id="x46-1200006"></a>Summary and Conclusions</h3>
+<!--l. 6--><p class="noindent" >In this chapter we have introduced the task of mapping search engine queries to the
+<a 
+href="thesis-emeijli3.html#LOD">LOD</a> cloud and presented a method that uses supervised machine learning methods to
+learn which concepts are used in a query. We consider DBpedia to be an integral part of,
+and interlinking hub for, the <a 
+href="thesis-emeijli3.html#LOD">LOD</a> cloud, which is why we focused our efforts on
+mapping queries to this ontology.
+<!--l. 9--><p class="indent" >   Our approach first retrieves and ranks candidate concepts using a framework based
+on language modeling for information retrieval. We then extract query, concept, and
+history-specific feature vectors for these candidate concepts. Using manually created
+annotations we inform a machine learning algorithm, which then learns how to best
+select candidate concepts given an input query.
+<!--l. 16--><p class="indent" >   Our results were obtained using the Dutch version of DBpedia and queries from a
+log of the Netherlands Institute for Sound and Vision. Although these resources are in
+Dutch, the framework we have presented is language-independent. Moreover, the
+approach is also generic in that several of the employed features can be used with
+ontologies other than DBpedia.
+<!--l. 23--><p class="indent" >   In this chapter we have reported upon extensive analyses to answer the following
+research questions.
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">RQ 3.</span> </dt><dd 
+class="description">Can we successfully address the task of mapping search engine queries to
+     concepts using a combination of information retrieval and machine learning
+     techniques? <span 
+class="bchri8t-">A typical approach for mapping text to concepts is to apply some</span>
+     <span 
+class="bchri8t-">form  of  lexical  matching  between  concept  labels  and  terms,  typically  using</span>
+     <span 
+class="bchri8t-">the  context  of  the  text  for  disambiguation  purposes.  What  are  the  results</span>
+     <span 
+class="bchri8t-">of  applying  this  method  to  our  task?  What  are  the  results  when  using  a</span>
+     <span 
+class="bchri8t-">purely retrieval-based approach? How do these results compare to those of our</span>
+     <span 
+class="bchri8t-">proposed method?</span></dd></dl>
+<!--l. 37--><p class="noindent" >Our best performance was obtained using Support Vector Machines and features extracted
+from the full input queries. The best performing run was able to locate almost 90% of
+the relevant concepts on average. Moreover, this particular run achieved a precision@1
+of 89%, meaning that for this percentage of queries the first suggested concept was
+relevant.<span class="footnote-mark"><a 
+href="thesis-emeij40.html#fn1x13"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x46-120001f1"></a><span class="footnote-mark"><a 
+ id="fn1x13">     <sup class="textsuperscript">1</sup></a></span><span 
+class="bchr8t-x-x-80">Our results can be partially explained by the fact that we have decided to focus on the quality of the</span>
+  <span 
+class="bchr8t-x-x-80">suggested concepts and as such removed &#x201C;anomalous&#x201D; queries from the evaluation, i.e., queries with typos or</span>
+  <span 
+class="bchr8t-x-x-80">that were too ambiguous or vague for human assessors to be able to assign a concept to. Ideally,</span>
+  <span 
+class="bchr8t-x-x-80">one would have a classifier at the very start of the query linking process which would predict</span>
+  <span 
+class="bchr8t-x-x-80">whether a query falls in one of these categories. Implementing and evaluating such a classifier</span>
+  <span 
+class="bchr8t-x-x-80">is an interesting&#x2014;and challenging&#x2014;research topic in itself but falls beyond the scope of this</span>
+  <span 
+class="bchr8t-x-x-80">thesis.</span> 
+                                                                   
+                                                                   
+We find that simply performing a lexical match between the queries and concepts did
+not perform well and neither did using retrieval alone, i.e., omitting the concept
+selection stage. When applying our proposed method, we found significant
+improvements over these baselines and the best approach incorporates both
+information retrieval and machine learning techniques. In sum, we have shown that
+search engine queries can be successfully mapped to concepts from the Linked Open
+Data Cloud.
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">RQ 3a.</span>  </dt><dd 
+class="description">What  is  the  best  way  of  handling  a  query?  That  is,  what  is  the
+     performance when we map individual n-grams in a query instead of the
+     query as a whole?</dd></dl>
+<!--l. 65--><p class="noindent" >The best way of handling query terms is to model them not as separate n-grams, but as a
+single unit&#x2014;a finding also interesting from an efficiency viewpoint, since the number of
+n-grams is quadratic in the length of the query.
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">RQ 3b.</span>  </dt><dd 
+class="description">As input to the machine learning algorithms we extract and compute a
+     wide variety of features, pertaining to the query terms, concepts, and search
+     history. Which type of feature helps most? Which individual feature is most
+     informative?</dd></dl>
+<!--l. 74--><p class="noindent" >As became clear from Table&#x00A0;<a 
+href="thesis-emeijse33.html#x45-11500116">6.16<!--tex4ht:ref: tbl:featuretypes --></a> and&#x00A0;<a 
+href="thesis-emeijse33.html#x45-11800118">6.18<!--tex4ht:ref: tbl:attributesel:ngrams --></a>, DBpedia related features such as
+inlinks and outlinks and redirects were helpful. We also found that features
+pertaining to both the concept and query (such as the term frequency of the
+query in various textual representations of the concepts) were essential in
+obtaining good classification performance. Such information may not exist in other
+ontologies.
+     <dl class="description"><dt class="description">
+<span 
+class="bchb8t-">RQ 3c.</span>  </dt><dd 
+class="description">Machine learning generally comes with a number of parameter settings.
+     We ask: what are the effects of varying these parameters?   <span 
+class="bchri8t-">What are the</span>
+     <span 
+class="bchri8t-">effects of varying the size of the training set, the fraction of positive examples,</span>
+     <span 
+class="bchri8t-">as  well  as  any  algorithm-specific  parameters?  Furthermore,  we  provide  the</span>
+     <span 
+class="bchri8t-">machine learning step with a small set of candidate concepts. What are the</span>
+     <span 
+class="bchri8t-">effects of varying the size of this set?</span></dd></dl>
+<!--l. 99--><p class="noindent" >With respect to the machine learning algorithms, we find that reducing the quantity of
+training material caused only a marginal decline in performance. This means, in
+practical terms, that the amount of labor-intensive human annotations can be greatly
+reduced. Furthermore, our results indicate that the performance is relatively
+insensitive to the setting of various machine learning model parameters; optimizing
+these will improve the absolute scores but not change the ranking of machine
+learning models (when ranked by their performance). As to the size of the
+initial concept ranking that is given as input to the machine learning model, we
+                                                                   
+                                                                   
+find that the optimal number is three; the performance declines above this
+value.
+<!--l. 109--><p class="indent" >   The concepts suggested by our method may be used to provide contextual
+information, related concepts, navigational suggestions, or an entry point into the
+Linked Open Data cloud. We have shown that the optimal way of obtaining such
+conceptual mappings between queries and concepts involves both concept ranking and
+filtering. This approach outperforms other ones, including lexical matching and using
+retrieval alone. However, the queries we have used in this chapter are specific to the
+given system and domain. Although the concepts we link to are taken from the general
+domain, the used queries raise questions about the generalizability of the results when
+queries are taken from other, broader domains. In the next chapter we address this
+issue, by applying the same approach to query sets taken from the <a 
+href="thesis-emeijli3.html#TREC">TREC</a> evaluation
+campaign, including a set of queries taken from a commercial web search engine&#x2019;s
+query log. There, we use them for query modeling, by sampling terms from the
+Wikipedia articles associated with the mapped concepts using the same method as the
+one presented in Chapter&#x00A0;<a 
+href="thesis-emeijch5.html#x32-680005">5<!--tex4ht:ref: chap:documentannotations --></a>. Furthermore, we also compare the performance
+with an approach using solely relevance feedback methods, as detailed in
+Chapter&#x00A0;<a 
+href="thesis-emeijch4.html#x26-470004">4<!--tex4ht:ref: chap:relfb --></a>.
+                                                                   
+                                                                   
+<!--l. 23--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch6.html#thesis-emeijse34.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse33.html" >Prev</a></td><td class="clinks"><a 
+href="thesis-emeijse33.html#tailthesis-emeijse33.html" >PrevTail</a></td><td class="clinks"><a 
+href="thesis-emeijse34.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse34.html"></a> 
+</body></html> 

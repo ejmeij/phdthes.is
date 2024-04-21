@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://purl.org/rss/1.0/" xmlns:taxo="http://purl.org/rss/1.0/modules/taxonomy/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:syn="http://purl.org/rss/1.0/modules/syndication/" xmlns:admin="http://webns.net/mvcb/">
+  <!-- file: %%file%% -->
+  <channel rdf:about="%%url%%">
+    <title>%%title%%</title>
+    <link>%%url%%</link>
+    <description>%%description%%</description>
+    <syn:updatePeriod>%%update_period%%</syn:updatePeriod>
+    <syn:updateFrequency>%%update_frequency%%</syn:updateFrequency>
+    <syn:updateBase>%%update_base%%</syn:updateBase>
+    <items>
+      <rdf:Seq>
+        %%li%%
+      </rdf:Seq>
+    </items>
+    <image rdf:resource="%%url%%newsitem_icon.gif"/>
+  </channel>
+  %%item%%
+  <image rdf:about="%%url%%newsitem_icon.gif">
+    <title>FSF News </title>
+    <url>%%url%%newsitem_icon.gif</url>
+    <link>%%url%%</link>
+  </image>
+</rdf:RDF>

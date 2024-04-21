@@ -1,0 +1,1928 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Conceptual Language Models</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch5.html#thesis-emeijse24.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse25.html" >Next</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse24.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">5.1    </span> <a 
+ id="x34-690001"></a>Conceptual Language Models</h3>
+<!--l. 19--><p class="noindent" >Our goal is to utilize the knowledge captured using concepts from
+a concept language to enhance the estimation of the query model
+<!--l. 20--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></math>. To
+this end, we use the concepts as a pivot language in a double translation&#x00A0;[<a 
+href="thesis-emeijli2.html#XRIAO:2004:Kraaij">169</a>], similar
+to the method proposed by&#x00A0;Berger and Lafferty&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:1999:Berger">31</a>] that was discussed in
+Section&#x00A0;<a 
+href="thesis-emeijse10.html#x14-170001">2.3.1<!--tex4ht:ref: ssec:relwork:translation --></a>. The approach presented by&#x00A0;French <span 
+class="bchri8t-">et</span><span 
+class="bchri8t-">&#x00A0;al.</span>&#x00A0;[<a 
+href="thesis-emeijli2.html#XIR:2002:french">104</a>] is also related to ours.
+They propose a heuristic method of associating terms with concepts. Our approach,
+however, utilizes the concepts that are associated with a query to find terms related to
+these concepts in order to estimate the expanded part of the query model,
+<!--l. 26--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></math> (cf.
+Eq.&#x00A0;<a 
+href="thesis-emeijse9.html#x13-14003r2.10">2.10<!--tex4ht:ref: chapter04:eq:querymodel --></a>). Figure&#x00A0;<a 
+href="#x34-690011">5.1<!--tex4ht:ref: chapter04:fig:dependence_concepts --></a> shows a graphical representation of the dependencies of this
+process.
+<!--l. 31--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                   
+                                                                   
+<a 
+ id="x34-690011"></a>
+                                                                   
+                                                                   
+<!--l. 33--><p class="noindent" ><img 
+src="thesis-emeij52x.png" alt="PIC" class="graphics" width="176.407pt" height="107.03372pt" ><!--tex4ht:graphics  
+name="thesis-emeij52x.png" src="chapter04/dependence_concepts.eps"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;5.1: </span><span  
+class="content">Dependence network for our conceptual language models.</span></div><!--tex4ht:label?: x34-690011 -->
+                                                                   
+                                                                   
+<!--l. 36--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 39--><p class="noindent" >In words, first we translate the query <!--l. 40--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math>
+into a set of relevant concepts, <!--l. 41--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+mathvariant="bold-script">C</mi> <mo 
+class="MathClass-rel">=</mo> <mrow ><mo 
+class="MathClass-open">{</mo><mrow><msub><mrow 
+><mi 
+>c</mi></mrow><mrow 
+><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-op">&#x2026;</mo><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>c</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">}</mo></mrow></math>.
+Next, the vocabulary terms associated with the concepts are considered as possible
+terms to include in the query model and we marginalize out the concepts. More
+formally, we determine
+<!--tex4ht:inline--><!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>Q</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo><munder class="msub"><mrow 
+><mo mathsize="big" 
+> &#x2211;</mo>
+   </mrow><mrow 
+><mi 
+>c</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+mathvariant="bold-script">C</mi></mrow></munder 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">,</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(5.1)</mtext><mtext 
+   id="x34-69002r5.1"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                                  </mtr></mtable>
+</math>
+<!--l. 58--><p class="nopar" >
+<!--l. 60--><p class="indent" >   where we assume that the probability of selecting a term is only dependent on the
+concept once we have selected that concept for the query.
+<!--l. 64--><p class="indent" >   Two  components  need  to  be  estimated:
+<!--l. 64--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>,
+to which we refer as a <span 
+class="bchri8t-">generative concept model</span>, and
+<!--l. 65--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>, to
+which we refer as a <span 
+class="bchri8t-">conceptual query model</span>. As to the former, we will need to associate
+terms with concepts in the concept language. While the concepts may be directly
+usable for retrieving documents&#x00A0;[<a 
+href="thesis-emeijli2.html#XJAMIA:1994:hersh">128</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIPM:1996:Srinivasan">302</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XBIOINF:2009:trieschnigg">318</a>], we <span 
+class="bchri8t-">associate </span>each concept
+with a weighted set of most characteristic terms using a multinomial unigram
+model. To this end we consider the documents that are annotated with concept
+<!--l. 72--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math> as bridges
+between the concept and terms, by representing concepts as multinomial distributions over
+terms, <!--l. 74--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>.
+Generative concept models will be detailed further in Section&#x00A0;<a 
+href="#x34-710002">5.1.2<!--tex4ht:ref: chapter04:ssec:conceptmodels --></a> below.
+<!--l. 77--><p class="indent" >   The second component&#x2014;the conceptual query model
+                                                                   
+                                                                   
+<!--l. 77--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>&#x2014;is a
+distribution over concepts specific to the query. In some settings, concepts are provided
+with a query or as part of a query, see, e.g., the PubMed search interface&#x00A0;[<a 
+href="thesis-emeijli2.html#XJAMIA:2007:Herskovic">132</a>], some
+early <a 
+ id="section*.42"></a>Text Retrieval Conference (<a 
+href="thesis-emeijli3.html#TREC">TREC</a>) adhoc tracks (6, 7, and 8 in particular), and the
+<a 
+ id="section*.43"></a>Initiative for the Evaluation of XML Retrieval (<a 
+href="thesis-emeijli3.html#INEX">INEX</a>) Entity Ranking track, where
+Wikipedia categories are used&#x00A0;[<a 
+href="thesis-emeijli2.html#XINEX:2007:devries">87</a>]. If this is not the case, however, we may leverage
+the document annotations to approximate this step: this is what we do in the next
+section.
+<a 
+ id="x34-69003r96"></a>
+<h4 class="subsectionHead"><span class="titlemark">5.1.1    </span> <a 
+ id="x34-700001"></a>Conceptual Query Modeling</h4>
+<!--l. 91--><p class="noindent" >We now turn to defining <!--l. 91--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>,
+the conceptual query model. Contrary to the alternatives mentioned at the end of the
+previous section, in a typical <a 
+href="thesis-emeijli3.html#IR">IR</a> setting concepts are not provided with a query and
+need to be inferred, estimated, or recognized&#x00A0;[<a 
+href="thesis-emeijli2.html#Xthesis:wei">339</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIEEE:2007:Zhou">358</a>]. In this chapter,
+we formulate the estimation of concepts relevant to a query in a standard
+language modeling manner, by determining which concepts are most likely
+given documents relevant to the query. Alternatively, we could involve the end
+user and ask which documents, associated concepts, or terms are relevant.
+Since we do not have access to such assessments we use pseudo relevance
+methods. In recent work and using the same framework, different approaches of
+estimating a conceptual query model have been studied and it was concluded
+that using feedback documents is far more effective than using, e.g., string
+matching methods that try to recognize concepts in the query&#x00A0;[<a 
+href="thesis-emeijli2.html#XBIOINF:2009:trieschnigg">318</a>]. In the
+next chapter this finding is confirmed, albeit using a different setting and test
+collection.
+<!--l. 110--><p class="indent" >   Like Lavrenko and Croft&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2001:Lavrenko">183</a>], we view the process of obtaining a conceptual query
+model as a sampling process from a number of representative sources. The user has a
+notion of documents satisfying her information need, randomly selects one of these,
+and samples a concept from its representation. Hence, the conceptual query model is
+defined as follows:
+                                                                   
+                                                                   
+<!--tex4ht:inline--><!--l. 130--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">  <munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>D</mi><mo 
+class="MathClass-rel">&#x2208;</mo><mi 
+>R</mi></mrow></munder 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">.</mo></mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(5.2)</mtext><mtext 
+   id="x34-70001r5.2"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                                  </mtr></mtable>
+</math>
+<!--l. 133--><p class="nopar" >
+<!--l. 135--><p class="noindent" >Here, <!--l. 149--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>R</mi></math> is a
+set of pseudo relevant documents returned by an initial retrieval run using the textual
+query; <!--l. 149--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math> is
+the concept language model of the document, the estimation of which is discussed in
+the next section. We assume that the probability of observing a concept is
+independent of the query once we have selected a document given the query, i.e.,
+<!--l. 149--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>. The term
+<!--l. 149--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math> denotes the probability
+that document <!--l. 149--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>D</mi></math>
+is chosen given <!--l. 149--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Q</mi></math>,
+which is obtained using the retrieval scores, viz. Eq.&#x00A0;<a 
+href="thesis-emeijse9.html#x13-14001r2.8">2.8<!--tex4ht:ref: eq:relwork:kl-div --></a>.
+<!--l. 163--><p class="indent" >   We assume that pseudo relevant documents are a good source from which we can
+sample the conceptual query model. Indeed, manual inspection shows that they are
+annotated with many relevant concepts, but also that they, despite being related to the
+query, contain a lot of noise: some concepts occur in many documents and are not
+very informative. Sampling from the maximum likelihood estimate for these
+documents would thus result in very general conceptual query models. Therefore, to
+re-estimate the probability mass of the concepts in the sampling process, we use a
+<span 
+class="bchri8t-">parsimonious </span>language model. In the next section we detail how re-estimation is
+performed.
+<!--l. 163--><p class="indent" >   Table&#x00A0;<a 
+href="#x34-700023">5.3<!--tex4ht:ref: chapter04:tab:concepts --></a> illustrates the difference between a maximum likelihood estimation and a
+parsimonious estimation. It shows the concepts (in this case <a 
+href="thesis-emeijli3.html#MeSH">MeSH</a> terms) with the
+highest probability for topic 186 from the <a 
+href="thesis-emeijli3.html#TREC">TREC</a> Genomics 2006 test collection. The
+conceptual query model based on the parsimonious document models contains more
+specific&#x2014;and thus more useful&#x2014;concepts, such as <span 
+class="bchrc8t-">P<span 
+class="small-caps">R</span><span 
+class="small-caps">E</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">I</span><span 
+class="small-caps">L</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span>-1 </span>and <span 
+class="bchrc8t-">P<span 
+class="small-caps">R</span><span 
+class="small-caps">E</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">I</span><span 
+class="small-caps">L</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span>-2</span>.
+The model based on maximum likelihood estimates includes more general
+concepts such as <span 
+class="bchrc8t-">H<span 
+class="small-caps">U</span><span 
+class="small-caps">M</span><span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">S</span></span>, which are relevant but too general to be useful for
+searching.
+                                                                   
+                                                                   
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 1--><p class="indent" >   <a 
+ id="x34-700023"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="tabular"> <table id="TBL-38" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-38-1g"><col 
+id="TBL-38-1"><col 
+id="TBL-38-2"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-38-1-"><td  style="text-align:center; white-space:nowrap;" id="TBL-38-1-1"  
+class="td11"> <!--tex4ht:inline--><div class="tabular"> 
+<table id="TBL-39" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-39-1g"><col 
+id="TBL-39-1"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-39-1-"><td  style="text-align:left; white-space:nowrap;" id="TBL-39-1-1"  
+class="td11"><div class="multicolumn"  style="text-align:left; white-space:nowrap;"><!--l. 7--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math> <span 
+class="bchr8t-x-x-80">estimated using MLE</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-39-2-"><td  style="text-align:left; white-space:nowrap;" id="TBL-39-2-1"  
+class="td11"><span 
+class="bchrc8t-x-x-80">A<span 
+class="small-caps">L</span><span 
+class="small-caps">Z</span><span 
+class="small-caps">H</span><span 
+class="small-caps">E</span><span 
+class="small-caps">I</span><span 
+class="small-caps">M</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span> D<span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span><span 
+class="small-caps">A</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span>                                                                                                                                                                  </span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-39-3-"><td  style="text-align:left; white-space:nowrap;" id="TBL-39-3-1"  
+class="td11"><span 
+class="bchbc8t-x-x-80">H<span 
+class="small-caps">U</span><span 
+class="small-caps">M</span><span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">S</span></span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-39-4-"><td  style="text-align:left; white-space:nowrap;" id="TBL-39-4-1"  
+class="td11"><span 
+class="bchrc8t-x-x-80">M<span 
+class="small-caps">E</span><span 
+class="small-caps">M</span><span 
+class="small-caps">B</span><span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">E</span> P<span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span><span 
+class="small-caps">S</span>                                                                                                                                                               </span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-39-5-"><td  style="text-align:left; white-space:nowrap;" id="TBL-39-5-1"  
+class="td11"><span 
+class="bchbc8t-x-x-80">A<span 
+class="small-caps">M</span><span 
+class="small-caps">Y</span><span 
+class="small-caps">L</span><span 
+class="small-caps">O</span><span 
+class="small-caps">I</span><span 
+class="small-caps">D</span> <span 
+class="small-caps">B</span><span 
+class="small-caps">E</span><span 
+class="small-caps">T</span><span 
+class="small-caps">A</span>-P<span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span></span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-39-6-"><td  style="text-align:left; white-space:nowrap;" id="TBL-39-6-1"  
+class="td11"><span 
+class="bchrc8t-x-x-80">A<span 
+class="small-caps">M</span><span 
+class="small-caps">Y</span><span 
+class="small-caps">L</span><span 
+class="small-caps">O</span><span 
+class="small-caps">I</span><span 
+class="small-caps">D</span> <span 
+class="small-caps">B</span><span 
+class="small-caps">E</span><span 
+class="small-caps">T</span><span 
+class="small-caps">A</span>-P<span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span>, P<span 
+class="small-caps">R</span><span 
+class="small-caps">E</span><span 
+class="small-caps">C</span><span 
+class="small-caps">U</span><span 
+class="small-caps">R</span><span 
+class="small-caps">S</span><span 
+class="small-caps">O</span><span 
+class="small-caps">R</span>                                                                                                                                       </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-39-7-"><td  style="text-align:left; white-space:nowrap;" id="TBL-39-7-1"  
+class="td11"><span 
+class="bchbc8t-x-x-80">R<span 
+class="small-caps">E</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span><span 
+class="small-caps">A</span><span 
+class="small-caps">R</span><span 
+class="small-caps">C</span><span 
+class="small-caps">H</span> S<span 
+class="small-caps">U</span><span 
+class="small-caps">P</span><span 
+class="small-caps">P</span><span 
+class="small-caps">O</span><span 
+class="small-caps">R</span><span 
+class="small-caps">T</span>, U.S. G<span 
+class="small-caps">O</span><span 
+class="small-caps">V</span>&#x2019;<span 
+class="small-caps">T</span>, P.H.S.                                                                                                                          </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-39-8-"><td  style="text-align:left; white-space:nowrap;" id="TBL-39-8-1"  
+class="td11">                                                                                                     </td></tr></table></div> </td><td  style="text-align:center; white-space:nowrap;" id="TBL-38-1-2"  
+class="td11"> <!--tex4ht:inline--><div class="tabular">
+ <table id="TBL-40" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-40-1g"><col 
+id="TBL-40-1"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-40-1-"><td  style="text-align:left; white-space:nowrap;" id="TBL-40-1-1"  
+class="td11"><div class="multicolumn"  style="text-align:left; white-space:nowrap;"><!--l. 32--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math> <span 
+class="bchr8t-x-x-80">estimated using Eq.</span><span 
+class="bchr8t-x-x-80">&#x00A0;</span><a 
+href="#x34-71008r5.10"><span 
+class="bchr8t-x-x-80">5.10</span><!--tex4ht:ref: chapter04:eq:Pcd --></a></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-40-2-"><td  style="text-align:left; white-space:nowrap;" id="TBL-40-2-1"  
+class="td11"><span 
+class="bchbc8t-x-x-80">P<span 
+class="small-caps">R</span><span 
+class="small-caps">E</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">I</span><span 
+class="small-caps">L</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span>-1                                                                                                                                                                          </span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-40-3-"><td  style="text-align:left; white-space:nowrap;" id="TBL-40-3-1"  
+class="td11"><span 
+class="bchbc8t-x-x-80">P<span 
+class="small-caps">R</span><span 
+class="small-caps">E</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span><span 
+class="small-caps">N</span><span 
+class="small-caps">I</span><span 
+class="small-caps">L</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span>-2</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-40-4-"><td  style="text-align:left; white-space:nowrap;" id="TBL-40-4-1"  
+class="td11"><span 
+class="bchrc8t-x-x-80">A<span 
+class="small-caps">L</span><span 
+class="small-caps">Z</span><span 
+class="small-caps">H</span><span 
+class="small-caps">E</span><span 
+class="small-caps">I</span><span 
+class="small-caps">M</span><span 
+class="small-caps">E</span><span 
+class="small-caps">R</span> D<span 
+class="small-caps">I</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span><span 
+class="small-caps">A</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span>                                                                                                                                                                        </span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-40-5-"><td  style="text-align:left; white-space:nowrap;" id="TBL-40-5-1"  
+class="td11"><span 
+class="bchbc8t-x-x-80">A<span 
+class="small-caps">M</span><span 
+class="small-caps">Y</span><span 
+class="small-caps">L</span><span 
+class="small-caps">O</span><span 
+class="small-caps">I</span><span 
+class="small-caps">D</span> P<span 
+class="small-caps">R</span><span 
+class="small-caps">E</span><span 
+class="small-caps">C</span><span 
+class="small-caps">U</span><span 
+class="small-caps">R</span><span 
+class="small-caps">S</span><span 
+class="small-caps">O</span><span 
+class="small-caps">R</span>, P<span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span> S<span 
+class="small-caps">E</span><span 
+class="small-caps">C</span><span 
+class="small-caps">R</span><span 
+class="small-caps">E</span><span 
+class="small-caps">T</span><span 
+class="small-caps">A</span><span 
+class="small-caps">S</span><span 
+class="small-caps">E</span><span 
+class="small-caps">S</span></span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-40-6-"><td  style="text-align:left; white-space:nowrap;" id="TBL-40-6-1"  
+class="td11"><span 
+class="bchrc8t-x-x-80">M<span 
+class="small-caps">E</span><span 
+class="small-caps">M</span><span 
+class="small-caps">B</span><span 
+class="small-caps">R</span><span 
+class="small-caps">A</span><span 
+class="small-caps">N</span><span 
+class="small-caps">E</span> P<span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span><span 
+class="small-caps">S</span>                                                                                                                                                                      </span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-40-7-"><td  style="text-align:left; white-space:nowrap;" id="TBL-40-7-1"  
+class="td11"><span 
+class="bchrc8t-x-x-80">A<span 
+class="small-caps">M</span><span 
+class="small-caps">Y</span><span 
+class="small-caps">L</span><span 
+class="small-caps">O</span><span 
+class="small-caps">I</span><span 
+class="small-caps">D</span> <span 
+class="small-caps">B</span><span 
+class="small-caps">E</span><span 
+class="small-caps">T</span><span 
+class="small-caps">A</span>-P<span 
+class="small-caps">R</span><span 
+class="small-caps">O</span><span 
+class="small-caps">T</span><span 
+class="small-caps">E</span><span 
+class="small-caps">I</span><span 
+class="small-caps">N</span>, P<span 
+class="small-caps">R</span><span 
+class="small-caps">E</span><span 
+class="small-caps">C</span><span 
+class="small-caps">U</span><span 
+class="small-caps">R</span><span 
+class="small-caps">S</span><span 
+class="small-caps">O</span><span 
+class="small-caps">R</span></span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-40-8-"><td  style="text-align:left; white-space:nowrap;" id="TBL-40-8-1"  
+class="td11">                                                                                                         </td></tr></table></div> </td>
+</tr></table>
+</div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;5.3:   </span><span  
+class="content">A   comparison   of   the   concepts   with   the   highest   probability
+<!--l. 55--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>Q</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>
+(cf. Eq.&#x00A0;<a 
+href="#x34-70001r5.2">5.2<!--tex4ht:ref: chapter04:eq:PcQ --></a>) for the <a 
+href="thesis-emeijli3.html#TREC">TREC</a> Genomics topic: &#x201C;How do mutations in the Presenilin-1
+gene affect Alzheimer&#x2019;s disease.&#x201D; The two columns show the difference between
+using  <a 
+href="thesis-emeijli3.html#MLE">MLE</a>  on  the  concepts  associated  with  the  documents  to  determine
+<!--l. 55--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>,
+or  the  <a 
+ id="section*.44"></a>expectation  maximization  (<a 
+href="thesis-emeijli3.html#EM">EM</a>)  algorithm  given  in  Eq.&#x00A0;<a 
+href="#x34-71008r5.10">5.10<!--tex4ht:ref: chapter04:eq:Pcd --></a>.  Unique
+concepts are marked in boldface. </span></div><!--tex4ht:label?: x34-700023 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<a 
+ id="x34-70003r103"></a>
+<h4 class="subsectionHead"><span class="titlemark">5.1.2    </span> <a 
+ id="x34-710002"></a>Generative Concept Models</h4>
+<!--l. 179--><p class="noindent" >Given Eq.&#x00A0;<a 
+href="#x34-69002r5.1">5.1<!--tex4ht:ref: chapter04:eq:conceptquerymodel --></a>, our goal is to arrive at a probability distribution
+<!--l. 180--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math> over
+vocabulary terms for each concept in the concept language used for annotating the
+documents. We determine the strength of the association between a term and a concept
+by looking at the annotations made by the trained annotators who have labeled the
+documents. In the end, this method defines the parameters of a generative
+language model for each concept: a <span 
+class="bchri8t-">generative concept model</span>. We determine
+<!--l. 186--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>,
+i.e., the strength of association between a concept
+<!--l. 186--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math> and a term
+<!--l. 186--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>t</mi></math>, by determining the
+probability of observing <!--l. 186--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>t</mi></math>
+given <!--l. 186--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math>.
+Concepts that are used to annotate documents may have different characteristics
+from other parts of a document, such as title and content. Annotations are
+selected by human indexers from a concept language while the remaining
+content consists of free text. Since the terms that make up the document are
+&#x201C;generated&#x201D; using a different process than the concepts, we may assume that
+<!--l. 199--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>t</mi></math> and
+<!--l. 199--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math>
+are independent and identical samples given a document
+<!--l. 200--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>D</mi></math>
+in (or with) which they occur. So, the probability of observing both
+<!--l. 204--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>t</mi></math> and
+<!--l. 204--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math>
+is:
+                                                                   
+                                                                   
+<!--tex4ht:inline--><!--l. 206--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo><munder class="msub"><mrow 
+><mo mathsize="big" 
+> &#x2211;</mo>
+   </mrow><mrow 
+><mi 
+>D</mi></mrow></munder 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo><munder class="msub"><mrow 
+><mo mathsize="big" 
+> &#x2211;</mo>
+   </mrow><mrow 
+><mi 
+>D</mi><mo 
+class="MathClass-rel">&#x2208;</mo><msub><mrow 
+><mi 
+mathvariant="bold-script">D</mi></mrow><mrow 
+><mi 
+>C</mi></mrow></msub 
+></mrow></munder 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">,</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(5.3)</mtext><mtext 
+   id="x34-71001r5.3"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>          </mtr></mtable>
+</math>
+<!--l. 209--><p class="nopar" >
+<!--l. 211--><p class="indent" >   where <!--l. 211--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+mathvariant="bold-script">D</mi></mrow><mrow 
+><mi 
+>C</mi></mrow></msub 
+></math>
+denotes the set of documents annotated with concept
+<!--l. 212--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math>. We
+assume each document to have a uniform prior probability of being selected and
+obtain:
+<!--tex4ht:inline--><!--l. 214--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">   <mfrac><mrow 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow>
+ <mrow 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfrac>                    </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(5.4)</mtext><mtext 
+   id="x34-71002r5.4"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>
+</mtr><mtr><mtd 
+class="eqnarray-1">      </mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">=</mo></mtd><mtd 
+class="eqnarray-3">   <mfrac><mrow 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>D</mi><mo 
+class="MathClass-rel">&#x2208;</mo><msub><mrow 
+><mi 
+mathvariant="bold-script">D</mi></mrow><mrow 
+><mi 
+>C</mi></mrow></msub 
+></mrow></munder 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow>
+                <mrow 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfrac>           </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray"></mtext></mtd>
+</mtr><mtr><mtd 
+class="eqnarray-1">      </mtd><mtd 
+class="eqnarray-2">  <mo 
+class="MathClass-rel">&#x221D;</mo></mtd><mtd 
+class="eqnarray-3">    <mfrac><mrow 
+><mn>1</mn></mrow>
+<mrow 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfrac><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+   </mrow><mrow 
+><mi 
+>D</mi><mo 
+class="MathClass-rel">&#x2208;</mo><msub><mrow 
+><mi 
+mathvariant="bold-script">D</mi></mrow><mrow 
+><mi 
+>C</mi></mrow></msub 
+></mrow></munder 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-punc">.</mo></mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray"></mtext></mtd>                              </mtr></mtable>
+</math>
+<!--l. 227--><p class="nopar" >
+                                                                   
+                                                                   
+<!--l. 229--><p class="indent" >   Hence,  it  remains  to  define  three  terms:
+<!--l. 229--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>,
+<!--l. 229--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>, and
+<!--l. 230--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>. First,
+the term <!--l. 232--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><msup><mrow 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+></math>
+functions as a penalty for frequently occurring and thus relatively non-informative
+concepts. We estimate this term using <a 
+href="thesis-emeijli3.html#MLE">MLE</a> on the document collection:
+<!--tex4ht:inline--><!--l. 236--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo>     <mfrac><mrow 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>D</mi></mrow></munder 
+><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow> 
+<mrow 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><msup><mrow 
+><mi 
+>c</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+></mrow></munder 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><msup><mrow 
+><mi 
+>D</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+></mrow></munder 
+><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msup><mrow 
+><mi 
+>c</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>D</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfrac><mo 
+class="MathClass-punc">,</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(5.5)</mtext><mtext 
+   id="x34-71003r5.5"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                                       </mtr></mtable>
+</math>
+<!--l. 238--><p class="nopar" >
+<!--l. 240--><p class="indent" >   where <!--l. 240--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math> is the number
+of times document <!--l. 240--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>D</mi></math> is
+labeled with concept <!--l. 241--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>c</mi></math>
+(which is typically 1).
+   <div class="table">
+                                                                   
+                                                                   
+<!--l. 1--><p class="indent" >   <a 
+ id="x34-710044"></a><hr class="float"><div class="float" 
+>
+                                                                   
+                                                                   
+<div class="tabular"> <table id="TBL-41" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-41-1g"><col 
+id="TBL-41-1"><col 
+id="TBL-41-2"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-41-1-"><td  style="text-align:center; white-space:nowrap;" id="TBL-41-1-1"  
+class="td11"> <!--tex4ht:inline--><div class="tabular"> 
+<table id="TBL-42" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-42-1g"><col 
+id="TBL-42-1"><col 
+id="TBL-42-2"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-42-1-"><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-42-1-1"  
+class="td11"><div class="multicolumn"  style="text-align:center; white-space:nowrap;"><!--l. 8--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math> <span 
+class="bchr8t-x-x-80">estimated using MLE</span></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-42-2-"><td  style="text-align:right; white-space:nowrap;" id="TBL-42-2-1"  
+class="td11"><span 
+class="bchr8t-x-x-80">0.061</span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-42-2-2"  
+class="td11"><span 
+class="bchr8t-x-x-80">the                                                                                                                                                                                </span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-42-3-"><td  style="text-align:right; white-space:nowrap;" id="TBL-42-3-1"  
+class="td
+11"><span 
+class="bchr8t-x-x-80">0.054</span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-42-3-2"  
+class="td11"><span 
+class="bchr8t-x-x-80">of                                                                                                                                                                                 </span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-42-4-"><td  style="text-align:right; white-space:nowrap;" id="TBL-42-4-1"  
+class="td
+11"><span 
+class="bchr8t-x-x-80">0.045</span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-42-4-2"  
+class="td11"><span 
+class="bchr8t-x-x-80">indian                                                                                                                                                                           </span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-42-5-"><td  style="text-align:right; white-space:nowrap;" id="TBL-42-5-1"  
+class="td
+11"><span 
+class="bchr8t-x-x-80">0.038</span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-42-5-2"  
+class="td11"><span 
+class="bchr8t-x-x-80">ethnic                                                                                                                                                                           </span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-42-6-"><td  style="text-align:right; white-space:nowrap;" id="TBL-42-6-1"  
+class="td11"><span 
+class="bchr8t-x-x-80">0.028</span></td> <td  style="text-align:left; white-space:nowrap;" id="TBL-42-6-2"  
+class="td11"><span 
+class="bchr8t-x-x-80">in</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-42-7-"><td  style="text-align:right; white-space:nowrap;" id="TBL-42-7-1"  
+class="td11"><span 
+class="bchr8t-x-x-80">0.028</span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-42-7-2"  
+class="td11"><span 
+class="bchr8t-x-x-80">american                                                                                                                                                                      </span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-42-8-"><td  style="text-align:right; white-space:nowrap;" id="TBL-42-8-1"  
+class="td11"><span 
+class="bchr8t-x-x-80">0.021</span></td> <td  style="text-align:left; white-space:nowrap;" id="TBL-42-8-2"  
+class="td11"><span 
+class="bchr8t-x-x-80">a</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-42-9-"><td  style="text-align:right; white-space:nowrap;" id="TBL-42-9-1"  
+class="td11"><span 
+class="bchr8t-x-x-80">0.021</span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-42-9-2"  
+class="td11"><span 
+class="bchr8t-x-x-80">renew                                                                                                                                                                           </span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-42-10-"><td  style="text-align:right; white-space:nowrap;" id="TBL-42-10-1"  
+class="td
+11"><span 
+class="bchr8t-x-x-80">0.019</span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-42-10-2"  
+class="td11"><span 
+class="bchr8t-x-x-80">cultur                                                                                                                                                                           </span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-42-11-"><td  style="text-align:right; white-space:nowrap;" id="TBL-42-11-1"  
+class="td
+11"><span 
+class="bchr8t-x-x-80">0.017</span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-42-11-2"  
+class="td11"><span 
+class="bchr8t-x-x-80">ident                                                                                                                                                                             </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-42-12-"><td  style="text-align:right; white-space:nowrap;" id="TBL-42-12-1"  
+class="td11">     </td></tr></table>                                                                                                </div> </td><td  style="text-align:center; white-space:nowrap;" id="TBL-41-1-2"  
+class="td11"> <!--tex4ht:inline--><div class="tabular">
+ <table id="TBL-43" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-43-1g"><col 
+id="TBL-43-1"><col 
+id="TBL-43-2"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-43-1-"><td colspan="2" style="text-align:center; white-space:nowrap;" id="TBL-43-1-1"  
+class="td11"><div class="multicolumn"  style="text-align:center; white-space:nowrap;"><!--l. 28--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math> <span 
+class="bchr8t-x-x-80">estimated using Eq.</span><span 
+class="bchr8t-x-x-80">&#x00A0;</span><a 
+href="#x34-71007r5.9"><span 
+class="bchr8t-x-x-80">5.9</span><!--tex4ht:ref: chapter04:eq:Ptd --></a></div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-43-2-"><td  style="text-align:right; white-space:nowrap;" id="TBL-43-2-1"  
+class="td11"><span 
+class="bchr8t-x-x-80">0.54</span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-43-2-2"  
+class="td11"><span 
+class="bchr8t-x-x-80">indian                                                                                                                                                                                 </span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-43-3-"><td  style="text-align:right; white-space:nowrap;" id="TBL-43-3-1"  
+class="td
+11"><span 
+class="bchr8t-x-x-80">0.46</span></td><td  style="text-align:left; white-space:nowrap;" id="TBL-43-3-2"  
+class="td11"><span 
+class="bchr8t-x-x-80">ethnic                                                                                                                                                                                  </span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-43-4-"><td  style="text-align:right; white-space:nowrap;" id="TBL-43-4-1"  
+class="td11"> </td> <td  style="text-align:left; white-space:nowrap;" id="TBL-43-4-2"  
+class="td11"></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-43-5-"><td  style="text-align:right; white-space:nowrap;" id="TBL-43-5-1"  
+class="td11">    </td><td  style="text-align:left; white-space:nowrap;" id="TBL-43-5-2"  
+class="td11">                                                                                                  </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-43-6-"><td  style="text-align:right; white-space:nowrap;" id="TBL-43-6-1"  
+class="td11"> </td> <td  style="text-align:left; white-space:nowrap;" id="TBL-43-6-2"  
+class="td11"></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-43-7-"><td  style="text-align:right; white-space:nowrap;" id="TBL-43-7-1"  
+class="td11">    </td><td  style="text-align:left; white-space:nowrap;" id="TBL-43-7-2"  
+class="td11">                                                                                                  </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-43-8-"><td  style="text-align:right; white-space:nowrap;" id="TBL-43-8-1"  
+class="td11"> </td> <td  style="text-align:left; white-space:nowrap;" id="TBL-43-8-2"  
+class="td11"></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-43-9-"><td  style="text-align:right; white-space:nowrap;" id="TBL-43-9-1"  
+class="td11">    </td><td  style="text-align:left; white-space:nowrap;" id="TBL-43-9-2"  
+class="td11">                                                                                                  </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-43-10-"><td  style="text-align:right; white-space:nowrap;" id="TBL-43-10-1"  
+class="td11"> </td> <td  style="text-align:left; white-space:nowrap;" id="TBL-43-10-2"  
+class="td11"></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-43-11-"><td  style="text-align:right; white-space:nowrap;" id="TBL-43-11-1"  
+class="td11">    </td><td  style="text-align:left; white-space:nowrap;" id="TBL-43-11-2"  
+class="td11">                                                                                                  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-43-12-"><td  style="text-align:right; white-space:nowrap;" id="TBL-43-12-1"  
+class="td11">    </td></tr></table>                                                                                                    </div> </td>
+</tr></table>
+</div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;5.4:  </span><span  
+class="content">Top  10  stemmed  terms  for  the  document  model  belonging  to
+document CSASA-1-EN-9706464 (entitled &#x201C;American indian ethnic renewal: red
+power  and  the  resurgence  of  identity  and  culture.&#x201D;)  from  the  <a 
+href="thesis-emeijli3.html#CLEF">CLEF</a>-DS  test
+collection. </span></div><!--tex4ht:label?: x34-710044 -->
+                                                                   
+                                                                   
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 246--><p class="indent" >   Next we turn to <!--l. 246--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>x</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>,
+for <!--l. 246--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>x</mi> <mo 
+class="MathClass-rel">&#x2208;</mo><mrow ><mo 
+class="MathClass-open">{</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>c</mi></mrow><mo 
+class="MathClass-close">}</mo></mrow></math>.
+The size of these models (in terms of the number of words or the number of concepts
+that receive a non-zero probability) may be quite large, e.g., in the case of a large
+document collection or in the case of frequently occurring concepts. Moreover, as
+exemplified above, not all of the observed <span 
+class="bchri8t-">events </span>(where events are either
+terms or concepts) are equally informative. Some may be common, whilst
+others may describe the general domain of the document. Earlier in the thesis,
+we have noted that it is common to consider each document as a mixture of
+document-specific and more general terms (cf. Eq.&#x00A0;<a 
+href="thesis-emeijse9.html#x13-13007r2.5">2.5<!--tex4ht:ref: chapter04:eq:dm --></a>); we now generalize this
+statement to also include concepts. Further, given this assumption, we may
+update each document model by reducing the amount and probability mass of
+non-specific events. We do so by iteratively adjusting the individual probabilities in
+each document, based on a comparison with a large reference corpus such
+as the collection. More formally, we maximize the posterior probability of
+<!--l. 262--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>D</mi></math> after
+observing <!--l. 263--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>x</mi></math>:
+<!--tex4ht:inline--><!--l. 265--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>x</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo>           <mfrac><mrow 
+><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>x</mi></mrow></msub 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>x</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow> 
+<mrow 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mn>1</mn><mo 
+class="MathClass-bin">&#x2212;</mo><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>x</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>x</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-bin">+</mo><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>x</mi></mrow></msub 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>x</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfrac><mo 
+class="MathClass-punc">.</mo></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(5.6)</mtext><mtext 
+   id="x34-71005r5.6"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                               </mtr></mtable>
+</math>
+<!--l. 269--><p class="nopar" >
+<!--l. 271--><p class="indent" >   Note that <!--l. 271--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>x</mi></mrow></msub 
+></math> may
+be set differently for <!--l. 271--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>D</mi></math>
+(Eq.&#x00A0;<a 
+href="thesis-emeijse9.html#x13-13007r2.5">2.5<!--tex4ht:ref: chapter04:eq:dm --></a>) and <!--l. 272--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>C</mi></math>. For these
+                                                                   
+                                                                   
+estimations, we fix <!--l. 272--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>C</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>1</mn><mn>5</mn></math>
+based on&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:2004:Hiemstra">136</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XCLEF-WN:2008:meij">211</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:2008:Meij-cm">215</a>]. We then apply the following <a 
+href="thesis-emeijli3.html#EM">EM</a> algorithm until the
+estimates do not change significantly anymore:
+<!--tex4ht:inline--><!--l. 277--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mstyle 
+class="mbox"><mtext  >E-step:</mtext></mstyle><mspace width="2em" class="qquad"/><mspace width="1em" class="quad"/></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  <msub><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mi 
+>x</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>D</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>x</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo>           <mfrac><mrow 
+><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>C</mi></mrow></msub 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>x</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow> 
+<mrow 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mn>1</mn><mo 
+class="MathClass-bin">&#x2212;</mo><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>C</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>x</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><mo 
+class="MathClass-bin">+</mo><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>C</mi></mrow></msub 
+><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>x</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfrac></mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(5.7)</mtext><mtext 
+   id="x34-71006r5.7"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>
+</mtr><mtr><mtd 
+class="eqnarray-1">      <mstyle 
+class="mbox"><mtext  >&#x00A0;</mtext></mstyle></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">                                     </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray"></mtext></mtd>
+</mtr><mtr><mtd 
+class="eqnarray-1"> <mstyle 
+class="mbox"><mtext  >M-step:</mtext></mstyle><mspace width="2em" class="qquad"/><mspace width="1em" class="quad"/></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  <msub><mrow 
+><mi 
+>P</mi></mrow><mrow 
+><mi 
+>C</mi></mrow></msub 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>x</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo>     <mfrac><mrow 
+><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>x</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><msub><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mi 
+>x</mi></mrow></msub 
+></mrow> 
+<mrow 
+><munder class="msub"><mrow 
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><msup><mrow 
+><mi 
+>x</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+></mrow></munder 
+><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msup><mrow 
+><mi 
+>x</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow><msub><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><msup><mrow 
+><mi 
+>x</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+></mrow></msub 
+></mrow></mfrac><mo 
+class="MathClass-punc">.</mo>           </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(5.8)</mtext><mtext 
+   id="x34-71006r5.8"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd>                    </mtr></mtable>
+</math>
+<!--l. 286--><p class="nopar" >
+<!--l. 288--><p class="indent" >   This updating mechanism enables more specific events, i.e., events that are not
+well-explained by the background model, to receive more probability mass,
+making the resulting document model more specific. After the <a 
+href="thesis-emeijli3.html#EM">EM</a> algorithm has
+converged, we remove those events with a probability lower than a certain threshold
+<!--l. 292--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03B4;</mi></math>. Thus, the resulting
+document model for terms, <!--l. 294--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>,
+to be used as <!--l. 295--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>
+in Eq.&#x00A0;<a 
+href="#x34-71002r5.4">5.4<!--tex4ht:ref: chapter04:eq:PtcFirst --></a> is given by:
+                                                                   
+                                                                   
+<!--tex4ht:inline--><!--l. 297--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo> <mfenced separators="" 
+open="{"  close="" ><mrow> <mtable  style="text-align:axis;"  
+equalrows="false" columnlines="none" equalcolumns="false" class="array"><mtr><mtd 
+class="array"  columnalign="left">  <msub><mrow 
+><mi 
+>Z</mi></mrow><mrow 
+><msub><mrow 
+><mi 
+>D</mi></mrow><mrow 
+><mi 
+>t</mi></mrow></msub 
+></mrow></msub 
+><mo 
+class="MathClass-bin">&#x22C5;</mo><msub><mrow 
+><mi 
+>P</mi></mrow><mrow 
+><mi 
+>C</mi></mrow></msub 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow>  </mtd><mtd 
+class="array"  columnalign="left">  <mstyle 
+class="mbox"><mtext  >if&#x00A0;</mtext></mstyle><mi 
+>t</mi> <mo 
+class="MathClass-rel">&#x2208;</mo> <mi 
+>D</mi><mstyle 
+class="mbox"><mtext  >&#x00A0;and&#x00A0;</mtext></mstyle><msub><mrow 
+><mi 
+>P</mi></mrow><mrow 
+><mi 
+>C</mi></mrow></msub 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">&#x003E;</mo> <msub><mrow 
+><mi 
+>&#x03B4;</mi></mrow><mrow 
+><mi 
+>t</mi></mrow></msub 
+> </mtd>
+</mtr><mtr><mtd 
+class="array"  columnalign="left"> <mn>0</mn>                   </mtd><mtd 
+class="array"  columnalign="left">  <mstyle 
+class="mbox"><mtext  >otherwise</mtext></mstyle><mo 
+class="MathClass-punc">,</mo>                  </mtd></mtr> <!--ll--></mtable>                                        </mrow></mfenced></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(5.9)</mtext><mtext 
+   id="x34-71007r5.9"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd></mtr></mtable>
+</math>
+<!--l. 306--><p class="nopar" >
+<!--l. 308--><p class="indent" >   where <!--l. 308--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>Z</mi></mrow><mrow 
+><msub><mrow 
+><mi 
+>D</mi></mrow><mrow 
+><mi 
+>t</mi></mrow></msub 
+></mrow></msub 
+></math> is a document-specific
+normalization factor: <!--l. 308--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>Z</mi></mrow><mrow 
+><msub><mrow 
+><mi 
+>D</mi></mrow><mrow 
+><mi 
+>t</mi></mrow></msub 
+></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <mn>1</mn><mo 
+class="MathClass-bin">&#x2215;</mo><msub><mrow 
+><mo 
+class="MathClass-op">&#x2211;</mo>
+  <!--nolimits--></mrow><mrow 
+><mi 
+>t</mi></mrow></msub 
+><msub><mrow 
+><mi 
+>P</mi></mrow><mrow 
+><mi 
+>C</mi></mrow></msub 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>t</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>.
+Table&#x00A0;<a 
+href="#x34-710044">5.4<!--tex4ht:ref: chapter04:tab:terms --></a> provides an example of the effects of applying Eq.&#x00A0;<a 
+href="#x34-71007r5.9">5.9<!--tex4ht:ref: chapter04:eq:Ptd --></a> on a
+document from the <a 
+href="thesis-emeijli3.html#CLEF">CLEF</a>-DS document collection (that will be introduced
+in Section&#x00A0;<a 
+href="thesis-emeijse25.html#x35-720002">5.2<!--tex4ht:ref: chapter04:sec:experimentalsetup --></a>). Similarly, the resulting document model for concepts,
+<!--l. 314--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>, to be
+used for <!--l. 315--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>
+in Eq.&#x00A0;<a 
+href="#x34-71002r5.4">5.4<!--tex4ht:ref: chapter04:eq:PtcFirst --></a>, is given by:
+<!--tex4ht:inline--><!--l. 318--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" >
+<mtable 
+class="eqnarray" columnalign="right center left" >
+<mtr><mtd 
+class="eqnarray-1"> <mi 
+>P</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03B8;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>D</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">=</mo> <mfenced separators="" 
+open="{"  close="" ><mrow> <mtable  style="text-align:axis;"  
+equalrows="false" columnlines="none" equalcolumns="false" class="array"><mtr><mtd 
+class="array"  columnalign="left">  <msub><mrow 
+><mi 
+>Z</mi></mrow><mrow 
+><msub><mrow 
+><mi 
+>D</mi></mrow><mrow 
+><mi 
+>c</mi></mrow></msub 
+></mrow></msub 
+><mo 
+class="MathClass-bin">&#x22C5;</mo><msub><mrow 
+><mi 
+>P</mi></mrow><mrow 
+><mi 
+>C</mi></mrow></msub 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow>  </mtd><mtd 
+class="array"  columnalign="left">  <mstyle 
+class="mbox"><mtext  >if&#x00A0;</mtext></mstyle><mi 
+>c</mi> <mo 
+class="MathClass-rel">&#x2208;</mo> <mi 
+>D</mi><mstyle 
+class="mbox"><mtext  >&#x00A0;and&#x00A0;</mtext></mstyle><msub><mrow 
+><mi 
+>P</mi></mrow><mrow 
+><mi 
+>C</mi></mrow></msub 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-rel">&#x003E;</mo> <msub><mrow 
+><mi 
+>&#x03B4;</mi></mrow><mrow 
+><mi 
+>c</mi></mrow></msub 
+> </mtd>
+</mtr><mtr><mtd 
+class="array"  columnalign="left"> <mn>0</mn>                    </mtd><mtd 
+class="array"  columnalign="left">  <mstyle 
+class="mbox"><mtext  >otherwise</mtext></mstyle><mo 
+class="MathClass-punc">,</mo>                   </mtd></mtr> <!--ll--></mtable>                                       </mrow></mfenced></mtd><mtd 
+class="eqnarray-2">  </mtd><mtd 
+class="eqnarray-3">  </mtd><mtd 
+class="eqnarray-4"> <mtext class="eqnarray">(5.10)</mtext><mtext 
+   id="x34-71008r5.10"  class="label" ></mtext><mtext 
+class="endlabel"></mtext></mtd></mtr></mtable>
+</math>
+<!--l. 327--><p class="nopar" >
+                                                                   
+                                                                   
+<!--l. 329--><p class="indent" >   where <!--l. 329--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>Z</mi></mrow><mrow 
+><msub><mrow 
+><mi 
+>D</mi></mrow><mrow 
+><mi 
+>c</mi></mrow></msub 
+></mrow></msub 
+></math> is a document-specific
+normalization factor: <!--l. 329--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>Z</mi></mrow><mrow 
+><msub><mrow 
+><mi 
+>D</mi></mrow><mrow 
+><mi 
+>c</mi></mrow></msub 
+></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <mn>1</mn><mo 
+class="MathClass-bin">&#x2215;</mo><msub><mrow 
+><mo 
+class="MathClass-op">&#x2211;</mo>
+  <!--nolimits--></mrow><mrow 
+><mi 
+>c</mi></mrow></msub 
+><msub><mrow 
+><mi 
+>P</mi></mrow><mrow 
+><mi 
+>C</mi></mrow></msub 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>c</mi><mo 
+class="MathClass-rel">|</mo><mi 
+>D</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></math>.
+Table&#x00A0;<a 
+href="#x34-700023">5.3<!--tex4ht:ref: chapter04:tab:concepts --></a> provides an example of the effects of applying Eq.&#x00A0;<a 
+href="#x34-71008r5.10">5.10<!--tex4ht:ref: chapter04:eq:Pcd --></a> on a topic from the <a 
+href="thesis-emeijli3.html#TREC">TREC</a>
+document collection (that will be introduced in Section&#x00A0;<a 
+href="thesis-emeijse25.html#x35-720002">5.2<!--tex4ht:ref: chapter04:sec:experimentalsetup --></a>). For the experiments in this chapter
+we fix <!--l. 338--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03B4;</mi></mrow><mrow 
+><mi 
+>t</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <msub><mrow 
+><mi 
+>&#x03B4;</mi></mrow><mrow 
+><mi 
+>c</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>0</mn><mn>1</mn></math>.
+                                                                   
+                                                                   
+<!--l. 1--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch5.html#thesis-emeijse24.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse25.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse24.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse24.html"></a> 
+</body></html> 

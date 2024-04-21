@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Information Retrieval</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- mathml,index=2,3,html --> 
+<meta name="src" content="thesis-emeij.tex"> 
+<meta name="date" content="2010-11-28 20:26:00"> 
+<link rel="stylesheet" type="text/css" href="thesis-emeij.css"> 
+</head><body 
+>
+   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch2.html#thesis-emeijse8.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse9.html" >Next</a></td><td class="clinks"><a 
+href="#tailthesis-emeijse8.html">Tail</a></td></tr></table><h3 class="sectionHead"><span class="titlemark">2.1    </span> <a 
+ id="x12-110001"></a>Information Retrieval</h3>
+<!--l. 70--><p class="noindent" >An information retrieval system implements a retrieval model that is used to generate a
+ranking of documents for a given query. A retrieval model is itself a formal
+representation of the process of matching a query and a document and is often (but not
+necessarily) based on a statistical view of language.
+<!--l. 72--><p class="indent" >   As described in the previous chapter, Boolean systems were the first popular
+retrieval models. They did not generate document rankings, but returned sets of
+documents fulfilling the (Boolean) query. They were superseded by the <a 
+ id="section*.3"></a>vector space
+model (<a 
+href="thesis-emeijli3.html#VSM">VSM</a>)&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:salton:1971">274</a>], which would become the mainstream model for many
+years. It is based on a vector space where the dimensions are defined by the
+terms in the vocabulary. Queries and documents are represented by vectors and
+similarity is defined using a distance measure in this space. The most commonly
+used distance measure is based on the cosine of the angle between vectors in
+the high-dimensional space (although other measures such as the Euclidean
+distance are also sometimes used). Each component of a vector can take either
+binary values or more complex, real values. Examples of the latter include
+statistical information such as <a 
+ id="section*.4"></a>term frequency (<a 
+href="thesis-emeijli3.html#TF">TF</a>) and <a 
+ id="section*.5"></a>inverse document
+frequency (<a 
+href="thesis-emeijli3.html#IDF">IDF</a>)&#x00A0;[<a 
+href="thesis-emeijli2.html#XJOD:2004:sparck">155</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XJOD:2004:Robertson">258</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XJASIS:1976:robertson">264</a>]. <a 
+href="thesis-emeijli3.html#TF">TF</a> and <a 
+href="thesis-emeijli3.html#IDF">IDF</a> are two notions that are not specific
+to <a 
+href="thesis-emeijli3.html#VSM">VSM</a>, but in common use in most retrieval models. The <a 
+href="thesis-emeijli3.html#TF">TF</a> of a term in a
+document is defined as the relative frequency of occurrence of that term in the
+document. <a 
+href="thesis-emeijli3.html#IDF">IDF</a> is defined as the (log of the) inverse of the relative frequency of
+occurrence of a term in the entire collection. The underlying intuition is that
+documents with a high <a 
+href="thesis-emeijli3.html#TF">TF</a> for a term are more likely to be relevant to queries
+containing this term. Moreover, terms that are infrequent in the collection are more
+discriminative and convey more information than frequent ones. Therefore, a
+common weighting scheme, called TF.IDF, is a simple multiplication of the
+two.
+<!--l. 74--><p class="indent" >   Other retrieval models exist, some of which are still in popular use today. Maron and
+Kuhns&#x00A0;[<a 
+href="thesis-emeijli2.html#XJACM:1960:maron">203</a>] were the first to explicitly incorporate the notion of relevance in a
+retrieval model (a broader discussion on &#x201C;relevance&#x201D; is given in Section&#x00A0;<a 
+href="thesis-emeijse14.html#x20-340001">3.1<!--tex4ht:ref: sec:relevance --></a>) by
+developing a probabilistic indexing model. They moved beyond binary indexing of
+documents (as was common in Boolean systems, where each indexing term could be
+either present or absent) and proposed the use of indexing weights, that were to be
+interpreted as probabilities. They considered the retrieval problem as a problem
+involving inference where an <a 
+href="thesis-emeijli3.html#IR">IR</a> system should predict which documents in the
+collection would most probably be relevant to a query and then rank those
+documents in descending order by those computed values of probability of
+relevance. This idea is highly similar to the Naive Bayes method, a popular machine
+learning approach&#x00A0;[<a 
+href="thesis-emeijli2.html#XECML:1998:lewis">187</a>]. Given that the output of their system was a ranked
+result list, Maron and Kuhns&#x00A0;[<a 
+href="thesis-emeijli2.html#XJACM:1960:maron">203</a>] have often been credited with being the
+                                                                   
+                                                                   
+first to move beyond set-based retrieval and introducing the ranked lists that
+are still in common use today&#x00A0;[<a 
+href="thesis-emeijli2.html#XIPM:2008:thompson">313</a>] (although Joyce and Needham&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:1958:joyce">157</a>]
+employed a notion of <a 
+href="thesis-emeijli3.html#TF">TF</a> to sort the list of matching documents two years
+prior).
+<!--l. 80--><p class="indent" >   Robertson and Jones&#x00A0;[<a 
+href="thesis-emeijli2.html#XJASIS:1976:robertson">264</a>] proposed the RSJ model that solely uses IDF with
+relevance feedback. The RSJ model (or: <a 
+ id="section*.6"></a>probability ranking principle (<a 
+href="thesis-emeijli3.html#PRP">PRP</a>)) builds
+upon the ideas presented in&#x00A0;Maron and Kuhns&#x00A0;[<a 
+href="thesis-emeijli2.html#XJACM:1960:maron">203</a>] and hinges on two probabilistic
+models; one for all non-relevant documents and one for all relevant ones&#x00A0;[<a 
+href="thesis-emeijli2.html#XJD:1977:Robertson">263</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XJASIS:1976:robertson">264</a>].
+The <a 
+href="thesis-emeijli3.html#PRP">PRP</a> model is based on measuring the probability that a document will be relevant
+to a user, given a query (note that it does not measure the <span 
+class="bchri8t-">degree </span>of relevance&#x00A0;[<a 
+href="thesis-emeijli2.html#XJOD:1978:robertson">261</a>]).
+The higher this probability, the more likely the document is to be relevant to the user.
+Robertson&#x00A0;[<a 
+href="thesis-emeijli2.html#XJD:1977:Robertson">263</a>] proves that ranking documents using the <a 
+href="thesis-emeijli3.html#PRP">PRP</a> (in which documents
+are ranked by their decreasing probability of relevance) optimizes retrieval
+performance, under the condition that these probabilities are properly estimated. As
+may be clear, effectively estimating these relevant and non-relevant models is
+unsurmountable in practice and the <a 
+href="thesis-emeijli3.html#PRP">PRP</a> resorts to various approximation
+methods.
+<!--l. 88--><p class="indent" >   The <a 
+href="thesis-emeijli3.html#PRP">PRP</a> model uses a binary representation of terms in documents, which was
+generalized to <a 
+href="thesis-emeijli3.html#TF">TF</a> information soon after in the 2-Poisson model&#x00A0;[<a 
+href="thesis-emeijli2.html#XJASIS:1975:harter">122</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XSIGIR:1980:robertson">266</a>]. Amati and
+Van&#x00A0;Rijsbergen&#x00A0;[<a 
+href="thesis-emeijli2.html#XTOIS:2002:amati">8</a>] present a generalization of the 2-poisson model, called the
+<a 
+ id="section*.7"></a>divergence from randomness (<a 
+href="thesis-emeijli3.html#DFR">DFR</a>) model. It is built around the notion that the
+amount of information carried by a term in a document is proportional to
+the divergence of its term frequency within that document with respect to its
+frequency in the collection. <a 
+href="thesis-emeijli3.html#DFR">DFR</a> is inspired by the idea that &#x201C;good&#x201D; descriptors of
+documents (terms or concepts from a controlled vocabulary, for example)
+are those that <span 
+class="bchri8t-">describe </span>the information content and that have <span 
+class="bchri8t-">discriminatory</span>
+power&#x00A0;[<a 
+href="thesis-emeijli2.html#XARIST:2003:blair">38</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XBook:1979:Rijsbergen">325</a>].
+<!--l. 92--><p class="indent" >   The Okapi team developed another, much extended version of the <a 
+href="thesis-emeijli3.html#PRP">PRP</a> model, now
+commonly known as (Okapi) BM25&#x00A0;[<a 
+href="thesis-emeijli2.html#XIPM:2000:jones">156</a>]. It is a handcrafted approximation of the
+<a 
+href="thesis-emeijli3.html#PRP">PRP</a> model and makes effective use of <a 
+href="thesis-emeijli3.html#TF">TF</a> and document length. It also remains
+a common baseline in <a 
+href="thesis-emeijli3.html#IR">IR</a> literature&#x00A0;[<a 
+href="thesis-emeijli2.html#XSIGIR:1994:robertson">265</a>]. A relatively new form of model,
+known as Language Modeling, appeared in the late 1990s and will be further
+introduced in the next section. Lafferty and Zhai&#x00A0;[<a 
+href="thesis-emeijli2.html#Xbook:2003:lm:zhai">174</a>] note that the <a 
+href="thesis-emeijli3.html#PRP">PRP</a>
+model can be considered rank equivalent to the language modeling approach,
+although this has caused some debate in recent literature&#x00A0;[<a 
+href="thesis-emeijli2.html#XICTIR:2009:boscarino">43</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XFORUM:2001:croft">83</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIR:2008:Luk">195</a>,&#x00A0;<a 
+href="thesis-emeijli2.html#XIR:2005:robertson">259</a>].
+After we have discussed language modeling below we return to this issue in
+Section&#x00A0;<a 
+href="thesis-emeijse9.html#x13-150003">2.2.3<!--tex4ht:ref: ssec:relwork:lm:prp --></a>.
+                                                                   
+                                                                   
+<!--l. 101--><p class="indent" >   <table cellspacing="5"><tr><td class="clinks"><a 
+href="thesis-emeijch2.html#thesis-emeijse8.html" >Up</a></td><td class="clinks"><a 
+href="thesis-emeijse9.html" >Next</a></td><td class="clinks"><a 
+href="thesis-emeijse8.html" >Front</a></td></tr></table><a 
+ id="tailthesis-emeijse8.html"></a> 
+</body></html> 

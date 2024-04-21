@@ -1,0 +1,4 @@
+http://phdthes.is/html-edition/thesis-emeij.html
+HTML version available!
+The second online edition is available now as HTML, see <a href="http://phdthes.is/html-edition/thesis-emeij.html">here</a>. After fiddling with <a href="http://plastex.sourceforge.net/">plasTeX</a>, <a href="http://hutchinson.belmont.ma.us/tth/">TTH</a>, and <a href="http://www.latex2html.org/">latex2html</a>, I ended up using <a href="http://tug.org/applications/tex4ht/mn.html">TeX4ht</a> to create HTML out of my Latex source files. This is the only tool I've found that actually compiles the Latex source files in order to output (X)HTML + MathML. This means that macros, packages, etc. work out of the box and that I didn't have to perform massive rewrites. Excellent! <br/><br/> I'll put up the PDF version in the next few days as well...
+Edgar Meij
